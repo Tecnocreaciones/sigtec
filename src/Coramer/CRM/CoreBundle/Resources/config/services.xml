@@ -17,4 +17,13 @@
         </service>
     </services>
     -->
+    <parameters>
+        <parameter key="app.db.prefix">x123</parameter>
+    </parameters>
+    <services>
+        <service id="app.tbl_prefix_subscriber" class="Coramer\CRM\CoreBundle\EventListener\TablePrefixListerner">
+            <argument>%app.db.prefix%_</argument>
+            <tag name="doctrine.event_subscriber" />
+        </service>
+    </services>
 </container>
