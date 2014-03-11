@@ -1,7 +1,6 @@
 {% if error %}
     {{ error|trans }}
 {% endif %}
-{{ csrf_token }}
 ﻿<!DOCTYPE html>
 
 <!--[if IEMobile 7]><html class="no-js iem7 oldie linen"><![endif]-->
@@ -252,38 +251,43 @@
 
 					// Show progress
 					displayLoading('Checking credentials...');
-
-					/*
-					 * This is where you may do your AJAX call, for instance:
-					 * $.ajax(url, {
-					 * 		data: {
-					 * 			login:	login,
-					 * 			pass:	pass
-					 * 		},
-					 * 		success: function(data)
-					 * 		{
-					 * 			if (data.logged)
-					 * 			{
-					 * 				document.location.href = 'index.html';
-					 * 			}
-					 * 			else
-					 * 			{
-					 * 				formWrapper.clearMessages();
-					 * 				displayError('Invalid user/password, please try again');
-					 * 			}
-					 * 		},
-					 * 		error: function()
-					 * 		{
-					 * 			formWrapper.clearMessages();
-					 * 			displayError('Error while contacting server, please try again');
-					 * 		}
-					 * });
-					 */
+                                        
+					var url = '{{ path("fos_user_security_check") }}';
+					 //This is where you may do your AJAX call, for instance:
+					 $.ajax(url, {
+                                                        type: "POST",
+					 		data: {
+					 			_username:	login,
+					 			_password:	pass,
+                                                                _csrf_token: '{{ csrf_token }}'
+					 		},
+					 		success: function(data)
+					 		{
+					 			if (data.url)
+					 			{
+					 				document.location.href = data.url;
+					 			}
+					 			else
+					 			{
+					 				formWrapper.clearMessages();
+					 				displayError('Invalid user/password, please try again');
+					 			}
+					 		},
+					 		error: function(response)
+					 		{
+                                                            var data = jQuery.parseJSON(response.responseText);
+                                                            formWrapper.clearMessages();
+                                                            displayError(data.message);
+					 		}
+					 });
+					 
 
 					// Simulate server-side check
+                                        /*
 					setTimeout(function() {
 						document.location.href = 'index-2.html'
 					}, 2000);
+                                        */
 				}
 			});
 
