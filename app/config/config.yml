@@ -96,3 +96,16 @@ stof_doctrine_extensions:
             timestampable: true
             softdeleteable: true
             loggable: true
+            
+liip_imagine:
+    filter_sets:
+        image_16x16:
+            filters:
+                thumbnail: { size: [16, 16], mode: outbound }
+        image_220x140:
+            filters:
+                thumbnail: { size: [220, 140], mode: inset }
+                
+        image_200x25:
+            filters:
+                thumbnail: { size: [200, 25], mode: inset }

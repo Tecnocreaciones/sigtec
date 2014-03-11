@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),//Manejador se session y usuario
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),//Extensiones de doctrine
+            new Liip\ImagineBundle\LiipImagineBundle(),//Manejador de imagenes
             new Pequiven\Bundle\WebBundle\PequivenWebBundle(),
             new Coramer\CRM\CoreBundle\CoramerCRMCoreBundle(),
             new Coramer\CRM\WebBundle\CoramerCRMWebBundle(),
