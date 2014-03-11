@@ -33,34 +33,34 @@
         <link rel="stylesheet" media="only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)" href="{{ asset('bundles/pequivenweb/frontend/css/2x3860.css?v=1') }}">
 
 	<!-- Additional styles -->
-	<link rel="stylesheet" href="css/styles/form3860.css?v=1">
-	<link rel="stylesheet" href="css/styles/switches3860.css?v=1">
+        <link rel="stylesheet" href="{{ asset('bundles/pequivenweb/frontend/css/styles/form3860.css?v=1') }}">
+	<link rel="stylesheet" href="{{ asset('bundles/pequivenweb/frontend/css/styles/switches3860.css?v=1') }}">
 
 	<!-- Login pages styles -->
-	<link rel="stylesheet" media="screen" href="css/login3860.css?v=1">
+	<link rel="stylesheet" media="screen" href="{{ asset('bundles/pequivenweb/frontend/css/login3860.css?v=1') }}">
 
 	<!-- JavaScript at bottom except for Modernizr -->
-	<script src="js/libs/modernizr.custom.js"></script>
+	<script src="{{ asset('bundles/pequivenweb/frontend/js/libs/modernizr.custom.js') }}"></script>
 
 	<!-- For Modern Browsers -->
-	<link rel="shortcut icon" href="img/favicons/favicon.png">
-	<!-- For everything else -->
-	<link rel="shortcut icon" href="img/favicons/favicon.ico">
+	<link rel="shortcut icon" href="{{ asset('bundles/pequivenweb/frontend/img/favicons/favicon.png') }}">
+        <!-- For everything else -->
+        <link rel="shortcut icon" href="{{ asset('bundles/pequivenweb/frontend/img/favicons/favicon.ico') }}">
 	<!-- For retina screens -->
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicons/apple-touch-icon-retina.png">
-	<!-- For iPad 1-->
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicons/apple-touch-icon-ipad.png">
-	<!-- For iPhone 3G, iPod Touch and Android -->
-	<link rel="apple-touch-icon-precomposed" href="img/favicons/apple-touch-icon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/pequivenweb/frontend/img/favicons/apple-touch-icon-retina.png') }}">
+        <!-- For iPad 1-->
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/pequivenweb/frontend/img/favicons/apple-touch-icon-ipad.png') }}">
+        <!-- For iPhone 3G, iPod Touch and Android -->
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/pequivenweb/frontend/img/favicons/apple-touch-icon.png') }}">
 
 	<!-- iOS web-app metas -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 	<!-- Startup image for web apps -->
-	<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-	<link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-	<link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+	<link rel="apple-touch-startup-image" href="{{ asset('bundles/pequivenweb/frontend/img/splash/ipad-landscape.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        <link rel="apple-touch-startup-image" href="{{ asset('bundles/pequivenweb/frontend/img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="{{ asset('bundles/pequivenweb/frontend/img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
 
 	<!-- Microsoft clear type rendering -->
 	<meta http-equiv="cleartype" content="on">
@@ -147,14 +147,14 @@
 	<!-- JavaScript at the bottom for fast page loading -->
 
 	<!-- Scripts -->
-	<script src="js/libs/jquery-1.8.2.min.js"></script>
-	<script src="js/setup.js"></script>
+	<script src="{{ asset('bundles/pequivenweb/frontend/js/libs/jquery-1.8.2.min.js') }}"></script>
+        <script src="{{ asset('bundles/pequivenweb/frontend/js/setup.js') }}"></script>
 
 	<!-- Template functions -->
-	<script src="js/developr.input.js"></script>
-	<script src="js/developr.message.js"></script>
-	<script src="js/developr.notify.js"></script>
-	<script src="js/developr.tooltip.js"></script>
+	<script src="{{ asset('bundles/pequivenweb/frontend/js/developr.input.js') }}"></script>
+	<script src="{{ asset('bundles/pequivenweb/frontend/js/developr.message.js') }}"></script>
+	<script src="{{ asset('bundles/pequivenweb/frontend/js/developr.notify.js') }}"></script>
+	<script src="{{ asset('bundles/pequivenweb/frontend/js/developr.tooltip.js') }}"></script>
 
 	<script>
 
@@ -688,7 +688,7 @@
 		notify('Alternate login', 'Want to see another login page style? Try the <a href="login.html"><b>default version</b></a> or the <a href="login-box.html"><b>box version</b></a>.', {
 			autoClose: false,
 			delay: 2500,
-			icon: 'img/demo/icon.png'
+			icon: '{{ asset('bundles/pequivenweb/frontend/img/demo/icon.png') }}'
 		});
 
 	</script>

@@ -126,20 +126,23 @@
         <script src="{{ asset('bundles/pequivenweb/frontend/js/setup.js') }}"></script>
 
         <!-- Template functions -->
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.input.js') }}"></script>
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.message.js') }}"></script>
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.modal.js') }}"></script>
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.navigable.js') }}"></script>
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.notify.js') }}"></script>
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.scroll.js') }}"></script>
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.progress-slider.js') }}"></script>
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.tooltip.js') }}"></script>
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.confirm.js') }}"></script>
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.agenda.js') }}"></script>
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.tabs.js') }}"></script>		<!-- Must be loaded last -->
+        {% block templateFunctions %}
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.input.js') }}"></script>
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.message.js') }}"></script>
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.modal.js') }}"></script>
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.navigable.js') }}"></script>
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.notify.js') }}"></script>
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.scroll.js') }}"></script>
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.progress-slider.js') }}"></script>
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.tooltip.js') }}"></script>
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.confirm.js') }}"></script>
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.agenda.js') }}"></script>
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/developr.tabs.js') }}"></script>		<!-- Must be loaded last -->
+        
+            <!-- Tinycon -->
+            <script src="{{ asset('bundles/pequivenweb/frontend/js/libs/tinycon.min.js') }}"></script>
+        {% endblock %}
 
-        <!-- Tinycon -->
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/libs/tinycon.min.js') }}"></script>
 
         <script>
 
