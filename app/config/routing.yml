@@ -1,3 +1,13 @@
+coramer_crm_web:
+    resource: "@CoramerCRMWebBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+coramer_crm_core:
+    resource: "@CoramerCRMCoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 pequiven_web:
     resource: "@PequivenWebBundle/Controller/"
     type:     annotation
