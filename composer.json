@@ -22,7 +22,8 @@
         "knplabs/knp-menu": "2.0.*@dev",
         "knplabs/knp-menu-bundle":"dev-master",
         "friendsofsymfony/user-bundle": "2.0.*@dev",
-        "friendsofsymfony/rest-bundle":"@stable"
+        "friendsofsymfony/rest-bundle":"@stable",
+        "stof/doctrine-extensions-bundle": "~1.1@dev"
     },
     "scripts": {
         "post-install-cmd": [
