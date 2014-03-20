@@ -21,8 +21,13 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
 {
     public function onAuthenticationSuccess(Request $request, TokenInterface $token) {
         if($request->isXmlHttpRequest()){
+            $url = $this->determineTargetUrl($request);
+            if(!preg_match('/http/', $url)){
+                $url = $request->getBaseUrl().$url;
+            }
+            
             $data = array(
-                'url' => $this->determineTargetUrl($request),
+                'url' => $url,
             );
             $response = new \Symfony\Component\HttpFoundation\JsonResponse($data);
             return $response;

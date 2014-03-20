@@ -263,12 +263,10 @@
 					 		},
 					 		success: function(data)
 					 		{
-					 			if (data.url)
-					 			{
-					 				document.location.href = data.url;
-					 			}
-					 			else
-					 			{
+					 			if (data.url)					 			{
+                                                                    //console.log(data.url);
+                                                                    document.location.href = data.url;
+					 			} else {
 					 				formWrapper.clearMessages();
 					 				displayError('Invalid user/password, please try again');
 					 			}
