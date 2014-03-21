@@ -3,11 +3,11 @@
 {% endif %}
 ﻿<!DOCTYPE html>
 
-<!--[if IEMobile 7]><html class="no-js iem7 oldie linen"><![endif]-->
-<!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie linen" lang="en"><![endif]-->
-<!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie linen" lang="en"><![endif]-->
-<!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9 linen" lang="en"><![endif]-->
-<!--[if (gt IE 9)|(gt IEMobile 7)]><!--><html class="no-js linen" lang="en"><!--<![endif]-->
+<!--[if IEMobile 7]><html class="no-js iem7 oldie"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie " lang="{{ app.request.locale }}"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie " lang="{{ app.request.locale }}"><![endif]-->
+<!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9 " lang="{{ app.request.locale }}"><![endif]-->
+<!--[if (gt IE 9)|(gt IEMobile 7)]><!--><html class="no-js " lang="{{ app.request.locale }}"><!--<![endif]-->
 
 <head>
 	<meta charset="utf-8">
@@ -78,11 +78,10 @@
 </head>
 
 <body>
-        <div  class="wrapped" style="height: 80px;width: 60%; ">
-            <div id="container">
+    <div id="container" class="wrapped">
 		<hgroup id="login-title" class="large-margin-bottom">
 			<h1 class="login-title-image"></h1>
-			<h5>&copy; Coramer</h5>
+			<h5>(Sistema de Información para la Gestión Técnica de Clientes &copy; Coramer)</h5>
 		</hgroup>
 		<div id="form-wrapper">
 			<div id="form-block" class="scratch-metal">
@@ -142,7 +141,7 @@
 		</div>
 
 	</div>
-        </div>
+        
 	
 
 	<!-- JavaScript at the bottom for fast page loading -->
