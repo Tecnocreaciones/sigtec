@@ -3,11 +3,11 @@
 {% endif %}
 ﻿<!DOCTYPE html>
 
-<!--[if IEMobile 7]><html class="no-js iem7 oldie linen"><![endif]-->
-<!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie linen" lang="en"><![endif]-->
-<!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie linen" lang="en"><![endif]-->
-<!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9 linen" lang="en"><![endif]-->
-<!--[if (gt IE 9)|(gt IEMobile 7)]><!--><html class="no-js linen" lang="en"><!--<![endif]-->
+<!--[if IEMobile 7]><html class="no-js iem7 oldie"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie " lang="{{ app.request.locale }}"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie " lang="{{ app.request.locale }}"><![endif]-->
+<!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9 " lang="{{ app.request.locale }}"><![endif]-->
+<!--[if (gt IE 9)|(gt IEMobile 7)]><!--><html class="no-js linen" lang="{{ app.request.locale }}"><!--<![endif]-->
 
 <head>
 	<meta charset="utf-8">
@@ -78,19 +78,37 @@
 </head>
 
 <body>
-
-	<div id="container">
-
-		<hgroup id="login-title" class="large-margin-bottom">
-			<h1 class="login-title-image"></h1>
-			<h5>&copy; Coramer</h5>
-		</hgroup>
-
+    <div class="block main-container">
+        <div class="columns" style="height: 54px;margin-top: 10px">
+            <div class="three-columns four-columns-tablet six-columns-mobile" style="">
+                <img class="resize-img-140" src="{{ asset('bundles/pequivenweb/frontend/img/logotipos-vzla/logotipo-gobierno-venezuela-2.png') }}" width="180px" />
+            </div>
+            <div class="four-columns four-columns-tablet six-columns-mobile" style="text-align: left;">
+                <div style="
+                border-left:2px solid rgb(82, 82, 82);
+                padding-left: 10px;
+                padding-top: 22px;
+                margin-left: -14px;
+                ">
+                    Ministerio del poder popular <br /> de <b style="color: rgb(82, 82, 82)">Petr&oacute;leo y Miner&iacute;a</b>
+                    
+                </div>
+            </div>
+            <div class="four-columns tree-columns-tablet hide-768" style="text-align: right;float: right">
+                <img src="{{ asset('bundles/pequivenweb/frontend/img/logotipos-vzla/venezuela-ahora-es-todos.png') }}" width="80px" />
+            </div>
+            <div class="new-row twelve-columns" style="margin-top: -15px">
+                <hr class="hr-line-red" />
+            </div>
+        </div>
+        <div class="with-padding">
+            <p>Sistema de Información para la Gestión Técnica de Clientes de Coramer (SIGTEC)</p>
+        </div>
+        
+            <div id="container">
 		<div id="form-wrapper">
-
 			<div id="form-block" class="scratch-metal">
 				<div id="form-viewport">
-
 					<form method="post" action="#" id="form-login" class="input-wrapper blue-gradient glossy" title="Login">
 						<ul class="inputs black-input large">
 							<!-- The autocomplete="off" attributes is the only way to prevent webkit browsers from filling the inputs with yellow -->
@@ -146,6 +164,11 @@
 		</div>
 
 	</div>
+        <hr class="hr-line-red" />
+    </div>
+    
+        
+	
 
 	<!-- JavaScript at the bottom for fast page loading -->
 

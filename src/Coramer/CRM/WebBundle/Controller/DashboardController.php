@@ -1,6 +1,6 @@
 <?php
 
-namespace Pequiven\Bundle\WebBundle\Controller;
+namespace Coramer\CRM\WebBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
