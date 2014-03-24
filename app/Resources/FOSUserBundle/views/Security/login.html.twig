@@ -23,47 +23,50 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 	<!-- For all browsers -->
-	<link rel="stylesheet" href="{{ asset('bundles/pequivenweb/frontend/css/reset3860.css?v=1') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/pequivenweb/frontend/css/style3860.css?v=1') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/pequivenweb/frontend/css/colors3860.css?v=1') }}">
-        <link rel="stylesheet" media="print" href="{{ asset('bundles/pequivenweb/frontend/css/print3860.css?v=1') }}">
+	<link rel="stylesheet" href="{{ asset('bundles/coramercrmweb/frontend/css/reset3860.css?v=1') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/coramercrmweb/frontend/css/style3860.css?v=1') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/coramercrmweb/frontend/css/colors3860.css?v=1') }}">
+        <link rel="stylesheet" media="print" href="{{ asset('bundles/coramercrmweb/frontend/css/print3860.css?v=1') }}">
 	<!-- For progressively larger displays -->
-	<link rel="stylesheet" media="only all and (min-width: 480px)" href="{{ asset('bundles/pequivenweb/frontend/css/4803860.css?v=1') }}">
-        <link rel="stylesheet" media="only all and (min-width: 768px)" href="{{ asset('bundles/pequivenweb/frontend/css/7683860.css?v=1') }}">
-        <link rel="stylesheet" media="only all and (min-width: 992px)" href="{{ asset('bundles/pequivenweb/frontend/css/9923860.css?v=1') }}">
-        <link rel="stylesheet" media="only all and (min-width: 1200px)" href="{{ asset('bundles/pequivenweb/frontend/css/12003860.css?v=1') }}">
+	<link rel="stylesheet" media="only all and (min-width: 480px)" href="{{ asset('bundles/coramercrmweb/frontend/css/4803860.css?v=1') }}">
+        <link rel="stylesheet" media="only all and (min-width: 768px)" href="{{ asset('bundles/coramercrmweb/frontend/css/7683860.css?v=1') }}">
+        <link rel="stylesheet" media="only all and (min-width: 992px)" href="{{ asset('bundles/coramercrmweb/frontend/css/9923860.css?v=1') }}">
+        <link rel="stylesheet" media="only all and (min-width: 1200px)" href="{{ asset('bundles/coramercrmweb/frontend/css/12003860.css?v=1') }}">
 	<!-- For Retina displays -->
-        <link rel="stylesheet" media="only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)" href="{{ asset('bundles/pequivenweb/frontend/css/2x3860.css?v=1') }}">
+        <link rel="stylesheet" media="only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)" href="{{ asset('bundles/coramercrmweb/frontend/css/2x3860.css?v=1') }}">
 
 	<!-- Additional styles -->
-        <link rel="stylesheet" href="{{ asset('bundles/pequivenweb/frontend/css/styles/form3860.css?v=1') }}">
-	<link rel="stylesheet" href="{{ asset('bundles/pequivenweb/frontend/css/styles/switches3860.css?v=1') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/coramercrmweb/frontend/css/styles/form3860.css?v=1') }}">
+	<link rel="stylesheet" href="{{ asset('bundles/coramercrmweb/frontend/css/styles/switches3860.css?v=1') }}">
 
 	<!-- Login pages styles -->
-	<link rel="stylesheet" media="screen" href="{{ asset('bundles/pequivenweb/frontend/css/login3860.css?v=1') }}">
-
+	<link rel="stylesheet" media="screen" href="{{ asset('bundles/coramercrmweb/frontend/css/login3860.css?v=1') }}">
+        
+        {% stylesheets '@CoramerCRMWebBundle/Resources/assets/css/login.css' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}        
 	<!-- JavaScript at bottom except for Modernizr -->
-	<script src="{{ asset('bundles/pequivenweb/frontend/js/libs/modernizr.custom.js') }}"></script>
+	<script src="{{ asset('bundles/coramercrmweb/frontend/js/libs/modernizr.custom.js') }}"></script>
 
 	<!-- For Modern Browsers -->
-	<link rel="shortcut icon" href="{{ asset('bundles/pequivenweb/frontend/img/favicons/favicon.png') }}">
+	<link rel="shortcut icon" href="{{ asset('bundles/coramercrmweb/frontend/img/favicons/favicon.png') }}">
         <!-- For everything else -->
-        <link rel="shortcut icon" href="{{ asset('bundles/pequivenweb/frontend/img/favicons/favicon.ico') }}">
+        <link rel="shortcut icon" href="{{ asset('bundles/coramercrmweb/frontend/img/favicons/favicon.ico') }}">
 	<!-- For retina screens -->
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/pequivenweb/frontend/img/favicons/apple-touch-icon-retina.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/coramercrmweb/frontend/img/favicons/apple-touch-icon-retina.png') }}">
         <!-- For iPad 1-->
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/pequivenweb/frontend/img/favicons/apple-touch-icon-ipad.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/coramercrmweb/frontend/img/favicons/apple-touch-icon-ipad.png') }}">
         <!-- For iPhone 3G, iPod Touch and Android -->
-        <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/pequivenweb/frontend/img/favicons/apple-touch-icon.png') }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/coramercrmweb/frontend/img/favicons/apple-touch-icon.png') }}">
 
 	<!-- iOS web-app metas -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 	<!-- Startup image for web apps -->
-	<link rel="apple-touch-startup-image" href="{{ asset('bundles/pequivenweb/frontend/img/splash/ipad-landscape.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-        <link rel="apple-touch-startup-image" href="{{ asset('bundles/pequivenweb/frontend/img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-        <link rel="apple-touch-startup-image" href="{{ asset('bundles/pequivenweb/frontend/img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
+	<link rel="apple-touch-startup-image" href="{{ asset('bundles/coramercrmweb/frontend/img/splash/ipad-landscape.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        <link rel="apple-touch-startup-image" href="{{ asset('bundles/coramercrmweb/frontend/img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="{{ asset('bundles/coramercrmweb/frontend/img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
 
 	<!-- Microsoft clear type rendering -->
 	<meta http-equiv="cleartype" content="on">
@@ -81,7 +84,7 @@
     <div class="block main-container">
         <div class="columns" style="height: 54px;margin-top: 10px">
             <div class="three-columns four-columns-tablet six-columns-mobile" style="">
-                <img class="resize-img-140" src="{{ asset('bundles/pequivenweb/frontend/img/logotipos-vzla/logotipo-gobierno-venezuela-2.png') }}" width="180px" />
+                <img class="resize-img-140" src="{{ asset('bundles/coramercrmweb/frontend/img/logotipos-vzla/logotipo-gobierno-venezuela-2.png') }}" width="180px" />
             </div>
             <div class="four-columns four-columns-tablet six-columns-mobile" style="text-align: left;">
                 <div style="
@@ -95,9 +98,9 @@
                 </div>
             </div>
             <div class="four-columns tree-columns-tablet hide-768" style="text-align: right;float: right">
-                <img src="{{ asset('bundles/pequivenweb/frontend/img/logotipos-vzla/venezuela-ahora-es-todos.png') }}" width="80px" />
+                <img src="{{ asset('bundles/coramercrmweb/frontend/img/logotipos-vzla/venezuela-ahora-es-todos.png') }}" width="80px" />
             </div>
-            <div class="new-row twelve-columns" style="margin-top: -15px">
+            <div class="new-row twelve-columns" style="margin-top: -30px">
                 <hr class="hr-line-red" />
             </div>
         </div>
@@ -105,7 +108,7 @@
             <p>Sistema de Información para la Gestión Técnica de Clientes de Coramer (SIGTEC)</p>
         </div>
         
-            <div id="container">
+        <div id="login-container">
 		<div id="form-wrapper">
 			<div id="form-block" class="scratch-metal">
 				<div id="form-viewport">
@@ -162,25 +165,28 @@
 			</div>
 
 		</div>
-
 	</div>
-        <hr class="hr-line-red" />
+            <br />
+       
+        <div id="login-footer">
+            <hr class="hr-line-red" />
+            Todos los Derechos Reservados © 2014 CORAMER C.A
+        </div>
+            <br />
+            <br />
     </div>
-    
-        
-	
 
 	<!-- JavaScript at the bottom for fast page loading -->
 
 	<!-- Scripts -->
-	<script src="{{ asset('bundles/pequivenweb/frontend/js/libs/jquery-1.8.2.min.js') }}"></script>
-        <script src="{{ asset('bundles/pequivenweb/frontend/js/setup.js') }}"></script>
+	<script src="{{ asset('bundles/coramercrmweb/frontend/js/libs/jquery-1.8.2.min.js') }}"></script>
+        <script src="{{ asset('bundles/coramercrmweb/frontend/js/setup.js') }}"></script>
 
 	<!-- Template functions -->
-	<script src="{{ asset('bundles/pequivenweb/frontend/js/developr.input.js') }}"></script>
-	<script src="{{ asset('bundles/pequivenweb/frontend/js/developr.message.js') }}"></script>
-	<script src="{{ asset('bundles/pequivenweb/frontend/js/developr.notify.js') }}"></script>
-	<script src="{{ asset('bundles/pequivenweb/frontend/js/developr.tooltip.js') }}"></script>
+	<script src="{{ asset('bundles/coramercrmweb/frontend/js/developr.input.js') }}"></script>
+	<script src="{{ asset('bundles/coramercrmweb/frontend/js/developr.message.js') }}"></script>
+	<script src="{{ asset('bundles/coramercrmweb/frontend/js/developr.notify.js') }}"></script>
+	<script src="{{ asset('bundles/coramercrmweb/frontend/js/developr.tooltip.js') }}"></script>
 
 	<script>
 

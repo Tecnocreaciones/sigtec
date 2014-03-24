@@ -220,10 +220,10 @@ form {
 		min-height: 100%;
 		overflow: auto;
 		}
-		html.js-login {
+/*		html.js-login {
 			height: 100%;
 			overflow: hidden;
-		}
+		}*/
 	body {
 		height: auto;
 		overflow: auto;
