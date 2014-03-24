@@ -42,6 +42,9 @@
         <link rel="stylesheet" href="{{ asset('bundles/coramercrmweb/frontend/css/styles/modal3860.css?v=1') }}">
         <link rel="stylesheet" href="{{ asset('bundles/coramercrmweb/frontend/css/styles/progress-slider3860.css?v=1') }}">
         <link rel="stylesheet" href="{{ asset('bundles/coramercrmweb/frontend/css/styles/switches3860.css?v=1') }}">
+        {% stylesheets '@CoramerCRMWebBundle/Resources/assets/css/main.css' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
 
         <!-- JavaScript at bottom except for Modernizr -->
         <script src="{{ asset('bundles/coramercrmweb/frontend/js/libs/modernizr.custom.js') }}"></script>
@@ -85,7 +88,7 @@
 
         <!-- Title bar -->
         <header role="banner" id="title-bar">
-            <h2>{% block appTitle %}App Title{% endblock %}</h2>
+            <h2>{% block appTitle %}SIGTEC{% endblock %}</h2>
         </header>
 
         <!-- Button to open/hide menu -->
