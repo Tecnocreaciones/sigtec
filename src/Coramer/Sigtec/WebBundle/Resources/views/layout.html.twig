@@ -42,9 +42,10 @@
         <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/modal3860.css?v=1') }}">
         <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/progress-slider3860.css?v=1') }}">
         <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/switches3860.css?v=1') }}">
-        
-        {% block stylesheets %}{% endblock %}
-        
+        {% stylesheets '@CoramerSigtecWebBundle/Resources/assets/css/main.css' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
         <!-- JavaScript at bottom except for Modernizr -->
         <script src="{{ asset('bundles/coramersigtecweb/frontend/js/libs/modernizr.custom.js') }}"></script>
 
@@ -87,7 +88,7 @@
 
         <!-- Title bar -->
         <header role="banner" id="title-bar">
-            <h2>{% block appTitle %}App Title{% endblock %}</h2>
+            <h2>{% block appTitle %}Sigtec{% endblock %}</h2>
         </header>
 
         <!-- Button to open/hide menu -->
@@ -115,10 +116,10 @@
         <!-- End main content -->
         
         <!-- Side tabs shortcuts -->
-        {% include 'coramersigtecwebBundle:Layout:_side-tabs-shortcuts.html.twig' %}
+        {% include 'CoramerSigtecWebBundle:Layout:_side-tabs-shortcuts.html.twig' %}
 
         <!-- Sidebar/drop-down menu -->
-        {% include 'coramersigtecwebBundle:Layout:_sidebar-drop-down-menu.html.twig' %}
+        {% include 'CoramerSigtecWebBundle:Layout:_sidebar-drop-down-menu.html.twig' %}
         <!-- End sidebar/drop-down menu -->
 
         <!-- JavaScript at the bottom for fast page loading -->
@@ -128,8 +129,57 @@
         <script src="{{ asset('bundles/coramersigtecweb/frontend/js/setup.js') }}"></script>
 
         <!-- Template functions -->
-        {% block templateFunctions %}{% endblock %}
+        {% block templateFunctions %}
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.input.js') }}"></script>
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.message.js') }}"></script>
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.modal.js') }}"></script>
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.navigable.js') }}"></script>
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.notify.js') }}"></script>
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.scroll.js') }}"></script>
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.progress-slider.js') }}"></script>
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.tooltip.js') }}"></script>
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.confirm.js') }}"></script>
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.agenda.js') }}"></script>
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.tabs.js') }}"></script>		<!-- Must be loaded last -->
         
-        {% block javascripts %}{% endblock %}
+            <!-- Tinycon -->
+            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/libs/tinycon.min.js') }}"></script>
+        {% endblock %}
+
+
+        <script>
+
+            // Call template init (optional, but faster if called manually)
+            $.template.init();
+
+            // Favicon count
+            Tinycon.setBubble(2);
+
+            // If the browser support the Notification API, ask user for permission (with a little delay)
+            if (notify.hasNotificationAPI() && !notify.isNotificationPermissionSet())
+            {
+                setTimeout(function()
+                {
+                    notify.showNotificationPermission('Your browser supports desktop notification, click here to enable them.', function()
+                    {
+                        // Confirmation message
+                        if (notify.hasNotificationPermission())
+                        {
+                            notify('Notifications API enabled!', 'You can now see notifications even when the application is in background', {
+                                icon: '{{ asset('bundles/coramersigtecweb/frontend/img/demo/icon.png') }}',
+                                system: true
+                            });
+                        }
+                        else
+                        {
+                            notify('Notifications API disabled!', 'Desktop notifications will not be used.', {
+                                icon: '{{ asset('bundles/coramersigtecweb/frontend/img/demo/icon.png') }}'
+                            });
+                        }
+                    });
+
+                }, 2000);
+            }
+        </script>
     </body>
 </html>

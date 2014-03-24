@@ -22,8 +22,8 @@ class AppKernel extends Kernel
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),//Manejador pagina multi-lenguaje
             new JMS\TranslationBundle\JMSTranslationBundle(),//Traductor optimizado
             new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),//Traduccion disponible en javascript
-            new Coramer\CRM\CoreBundle\CoramerCRMCoreBundle(),
-            new Coramer\CRM\WebBundle\CoramerCRMWebBundle(),
+            new Coramer\Sigtec\CoreBundle\CoramerSigtecCoreBundle(),
+            new Coramer\Sigtec\WebBundle\CoramerSigtecWebBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

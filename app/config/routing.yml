@@ -1,4 +1,4 @@
 web_bundle:
-    resource: "@CoramerCRMWebBundle/Resources/config/routing.yml"
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing.yml"
     prefix: /
     
