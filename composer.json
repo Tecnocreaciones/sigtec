@@ -25,7 +25,9 @@
         "friendsofsymfony/rest-bundle":"@stable",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "liip/imagine-bundle": "dev-master",
-	"lunetics/locale-bundle": "2.2.*"
+	"lunetics/locale-bundle": "2.2.*",
+        "willdurand/js-translation-bundle": "2.0.*@dev",
+        "jms/translation-bundle": "1.1.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

@@ -33,5 +33,22 @@
             <argument type="service"  id="fos_user.user_manager" />
             <argument type="service"  id="service_container" />
         </service>
+        <service id="security.authentication.success_handler" class="%security.authentication.success_handler.class%" abstract="true" public="false">
+            <argument type="service" id="security.http_utils" />
+            <argument type="collection" /> <!-- Options -->
+            <call method="setTranslator">
+                <argument  type="service" id="translator" />
+            </call>
+        </service>
+        <service id="security.authentication.failure_handler" class="%security.authentication.failure_handler.class%" abstract="true" public="false">
+            <tag name="monolog.logger" channel="security" />
+            <argument type="service" id="http_kernel" />
+            <argument type="service" id="security.http_utils" />
+            <argument type="collection" /> <!-- Options -->
+            <argument type="service" id="logger" on-invalid="null" />
+            <call method="setTranslator">
+                <argument  type="service" id="translator" />
+            </call>
+        </service>
     </services>
 </container>

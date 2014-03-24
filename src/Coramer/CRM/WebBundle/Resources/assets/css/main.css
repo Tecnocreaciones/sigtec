@@ -1,0 +1,19 @@
+/* 
+    Created on : 24/03/2014, 08:05:53 AM
+    Author     : Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+*/
+
+.big-menu {
+	color: white;
+	background: #ad1212 url(../img/old-browsers/colors/bg_big-menu.png) repeat-x;
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+	background-size: 100% 100%;
+	background: -webkit-gradient(linear, left top, left bottom, from(#c74848), to(#ad1212));
+	background: -webkit-linear-gradient(top, #c74848, #ad1212);
+	background: -moz-linear-gradient(top, #c74848, #ad1212);
+	background: -ms-linear-gradient(top, #c74848, #ad1212);
+	background: -o-linear-gradient(top, #c74848, #ad1212);
+	background: linear-gradient(top, #c74848, #ad1212);
+}

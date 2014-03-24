@@ -19,6 +19,12 @@ use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessH
  */
 class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
 {
+    /**
+     * Translator
+     * @var \Symfony\Component\Translation\TranslatorInterface
+     */
+    private $translator;
+    
     public function onAuthenticationSuccess(Request $request, TokenInterface $token) {
         if($request->isXmlHttpRequest()){
             $url = $this->determineTargetUrl($request);
@@ -63,5 +69,13 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
             return $targetUrl;
         }
         return $this->options['default_target_path'];
+    }
+    
+    /**
+     * Establece el traductor
+     * @param \Symfony\Component\Translation\TranslatorInterface $translator
+     */
+    function setTranslator(\Symfony\Component\Translation\TranslatorInterface $translator) {
+        $this->translator = $translator;
     }
 }

@@ -109,3 +109,17 @@ liip_imagine:
         image_200x25:
             filters:
                 thumbnail: { size: [200, 25], mode: inset }
+
+lunetics_locale:
+    allowed_locales:
+        - es
+        - en
+    strict_mode: true # defaults to false
+    guessing_order:
+        - query
+        - router
+        - session
+        - cookie
+        - browser
+    switcher:
+        show_current_locale: true
