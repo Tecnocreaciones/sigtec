@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),//Manejador pagina multi-lenguaje
             new JMS\TranslationBundle\JMSTranslationBundle(),//Traductor optimizado
             new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),//Traduccion disponible en javascript
+            //new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),//Para cargar fixtures de la base de datos
             new Coramer\Sigtec\CoreBundle\CoramerSigtecCoreBundle(),
             new Coramer\Sigtec\WebBundle\CoramerSigtecWebBundle(),
         );
