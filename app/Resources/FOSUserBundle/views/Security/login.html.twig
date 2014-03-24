@@ -82,7 +82,6 @@
 
 <body>
     <div class="block main-container">
-        {{ locale_switcher() }}
         <div class="columns" style="height: 54px;margin-top: 10px">
             <div class="three-columns four-columns-tablet six-columns-mobile" style="">
                 <img class="resize-img-140" src="{{ asset('bundles/coramercrmweb/frontend/img/logotipos-vzla/logotipo-gobierno-venezuela-2.png') }}" width="180px" />
@@ -103,6 +102,7 @@
             </div>
             <div class="new-row twelve-columns" style="margin-top: -30px">
                 <hr class="hr-line-red" />
+                {{ locale_switcher(null,null,'CoramerCRMWebBundle:Switcher:switcher_links.html.twig') }}
             </div>
         </div>
         <br />

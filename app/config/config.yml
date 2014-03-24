@@ -121,3 +121,5 @@ lunetics_locale:
         - session
         - cookie
         - browser
+    switcher:
+        show_current_locale: true
