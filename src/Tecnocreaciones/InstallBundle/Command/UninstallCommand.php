@@ -72,6 +72,8 @@ class UninstallCommand extends ContainerAwareCommand {
         $output->writeln('<info>Clear cache.</info>');
         $this->runCommand('cache:clear', $input, $output);
         
+        $output->writeln('');
+        
         return $this;
     }
 
