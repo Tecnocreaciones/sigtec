@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),//Trabaja con el serializador de objetos
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),//Extensiones de doctrine
             new Liip\ImagineBundle\LiipImagineBundle(),//Manejador de imagenes
+            new Liip\DoctrineCacheBundle\LiipDoctrineCacheBundle(),//Cache para doctrine
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),//Manejador pagina multi-lenguaje
             new JMS\TranslationBundle\JMSTranslationBundle(),//Traductor optimizado
             new JMS\SerializerBundle\JMSSerializerBundle(),//Serializador de objetos en json y xml
@@ -32,7 +33,7 @@ class AppKernel extends Kernel
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            //$bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
+            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
