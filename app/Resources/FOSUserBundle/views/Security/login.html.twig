@@ -13,7 +13,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-        <title>Sigtec</title>
+        <title>SIGTEC</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 
@@ -423,15 +423,46 @@
 				{
 					// Show progress
 					displayLoading('{{ 'sigtec.validators.registering'|trans }}...');
-
-					/*
+                                        
+                                        /*
 					 * This is where you may do your AJAX call
 					 */
-
-					// Simulate server-side check
-					setTimeout(function() {
-						document.location.href = 'index-2.html'
-					}, 2000);
+					var url = '{{ path("fos_user_registration_register") }}';
+					 //This is where you may do your AJAX call, for instance:
+					 $.ajax(url, {
+                                                        type: "POST",
+					 		data: {
+                                                                'fos_user_registration_form[email]' : mail,
+                                                                'fos_user_registration_form[username]' : login,
+                                                                'fos_user_registration_form[plainPassword][first]' : pass,
+                                                                'fos_user_registration_form[plainPassword][second]' : pass,
+					 			'fos_user_registration_form[_token]': '{{ csrf_token_register }}'
+					 		},
+					 		success: function(data)
+					 		{
+                                                            formWrapper.clearMessages();
+                                                            displaySuccess(data.message);
+                                                            if(data.targetUrl != null){
+                                                                document.location.href = data.targetUrl;
+                                                            }
+					 		},
+					 		error: function(response)
+					 		{
+                                                            var data = jQuery.parseJSON(response.responseText);
+                                                            formWrapper.clearMessages();
+                                                            displayError(data.message);
+                                                            var children = data.errors.children;
+                                                            var i = 0;
+                                                            if(children.email.errors){
+                                                                for (i=0; i < children.email.errors.length; i++){
+                                                                    displayError(children.email.errors[i]);
+                                                                }
+                                                            }
+                                                            for (i=0; i < children.username.errors.length; i++){
+                                                                displayError(children.username.errors[i]);
+                                                            }
+					 		}
+					 });
 				}
 			});
 

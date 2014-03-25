@@ -19,36 +19,11 @@
     -->
     <parameters>
         <parameter key="app.db.prefix">default_prefix</parameter>
-        <parameter key="security.authentication.success_handler.class">Coramer\Sigtec\CoreBundle\Handler\AuthenticationSuccessHandler</parameter>
-        <parameter key="security.authentication.failure_handler.class">Coramer\Sigtec\CoreBundle\Handler\AuthenticationFailureHandler</parameter>
     </parameters>
     <services>
         <service id="app.tbl_prefix_subscriber" class="Coramer\Sigtec\CoreBundle\EventListener\TablePrefixListerner">
             <argument>%app.db.prefix%_</argument>
             <tag name="doctrine.event_subscriber" />
-        </service>
-        <service id="authentication_handler" class="Coramer\Sigtec\CoreBundle\Handler\AuthenticationHandler">
-            <argument type="service"  id="router" />
-            <argument type="service"  id="security.context" />
-            <argument type="service"  id="fos_user.user_manager" />
-            <argument type="service"  id="service_container" />
-        </service>
-        <service id="security.authentication.success_handler" class="%security.authentication.success_handler.class%" abstract="true" public="false">
-            <argument type="service" id="security.http_utils" />
-            <argument type="collection" /> <!-- Options -->
-            <call method="setTranslator">
-                <argument  type="service" id="translator" />
-            </call>
-        </service>
-        <service id="security.authentication.failure_handler" class="%security.authentication.failure_handler.class%" abstract="true" public="false">
-            <tag name="monolog.logger" channel="security" />
-            <argument type="service" id="http_kernel" />
-            <argument type="service" id="security.http_utils" />
-            <argument type="collection" /> <!-- Options -->
-            <argument type="service" id="logger" on-invalid="null" />
-            <call method="setTranslator">
-                <argument  type="service" id="translator" />
-            </call>
         </service>
     </services>
 </container>

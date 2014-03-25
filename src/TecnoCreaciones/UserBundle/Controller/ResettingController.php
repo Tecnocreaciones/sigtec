@@ -31,14 +31,14 @@ class ResettingController extends BaseController
             $user = $this->container->get('fos_user.user_manager')->findUserByUsernameOrEmail($username);
 
             if (null === $user) {
-                $data['message'] = $this->getTranslator()->trans('resetting.request.invalid_username',array('%username%' => $username),'FOSUserBundle');
+                $data['message'] = $this->trans('resetting.request.invalid_username',array('%username%' => $username));
                 $response->setData($data)->setStatusCode(400);
                 return $response;
             }
 
             if ($user->isPasswordRequestNonExpired($this->container->getParameter('fos_user.resetting.token_ttl'))) {
                 
-                $data['message'] = $this->getTranslator()->trans('resetting.password_already_requested',array(),'FOSUserBundle');
+                $data['message'] = $this->trans('resetting.password_already_requested',array());
                 $response->setData($data)->setStatusCode(400);
                 return $response;
             }
@@ -53,7 +53,7 @@ class ResettingController extends BaseController
             $user->setPasswordRequestedAt(new \DateTime());
             $this->container->get('fos_user.user_manager')->updateUser($user);
 
-            $data['message'] = $this->getTranslator()->trans('resetting.check_email',array('%email%' => $username),'FOSUserBundle');
+            $data['message'] = $this->trans('resetting.check_email',array('%email%' => $username));
             $response->setData($data);
             return $response;
         }else{
@@ -62,11 +62,13 @@ class ResettingController extends BaseController
     }
     
     /**
-     * Traductor
-     * @return \Symfony\Component\Translation\TranslatorInterface
+     * 
+     * @param type $message
+     * @param array $params
+     * @return type
      */
-    protected function getTranslator()
+    private function trans($message, array $params = array())
     {
-        return $this->container->get('translator');
+        return $this->container->get('translator')->trans($message, $params, 'FOSUserBundle');
     }
 }

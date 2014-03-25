@@ -17,10 +17,12 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),//Manejador se session y usuario
+            new FOS\RestBundle\FOSRestBundle(),//Trabaja con el serializador de objetos
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),//Extensiones de doctrine
             new Liip\ImagineBundle\LiipImagineBundle(),//Manejador de imagenes
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),//Manejador pagina multi-lenguaje
             new JMS\TranslationBundle\JMSTranslationBundle(),//Traductor optimizado
+            new JMS\SerializerBundle\JMSSerializerBundle(),//Serializador de objetos en json y xml
             new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),//Traduccion disponible en javascript
             //new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),//Para cargar fixtures de la base de datos
             new Coramer\Sigtec\CoreBundle\CoramerSigtecCoreBundle(),

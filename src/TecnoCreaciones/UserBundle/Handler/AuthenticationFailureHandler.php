@@ -1,6 +1,6 @@
 <?php
 
-namespace Coramer\Sigtec\CoreBundle\Handler;
+namespace TecnoCreaciones\UserBundle\Handler;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
