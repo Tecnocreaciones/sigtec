@@ -18,7 +18,7 @@
     </services>
     -->
     <parameters>
-        <parameter key="app.db.prefix">x123</parameter>
+        <parameter key="app.db.prefix">default_prefix</parameter>
         <parameter key="security.authentication.success_handler.class">Coramer\Sigtec\CoreBundle\Handler\AuthenticationSuccessHandler</parameter>
         <parameter key="security.authentication.failure_handler.class">Coramer\Sigtec\CoreBundle\Handler\AuthenticationFailureHandler</parameter>
     </parameters>
