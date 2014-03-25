@@ -126,3 +126,8 @@ lunetics_locale:
         - browser
     switcher:
         show_current_locale: true
+        
+tecnocreaciones_install:
+    user_class: Coramer\Sigtec\CoreBundle\Entity\User
+    credentials:
+        email: inhack20@gmail.com

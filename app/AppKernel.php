@@ -24,10 +24,11 @@ class AppKernel extends Kernel
             new JMS\TranslationBundle\JMSTranslationBundle(),//Traductor optimizado
             new JMS\SerializerBundle\JMSSerializerBundle(),//Serializador de objetos en json y xml
             new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),//Traduccion disponible en javascript
-            //new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),//Para cargar fixtures de la base de datos
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),//Para cargar fixtures de la base de datos
             new Coramer\Sigtec\CoreBundle\CoramerSigtecCoreBundle(),
             new Coramer\Sigtec\WebBundle\CoramerSigtecWebBundle(),
             new Tecnocreaciones\UserBundle\TecnocreacionesUserBundle(),
+            new Tecnocreaciones\InstallBundle\TecnocreacionesInstallBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
