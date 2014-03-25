@@ -143,7 +143,7 @@
 
 					</form>
 
-                                               <form method="post" action="#" id="form-register" class="input-wrapper green-gradient glossy" title="{{ 'sigtec.register'|trans }}">
+                                               <form method="post" action="#" id="form-register" class="input-wrapper red-gradient glossy" title="{{ 'sigtec.register'|trans }}">
 
 						<p class="message">
                                                         {{ 'sigtec.message_register'|trans }}:
@@ -308,14 +308,6 @@
                                                             displayError(data.message);
 					 		}
 					 });
-					 
-
-					// Simulate server-side check
-                                        /*
-					setTimeout(function() {
-						document.location.href = 'index-2.html'
-					}, 2000);
-                                        */
 				}
 			});
 
@@ -357,11 +349,25 @@
 					/*
 					 * This is where you may do your AJAX call
 					 */
-
-					// Simulate server-side check
-					setTimeout(function() {
-						document.location.href = 'index-2.html'
-					}, 2000);
+					var url = '{{ path("fos_user_resetting_send_email") }}';
+					 //This is where you may do your AJAX call, for instance:
+					 $.ajax(url, {
+                                                        type: "POST",
+					 		data: {
+					 			username: mail
+					 		},
+					 		success: function(data)
+					 		{
+                                                            formWrapper.clearMessages();
+                                                            displaySuccess(data.message);
+					 		},
+					 		error: function(response)
+					 		{
+                                                            var data = jQuery.parseJSON(response.responseText);
+                                                            formWrapper.clearMessages();
+                                                            displayError(data.message);
+					 		}
+					 });
 				}
 			});
 
@@ -675,6 +681,32 @@
 					append: false,
 					arrow: 'bottom',
 					classes: ['red-gradient'],
+					animate: false					// We'll do animation later, we need to know the message height first
+				});
+
+				// Vertical centering (where we need the message height)
+				centerForm(currentForm, true, 'fast');
+
+				// Watch for closing and show with effect
+				message.bind('endfade', function(event)
+				{
+					// This will be called once the message has faded away and is removed
+					centerForm(currentForm, true, message.get(0));
+
+				}).hide().slideDown('fast');
+			};
+
+			/**
+			 * Function to display error messages
+			 * @param string message the error to display
+			 */
+			function displaySuccess(message)
+			{
+				// Show message
+				var message = formWrapper.message(message, {
+					append: false,
+					arrow: 'bottom',
+					classes: ['green-gradient'],
 					animate: false					// We'll do animation later, we need to know the message height first
 				});
 
