@@ -27,7 +27,7 @@ class AppKernel extends Kernel
             //new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),//Para cargar fixtures de la base de datos
             new Coramer\Sigtec\CoreBundle\CoramerSigtecCoreBundle(),
             new Coramer\Sigtec\WebBundle\CoramerSigtecWebBundle(),
-            new TecnoCreaciones\UserBundle\TecnoCreacionesUserBundle(),
+            new Tecnocreaciones\UserBundle\TecnocreacionesUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

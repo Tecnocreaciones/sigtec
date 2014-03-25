@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TecnoCreaciones package.
+ * This file is part of the Tecnocreaciones package.
  * 
  * (c) www.tecnocreaciones.com.ve
  * 
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace TecnoCreaciones\UserBundle\EventListener;
+namespace Tecnocreaciones\UserBundle\EventListener;
 
 use FOS\UserBundle\EventListener\EmailConfirmationListener as BaseListener;
 

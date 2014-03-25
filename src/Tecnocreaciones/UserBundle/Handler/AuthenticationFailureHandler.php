@@ -1,6 +1,6 @@
 <?php
 
-namespace TecnoCreaciones\UserBundle\Handler;
+namespace Tecnocreaciones\UserBundle\Handler;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;

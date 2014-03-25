@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace TecnoCreaciones\UserBundle\Handler;
+namespace Tecnocreaciones\UserBundle\Handler;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
