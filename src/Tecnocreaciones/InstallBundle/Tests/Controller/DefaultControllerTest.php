@@ -1,6 +1,6 @@
 <?php
 
-namespace TecnoCreaciones\UserBundle\Tests\Controller;
+namespace Tecnocreaciones\InstallBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

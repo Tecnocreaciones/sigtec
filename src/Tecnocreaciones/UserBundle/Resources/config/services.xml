@@ -6,7 +6,7 @@
 
     <!--
     <parameters>
-        <parameter key="tecno_creaciones_user.example.class">TecnoCreaciones\UserBundle\Example</parameter>
+        <parameter key="tecno_creaciones_user.example.class">Tecnocreaciones\UserBundle\Example</parameter>
     </parameters>
 
     <services>
@@ -18,12 +18,12 @@
     </services>
     -->
     <parameters>
-        <parameter key="security.authentication.success_handler.class">TecnoCreaciones\UserBundle\Handler\AuthenticationSuccessHandler</parameter>
-        <parameter key="security.authentication.failure_handler.class">TecnoCreaciones\UserBundle\Handler\AuthenticationFailureHandler</parameter>
+        <parameter key="security.authentication.success_handler.class">Tecnocreaciones\UserBundle\Handler\AuthenticationSuccessHandler</parameter>
+        <parameter key="security.authentication.failure_handler.class">Tecnocreaciones\UserBundle\Handler\AuthenticationFailureHandler</parameter>
     </parameters>
     
     <services>
-        <service id="fos_user.listener.email_confirmation" class="TecnoCreaciones\UserBundle\EventListener\EmailConfirmationListener">
+        <service id="fos_user.listener.email_confirmation" class="Tecnocreaciones\UserBundle\EventListener\EmailConfirmationListener">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="fos_user.mailer" />
             <argument type="service" id="fos_user.util.token_generator" />
@@ -33,7 +33,7 @@
                 <argument type="service" id="translator" />
             </call>
         </service>
-        <service id="fos_user.listener.flash" class="TecnoCreaciones\UserBundle\EventListener\FlashListener">
+        <service id="fos_user.listener.flash" class="Tecnocreaciones\UserBundle\EventListener\FlashListener">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="session" />
             <argument type="service" id="translator" />

@@ -1,10 +1,10 @@
 <?php
 
-namespace TecnoCreaciones\UserBundle;
+namespace Tecnocreaciones\UserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class TecnoCreacionesUserBundle extends Bundle
+class TecnocreacionesUserBundle extends Bundle
 {
     public function getParent()
     {

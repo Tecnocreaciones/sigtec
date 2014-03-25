@@ -1,6 +1,6 @@
 <?php
 
-namespace TecnoCreaciones\UserBundle\DependencyInjection;
+namespace Tecnocreaciones\UserBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
