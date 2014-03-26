@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),//Para cargar fixtures de la base de datos
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),//Paginador
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),//Recursos CRUD
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),//Gestor del menu
             new Coramer\Sigtec\CoreBundle\CoramerSigtecCoreBundle(),
             new Coramer\Sigtec\WebBundle\CoramerSigtecWebBundle(),
             new Tecnocreaciones\UserBundle\TecnocreacionesUserBundle(),

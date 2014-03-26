@@ -76,10 +76,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="with-right-arrow">
-                    <a href="ajax-demo/submenu.html" class="navigable-ajax" title="Menu title">With ajax sub-menu</a>
-                </li>
             </ul>
+            {{ knp_menu_render('sigtec.menu.backend.sidebar', {'template': 'CoramerSigtecWebBundle::menu.html.twig', 'currentClass': 'current','ancestorClass':'navigable-current'}) }}
         </section>
     </div>
     <!-- End content wrapper -->

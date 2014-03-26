@@ -1,0 +1,36 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% block linkElement %}
+    {% set linkAttributes = item.linkAttributes %}
+    {% if item.hasChildren %}
+        {% set linkAttributes = {'class':'dropdown-toggle'}|merge(linkAttributes) %}
+    {% endif %}
+    
+    <a href="{{ item.uri }}"{{ knp_menu.attributes(linkAttributes) }}>{{ block('label') }}</a>
+{% endblock %}
+
+{% block label %}
+    {% if item.labelAttribute('icon') %}<i class="{{ item.labelAttribute('icon') }}"></i>{% endif %}
+    {% if not item.labelAttribute('iconOnly') %}
+        {% if item.level == 2 %}
+            <i class="icon-double-angle-right"></i>
+        {% endif %}
+        {% if item.hasChildren %}
+            <span class="menu-text">
+        {% endif %}
+                {% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|trans|raw }}{% else %}{{ item.label|trans }}{% endif %}
+        {% if item.hasChildren %}
+            </span>    
+        {% endif %}
+    {% endif %}
+    {% if item.labelAttribute('data-image') %}<img src="{{ item.labelAttribute('data-image')|imagine_filter('sms_facilito_16x16', true) }}" alt="{{ item.name }}" class="menu-thumbnail"/>{% endif %}
+    {% if item.hasChildren %}<b class="arrow icon-angle-down"></b>{% endif %}
+{% endblock %}
+    
+{% block spanElement %}
+    {% set labelAttributes = item.labelAttributes %}
+    {% if item.hasChildren %}
+        {% set labelAttributes = {'class':'dropdown-toggle','href':'#'}|merge(labelAttributes) %}
+    {% endif %}
+    <a {{ knp_menu.attributes(labelAttributes) }}>{{ block('label') }}</a>
+{% endblock %}
