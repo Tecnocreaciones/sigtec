@@ -4,7 +4,7 @@
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie" lang="{{ app.request.locale }}"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie" lang="{{ app.request.locale }}"><![endif]-->
 <!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9" lang="{{ app.request.locale }}"><![endif]-->
-<!--[if (gt IE 9)|(gt IEMobile 7)]><!--><html class="no-js" lang="{{ app.request.locale }}"><!--<![endif]-->
+<!--[if (gt IE 9)|(gt IEMobile 7)]><!--><html class="no-js linen" lang="{{ app.request.locale }}"><!--<![endif]-->
 
     <head>
         <meta charset="utf-8">
@@ -33,7 +33,12 @@
         <link rel="stylesheet" media="only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)" href="{{ asset('bundles/coramersigtecweb/frontend/css/2x3860.css?v=1') }}">
 
         <!-- Webfonts -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+        {% if app.debug %}
+            {% set fontUrl = asset('bundles/coramersigtecweb/frontend/css/fonts/font.css?v=1') %}
+        {% else %}
+            {% set fontUrl = 'http://fonts.googleapis.com/css?family=Open+Sans:300' %}
+        {% endif  %}
+        <link href='{{ fontUrl }}' rel='stylesheet' type='text/css'>
 
         <!-- Additional styles -->
         <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/agenda3860.css?v=1') }}">
@@ -42,7 +47,10 @@
         <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/modal3860.css?v=1') }}">
         <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/progress-slider3860.css?v=1') }}">
         <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/switches3860.css?v=1') }}">
-        {% stylesheets '@CoramerSigtecWebBundle/Resources/assets/css/main.css' filter='cssrewrite' %}
+        {% stylesheets output='css/compiled/main.css' filter='cssrewrite' 
+            '@CoramerSigtecWebBundle/Resources/assets/css/main.css'
+            '@CoramerSigtecWebBundle/Resources/assets/css/gobierno-vzla.css'
+        %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
 
@@ -85,39 +93,44 @@
 
         <!-- Prompt IE 6 users to install Chrome Frame -->
         <!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-
+        
         <!-- Title bar -->
-        <header role="banner" id="title-bar">
-            <h2>{% block appTitle %}Sigtec{% endblock %}</h2>
-        </header>
-
+            <header role="banner" id="title-bar" class="hidden-on-desktop">
+                <h2>{% block appTitle %} 
+                    SIGTEC
+                    {% endblock %}</h2>
+            </header>
         <!-- Button to open/hide menu -->
         <a href="javascript:void(0);" id="open-menu"><span>Menu</span></a>
-
+        
         <!-- Button to open/hide shortcuts -->
-        <a href="javascript:void(0);" id="open-shortcuts"><span class="icon-thumbs"></span></a>
-
+        <div class="hidden-on-desktop">
+            <img class="logo-menu-mobile" src="{{ asset('bundles/coramersigtecweb/frontend/img/favicons/favicon.png') }}" height="24px" width="24px" />
+        </div>
         <!-- Main content -->
-        <section role="main" id="main">
-
+        <section role="main" id="main" class="block main-frontend">
+            
             <noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
-            {% block content %}
-                {% block mainTitle %}
-                    <hgroup id="main-title" class="thin">
-                            <h1>Dashboard</h1>
-                            <h2>nov <strong>10</strong></h2>
-                    </hgroup>
+            {% include 'CoramerSigtecWebBundle:Vzla:header.html.twig' %}
+            <div class="content-container">
+                {% block content %}
+                    {% block mainTitle %}
+
+                        <hgroup id="main-title" class="thin">
+                                <h1>Dashboard</h1>
+                                <h2>nov <strong>10</strong></h2>
+                        </hgroup>
+                    {% endblock %}
+                    Contenido (Sobrescribir el bloque content)
                 {% endblock %}
-                Contenido (Sobrescribir el bloque content)
-            {% endblock %}
-
-
+            </div>
+            {% include 'CoramerSigtecWebBundle:Vzla:footer.html.twig' %}
         </section>
         <!-- End main content -->
         
         <!-- Side tabs shortcuts -->
-        {% include 'CoramerSigtecWebBundle:Layout:_side-tabs-shortcuts.html.twig' %}
-
+        {# include 'CoramerSigtecWebBundle:Layout:_side-tabs-shortcuts.html.twig' #}
+        
         <!-- Sidebar/drop-down menu -->
         {% include 'CoramerSigtecWebBundle:Layout:_sidebar-drop-down-menu.html.twig' %}
         <!-- End sidebar/drop-down menu -->
