@@ -26,6 +26,8 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),//Serializador de objetos en json y xml
             new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),//Traduccion disponible en javascript
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),//Para cargar fixtures de la base de datos
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),//Paginador
+            new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),//Recursos CRUD
             new Coramer\Sigtec\CoreBundle\CoramerSigtecCoreBundle(),
             new Coramer\Sigtec\WebBundle\CoramerSigtecWebBundle(),
             new Tecnocreaciones\UserBundle\TecnocreacionesUserBundle(),

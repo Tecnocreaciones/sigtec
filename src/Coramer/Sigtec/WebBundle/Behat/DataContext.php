@@ -58,7 +58,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
                 $data['email'],
                 isset($data['password']) ? $data['password'] : $this->faker->word(),
                 'ROLE_USER',
-                isset($data['enabled']) ? $data['enabled'] : true,
+                isset($data['enabled']) ? $data['enabled'] : 'yes',
                 isset($data['address']) && !empty($data['address']) ? $data['address'] : null,
                 false
             );
@@ -244,7 +244,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
      */
     public function getRepository($resource)
     {
-        return $this->getService('sms_facilito.repository.'.$resource);
+        return $this->getService('tec.repository.'.$resource);
     }
 
     /**

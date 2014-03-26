@@ -51,9 +51,9 @@ class WebUser extends MinkContext implements KernelAwareInterface
      */
     public function __construct()
     {
-        // SmsFacilito data creation context.
+        // Tec data creation context.
         $this->useContext('data', new DataContext());
-        // SmsFacilito OAuth context.
+        // Tec OAuth context.
         $this->useContext('oauth', new OAuthContext());
     }
 
@@ -117,6 +117,15 @@ class WebUser extends MinkContext implements KernelAwareInterface
     {
         $this->getSession()->visit($this->generatePageUrl('fos_user_change_password'));
     }
+    
+    /**
+     * @Given /^I am on login page$/
+     */
+    public function iAmOnLoginPage()
+    {
+        $this->getSession()->visit($this->generatePageUrl('fos_user_security_login'));
+    }
+
 
     /**
      * @Given /^I should be on my account password page$/
@@ -392,7 +401,7 @@ class WebUser extends MinkContext implements KernelAwareInterface
      * @Given /^I am logged in user$/
      * @Given /^I am logged in as user "([^""]*)"$/
      */
-    public function iAmLoggedInUser($username = 'smsfacilito')
+    public function iAmLoggedInUser($username = 'user')
     {
         $this->iAmLoggedInAsRole('ROLE_USER', $username);
     }
@@ -559,11 +568,11 @@ class WebUser extends MinkContext implements KernelAwareInterface
     }
 
     /**
-     * Create user and login with given role.
+     * Create user and login with given role.sms_facilito
      *
      * @param string $role
      */
-    protected function iAmLoggedInAsRole($role, $username = 'smsfacilito')
+    protected function iAmLoggedInAsRole($role, $username = 'user')
     {
         $password = 'admin';
         $user = $this->getSubContext('data')->thereIsUser($username, $password, $role);

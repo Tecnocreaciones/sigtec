@@ -128,3 +128,10 @@ tecnocreaciones_install:
     user_class: Coramer\Sigtec\CoreBundle\Entity\User
     credentials:
         email: inhack20@gmail.com
+        
+sylius_resource:
+    resources:
+        tec.user:
+            driver: doctrine/orm
+            classes:
+                model: Coramer\Sigtec\CoreBundle\Entity\User
