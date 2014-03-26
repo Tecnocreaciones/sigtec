@@ -94,6 +94,10 @@
                 <source>sigtec.validators.sending_instructions</source>
                 <target>Enviando instrucciones</target>
             </trans-unit>
+            <trans-unit id="ee8b4ae3df9d95439510a326346fc699">
+                <source>sigtec.registration</source>
+                <target>Registro</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

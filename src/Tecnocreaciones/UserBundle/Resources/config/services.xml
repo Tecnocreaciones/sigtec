@@ -23,16 +23,6 @@
     </parameters>
     
     <services>
-        <service id="fos_user.listener.email_confirmation" class="Tecnocreaciones\UserBundle\EventListener\EmailConfirmationListener">
-            <tag name="kernel.event_subscriber" />
-            <argument type="service" id="fos_user.mailer" />
-            <argument type="service" id="fos_user.util.token_generator" />
-            <argument type="service" id="router" />
-            <argument type="service" id="session" />
-            <call method="setTranslator">
-                <argument type="service" id="translator" />
-            </call>
-        </service>
         <service id="fos_user.listener.flash" class="Tecnocreaciones\UserBundle\EventListener\FlashListener">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="session" />

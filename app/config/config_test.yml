@@ -3,7 +3,8 @@ imports:
 
 framework:
     test: ~
-    default_locale:  "en"
+    translator:      { fallback: "es" }
+    default_locale:  "es"
     session:
         storage_id: session.storage.mock_file
     profiler:
@@ -34,3 +35,6 @@ monolog:
         firephp:
             type:  firephp
             level: info
+
+stof_doctrine_extensions:
+    default_locale: es

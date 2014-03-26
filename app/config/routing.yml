@@ -1,8 +1,5 @@
 web_bundle:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing.yml"
-    
-    defaults:
-        _locale: es
     requirements:
         _locale: es|en
         

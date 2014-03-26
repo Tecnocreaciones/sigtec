@@ -485,7 +485,27 @@ class WebUser extends MinkContext implements KernelAwareInterface
      */
     public function iWaitAFewSeconds()
     {
-        sleep(5);
+        $this->getSession()->wait(800);
+    }
+    
+    /**
+    * Click some text
+    *
+    * @When /^I click on the text "([^"]*)"$/
+    */
+    public function iClickOnTheText($text)
+    {
+        $session = $this->getSession();
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('xpath', '*//*[text()="'. $text .'"]')
+        );
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Cannot find text: "%s"', $text));
+        }
+ 
+        $element->click();
+ 
     }
 
     /**
@@ -631,4 +651,5 @@ class WebUser extends MinkContext implements KernelAwareInterface
     {
         return $this->kernel->getContainer();
     }
+
 }
