@@ -399,11 +399,13 @@
                         $.ajax(url, {
                             type: "POST",
                             data: {
+                                'fos_user_registration_form[firstName]': name,
                                 'fos_user_registration_form[email]': mail,
                                 'fos_user_registration_form[username]': login,
                                 'fos_user_registration_form[plainPassword][first]': pass,
                                 'fos_user_registration_form[plainPassword][second]': pass,
-                                'fos_user_registration_form[_token]': '{{ csrf_token_register }}'
+                                'fos_user_registration_form[_token]': '{{ csrf_token_register }}',
+                                'role': 'client'
                             },
                             success: function(data)
                             {
@@ -419,6 +421,7 @@
                             {
                                 var data = jQuery.parseJSON(response.responseText);
                                 formWrapper.clearMessages();
+                                //TODO falta traducir esto porque envia Validation Failed
                                 displayError(data.message);
                                 var children = data.errors.children;
                                 var i = 0;

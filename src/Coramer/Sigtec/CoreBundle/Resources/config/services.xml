@@ -25,5 +25,12 @@
             <argument>%app.db.prefix%_</argument>
             <tag name="doctrine.event_subscriber" />
         </service>
+        <service id="sigtec_user.registration.form.type" class="Coramer\Sigtec\CoreBundle\Form\Type\RegistrationFormType">
+            <tag name="form.type" alias="sigtec_user_registration" />
+            <argument>%fos_user.model.user.class%</argument>
+        </service>
+        <service id="sigtec.listener.registration" class="Coramer\Sigtec\CoreBundle\EventListener\RegistrationListerner">
+            <tag name="kernel.event_subscriber" />
+        </service>
     </services>
 </container>

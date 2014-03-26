@@ -98,6 +98,22 @@
                 <source>sigtec.registration</source>
                 <target>Registro</target>
             </trans-unit>
+            <trans-unit id="bb4ee23ad46266ef4f26db6928ee048b">
+                <source>sigtec.hello</source>
+                <target>Hola</target>
+            </trans-unit>
+            <trans-unit id="e503cd909e66802ee4519ebd3a7dc23a">
+                <source>sigtec.role.client</source>
+                <target>Cliente</target>
+            </trans-unit>
+            <trans-unit id="871a0aabe9236f9d817bfff5590b301d">
+                <source>sigtec.role.administrator</source>
+                <target>Administrador</target>
+            </trans-unit>
+            <trans-unit id="213d0d62f41b6a76c22ee0e03b8a1edc">
+                <source>sigtec.role.super_administrator</source>
+                <target>Super Administrador</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

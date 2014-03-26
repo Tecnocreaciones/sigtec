@@ -4,13 +4,19 @@
     <div id="menu-content">
 
         <header>
-            Administrator
+            {% if app.user.hasRole('ROLE_CLIENT') %}
+                {{ 'sigtec.role.client'|trans }}
+            {% elseif app.user.hasRole('ROLE_ADMIN') %}
+                {{ 'sigtec.role.administrator'|trans }}
+            {% elseif app.user.hasRole('ROLE_SUPER_ADMIN') %}
+                {{ 'sigtec.role.super_administrator'|trans }}
+            {% endif %}
         </header>
 
         <div id="profile">
             <img src="{{ asset('bundles/coramersigtecweb/frontend/img/user.png') }}" width="64" height="64" alt="User name" class="user-icon">
-            Hello
-            <span class="name">John <b>Doe</b></span>
+            {{ 'sigtec.hello' | trans }}
+            <span class="name">{{ app.user.firstName }} <b>{{ app.user.lastName }}</b></span>
         </div>
 
         <!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->

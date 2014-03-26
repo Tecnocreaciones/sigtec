@@ -38,3 +38,9 @@ assetic:
 doctrine:
     dbal:
         dbname:   "%database_name%_dev"
+        
+services:
+    twig.extension.debug:
+        class: Twig_Extensions_Extension_Debug
+        tags:
+            - { name: twig.extension }
