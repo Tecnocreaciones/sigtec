@@ -16,4 +16,13 @@ class DashboardController extends Controller
     {
         return array();
     }
+    
+    /**
+     * @Route("/new")
+     * @Template()
+     */
+    public function newAction()
+    {
+        return array();
+    }
 }

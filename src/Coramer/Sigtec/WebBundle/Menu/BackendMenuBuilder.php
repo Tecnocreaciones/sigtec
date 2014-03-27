@@ -58,7 +58,7 @@ class BackendMenuBuilder extends MenuBuilder
         
         $this->addContactMenu($menu, $section);
         
-        $menu->addChild('Support', array(
+        $menu->addChild('support', array(
             'route' => self::ROUTE_DEFAULT,
             'labelAttributes' => array('icon' => 'icon-info'),
         ))->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.support', 'sidebar')));
@@ -66,45 +66,54 @@ class BackendMenuBuilder extends MenuBuilder
     }
     
     /**
-     * Construye el menu de contactos
+     * Construye el menu de clientes
      * 
      * @param \Knp\Menu\ItemInterface $menu
      * @param type $section
      */
     function addContactMenu(ItemInterface $menu, $section) {
-        $child = $this->factory->createItem('contact',
+        $child = $this->factory->createItem('client',
                     $this->getSecondLevelOptions(array(
-                    'uri' => '#',
+                    'uri' => null,
                     'labelAttributes' => array('icon' => 'icon-book',),
                     ))
                 )
-                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.contact', $section)));
+                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client', $section)));
         $child
-                ->addChild('contact.new', array(
-                    'route' => self::ROUTE_DEFAULT,
+                ->addChild('client.new', array(
+                    'route' => 'coramer_sigtec_web_dashboard_new',
                     ))
-                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.contact.new', $section)));
+                ->setLabel($this->translate(sprintf('%s.client.new', $section)));
         
         $child
-                ->addChild('contact.manager', array(
+                ->addChild('client.manager', array(
                     'route' => self::ROUTE_DEFAULT,
                     ))
-                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.contact.manager', $section)));
+                ->setLabel($this->translate(sprintf('%s.client.manager', $section)));
                
-        $child->addChild('contact.group', array(
+        $child->addChild('client.group', array(
                     'route' => self::ROUTE_DEFAULT,
                 ))
-                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.generic.group', $section)));
+                ->setLabel($this->translate(sprintf('%s.generic.group', $section)));
+            $subchild = $this->factory->createItem('subclient',
+                        $this->getSecondLevelOptions(array(
+                        'uri' => null,
+                        'labelAttributes' => array('icon' => 'icon-book',),
+                        ))
+                    )
+                    ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.clients', $section)));
+            $subchild
+                    ->addChild('subclient.manager', array(
+                        'route' => self::ROUTE_DEFAULT,
+                        ))
+                    ->setLabel($this->translate(sprintf('%s.client.manager', $section)));
+
+            $subchild->addChild('subclient.group', array(
+                        'route' => self::ROUTE_DEFAULT,
+                    ))
+                    ->setLabel($this->translate(sprintf('%s.generic.group', $section)));
         
-        $child->addChild('contact.export_import', array(
-                    'route' => self::ROUTE_DEFAULT,
-                ))
-                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.contact.export_import', $section)));
-        
-        $child->addChild('contact.remove_batch', array(
-                    'route' => self::ROUTE_DEFAULT,
-                ))
-                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.contact.remove_batch', $section)));
+        $child->addChild($subchild);
                
         $menu->addChild($child);
     }
