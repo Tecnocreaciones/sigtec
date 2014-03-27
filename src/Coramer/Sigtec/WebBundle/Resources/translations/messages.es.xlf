@@ -54,9 +54,9 @@
                 <source>sigtec.your_name</source>
                 <target>Su nombre</target>
             </trans-unit>
-            <trans-unit id="39fc0f79f183b7b1f52e3897e4dc4529">
-                <source>sigtec.login.message_footer</source>
-                <target>Todos los Derechos Reservados</target>
+            <trans-unit id="ce893b874c8de58793d1a6519d7b3c9b">
+                <source>tecnocreaciones_vzla_government.message_footer</source>
+                <target>Todos los Derechos Reservados © 2014 CORAMER C.A</target>
             </trans-unit>
             <trans-unit id="cb3b446c4c5166f905c4ff6111f29a89">
                 <source>sigtec.login.validators.please_fill_in_your_login</source>
