@@ -31,8 +31,10 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),//Gestor del menu
             new Coramer\Sigtec\CoreBundle\CoramerSigtecCoreBundle(),
             new Coramer\Sigtec\WebBundle\CoramerSigtecWebBundle(),
-            new Tecnocreaciones\UserBundle\TecnocreacionesUserBundle(),
-            new Tecnocreaciones\InstallBundle\TecnocreacionesInstallBundle(),
+            new Tecnocreaciones\Vzla\ToolsBundle\TecnocreacionesVzlaToolsBundle(),
+            new Tecnocreaciones\Vzla\GovernmentBundle\TecnocreacionesVzlaGovernmentBundle(),
+            new Tecnocreaciones\Bundle\InstallBundle\TecnocreacionesInstallBundle(),
+            new Tecnocreaciones\Bundle\AjaxFOSUserBundle\TecnocreacionesAjaxFOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
