@@ -14,18 +14,32 @@ class InstallCommand extends ContainerAwareCommand
         $this
             ->setName('tec:install')
             ->setDescription('Install the application')
+            ->addOption('reinstall',null,  \Symfony\Component\Console\Input\InputOption::VALUE_NONE,'Reinstall app')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $env = $input->getOption('env');
+        $reinstall = $input->getOption('reinstall');
+        $parameters = array();
+        $parameters = array_merge($parameters,$input->getArguments());
+        foreach ($input->getOptions() as $key => $value) {
+            if($key == 'reinstall'){
+                continue;
+            }
+            $parameters['--'.$key] = $value;
+        }
+        $argvInput = new \Symfony\Component\Console\Input\ArrayInput($parameters);
+        if($reinstall){
+            $this->runCommand('tec:uninstall', $argvInput, $output);
+        }
         $output->writeln(sprintf('<info>Installing App in environment "%s".</info>',$env));
         $output->writeln('');
 
         $this
             //->checkStep($input, $output)
-            ->setupStep($input, $output)
+            ->setupStep($argvInput, $output)
         ;
 
         $output->writeln('<info>App has been successfully installed.</info>');

@@ -1,0 +1,30 @@
+coramer_sigtec_company:
+    pattern:  /
+    defaults: { _controller: tec.controller.company:indexAction }
+
+coramer_sigtec_company_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:show" }
+
+coramer_sigtec_company_new:
+    pattern:  /new
+    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:new" }
+
+coramer_sigtec_company_create:
+    pattern:  /create
+    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:create" }
+    requirements: { _method: post }
+
+coramer_sigtec_company_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:edit" }
+
+coramer_sigtec_company_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:update" }
+    requirements: { _method: post|put }
+
+coramer_sigtec_company_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:delete" }
+    requirements: { _method: post|delete }

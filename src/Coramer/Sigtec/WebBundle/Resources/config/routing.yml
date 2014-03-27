@@ -1,6 +1,10 @@
-coramer_sigtec_web:
+coramer_sigtec_web_main:
     resource: "@CoramerSigtecWebBundle/Controller/"
     type:     annotation
+    prefix:   /
+    
+coramer_sigtec_web:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/main.yml"
     prefix:   /
 
 coramer_sigtec_core:
