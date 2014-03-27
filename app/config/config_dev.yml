@@ -14,9 +14,9 @@ web_profiler:
 monolog:
     handlers:
         main:
-            type:   stream
+            type:   stream #stream por defecto y "chromephp" para debug en web browser
             path:   "%kernel.logs_dir%/%kernel.environment%.log"
-            level:  debug
+            level:  debug #debug por defecto y para debug en web browser usar "error"
         console:
             type:   console
             bubble: false
