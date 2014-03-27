@@ -56,7 +56,7 @@ class BackendMenuBuilder extends MenuBuilder
             'labelAttributes' => array('icon' => 'icon-home'),
         ))->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.home', $section)));
         
-        $this->addContactMenu($menu, $section);
+        $this->addClientMenu($menu, $section);
         
         $menu->addChild('support', array(
             'route' => self::ROUTE_DEFAULT,
@@ -71,7 +71,7 @@ class BackendMenuBuilder extends MenuBuilder
      * @param \Knp\Menu\ItemInterface $menu
      * @param type $section
      */
-    function addContactMenu(ItemInterface $menu, $section) {
+    function addClientMenu(ItemInterface $menu, $section) {
         $child = $this->factory->createItem('client',
                     $this->getSecondLevelOptions(array(
                     'uri' => null,
@@ -80,28 +80,24 @@ class BackendMenuBuilder extends MenuBuilder
                 )
                 ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client', $section)));
         $child
-                ->addChild('client.new', array(
+                ->addChild('client.company', array(
                     'route' => 'coramer_sigtec_web_dashboard_new',
                     ))
-                ->setLabel($this->translate(sprintf('%s.client.new', $section)));
-        
+                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.company', $section)));
         $child
-                ->addChild('client.manager', array(
-                    'route' => self::ROUTE_DEFAULT,
+                ->addChild('client.technical_reports', array(
+                    'route' => 'coramer_sigtec_web_dashboard_new',
                     ))
-                ->setLabel($this->translate(sprintf('%s.client.manager', $section)));
-               
-        $child->addChild('client.group', array(
-                    'route' => self::ROUTE_DEFAULT,
-                ))
-                ->setLabel($this->translate(sprintf('%s.generic.group', $section)));
+                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.technical_reports', $section)));
+        
+        
             $subchild = $this->factory->createItem('subclient',
                         $this->getSecondLevelOptions(array(
                         'uri' => null,
                         'labelAttributes' => array('icon' => 'icon-book',),
                         ))
                     )
-                    ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.clients', $section)));
+                    ->setLabel($this->translate(sprintf('menu.%s.clients', $section)));
             $subchild
                     ->addChild('subclient.manager', array(
                         'route' => self::ROUTE_DEFAULT,

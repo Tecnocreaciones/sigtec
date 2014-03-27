@@ -54,6 +54,7 @@ Feature: Login
           | pass | testabg  |
       And I press "Ingresar"
       Then I should see "Comprobando de credenciales"
+      And I wait a few seconds
       Then I should see "Cuenta de usuario desactivada"
 
     @javascript
