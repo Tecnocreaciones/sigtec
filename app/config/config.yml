@@ -133,6 +133,11 @@ tecnocreaciones_install:
     user_class: Coramer\Sigtec\CoreBundle\Entity\User
     credentials:
         email: inhack20@gmail.com
+                
+tecnocreaciones_tools:
+    table_prefix:
+        use_prefix: true
+        prefix: %app.db.prefix%
         
 sylius_resource:
     resources:
@@ -140,8 +145,8 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: Coramer\Sigtec\CoreBundle\Entity\User
-                
-tecnocreaciones_tools:
-    table_prefix:
-        use_prefix: true
-        prefix: %app.db.prefix%
+        tec.company:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/Company
+            classes:
+                model: Coramer\Sigtec\CompanyBundle\Entity\Company
