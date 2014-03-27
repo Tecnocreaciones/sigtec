@@ -1,6 +1,6 @@
 <?php
 
-namespace Coramer\Sigtec\CoreBundle\EventListener;
+namespace Tecnocreaciones\Bundle\ToolsBundle\EventListener;
 
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 

@@ -35,6 +35,7 @@ class AppKernel extends Kernel
             new Tecnocreaciones\Vzla\GovernmentBundle\TecnocreacionesVzlaGovernmentBundle(),
             new Tecnocreaciones\Bundle\InstallBundle\TecnocreacionesInstallBundle(),
             new Tecnocreaciones\Bundle\AjaxFOSUserBundle\TecnocreacionesAjaxFOSUserBundle(),
+            new Tecnocreaciones\Bundle\ToolsBundle\TecnocreacionesToolsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

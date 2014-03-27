@@ -140,3 +140,8 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: Coramer\Sigtec\CoreBundle\Entity\User
+                
+tecnocreaciones_tools:
+    table_prefix:
+        use_prefix: true
+        prefix: %app.db.prefix%

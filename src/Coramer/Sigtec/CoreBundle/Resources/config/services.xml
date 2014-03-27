@@ -17,14 +17,8 @@
         </service>
     </services>
     -->
-    <parameters>
-        <parameter key="app.db.prefix">default_prefix</parameter>
-    </parameters>
+    
     <services>
-        <service id="app.tbl_prefix_subscriber" class="Coramer\Sigtec\CoreBundle\EventListener\TablePrefixListerner">
-            <argument>%app.db.prefix%_</argument>
-            <tag name="doctrine.event_subscriber" />
-        </service>
         <service id="sigtec_user.registration.form.type" class="Coramer\Sigtec\CoreBundle\Form\Type\RegistrationFormType">
             <tag name="form.type" alias="sigtec_user_registration" />
             <argument>%fos_user.model.user.class%</argument>
