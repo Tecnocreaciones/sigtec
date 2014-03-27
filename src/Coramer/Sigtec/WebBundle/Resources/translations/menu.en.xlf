@@ -23,6 +23,14 @@ file that was distributed with this source code.
                 <source>sigtec.backend.menu.sidebar.support</source>
                 <target>Support</target>
             </trans-unit>
+            <trans-unit id="858419ce2e7d2e8d6b68c0887b1dc201">
+                <source>sigtec.backend.menu.sidebar.client.company</source>
+                <target>Company</target>
+            </trans-unit>
+            <trans-unit id="0ef44256d5acfd60d0dab86fd9b10f2c">
+                <source>sigtec.backend.menu.sidebar.client.technical_reports</source>
+                <target>Technical Reports</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
