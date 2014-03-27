@@ -1,3 +1,8 @@
+coramer_sigtec_company:
+    resource: "@CoramerSigtecCompanyBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 web_bundle:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing.yml"
     requirements:
