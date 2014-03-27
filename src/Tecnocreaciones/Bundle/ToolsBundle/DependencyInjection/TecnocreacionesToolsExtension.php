@@ -24,9 +24,8 @@ class TecnocreacionesToolsExtension extends Extension
         
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
-        
-        if($config['use_table_prefix']){
-            $tablePrefix = $config['table_prefix'].$config['table_prefix_separator'];
+        if($config['table_prefix']['use_prefix']){
+            $tablePrefix = $config['table_prefix']['prefix'].$config['table_prefix']['prefix_separator'];
             $tablePrefixListerner = new \Symfony\Component\DependencyInjection\Definition($container->getParameter('tecnocreaciones_tools.table_prefix_listerner.class'));
             $tablePrefixListerner
                     ->addArgument($tablePrefix)

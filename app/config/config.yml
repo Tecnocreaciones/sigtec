@@ -142,5 +142,6 @@ sylius_resource:
                 model: Coramer\Sigtec\CoreBundle\Entity\User
                 
 tecnocreaciones_tools:
-    use_table_prefix: true
-    table_prefix: prefix
+    table_prefix:
+        use_prefix: true
+        prefix: %app.db.prefix%

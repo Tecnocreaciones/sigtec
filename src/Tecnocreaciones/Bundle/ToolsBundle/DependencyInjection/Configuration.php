@@ -22,9 +22,14 @@ class Configuration implements ConfigurationInterface
         
         $rootNode
                 ->children()
-                ->booleanNode('use_table_prefix')->cannotBeEmpty()->defaultFalse()->end()
-                ->scalarNode('table_prefix')->cannotBeEmpty()->defaultValue('abc')->end()
-                ->scalarNode('table_prefix_separator')->cannotBeEmpty()->defaultValue('_')->end()
+                ->arrayNode('table_prefix')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->booleanNode('use_prefix')->defaultFalse()->cannotBeEmpty()->end()
+                        ->scalarNode('prefix')->defaultValue('abc')->cannotBeEmpty()->end()
+                        ->scalarNode('prefix_separator')->defaultValue('_')->cannotBeEmpty()->end()
+                    ->end()
+                ->end()
         ;
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
