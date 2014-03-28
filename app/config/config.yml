@@ -139,6 +139,35 @@ tecnocreaciones_tools:
         use_prefix: true
         prefix: %app.db.prefix%
         
+jms_serializer:
+    handlers:
+        datetime:
+            default_format: "Y-m-d H:m:s" # ISO8601
+    metadata:
+        debug: "%kernel.debug%"
+        auto_detection: true
+        directories:
+            FOSUserBundle:
+                namespace_prefix: FOS\UserBundle
+                path: "@CoramerSigtecCoreBundle/Resources/config/serializer/fos"
+            
+fos_rest:
+    allowed_methods_listener: true
+    routing_loader:
+        default_format: json
+    view:
+        view_response_listener: force
+        mime_types:
+            # Prototype
+            name: ["application/vnd.user.v1+json"]
+    access_denied_listener:
+        # all requests using the 'json' format will return a 403 on an access denied violation
+        json: false
+        
+sensio_framework_extra:
+    view:    { annotations: false }
+    router:  { annotations: true }
+    
 sylius_resource:
     resources:
         tec.user:
@@ -149,4 +178,5 @@ sylius_resource:
             driver: doctrine/orm
             templates: CoramerSigtecWebBundle:Backend/Company
             classes:
+                controller: Coramer\Sigtec\CompanyBundle\Controller\CompanyController
                 model: Coramer\Sigtec\CompanyBundle\Entity\Company
