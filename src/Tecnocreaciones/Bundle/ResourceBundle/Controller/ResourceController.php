@@ -58,7 +58,8 @@ class ResourceController extends BaseResource
         if($request->get('_format') == 'html'){
             $view->setData($resources);
         }else{
-            $view->setData($resources->toArray($this->config->getRedirectRoute('index')));
+            $formatData = $request->get('_formatData','default');
+            $view->setData($resources->toArray($this->config->getRedirectRoute('index'),array(),$formatData));
         }
         return $this->handleView($view);
     }

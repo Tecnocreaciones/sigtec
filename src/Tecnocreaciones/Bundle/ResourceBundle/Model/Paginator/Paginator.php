@@ -21,12 +21,26 @@ use Symfony\Component\Routing\Router;
  *
  * @author Anais Ortega <adcom23@tecnocreaciones.com.ve>
  */
-class Pagerfanta extends BasePagerfanta implements ContainerAwareInterface
+class Paginator extends BasePagerfanta implements ContainerAwareInterface
 {
     protected $route = null;
     protected $container;
+    
+    /**
+     * Devuelve un formato estandar de trabajo
+     */
+    const FORMAT_ARRAY_DEFAULT = 'default';
+    
+    /**
+     * Devuelve un formato para que pueda ser leido por el plugin DataTables de jQuery
+     */
+    const FORMAT_ARRAY_DATA_TABLES = 'dataTables';
+    
+    private $formatArray = array(
+        self::FORMAT_ARRAY_DEFAULT,self::FORMAT_ARRAY_DATA_TABLES
+    );
             
-    function toArray($route = null,array $parameters = array()) {
+    function formatToArrayDefault($route = null,array $parameters = array()) {
         $links = array(
             'self'  => array('href' => ''),
             'first' => array('href' => ''),
@@ -59,6 +73,24 @@ class Pagerfanta extends BasePagerfanta implements ContainerAwareInterface
                 'paginator' => $paginator
             ),
         );
+    }
+    
+    function formatToArrayDataTables($route = null,array $parameters = array()) {
+        $results = $this->getCurrentPageResults()->getArrayCopy();
+        $data = array(
+            'sEcho' => $this->getCurrentPage(),
+            'iTotalRecords' => $this->getNbResults(),
+            'iTotalDisplayRecords' => $this->getNbResults(),
+            'aaData' => $results,
+        );
+        return $data;
+    }
+    
+    function toArray($route = null,array $parameters = array(),$format = self::FORMAT_ARRAY_DEFAULT) {
+        if(in_array($format, $this->formatArray)){
+            $method = 'formatToArray'.ucfirst($format);
+            return $this->$method($route,$parameters);
+        }
     }
     
     protected function  generateUrl($route,array $parameters){

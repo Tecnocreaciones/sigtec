@@ -162,7 +162,7 @@ fos_rest:
             name: ["application/vnd.user.v1+json"]
     access_denied_listener:
         # all requests using the 'json' format will return a 403 on an access denied violation
-        json: false
+        json: true
         
 sensio_framework_extra:
     view:    { annotations: false }

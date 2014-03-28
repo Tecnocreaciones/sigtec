@@ -13,7 +13,7 @@ namespace Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM;
 
 use Doctrine\ORM\QueryBuilder;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Tecnocreaciones\Bundle\ResourceBundle\Model\Paginator\Pagerfanta;
+use Tecnocreaciones\Bundle\ResourceBundle\Model\Paginator\Paginator;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository as BaseEntityRepository;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -34,7 +34,7 @@ class EntityRepository extends BaseEntityRepository implements ContainerAwareInt
     protected $container;
     public function getPaginator(QueryBuilder $queryBuilder)
     {
-        $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($queryBuilder));
+        $pagerfanta = new Paginator(new DoctrineORMAdapter($queryBuilder));
         $pagerfanta->setContainer($this->container);
         return $pagerfanta;
     }
