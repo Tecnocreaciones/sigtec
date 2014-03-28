@@ -1,0 +1,20 @@
+Coramer\Sigtec\CompanyBundle\Entity\Company:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [list]
+        name:
+            expose: true
+            groups: [list]
+        rif:
+            expose: true
+        validated:
+            expose: true
+            groups: [list]
+        createdAt:
+            expose: true
+            groups: [list]
+        updatedAt:
+            expose: true
+            groups: [list]

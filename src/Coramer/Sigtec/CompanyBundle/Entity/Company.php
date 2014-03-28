@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Company
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Coramer\Sigtec\CompanyBundle\Repository\CompanyRepository")
  */
 class Company
 {
@@ -39,9 +39,9 @@ class Company
     /**
      * @var boolean
      *
-     * @ORM\Column(name="validated", type="boolean")
+     * @ORM\Column(name="rif_validated", type="boolean")
      */
-    private $validated;
+    private $rifValidated;
     
     /**
      * Date created
@@ -118,29 +118,6 @@ class Company
     }
 
     /**
-     * Set validated
-     *
-     * @param boolean $validated
-     * @return Company
-     */
-    public function setValidated($validated)
-    {
-        $this->validated = $validated;
-
-        return $this;
-    }
-
-    /**
-     * Get validated
-     *
-     * @return boolean 
-     */
-    public function getValidated()
-    {
-        return $this->validated;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -184,5 +161,28 @@ class Company
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set rifValidated
+     *
+     * @param boolean $rifValidated
+     * @return Company
+     */
+    public function setRifValidated($rifValidated)
+    {
+        $this->rifValidated = $rifValidated;
+
+        return $this;
+    }
+
+    /**
+     * Get rifValidated
+     *
+     * @return boolean 
+     */
+    public function getRifValidated()
+    {
+        return $this->rifValidated;
     }
 }

@@ -1,10 +1,14 @@
-coramer_sigtec_company:
-    pattern:  /
-    defaults: { _controller: tec.controller.company:indexAction }
+coramer_sigtec_company_index:
+    pattern:  /.{_format}
+    defaults:
+        _controller:  coramer_sigtec.controller.company:indexAction 
+        _format: html
 
 coramer_sigtec_company_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:show" }
+    pattern:  /{id}/show.{_format}
+    defaults: 
+        _controller:  coramer_sigtec.controller.company:showAction
+        _format: html
 
 coramer_sigtec_company_new:
     pattern:  /new

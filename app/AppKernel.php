@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new Tecnocreaciones\Bundle\AjaxFOSUserBundle\TecnocreacionesAjaxFOSUserBundle(),
             new Tecnocreaciones\Bundle\ToolsBundle\TecnocreacionesToolsBundle(),
             new Coramer\Sigtec\CompanyBundle\CoramerSigtecCompanyBundle(),
+            new Tecnocreaciones\Bundle\ResourceBundle\TecnocreacionesResourceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
