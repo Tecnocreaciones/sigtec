@@ -1,13 +1,13 @@
-coramer_sigtec_company:
+coramer_sigtec_company_index:
     pattern:  /.{_format}
     defaults:
-        _controller: tec.controller.company:indexAction 
-        _format: json
+        _controller:  coramer_sigtec.controller.company:indexAction 
+        _format: html
 
 coramer_sigtec_company_show:
     pattern:  /{id}/show.{_format}
     defaults: 
-        _controller: tec.controller.company:showAction
+        _controller:  coramer_sigtec.controller.company:showAction
         _format: html
 
 coramer_sigtec_company_new:

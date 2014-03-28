@@ -50,7 +50,7 @@
             $('#example').dataTable( {
                     "bProcessing": true,
                     "bServerSide": true,
-                    "sAjaxSource": "../examples_support/server_processing.php"
+                    "sAjaxSource": "{{ path('coramer_sigtec_company_index') }}.json"
             } );
     } );
 </script>

@@ -9,14 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Coramer\Sigtec\CompanyBundle\Controller;
+namespace Coramer\Sigtec\CompanyBundle\Repository;
 
+use Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 /**
- * Description of CompanyController
+ * Description of CompanyRepository
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
  */
-class CompanyController extends \Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController
+class CompanyRepository extends EntityRepository
 {
     
 }

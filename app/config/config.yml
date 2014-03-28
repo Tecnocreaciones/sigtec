@@ -170,11 +170,11 @@ sensio_framework_extra:
     
 sylius_resource:
     resources:
-        tec.user:
+         coramer_sigtec.user:
             driver: doctrine/orm
             classes:
                 model: Coramer\Sigtec\CoreBundle\Entity\User
-        tec.company:
+         coramer_sigtec.company:
             driver: doctrine/orm
             templates: CoramerSigtecWebBundle:Backend/Company
             classes:
