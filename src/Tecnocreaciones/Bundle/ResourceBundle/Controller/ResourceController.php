@@ -22,9 +22,8 @@ use Symfony\Component\HttpFoundation\Request;
 class ResourceController extends BaseResource
 {
     public function indexAction(Request $request) {
-        $criteria = $this->config->getCriteria();
-        $sorting = $this->config->getSorting();
-
+        $criteria = $request->get('filter',$this->config->getCriteria());
+        $sorting = $request->get('sorting',$this->config->getSorting());
         $repository = $this->getRepository();
 
         if ($this->config->isPaginated()) {
