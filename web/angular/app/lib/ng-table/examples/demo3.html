@@ -42,16 +42,16 @@
 
     <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Clear sorting</button>
     <button ng-click="tableParams.reload()" class="btn pull-right">Reload</button>
-    <p><strong>Sorting:</strong> {{tableParams.sorting()|json}}
+    <p><strong>Sorting:</strong> [[tableParams.sorting()|json]]
 
     <div loading-container="tableParams.settings().$loading">
         <table ng-table="tableParams" class="table">
             <tr ng-repeat="user in $data">
                 <td data-title="'Name'" sortable="'name'">
-                    {{user.name}}
+                    [[user.name]]
                 </td>
                 <td data-title="'Rif'" sortable="'rif'">
-                    {{user.rif}}
+                    [[user.rif]]
                 </td>
             </tr>
         </table>
@@ -60,6 +60,10 @@
 
         <script>
         var app = angular.module('main', ['ngTable'])
+                .config(function($interpolateProvider) {
+                    $interpolateProvider.startSymbol('[[');
+                    $interpolateProvider.endSymbol(']]');
+                })
                 .directive('loadingContainer', function () {
                 return {
                     restrict: 'A',
