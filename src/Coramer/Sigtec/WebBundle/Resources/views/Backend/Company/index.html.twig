@@ -15,9 +15,9 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Rif</th>
-                <th>Validated</th>
+                <th></th>
+                <th></th>
+                <th></th>
                 <th>Createdat</th>
                 <th>Updatedat</th>
 
@@ -46,10 +46,10 @@
         <thead>
             <tr>
                 <th scope="col"><input type="checkbox" name="check-all" id="check-all" value="1"></th>
-                <th scope="col">Text</th>
-                <th scope="col" width="15%" class="align-center hide-on-mobile">Date</th>
-                <th scope="col" width="15%" class="align-center hide-on-mobile-portrait">Status</th>
-                <th scope="col" width="15%" class="hide-on-tablet">Tags</th>
+                <th scope="col">Name</th>
+                <th scope="col" width="15%" class="align-center hide-on-mobile">Rif</th>
+                <th scope="col" width="15%" class="align-center hide-on-mobile-portrait">Validated</th>
+                <th scope="col" width="15%" class="hide-on-tablet">Status</th>
                 <th scope="col" width="100" class="align-right">Actions</th>
             </tr>
         </thead>
@@ -57,27 +57,30 @@
         <tfoot>
             <tr>
                 <td colspan="6">
-                    6 entries found
+                    [[ data._embedded.paginator.getNbResults ]] entries found
                 </td>
             </tr>
         </tfoot>
 
         <tbody>
-            <tr ng-repeat="result in data._embedded.results">
-                <th scope="row" class="checkbox-cell"><input type="checkbox" name="checked[]" id="check-1" value="1"></th>
-                <td>John Doe</td>
-                <td>Jul 5, 2011</td>
-                <td>Enabled</td>
-                <td><small class="tag">User</small> <small class="tag">Client</small> <small class="tag green-bg">Valid</small></td>
+            <tr ng-repeat="result in data._embedded.results" data="[[ result|json ]]">
+                <th scope="row" class="checkbox-cell"><input type="checkbox" name="checked[]" id="check-[[ result.id ]]" value="[[ result.id ]]"></th>
+                <td>[[ result.name ]]</td>
+                <td>[[ result.rif ]]</td>
+                <td>[[ result.rif_validated ]]</td>
+                <td>
+                    [[ result.status ]]
+                    <small class="tag">User</small> <small class="tag">Client</small> <small class="tag green-bg">Valid</small>
+                </td>
                 <td class="low-padding">
                     <span class="select compact full-width" tabindex="0">
-                        <a href="javascript:void(0);" class="select-value">Edit</a>
+                        <a href="[[ result._links.edit.href ]]" class="select-value">Edit</a>
                         <span class="select-arrow"></span>
                         <span class="drop-down">
                             <a href="javascript:void(0);">Put offline</a>
                             <a href="javascript:void(0);">Review</a>
                             <a href="javascript:void(0);">Put to trash</a>
-                            <a href="javascript:void(0);">Delete</a>
+                            <a href="[[ result._links.delete.href ]]">Delete</a>
                         </span>
                     </span>
                 </td>
@@ -146,28 +149,7 @@
 {% block javascript %}
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#examples').dataTable({
-                "bProcessing": true,
-                "bServerSide": true,
-                headers: {
-                    0: {sorter: false},
-                    6: {sorter: false}
-                },
-                "sAjaxSource": "{{ path('coramer_sigtec_company_index',{'_format':'json','_formatData':'dataTables'}) }}",
-                "fnServerData": function(sSource, aoData, fnCallback) {
-                    $.getJSON(sSource, aoData, function(json) {
-                        var data = [];
-                        json.aaData.forEach(function(myObj) {
-                            var array = $.map(myObj, function(value, index) {
-                                return [value];
-                            });
-                            data.push(array);
-                        });
-                        json.aaData = data;
-                        fnCallback(json);
-                    });
-                }
-            });
+           
 
             // Table sort - styled
             $('#sorting-example1').tablesorter({
@@ -192,7 +174,7 @@
                 {
                     return;
                 }
-
+                
                 // If there is already a special row
                 if (row.length > 0)
                 {
@@ -218,7 +200,7 @@
 
                 // Style row
                 tr.children().addClass('anthracite-gradient glossy');
-
+                var data = $.parseJSON(tr.attr('data'));
                 // Add fake row
                 $('<tr class="row-drop">' +
                         '<td colspan="' + tr.children().length + '">' +
@@ -232,10 +214,10 @@
                         'Remove' +
                         '</button>' +
                         '</div>' +
-                        '<strong>Name:</strong> John Doe<br>' +
-                        '<strong>Account:</strong> admin<br>' +
-                        '<strong>Last connect:</strong> 05-07-2011<br>' +
-                        '<strong>Email:</strong> john@doe.com' +
+                        '<strong>Name:</strong> ' + data.name + '<br>' +
+                        '<strong>Created at:</strong> ' + data.created_at + '<br>' +
+                        '<strong>Updated at:</strong> '+ data.updated_at +'<br>' +
+                       
                         '</td>' +
                         '</tr>').insertAfter(tr);
 

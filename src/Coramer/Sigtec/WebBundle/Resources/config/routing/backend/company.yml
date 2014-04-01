@@ -3,7 +3,8 @@ coramer_sigtec_company_index:
     defaults:
         _controller:  coramer_sigtec.controller.company:indexAction 
         _format: html
-
+    options:
+        expose: true
 coramer_sigtec_company_show:
     pattern:  /{id}/show.{_format}
     defaults: 

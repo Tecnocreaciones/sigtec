@@ -3,15 +3,19 @@
 /* Controllers */
 
 angular.module('sigtecModule.controllers', []).
-  controller('ShowCompanyList', ['$scope',function($scope) {
-          $scope.data = {'ss':'sssa'};
+  controller('ShowCompanyList', ['$scope','$http','notificationBarService',function($scope,$http,notificationBarService) {
+          $scope.data = {};
           $scope.limit = '40';
-          $scope.model = {};
-          $scope.model.action = 1;
           
-          $scope.mostrar = function(v){
-              console.log('aa');
-          }
+          var url = Routing.generate('coramer_sigtec_company_index',{_format:'json'});
+          console.log(url);
+          return $http.get(url).success(function(data) {
+            console.log(data);
+            $scope.data = data;
+            
+        }).error(function(data){
+            notificationBarService.getLoadStatus().error();
+        });
           
   }])
   .controller('MyCtrl2', [function() {

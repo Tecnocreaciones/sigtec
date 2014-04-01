@@ -4,3 +4,4 @@ Coramer\Sigtec\CompanyBundle\Entity\Company:
         name: <name()>
         rif: <randomElement(['V','J','E'])><randomNumber(10)>
         rifValidated: <boolean()>
+        status: <boolean()>

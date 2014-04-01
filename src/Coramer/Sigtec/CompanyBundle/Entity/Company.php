@@ -60,6 +60,14 @@ class Company
      * @ORM\Column(name="updated_at",type="datetime",nullable=true)
      */
     private $updatedAt;
+    
+    /**
+     * Estatus
+     * 
+     * @var boolean
+     * @ORM\Column(name="status", type="boolean")
+     */
+    private $status;
 
     /**
      * Get id
@@ -184,5 +192,28 @@ class Company
     public function getRifValidated()
     {
         return $this->rifValidated;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     * @return Company
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

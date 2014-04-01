@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),//Manejador se session y usuario
             new FOS\RestBundle\FOSRestBundle(),//Trabaja con el serializador de objetos
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),//Generado de rutas javascript
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),//Extensiones de doctrine
             new Liip\ImagineBundle\LiipImagineBundle(),//Manejador de imagenes
             new Liip\DoctrineCacheBundle\LiipDoctrineCacheBundle(),//Cache para doctrine
@@ -38,6 +39,8 @@ class AppKernel extends Kernel
             new Tecnocreaciones\Bundle\ToolsBundle\TecnocreacionesToolsBundle(),
             new Coramer\Sigtec\CompanyBundle\CoramerSigtecCompanyBundle(),
             new Tecnocreaciones\Bundle\ResourceBundle\TecnocreacionesResourceBundle(),
+            new Coramer\Sigtec\FixturesBundle\CoramerSigtecFixturesBundle(),
+            new Coramer\Sigtec\RestBundle\CoramerSigtecRestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

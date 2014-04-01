@@ -9,7 +9,10 @@ Coramer\Sigtec\CompanyBundle\Entity\Company:
             groups: [list]
         rif:
             expose: true
-        validated:
+        rifValidated:
+            expose: true
+            groups: [list]
+        status:
             expose: true
             groups: [list]
         createdAt:
