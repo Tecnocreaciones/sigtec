@@ -168,6 +168,9 @@ sensio_framework_extra:
     view:    { annotations: false }
     router:  { annotations: true }
     
+bazinga_js_translation:
+    locale_fallback: "%locale%" 
+    
 sylius_resource:
     resources:
          coramer_sigtec.user:

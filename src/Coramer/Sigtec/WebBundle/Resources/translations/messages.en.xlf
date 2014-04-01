@@ -114,6 +114,10 @@
                 <source>sigtec.role.super_administrator</source>
                 <target>Super Administrator</target>
             </trans-unit>
+            <trans-unit id="0019bca6dbf6dfa9948bd9395600e080">
+                <source>app.loading</source>
+                <target>Loading</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
