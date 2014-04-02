@@ -15,17 +15,18 @@ class CompanyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',null,array(
-                'label' => 'sigtec.name'
-            ))
             ->add('rif',null,array(
-                'label' => 'sigtec.rif'
+                'label' => 'sigtec.rif',
+                'attr' => array('class' => 'input small-margin-right'),
             ))
-            ->add('rifValidated',null,array(
-                'label' => 'sigtec.rif_validated'
+            ->add('name',null,array(
+                'label' => 'sigtec.name',
+                'attr' => array('class' => 'input small-margin-right'),
             ))
             ->add('status',null,array(
-                'label' => 'sigtec.status'
+                'label' => 'sigtec.status',
+                'attr' => array('class' => 'switch medium wider mid-margin-right'),
+                'data' => true,
             ))
         ;
     }

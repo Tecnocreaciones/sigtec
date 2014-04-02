@@ -182,6 +182,38 @@
                 <source>sigtec.rif</source>
                 <target>Rif</target>
             </trans-unit>
+            <trans-unit id="a13704f17197c1184d22124a44675e70">
+                <source>sigtec.enabled</source>
+                <target>Enabled</target>
+            </trans-unit>
+            <trans-unit id="4db80a8c4b528e182ab00d368da459f9">
+                <source>sigtec.disabled</source>
+                <target>Disabled</target>
+            </trans-unit>
+            <trans-unit id="79caab90d67e4be7b383718160d18104">
+                <source>sigtec.active</source>
+                <target>Active</target>
+            </trans-unit>
+            <trans-unit id="1408fa17fc56f9fe8b0e12d2cf8706fb">
+                <source>sigtec.inactive</source>
+                <target>Inactive</target>
+            </trans-unit>
+            <trans-unit id="a23d61afee3909008b0c8130cd399dcd">
+                <source>sigtec.company</source>
+                <target>Company</target>
+            </trans-unit>
+            <trans-unit id="94fd3b3f066ed731bfa34f608106db48">
+                <source>sigtec.company_registration</source>
+                <target>Company registration</target>
+            </trans-unit>
+            <trans-unit id="46e70c1f8da1a12ac04436353c65a3eb">
+                <source>sigtec.save</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="fe16ba8b73475b1e03303a5cb52444d2">
+                <source>sigtec.cancel</source>
+                <target>Cancel</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
