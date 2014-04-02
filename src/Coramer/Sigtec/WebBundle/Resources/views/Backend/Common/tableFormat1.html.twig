@@ -134,16 +134,16 @@ var tableFormat1 = angular.module('tableFormat1', ['ngTable'])
                     <td colspan="[[ $columns.length ]]">
             <div class="table-header button-height">
                 <div class="float-right ng-cloak ng-table-pager">
-                    Search&nbsp;<input ng-model="tableParams.search" type="text" name="table_search" id="table_search" value="" class="input mid-margin-left">
+                    {{ 'sigtec.search'|trans }}&nbsp;<input ng-model="tableParams.search" type="text" name="table_search" id="table_search" value="" class="input mid-margin-left">
                 </div>
-                    Show&nbsp;
-                    <select name="range"  id="range" class="select blue-gradient glossy" ng-model="count" ng-change="params.count(count)" style="width: 80px">
+                    {{ 'sigtec.show'|trans }}&nbsp;
+                    <select name="range"  class="select blue-gradient glossy" ng-model="count" ng-change="params.count(count)" style="width: 80px">
                             <option ng-repeat="count in params.settings().counts" ng-class="{'selected':params.count()==count}" value="[[count]]">
                                 <span ng-bind="count">[[count]]</span>
                             </option>
-                    </select> entries
-                    <button ng-click="tableParams.reload()" class="button pull-right">Reload</button>
-                    <button ng-click="tableParams.sorting({})" class="button pull-right">Clear sorting</button>
+                    </select>
+                    <button ng-click="tableParams.reload()" class="button pull-right">{{ 'sigtec.reload'|trans }}</button>
+                    <button ng-click="tableParams.sorting({})" class="button pull-right">{{ 'sigtec.clear_sorting'|trans }}</button>
                 </div>
         </td>
         </tr>
@@ -195,22 +195,20 @@ var tableFormat1 = angular.module('tableFormat1', ['ngTable'])
                         </div>
                     </div>
 
-                    With selected:
+                    {{ 'sigtec.with_selected'|trans }}:
                     <select name="select90" class="select blue-gradient glossy mid-margin-left" style="width:128px">
-                    <option value="0">Delete</option>
-                    <option value="1">Duplicate</option>
-                    <option value="2">Put offline</option>
-                    <option value="3">Put online</option>
-                    <option value="4">Move to trash</option>
+                    <option value="0">{{ 'sigtec.delete'|trans }}</option>
+                    <option value="1">Move to trash</option>
                     </select>
-                    <button type="submit" class="button blue-gradient glossy">Go</button>
-                    [[ params.settings().total ]] entries found
+                    <button type="submit" class="button blue-gradient glossy">{{ 'sigtec.go'|trans }}</button>
+                    &nbsp;&nbsp;&nbsp; [[ params.settings().total ]] {{ 'sigtec.entries_found'|trans }}
                     </form>
                 </script>
 
     <script type="text/javascript">
         $(document).ready(function() {
-            // Table extra info - styled
+            //Example for table extra info methos to override
+            /**
             function getTableExtraInfo(data)
             {
                 return  '<div class="float-right">' +
@@ -228,7 +226,8 @@ var tableFormat1 = angular.module('tableFormat1', ['ngTable'])
                         '<strong>Updated at:</strong> ' + data.updated_at + '<br>'
                         ;
             }
-            
+            **/
+           // Table extra info - styled
             $('.table-extra-info').on('click', 'tbody td', function(event)
             {
                 // Do not process if something else has been clicked

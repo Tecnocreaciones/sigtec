@@ -9,18 +9,19 @@
                         <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
                             <input type="checkbox" ng-model="checkboxes.items[result.id]" />
                         </td>
-                        <td data-title="'Name'" sortable="'name'">
+                        <td data-title="'{{ 'sigtec.name'|trans }}'" sortable="'name'">
                             [[result.name]]
                         </td>
                         <td data-title="'Rif'" sortable="'rif'">
                             [[result.rif]]
                         </td>
-                        <td data-title="'Rif Validated'" sortable="'rifValidated'">
-                            [[ result.rif_validated ]]
+                        <td data-title="'¿{{ 'sigtec.rif_validated' | trans }}?'" sortable="'rifValidated'">
+                            <small ng-if="result.rif_validated" class="tag green-bg">{{ 'sigtec.yes'|trans }}</small> 
+                            <small ng-if="!result.rif_validated" class="tag red-bg">{{ 'sigtec.no'|trans }}</small>
                         </td>
-                        <td data-title="'Status'" sortable="'status'">
-                            [[ result.status ]]
-                            <small class="tag">User</small> <small class="tag">Client</small> <small class="tag green-bg">Valid</small>
+                        <td data-title="'{{ 'sigtec.status'|trans }}'" sortable="'status'">
+                            <small ng-if="result.status" class="tag green-bg">{{ 'sigtec.yes'|trans }}</small> 
+                            <small ng-if="!result.status" class="tag red-bg">{{ 'sigtec.no'|trans }}</small>
                         </td>
                         <td class="low-padding">
                             <span class="select compact full-width" tabindex="0">
@@ -46,4 +47,27 @@
                 </a>
             </li>
         </ul>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function getTableExtraInfo(data)
+            {
+                return  '<div class="float-right">' +
+                        '<button type="submit" class="button glossy mid-margin-right">' +
+                        '<span class="button-icon"><span class="icon-mail"></span></span>' +
+                        'Send mail' +
+                        '</button>' +
+                        '<button type="submit" class="button glossy">' +
+                        '<span class="button-icon red-gradient"><span class="icon-cross"></span></span>' +
+                        'Remove' +
+                        '</button>' +
+                        '</div>' +
+                        '<strong>{{ 'sigtec.name'|trans }}:</strong> ' + data.name + '<br>' +
+                        '<strong>{{ 'sigtec.created_at' |trans }}:</strong> ' + data.created_at + '<br>' +
+                        '<strong>{{ 'sigtec.updated_at' | trans }}:</strong> ' + data.updated_at + '<br>'
+                        ;
+            }
+    </script>
 {% endblock %}

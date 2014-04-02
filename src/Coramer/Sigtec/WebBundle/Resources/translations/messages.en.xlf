@@ -118,6 +118,66 @@
                 <source>app.loading</source>
                 <target>Loading</target>
             </trans-unit>
+            <trans-unit id="b7f5b34ae65aba2a0f862300243e167b">
+                <source>sigtec.show</source>
+                <target>Show</target>
+            </trans-unit>
+            <trans-unit id="88edfdeabf20dc71586ffd112466a0bc">
+                <source>sigtec.search</source>
+                <target>Search</target>
+            </trans-unit>
+            <trans-unit id="aeead69681edcb8dbf4449e35342fc3a">
+                <source>sigtec.reload</source>
+                <target>Reload</target>
+            </trans-unit>
+            <trans-unit id="c12199071f1276f647cd10c60007ad68">
+                <source>sigtec.clear_sorting</source>
+                <target>Clear sorting</target>
+            </trans-unit>
+            <trans-unit id="9f8d7f24abfaa4245a4e231a77e12389">
+                <source>sigtec.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="e46fcfa1e764e7ade37a893c05005009">
+                <source>sigtec.rif_validated</source>
+                <target>Rif validated</target>
+            </trans-unit>
+            <trans-unit id="9751a79dfee668c702ffa61172ca580d">
+                <source>sigtec.status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="9beaf4b5ca8a8916736108ec5a8d70aa">
+                <source>sigtec.yes</source>
+                <target>Yes</target>
+            </trans-unit>
+            <trans-unit id="9b630b93b4a8fbc2a46e86ec234c2831">
+                <source>sigtec.no</source>
+                <target>No</target>
+            </trans-unit>
+            <trans-unit id="80a35f34872c649a52bfb7a36bc8e081">
+                <source>sigtec.created_at</source>
+                <target>Created at</target>
+            </trans-unit>
+            <trans-unit id="d69d4e502a40a953b7cc43ee3f6bae0b">
+                <source>sigtec.updated_at</source>
+                <target>Updated at</target>
+            </trans-unit>
+            <trans-unit id="3a8518990837f917ba18d0ebb2470254">
+                <source>sigtec.with_selected</source>
+                <target>With selected</target>
+            </trans-unit>
+            <trans-unit id="dd55980027239d20dc52e811589c1f2f">
+                <source>sigtec.delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="2d4347248c15d997cff4884ecfdcc289">
+                <source>sigtec.entries_found</source>
+                <target>Entries found</target>
+            </trans-unit>
+            <trans-unit id="0d228ce78570a7a6af50b92fd65f5480">
+                <source>sigtec.go</source>
+                <target>Go</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
