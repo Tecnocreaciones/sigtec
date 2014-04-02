@@ -35,147 +35,64 @@
 {% block body -%}
     <h1>Company list</h1>
 
-    <table class="records_list table responsive-table" id="example">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-
-            </tr>
-        </thead>
-
-    </table>
-    <br />
-    <br />
-    <div ng-controller="ShowCompanyList">
-
-        <div class="table-header button-height">
-            <div class="float-right">
-                Search&nbsp;<input ng-model="model.search" type="text" name="table_search" id="table_search" value="" class="input mid-margin-left">
-            </div>
-            [[ model.search ]]
-            Show&nbsp;<select name="range"  id="range" class="select blue-gradient glossy" style="width: 80px">
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="40" selected="selected">40</option>
-                <option value="100">100</option>
-            </select> entries
-        </div>
-        <table class="table responsive-table" id="sorting-example1">
-
-            <thead>
-                <tr>
-                    <th scope="col"><input type="checkbox" name="check-all" id="check-all" value="1"></th>
-                    <th scope="col">Name</th>
-                    <th scope="col" width="15%" class="align-center hide-on-mobile">Rif</th>
-                    <th scope="col" width="15%" class="align-center hide-on-mobile-portrait">Validated</th>
-                    <th scope="col" width="15%" class="hide-on-tablet">Status</th>
-                    <th scope="col" width="100" class="align-right">Actions</th>
-                </tr>
-            </thead>
-
-            <tfoot>
-                <tr>
-                    <td colspan="6">
-                        [[ data._embedded.paginator.getNbResults ]] entries found
-                    </td>
-                </tr>
-            </tfoot>
-
-            <tbody>
-                <tr ng-repeat="result in data._embedded.results" data="[[ result|json ]]">
-                    <th scope="row" class="checkbox-cell"><input type="checkbox" name="checked[]" id="check-[[ result.id ]]" value="[[ result.id ]]"></th>
-                    <td>[[ result.name ]]</td>
-                    <td>[[ result.rif ]]</td>
-                    <td>[[ result.rif_validated ]]</td>
-                    <td>
-                        [[ result.status ]]
-                        <small class="tag">User</small> <small class="tag">Client</small> <small class="tag green-bg">Valid</small>
-                    </td>
-                    <td class="low-padding">
-                        <span class="select compact full-width" tabindex="0">
-                            <a href="[[ result._links.edit.href ]]" class="select-value">Edit</a>
-                            <span class="select-arrow"></span>
-                            <span class="drop-down">
-                                <a href="javascript:void(0);">Put offline</a>
-                                <a href="javascript:void(0);">Review</a>
-                                <a href="javascript:void(0);">Put to trash</a>
-                                <a href="[[ result._links.delete.href ]]">Delete</a>
-                            </span>
-                        </span>
-                    </td>
-                </tr>
-            </tbody>
-
-        </table>
-        <form method="post" action="#" class="table-footer button-height large-margin-bottom">
-            <div class="float-right">
-                <div class="button-group">
-                    <a href="javascript:void(0);" title="First page" class="button blue-gradient glossy"><span class="icon-previous"></span></a>
-                    <a href="javascript:void(0);" title="Previous page" class="button blue-gradient glossy"><span class="icon-backward"></span></a>
-                </div>
-
-                <div class="button-group">
-                    <a href="javascript:void(0);" title="Page 1" class="button blue-gradient glossy">1</a>
-                    <a href="javascript:void(0);" title="Page 2" class="button blue-gradient glossy active">2</a>
-                    <a href="javascript:void(0);" title="Page 3" class="button blue-gradient glossy">3</a>
-                    <a href="javascript:void(0);" title="Page 4" class="button blue-gradient glossy">4</a>
-                </div>
-
-                <div class="button-group">
-                    <a href="javascript:void(0);" title="Next page" class="button blue-gradient glossy"><span class="icon-forward"></span></a>
-                    <a href="javascript:void(0);" title="Last page" class="button blue-gradient glossy"><span class="icon-next"></span></a>
-                </div>
-            </div>
-
-            With selected:
-            <select name="select90" class="select blue-gradient glossy mid-margin-left" style="width:128px">
-                <option value="0">Delete</option>
-                <option value="1">Duplicate</option>
-                <option value="2">Put offline</option>
-                <option value="3">Put online</option>
-                <option value="4">Move to trash</option>
-            </select>
-            <button type="submit" class="button blue-gradient glossy">Go</button>
-        </form>
-
-
-        <br /><br /><br />    
+    
+    <div >
         <div ng-controller="TableController">
-            <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Clear sorting</button>
-            <button ng-click="tableParams.reload()" class="btn pull-right">Reload</button>
+            [[ tableParams.search ]]
+            [[ checkboxes.items ]]
             <p><strong>Sorting:</strong> [[tableParams.sorting()|json]]
-
             <div loading-container="tableParams.settings().$loading">
-                <table ng-table="tableParams" template-pagination="custom/pager" template-header="custom/header" class="table">
-                    <tr ng-repeat="user in $data">
+                <table ng-table="tableParams" template-pagination="custom/pager"  template-header="custom/header" api-data-url="http://localhost/symfony/sigtec/web/app_dev.php/company/.json" class="table table-responsive table-extra-info">
+                    <tr ng-repeat="result in $data | filter:tableParams.search" data="[[ result|json ]]">
+                        <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
+                            <input type="checkbox" ng-model="checkboxes.items[result.id]" />
+                        </td>
                         <td data-title="'Name'" sortable="'name'">
-                            [[user.name]]
+                            [[result.name]]
                         </td>
                         <td data-title="'Rif'" sortable="'rif'">
-                            [[user.rif]]
+                            [[result.rif]]
+                        </td>
+                        <td data-title="'Rif Validated'" sortable="'rifValidated'">
+                            [[ result.rif_validated ]]
+                        </td>
+                        <td data-title="'Status'" sortable="'status'">
+                            [[ result.status ]]
+                            <small class="tag">User</small> <small class="tag">Client</small> <small class="tag green-bg">Valid</small>
+                        </td>
+                        <td class="low-padding">
+                            <span class="select compact full-width" tabindex="0">
+                                <a href="[[ result._links.edit.href ]]" class="select-value">Edit</a>
+                                <span class="select-arrow"></span>
+                                <span class="drop-down">
+                                    <a href="javascript:void(0);">Put offline</a>
+                                    <a href="javascript:void(0);">Review</a>
+                                    <a href="javascript:void(0);">Put to trash</a>
+                                    <a href="[[ result._links.delete.href ]]">Delete</a>
+                                </span>
+                            </span>
                         </td>
                     </tr>
                 </table>
+                <script type="text/ng-template" id="ng-table/headers/checkbox.html">
+                    <input type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" value="" />
+                </script>
                 <script type="text/ng-template" id="custom/header">
                     <tr>
                     <td colspan="[[ $columns.length ]]">
             <div class="table-header button-height">
-            <div class="float-right">
-                Search&nbsp;<input ng-model="model.search" type="text" name="table_search" id="table_search" value="" class="input mid-margin-left">
-            </div>
-            [[ model.search ]]
-            Show&nbsp;<select name="range"  id="range" class="select blue-gradient glossy" style="width: 80px">
-                                            <option value="10">10</option>
-                                            <option value="20">20</option>
-                                            <option value="40" selected="selected">40</option>
-                                            <option value="100">100</option>
-                                    </select> entries
-        </div>
+                <div class="float-right ng-cloak ng-table-pager">
+                    Search&nbsp;<input ng-model="tableParams.search" type="text" name="table_search" id="table_search" value="" class="input mid-margin-left">
+                </div>
+                    Show&nbsp;
+                    <select name="range"  id="range" class="select blue-gradient glossy" ng-model="count" ng-change="params.count(count)" style="width: 80px">
+                            <option ng-repeat="count in params.settings().counts" ng-class="{'selected':params.count()==count}" value="[[count]]">
+                                <span ng-bind="count">[[count]]</span>
+                            </option>
+                    </select> entries
+                    <button ng-click="tableParams.reload()" class="btn pull-right">Reload</button>
+                    <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Clear sorting</button>
+                </div>
         </td>
         </tr>
     
@@ -202,35 +119,28 @@
             </tr>
                 </script>
                 <script type="text/ng-template" id="custom/pager">
-                    <div class="ng-cloak ng-table-pager">
-                    <div ng-if="params.settings().counts.length" class="ng-table-counts btn-group pull-right">
-                    <button ng-repeat="count in params.settings().counts" type="button" ng-class="{'active':params.count()==count}" ng-click="params.count(count)" class="btn btn-default"> 
-                    <span ng-bind="count"></span>
-                    </button>
-                    </div>
-                    </div> 
                     <form method="post" action="#" class="table-footer button-height ng-cloak ng-table-pager">
                     <div class="float-right pagination ng-table-pagination">
-                    <div class="button-group">
-                    <a ng-class="{'disabled': !page.active}" ng-repeat="page in pages" ng-if="evalFooter(page.type,['first','prev'])" ng-switch="page.type" ng-click="params.page(page.number)" class="button blue-gradient glossy">
-                    <span ng-switch-when="first" class="icon-previous"></span>
-                    <span ng-switch-when="prev" class="icon-backward"></span>
-                    </a>
-                    </div>
-                    <div class="button-group">
-                    <a ng-class="{'disabled': !page.active}" ng-repeat="page in pages" ng-if="evalFooter(page.type,['first','page','more','last'])" ng-switch="page.type" ng-click="params.page(page.number)" class="button blue-gradient glossy">
-                    <span ng-switch-when="first" ng-bind="page.number"></span>
-                    <span ng-switch-when="page" ng-bind="page.number"></span>
-                    <span ng-switch-when="more">&#8230;</span>
-                    <span ng-switch-when="last" ng-bind="page.number"></span>
-                    </a>
-                    </div>
-                    <div class="button-group">
-                    <a ng-class="{'disabled': !page.active}" ng-repeat="page in pages" ng-if="evalFooter(page.type,['last','next'])" ng-switch="page.type" ng-click="params.page(page.number)" class="button blue-gradient glossy">
-                    <span ng-switch-when="last" <span class="icon-next"></span>
-                    <span ng-switch-when="next" <span class="icon-forward"></span>
-                    </a>
-                    </div>
+                        <div class="button-group">
+                            <a ng-class="{'disabled': !page.active}" ng-repeat="page in pages" ng-if="evalFooter(page.type,['first','prev'])" ng-switch="page.type" ng-click="params.page(page.number)" class="button blue-gradient glossy">
+                                <span ng-switch-when="first" class="icon-previous"></span>
+                                <span ng-switch-when="prev" class="icon-backward"></span>
+                            </a>
+                        </div>
+                        <div class="button-group">
+                        <a ng-class="{'disabled': !page.active}" ng-repeat="page in pages" ng-if="evalFooter(page.type,['first','page','more','last'])" ng-switch="page.type" ng-click="params.page(page.number)" class="button blue-gradient glossy">
+                            <span ng-switch-when="first" ng-bind="page.number"></span>
+                            <span ng-switch-when="page" ng-bind="page.number"></span>
+                            <span ng-switch-when="more">&#8230;</span>
+                            <span ng-switch-when="last" ng-bind="page.number"></span>
+                        </a>
+                        </div>
+                        <div class="button-group">
+                        <a ng-class="{'disabled': !page.active}" ng-repeat="page in pages" ng-if="evalFooter(page.type,['last','next'])" ng-switch="page.type" ng-click="params.page(page.number)" class="button blue-gradient glossy">
+                        <span ng-switch-when="last" <span class="icon-next"></span>
+                        <span ng-switch-when="next" <span class="icon-forward"></span>
+                        </a>
+                        </div>
                     </div>
 
                     With selected:
@@ -242,6 +152,7 @@
                     <option value="4">Move to trash</option>
                     </select>
                     <button type="submit" class="button blue-gradient glossy">Go</button>
+                    [[ params.settings().total ]] entries found
                     </form>
                 </script>
 
@@ -297,40 +208,78 @@ var app = angular.module('main', ['ngTable'])
                     });
                 }
             };
-        }).
-        controller('TableController', function($scope, $filter, ngTableParams, $http) {
+        })
+        .directive('apiDataUrl',function($rootScope){
+            return {
+              link: function(scope, element, attrs){
+                    $rootScope.apiDataUrl = attrs.apiDataUrl;
+                }
+            };
+        })
+        .controller('TableController', function($scope, ngTableParams, $http) {
+            
+            $scope.evalFooter = function(type,footer){
+              for (var i = 0; i < footer.length; i++) {
+                    if (footer[i] === type) {
+                        return true;
+                    }
+                }
+              return false;
+           }
             $scope.tableParams = new ngTableParams({
                 page: 1, // show first page
-                count: 10, // count per page
-                sorting: {
-                    name: 'asc'     // initial sorting
-                }
+                count: 10 // count per page
             }, {
                 total: 0, // length of data
                 getData: function($defer, params) {
                     var parameters = params.url();
                     parameters.limit = parameters.count;
-                    $http.get('http://localhost/symfony/sigtec/web/app_dev.php/company/.json', {params: parameters}).success(function(data) {
+                    var apiUrl = $scope.apiDataUrl;
+                    console.log(apiUrl);
+                    $http.get(apiUrl, {params: parameters}).success(function(data) {
                         params.total(data._embedded.paginator.getNbResults);
-                        $defer.resolve(data._embedded.results);
+                        $defer.resolve($scope.results = data._embedded.results);
                     });
                 }
             });
+            $scope.tableParams.search = '';
+              $scope.checkboxes = { 'checked': false, items: {} };
+
+                // watch for check all checkbox
+                $scope.$watch('checkboxes.checked', function(value) {
+                    angular.forEach($scope.results, function(item) {
+                        if (angular.isDefined(item.id)) {
+                            $scope.checkboxes.items[item.id] = value;
+                        }
+                    });
+                });
+
+                // watch for data checkboxes
+                $scope.$watch('checkboxes.items', function(values) {
+                    if (!$scope.results) {
+                        return;
+                    }
+                    var checked = 0, unchecked = 0,
+                        total = $scope.results.length;
+                    angular.forEach($scope.results, function(item) {
+                        checked   +=  ($scope.checkboxes.items[item.id]) || 0;
+                        unchecked += (!$scope.checkboxes.items[item.id]) || 0;
+                    });
+                    if ((unchecked == 0) || (checked == 0)) {
+                        $scope.checkboxes.checked = (checked == total);
+                    }
+                    // grayed checkbox
+                    angular.element(document.getElementById("select_all")).prop("indeterminate", (checked != 0 && unchecked != 0));
+                }, true);
+
         })
     </script>
 
 
     <script type="text/javascript">
         $(document).ready(function() {
-
-
             // Table sort - styled
-            $('#sorting-example1').tablesorter({
-                headers: {
-                    0: {sorter: false},
-                    5: {sorter: false}
-                }
-            }).on('click', 'tbody td', function(event)
+            $('.table-extra-info').on('click', 'tbody td', function(event)
             {
                 // Do not process if something else has been clicked
                 if (event.target !== this)
@@ -393,27 +342,8 @@ var app = angular.module('main', ['ngTable'])
                         '</td>' +
                         '</tr>').insertAfter(tr);
 
-            }).on('sortStart', function()
-            {
-                var rows = $(this).find('.row-drop');
-                if (rows.length > 0)
-                {
-                    // Un-style previous rows
-                    rows.prev().children().removeClass('anthracite-gradient glossy');
-
-                    // Remove rows
-                    rows.remove();
-                }
             });
 
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#range").change(function() {
-                console.log($(this).val());
-                $("#limit").val($(this).val());
-            });
         });
     </script>
 {% endblock %}
