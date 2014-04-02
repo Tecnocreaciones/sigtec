@@ -178,6 +178,10 @@
                 <source>sigtec.go</source>
                 <target>Go</target>
             </trans-unit>
+            <trans-unit id="3f2562e9b0f997e2758b1eea001c4a34">
+                <source>sigtec.rif</source>
+                <target>Rif</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
