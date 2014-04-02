@@ -1,10 +1,9 @@
 {% extends "CoramerSigtecWebBundle::layout.html.twig" %}
 {% block title %}Principal{% endblock %}
 {% block body %}
+
+  <script src="{{ asset('angular/app/lib/ng-table/ng-table.js') }}"></script> 
         
-        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="{{ asset('angular/app/lib/angular/angular.js') }}"></script>
-        <script src="{{ asset('angular/app/lib/ng-table/ng-table.js') }}"></script>
         <link rel="stylesheet" href="{{ asset('angular/app/lib/ng-table/ng-table.css') }}">
         <style>
         .loading-container {
@@ -33,7 +32,7 @@
     {% endblock %}
     <h1>Table with sorting</h1>
 
-<div ng-app="main"  ng-controller="DemoCtrl">
+<div ng-controller="TableController">
 
     <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Clear sorting</button>
     <button ng-click="tableParams.reload()" class="btn pull-right">Reload</button>
@@ -54,12 +53,9 @@
     
 
         <script>
+
         coramerApp.requires.push('main');
         var app = angular.module('main', ['ngTable'])
-                .config(function($interpolateProvider) {
-                    $interpolateProvider.startSymbol('[[');
-                    $interpolateProvider.endSymbol(']]');
-                })
                 .directive('loadingContainer', function () {
                 return {
                     restrict: 'A',
@@ -74,8 +70,7 @@
                     }
                 };
             }).
-        controller('DemoCtrl', function($scope, $filter, ngTableParams,$http) {
-            console.log("sss");
+        controller('TableController', function($scope, $filter, ngTableParams,$http) {
             $scope.tableParams = new ngTableParams({
                 page: 1,            // show first page
                 count: 10,          // count per page
@@ -97,6 +92,5 @@
         </script>
 
 </div>
-
 
 {% endblock %}
