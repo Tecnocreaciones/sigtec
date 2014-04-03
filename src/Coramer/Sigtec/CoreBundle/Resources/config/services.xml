@@ -26,5 +26,9 @@
         <service id="sigtec.listener.registration" class="Coramer\Sigtec\CoreBundle\EventListener\RegistrationListerner">
             <tag name="kernel.event_subscriber" />
         </service>
+        <service id="twig.extension.sigtec.core" class="Coramer\Sigtec\CoreBundle\Twig\Extension\CoreExtension" public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="twig.loader" />
+        </service>
     </services>
 </container>

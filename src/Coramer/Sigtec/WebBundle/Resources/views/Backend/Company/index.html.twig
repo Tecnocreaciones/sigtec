@@ -10,7 +10,7 @@
                             <input type="checkbox" ng-model="checkboxes.items[result.id]" />
                         </td>
                         <td data-title="'{{ 'sigtec.name'|trans }}'" sortable="'name'">
-                            [[result.name]]
+                            <a href="[[ result._links.self.href ]]">[[result.name]]</a>
                         </td>
                         <td data-title="'{{ 'sigtec.rif'|trans }}'" sortable="'rif'">
                             [[result.rif]]

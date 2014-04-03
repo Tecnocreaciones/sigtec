@@ -53,13 +53,35 @@
 {% macro delete(url, message, disabled=false, modal=true) %}
 {% if disabled %}
 <span class="btn btn-sm btn-danger disabled">
-    <i class="glyphicon glyphicon-trash"></i><span>{{ message is empty ? 'sms_facilito.delete'|trans : message }}</span>
+    <i class="glyphicon glyphicon-trash"></i><span>{{ message is empty ? 'sigtec.delete'|trans : message }}</span>
 </span>
 {% else %}
-    <a href="javascript:void(0)" class="button">
+    {% set idForm = url|hash %}
+    <button type="button" class="button" onclick="openDelete('{{ idForm }}')">
         {{ 'sigtec.delete'|trans }}
         <span class="button-icon red-gradient right-side"><span class="icon-trash"></span></span>
-    </a>
+        <form action="{{ url }}" id="{{ idForm }}" method="post" novalidate>
+            <input type="hidden" name="_method" value="DELETE">
+        </form>
+    </button>
+    <script type="text/javascript">
+        // Demo confirm
+        function openDelete(idForm)
+        {
+                $.modal.confirm('¿{{ message is empty ? 'sigtec.question.delete'|trans : message }}?', function()
+                {
+                    $('#'+idForm).submit();
+
+                }, function()
+                {
+                        
+                },
+                {
+                    textConfirm: '{{ 'sigtec.yes'|trans }}',
+                    textCancel: '{{ 'sigtec.no'|trans }}'
+                });
+        };
+    </script>
 {% endif %}
 {% endmacro %}
 

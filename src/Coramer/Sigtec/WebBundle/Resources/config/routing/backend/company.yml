@@ -1,7 +1,7 @@
 coramer_sigtec_company_index:
     pattern:  /.{_format}
     defaults:
-        _controller:  coramer_sigtec.controller.company:indexAction 
+        _controller:  coramer_sigtec.controller.company:indexAction
         _format: html
     options:
         expose: true
@@ -29,5 +29,6 @@ coramer_sigtec_company_update:
 
 coramer_sigtec_company_delete:
     pattern:  /{id}/delete
-    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:delete" }
+    defaults: 
+        _controller: coramer_sigtec.controller.company:deleteAction
     requirements: { _method: post|delete }

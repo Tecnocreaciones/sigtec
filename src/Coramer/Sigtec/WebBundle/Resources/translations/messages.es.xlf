@@ -222,6 +222,10 @@
                 <source>sigtec.edit</source>
                 <target>Editar</target>
             </trans-unit>
+            <trans-unit id="e96822fdb8a35bddba01ac1f9e355515">
+                <source>sigtec.question.delete</source>
+                <target>Desea eliminar este elemento</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
