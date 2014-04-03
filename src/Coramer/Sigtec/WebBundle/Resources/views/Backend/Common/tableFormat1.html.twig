@@ -142,8 +142,8 @@ var tableFormat1 = angular.module('tableFormat1', ['ngTable'])
                                 <span ng-bind="count">[[count]]</span>
                             </option>
                     </select>
-                    <button ng-click="tableParams.reload()" class="button pull-right">{{ 'sigtec.reload'|trans }}</button>
-                    <button ng-click="tableParams.sorting({})" class="button pull-right">{{ 'sigtec.clear_sorting'|trans }}</button>
+                    <button ng-click="tableParams.reload()" class="button pull-right icon-refresh icon-size2 blue-gradient glossy" title="{{ 'sigtec.reload'|trans }}" ></button>
+                    <button ng-click="tableParams.sorting({})" class="button pull-right icon-cross-round icon-size2 blue-gradient glossy" title="{{ 'sigtec.clear_sorting'|trans }}"></button>
                 </div>
         </td>
         </tr>
