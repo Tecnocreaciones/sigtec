@@ -1,0 +1,40 @@
+{% import 'CoramerSigtecResourceBundle:Macros:actions.html.twig' as actions %}
+
+<fieldset class="fieldset fields-list">
+
+        <legend class="legend">{{ 'sigtec.company'|trans }}</legend>
+
+        <div class="field-block button-height">
+            {{ form_label(form.rif) }}
+            {{ form_widget(form.rif) }}
+            {{ form_errors(form.rif) }}
+            <span class="info-spot">
+                <span class="icon-info-round"></span>
+                <span class="info-bubble">
+                    This is an information bubble to help the user.
+                </span>
+            </span>
+        </div>
+        <div class="field-block button-height">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+            {{ form_errors(form.name) }}
+            <span class="info-spot">
+                <span class="icon-info-round"></span>
+                <span class="info-bubble">
+                    This is an information bubble to help the user.
+                </span>
+            </span>
+        </div>
+        <div class="field-drop button-height black-inputs">
+            {{ form_label(form.status) }}
+            {{ form_widget(form.status,{'attr':{'data-text-on':('sigtec.active'|trans|upper),'data-text-off':('sigtec.inactive'|trans|upper)}}) }}
+            {{ form_errors(form.status) }}
+        </div>
+        {% if action == 'create' %}
+            {{ actions.create() }}
+        {% elseif action == 'update' %}
+            {{ actions.update() }}
+        {% endif %}
+        {{ form_rest(form) }}
+    </fieldset>

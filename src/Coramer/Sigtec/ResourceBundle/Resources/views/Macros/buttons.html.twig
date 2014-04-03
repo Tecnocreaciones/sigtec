@@ -1,0 +1,70 @@
+{% macro show(url, message) %}
+<a href="{{ url }}" class="btn btn-default">
+   <i class="glyphicon glyphicon-book"></i><span>{{ message is empty ? 'sms_facilito.show'|trans : message }}</span>
+</a>
+{% endmacro %}
+
+{% macro generic(url, message, icon) %}
+<a href="{{ url }}" class="btn btn-default">
+    {% if icon is not empty %}<i class="glyphicon glyphicon-{{ icon }}"></i>{% endif %}<span>{{ message }}</span>
+</a>
+{% endmacro %}
+
+{% macro create(url, message) %}
+<a href="{{ url }}" class="btn btn-sm btn-primary">
+    <i class="glyphicon glyphicon-plus-sign"></i><span>{{ message is empty ? 'sms_facilito.new'|trans : message }}</span>
+</a>
+{% endmacro %}
+
+{% macro show(url, message) %}
+<a class="blue pull-left" href="{{ url }}" class="tooltip-info" data-rel="tooltip" title="{{ 'sms_facilito.view'|trans }}">
+    <i class="icon-zoom-in bigger-130"></i>
+</a>
+{% endmacro %}
+{% macro edit(url, message) %}
+<a href="{{ url }}" class="button">
+    {{ 'sigtec.edit'|trans }}
+    <span class="button-icon right-side"><span class="icon-pencil"></span></span>
+</a>
+{% endmacro %}
+{% macro edit_mini(url, message) %}
+<a class="green pull-left" href="{{ url }}" class="tooltip-success" data-rel="tooltip" title="{{ 'sms_facilito.edit'|trans }}">
+    <i class="icon-pencil bigger-130"></i>
+</a>
+{% endmacro %}
+
+{% macro delete_mini(url, message, disabled=false, modal=true) %}
+{% if disabled %}
+<span class="btn btn-sm btn-danger disabled">
+    <i class="glyphicon glyphicon-trash"></i><span>{{ message is empty ? 'sms_facilito.delete'|trans : message }}</span>
+</span>
+{% else %}
+<form action="{{ url }}" method="post" novalidate>
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn-link {% if modal %} btn-confirm{% endif %} " type="submit" question="{{ message }}">
+        <a class="red" href="#" data-rel="tooltip" title="{{ 'sms_facilito.delete'|trans }}">
+            <i class="icon-trash bigger-130"></i>
+        </a>
+    </button>
+</form>
+{% endif %}
+{% endmacro %}
+
+{% macro delete(url, message, disabled=false, modal=true) %}
+{% if disabled %}
+<span class="btn btn-sm btn-danger disabled">
+    <i class="glyphicon glyphicon-trash"></i><span>{{ message is empty ? 'sms_facilito.delete'|trans : message }}</span>
+</span>
+{% else %}
+    <a href="javascript:void(0)" class="button">
+        {{ 'sigtec.delete'|trans }}
+        <span class="button-icon red-gradient right-side"><span class="icon-trash"></span></span>
+    </a>
+{% endif %}
+{% endmacro %}
+
+{% macro manage(url, message) %}
+<a href="{{ url }}" class="btn btn-sm btn-success">
+    <i class="glyphicon glyphicon-folder-open"></i><span>{{ message is empty ? 'sms_facilito.manage'|trans : message }}</span>
+</a>
+{% endmacro %}

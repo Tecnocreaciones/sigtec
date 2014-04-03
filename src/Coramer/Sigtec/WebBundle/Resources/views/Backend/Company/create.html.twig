@@ -1,71 +1,8 @@
-{% extends '::base.html.twig' %}
-
-{% block stylesheets %}
-    <!-- Additional styles -->
-    <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/form3860.css?v=1') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/switches3860.css?v=1') }}">
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{  asset('bundles/coramersigtecweb/frontend/js/developr.input.js') }}"></script>
-{% endblock %}
+{% extends 'CoramerSigtecWebBundle:Backend:Common/formLayout.html.twig' %}
 
 {% block body -%}
-    <h3 class="thin underline">{{ 'sigtec.company_registration'|trans }}</h3>
-
-    <fieldset class="fieldset fields-list">
-
-        <legend class="legend">{{ 'sigtec.company'|trans }}</legend>
-
-        <div class="field-block button-height">
-            {{ form_label(form.rif) }}
-            {{ form_widget(form.rif) }}
-            {{ form_errors(form.rif) }}
-            <span class="info-spot">
-                <span class="icon-info-round"></span>
-                <span class="info-bubble">
-                    This is an information bubble to help the user.
-                </span>
-            </span>
-        </div>
-        <div class="field-block button-height">
-            {{ form_label(form.name) }}
-            {{ form_widget(form.name) }}
-            {{ form_errors(form.name) }}
-            <span class="info-spot">
-                <span class="icon-info-round"></span>
-                <span class="info-bubble">
-                    This is an information bubble to help the user.
-                </span>
-            </span>
-        </div>
-        <div class="field-drop button-height black-inputs">
-            {{ form_label(form.status) }}
-            {{ form_widget(form.status,{'attr':{'data-text-on':('sigtec.active'|trans|upper),'data-text-off':('sigtec.inactive'|trans|upper)}}) }}
-            {{ form_errors(form.status) }}
-        </div>
-        <div class="field-block button-height">
-
-            <button type="submit" class="button glossy mid-margin-right">
-                <span class="button-icon"><span class="icon-tick"></span></span>
-                {{ 'sigtec.save'|trans }}
-            </button>
-
-            <button type="submit" class="button glossy">
-                <span class="button-icon red-gradient"><span class="icon-cross-round"></span></span>
-                {{ 'sigtec.cancel'|trans }}
-            </button>
-
-        </div>
-        {{ form_rest(form) }}
-
-    </fieldset>
-
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('coramer_sigtec_company_index') }}">
-                Back to the list
-            </a>
-        </li>
-    </ul>
+    <h3 class="thin underline"><a href="{{ path('coramer_sigtec_company_index') }}">Empresas</a> >> {{ 'sigtec.company_registration'|trans }}</h3>
+    <form method="POST" action="{{ path('coramer_sigtec_company_create') }}">
+    {% include 'CoramerSigtecWebBundle:Backend:Company/_form.html.twig' with {'action':'create'} %}
+    </form>
 {% endblock %}

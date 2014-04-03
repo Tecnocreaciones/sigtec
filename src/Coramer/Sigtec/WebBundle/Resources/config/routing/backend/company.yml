@@ -11,17 +11,12 @@ coramer_sigtec_company_show:
         _controller:  coramer_sigtec.controller.company:showAction
         _format: html
 
-coramer_sigtec_company_new:
-    pattern:  /new
+coramer_sigtec_company_create:
+    pattern:  /create
     defaults:
         _controller: coramer_sigtec.controller.company:createAction
         _sylius:
             form: coramer_sigtec_companybundle_company
-
-coramer_sigtec_company_create:
-    pattern:  /create
-    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:create" }
-    requirements: { _method: post }
 
 coramer_sigtec_company_edit:
     pattern:  /{id}/edit

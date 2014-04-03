@@ -214,6 +214,14 @@
                 <source>sigtec.cancel</source>
                 <target>Cancel</target>
             </trans-unit>
+            <trans-unit id="d611a926ff5b7b7b33245a9dbb8cb7d2">
+                <source>sigtec.details</source>
+                <target>Details</target>
+            </trans-unit>
+            <trans-unit id="e40f5a7bb08e7bf00f0e986e16e83283">
+                <source>sigtec.edit</source>
+                <target>Edit</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

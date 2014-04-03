@@ -1,0 +1,26 @@
+{% macro create(url) %}
+<div class="field-block button-height">
+    <button type="submit" class="button glossy mid-margin-right">
+        <span class="button-icon"><span class="icon-tick"></span></span>
+        {{ 'sigtec.register'|trans }}
+    </button>
+    <a href="{{ app.request.headers.get('referer', url) }}" class="button glossy">
+        <span class="button-icon red-gradient"><span class="icon-cross-round"></span></span>
+        {{ 'sigtec.cancel'|trans }}
+    </a>
+</div>
+{% endmacro %}
+
+{% macro update(url) %}
+<div class="clearfix form-actions">
+    <div class="col-md-offset-3 col-md-9">
+            <button class="btn btn-sm btn-info btn-default" type="submit">
+                    <i class="icon-download bigger-110"></i>
+                    {{ 'sigtec.save_changes'|trans }}
+            </button>
+
+            &nbsp; &nbsp; &nbsp;
+            <a href="{{ app.request.headers.get('referer', url) }}" class="btn btn-sm btn-danger"><i class="icon-remove bigger-110"></i> {{ 'sigtec.cancel'|trans }}</a>
+    </div>
+</div>
+{% endmacro %}

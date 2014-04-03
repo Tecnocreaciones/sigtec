@@ -41,7 +41,7 @@ class Company
      *
      * @ORM\Column(name="rif_validated", type="boolean")
      */
-    private $rifValidated;
+    private $rifValidated = false;
     
     /**
      * Date created
