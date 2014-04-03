@@ -234,6 +234,10 @@
                 <source>sigtec.list</source>
                 <target>Lista</target>
             </trans-unit>
+            <trans-unit id="6e7e3ffb837df928b3d54ee23781314a">
+                <source>sigtec.actions</source>
+                <target>Acciones</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

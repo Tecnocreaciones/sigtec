@@ -70,7 +70,32 @@ var tableFormat1 = angular.module('tableFormat1', ['ngTable'])
             };
         })
         .controller('TableFormatController', function($scope, ngTableParams, $http) {
-            
+            $scope.itemEdit = function(url){
+                document.location = url;
+            }
+            $scope.itemDelete = function(url){
+                $.modal.confirm('¿{{ 'sigtec.question.delete'|trans }}?', function()
+                {
+                    $http.post(url,{_method:'DELETE'},{headers:{'X-Requested-With':'XMLHttpRequest'}}).success(function(data){
+                        $.each(data.message,function(index, value){
+                            notify(value,'', {
+                                system:		false,   
+                                autoClose:		4000,
+                                icon:               '{{ asset('bundles/coramersigtecweb/frontend/img/icons/icon-success.png') }}',
+                                iconOutside:        false,
+                                closeButton:        true,
+                                showCloseOnHover:	false,
+                                groupSimilar:	true
+                            });
+                        });
+                        $scope.tableParams.reload();
+                    });
+                }, function(){},
+                {
+                    textConfirm: '{{ 'sigtec.yes'|trans }}',
+                    textCancel: '{{ 'sigtec.no'|trans }}'
+                });
+            }
             $scope.evalFooter = function(type,footer){
               for (var i = 0; i < footer.length; i++) {
                     if (footer[i] === type) {

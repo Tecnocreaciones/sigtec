@@ -32,13 +32,11 @@
                         </td>
                         <td class="low-padding">
                             <span class="select compact full-width" tabindex="0">
-                                <a href="[[ result._links.edit.href ]]" class="select-value">Edit</a>
+                                <a href class="select-value form-edit">{{ 'sigtec.actions'|trans }}</a>
                                 <span class="select-arrow"></span>
                                 <span class="drop-down">
-                                    <a href="javascript:void(0);">Put offline</a>
-                                    <a href="javascript:void(0);">Review</a>
-                                    <a href="javascript:void(0);">Put to trash</a>
-                                    <a href="[[ result._links.delete.href ]]">Delete</a>
+                                    <a href ng-click="itemEdit(result._links.edit.href)" >{{ 'sigtec.edit'|trans }}</a>
+                                    <a href ng-click="itemDelete(result._links.delete.href)" >{{ 'sigtec.delete'|trans }}</a>
                                 </span>
                             </span>
                         </td>
@@ -49,7 +47,7 @@
 
         <ul>
             <li>
-                <a href="{{ path('coramer_sigtec_company_create') }}">
+                <a href="{{ path('coramer_sigtec_company_create') }}" class="form-edit">
                     Create a new entry
                 </a>
             </li>

@@ -62,4 +62,19 @@ class ResourceController extends BaseResource
         }
         return $this->handleView($view);
     }
+    
+    public function deleteAction(Request $request) {
+        if($request->isXmlHttpRequest()){
+            $resource = $this->findOr404($request);
+            $this->domainManager->delete($resource);
+            /** @var FlashBag $flashBag */
+            $flashBag = $this->get('session')->getBag('flashes');
+            $data = array(
+                'message' => $flashBag->get('success'),
+            );
+            return new \Symfony\Component\HttpFoundation\JsonResponse($data);
+        }else{
+            return parent::deleteAction($request);
+        }
+    }
 }
