@@ -18,17 +18,16 @@ coramer_sigtec_company_create:
         _sylius:
             form: coramer_sigtec_companybundle_company
 
-coramer_sigtec_company_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:edit" }
-
 coramer_sigtec_company_update:
     pattern:  /{id}/update
-    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:update" }
-    requirements: { _method: post|put }
+    defaults:
+        _controller: coramer_sigtec.controller.company:updateAction
+        _sylius:
+            form: coramer_sigtec_companybundle_company
+    requirements: { _method: GET|PUT }
 
 coramer_sigtec_company_delete:
     pattern:  /{id}/delete
     defaults: 
         _controller: coramer_sigtec.controller.company:deleteAction
-    requirements: { _method: post|delete }
+    requirements: { _method: POST|DELETE }

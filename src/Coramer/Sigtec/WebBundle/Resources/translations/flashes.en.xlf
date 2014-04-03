@@ -15,6 +15,10 @@ file that was distributed with this source code.
                 <source>coramer_sigtec.company.delete</source>
                 <target>The company was deleted</target>
             </trans-unit>
+            <trans-unit id="d95b4519de7ff90f4a3059f30c7cd0f7">
+                <source>coramer_sigtec.company.update</source>
+                <target>The company has updated</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

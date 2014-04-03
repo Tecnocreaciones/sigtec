@@ -43,7 +43,7 @@
         </p>
     </fieldset>
     <p class="button-height">
-        {{ buttons.edit(path('coramer_sigtec_company_edit', { 'id': company.id })) }}
+        {{ buttons.edit(path('coramer_sigtec_company_update', { 'id': company.id })) }}
         {{ buttons.delete(path('coramer_sigtec_company_delete', { 'id': company.id })) }}
     </p>
 {% endblock %}

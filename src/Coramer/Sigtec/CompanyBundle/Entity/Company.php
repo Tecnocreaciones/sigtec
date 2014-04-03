@@ -67,7 +67,7 @@ class Company
      * @var boolean
      * @ORM\Column(name="status", type="boolean")
      */
-    private $status;
+    private $status = true;
 
     /**
      * Get id

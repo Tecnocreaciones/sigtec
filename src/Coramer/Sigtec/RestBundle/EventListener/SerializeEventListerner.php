@@ -53,7 +53,7 @@ class SerializeEventListerner implements EventSubscriberInterface
                 'href' => $this->generateUrl('coramer_sigtec_company_show',array('id' => $object->getId()))
                 ),
             'edit' => array(
-                'href' => $this->generateUrl('coramer_sigtec_company_edit',array('id' => $object->getId()))
+                'href' => $this->generateUrl('coramer_sigtec_company_update',array('id' => $object->getId()))
                 ),
             'delete' => array(
                 'href' => $this->generateUrl('coramer_sigtec_company_delete',array('id' => $object->getId()))

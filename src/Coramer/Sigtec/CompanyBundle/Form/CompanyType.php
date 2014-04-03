@@ -26,7 +26,7 @@ class CompanyType extends AbstractType
             ->add('status',null,array(
                 'label' => 'sigtec.status',
                 'attr' => array('class' => 'switch medium wider mid-margin-right'),
-                'data' => true,
+                'required' => false,
             ))
         ;
     }

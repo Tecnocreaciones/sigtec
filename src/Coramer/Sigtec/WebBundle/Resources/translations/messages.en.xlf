@@ -226,6 +226,14 @@
                 <source>sigtec.question.delete</source>
                 <target>You want to delete this item</target>
             </trans-unit>
+            <trans-unit id="b5ebfd11bbd1870f3b668642699d30c9">
+                <source>sigtec.company_update</source>
+                <target>Update company</target>
+            </trans-unit>
+            <trans-unit id="6c8a059fe438599a3e6fcefe384b27f8">
+                <source>sigtec.list</source>
+                <target>List</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
