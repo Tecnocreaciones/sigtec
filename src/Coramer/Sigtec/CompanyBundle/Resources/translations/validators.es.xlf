@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="e55ea4f773d2e715278e968ff8e21f7d">
+                <source>sigtec.validation.must_enter_a_valid_rif</source>
+                <target>Debe ingresar un RIF válido</target>
+            </trans-unit>
+            <trans-unit id="644f9eb207f5a8c57f24df4878d1df4b">
+                <source>sigtec.validation.this_rif_already_registered</source>
+                <target>Este RIF ya se encuentra registrado</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

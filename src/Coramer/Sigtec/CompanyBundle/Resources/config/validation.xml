@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Coramer\Sigtec\CompanyBundle\Entity\Company">
+        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
+            <option name="fields">rif</option>
+            <option name="message">sigtec.validation.this_rif_already_registered</option>
+        </constraint>
+        <property name="rif">
+            <constraint name="Regex">
+                <option name="pattern">/^([VEJPG]{1})-([0-9]{8})-([0-9]{1}$)/</option>
+                <option name="message">sigtec.validation.must_enter_a_valid_rif</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

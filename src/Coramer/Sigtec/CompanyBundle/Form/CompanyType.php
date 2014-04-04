@@ -17,7 +17,10 @@ class CompanyType extends AbstractType
         $builder
             ->add('rif',null,array(
                 'label' => 'sigtec.rif',
-                'attr' => array('class' => 'input small-margin-right'),
+                'attr' => array(
+                    'class' => 'input small-margin-right',
+                    'title' => '(X-12345678-9)'
+                    ),
             ))
             ->add('name',null,array(
                 'label' => 'sigtec.name',

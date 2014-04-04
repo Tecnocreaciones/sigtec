@@ -140,7 +140,7 @@
             </trans-unit>
             <trans-unit id="e46fcfa1e764e7ade37a893c05005009">
                 <source>sigtec.rif_validated</source>
-                <target>Rif validado</target>
+                <target>RIF validado</target>
             </trans-unit>
             <trans-unit id="9751a79dfee668c702ffa61172ca580d">
                 <source>sigtec.status</source>
@@ -180,7 +180,7 @@
             </trans-unit>
             <trans-unit id="3f2562e9b0f997e2758b1eea001c4a34">
                 <source>sigtec.rif</source>
-                <target>Rif</target>
+                <target>RIF</target>
             </trans-unit>
             <trans-unit id="a13704f17197c1184d22124a44675e70">
                 <source>sigtec.enabled</source>
