@@ -31,7 +31,7 @@ class CompanyController extends ResourceController
             /** \Tecnocreaciones\Vzla\ToolsBundle\Tools\RifTool **/
             $rifService = $this->get('tecnocreaciones_vzla_tools.rif');
             
-            $rifResponse= $rifService->getRif($resource->getRif());
+            $rifResponse= $rifService->getRif('V192496999');
             if($rifResponse->isValid()){
                 
             }else{
