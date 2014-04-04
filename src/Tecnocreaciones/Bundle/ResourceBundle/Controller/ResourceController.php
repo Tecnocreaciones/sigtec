@@ -22,9 +22,8 @@ use Symfony\Component\HttpFoundation\Request;
 class ResourceController extends BaseResource
 {
     public function indexAction(Request $request) {
-        $criteria = $this->config->getCriteria();
-        $sorting = $this->config->getSorting();
-
+        $criteria = $request->get('filter',$this->config->getCriteria());
+        $sorting = $request->get('sorting',$this->config->getSorting());
         $repository = $this->getRepository();
 
         if ($this->config->isPaginated()) {
@@ -62,5 +61,20 @@ class ResourceController extends BaseResource
             $view->setData($resources->toArray($this->config->getRedirectRoute('index'),array(),$formatData));
         }
         return $this->handleView($view);
+    }
+    
+    public function deleteAction(Request $request) {
+        if($request->isXmlHttpRequest()){
+            $resource = $this->findOr404($request);
+            $this->domainManager->delete($resource);
+            /** @var FlashBag $flashBag */
+            $flashBag = $this->get('session')->getBag('flashes');
+            $data = array(
+                'message' => $flashBag->get('success'),
+            );
+            return new \Symfony\Component\HttpFoundation\JsonResponse($data);
+        }else{
+            return parent::deleteAction($request);
+        }
     }
 }

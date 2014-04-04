@@ -20,6 +20,7 @@
     <parameters>
         <parameter key="coramer_sigtec_company.company.class">Coramer\Sigtec\CompanyBundle\Entity\Company</parameter>
         <parameter key="coramer_sigtec_company.repository.company.class">Coramer\Sigtec\CompanyBundle\Repository\CompanyRepository</parameter>
+        <parameter key="coramer_sigtec_company.form.type.company.class">Coramer\Sigtec\CompanyBundle\Form\CompanyType</parameter>
     </parameters>
 
     <services>
@@ -28,6 +29,11 @@
             factory-method="getRepository"
         >
             <argument>%coramer_sigtec_company.company.class%</argument>
+        </service>
+        <service id="coramer_sigtec_company.form.type.company" class="%coramer_sigtec_company.form.type.company.class%">
+            <argument>%coramer_sigtec_company.company.class%</argument>
+            <tag name="form.type" alias="coramer_sigtec_companybundle_company" />
+            
         </service>
     </services>
 </container>

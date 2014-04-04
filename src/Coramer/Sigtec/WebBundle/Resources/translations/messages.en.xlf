@@ -114,6 +114,134 @@
                 <source>sigtec.role.super_administrator</source>
                 <target>Super Administrator</target>
             </trans-unit>
+            <trans-unit id="0019bca6dbf6dfa9948bd9395600e080">
+                <source>app.loading</source>
+                <target>Loading</target>
+            </trans-unit>
+            <trans-unit id="b7f5b34ae65aba2a0f862300243e167b">
+                <source>sigtec.show</source>
+                <target>Show</target>
+            </trans-unit>
+            <trans-unit id="88edfdeabf20dc71586ffd112466a0bc">
+                <source>sigtec.search</source>
+                <target>Search</target>
+            </trans-unit>
+            <trans-unit id="aeead69681edcb8dbf4449e35342fc3a">
+                <source>sigtec.reload</source>
+                <target>Reload</target>
+            </trans-unit>
+            <trans-unit id="c12199071f1276f647cd10c60007ad68">
+                <source>sigtec.clear_sorting</source>
+                <target>Clear sorting</target>
+            </trans-unit>
+            <trans-unit id="9f8d7f24abfaa4245a4e231a77e12389">
+                <source>sigtec.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="e46fcfa1e764e7ade37a893c05005009">
+                <source>sigtec.rif_validated</source>
+                <target>Rif validated</target>
+            </trans-unit>
+            <trans-unit id="9751a79dfee668c702ffa61172ca580d">
+                <source>sigtec.status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="9beaf4b5ca8a8916736108ec5a8d70aa">
+                <source>sigtec.yes</source>
+                <target>Yes</target>
+            </trans-unit>
+            <trans-unit id="9b630b93b4a8fbc2a46e86ec234c2831">
+                <source>sigtec.no</source>
+                <target>No</target>
+            </trans-unit>
+            <trans-unit id="80a35f34872c649a52bfb7a36bc8e081">
+                <source>sigtec.created_at</source>
+                <target>Created at</target>
+            </trans-unit>
+            <trans-unit id="d69d4e502a40a953b7cc43ee3f6bae0b">
+                <source>sigtec.updated_at</source>
+                <target>Updated at</target>
+            </trans-unit>
+            <trans-unit id="3a8518990837f917ba18d0ebb2470254">
+                <source>sigtec.with_selected</source>
+                <target>With selected</target>
+            </trans-unit>
+            <trans-unit id="dd55980027239d20dc52e811589c1f2f">
+                <source>sigtec.delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="2d4347248c15d997cff4884ecfdcc289">
+                <source>sigtec.entries_found</source>
+                <target>Entries found</target>
+            </trans-unit>
+            <trans-unit id="0d228ce78570a7a6af50b92fd65f5480">
+                <source>sigtec.go</source>
+                <target>Go</target>
+            </trans-unit>
+            <trans-unit id="3f2562e9b0f997e2758b1eea001c4a34">
+                <source>sigtec.rif</source>
+                <target>Rif</target>
+            </trans-unit>
+            <trans-unit id="a13704f17197c1184d22124a44675e70">
+                <source>sigtec.enabled</source>
+                <target>Enabled</target>
+            </trans-unit>
+            <trans-unit id="4db80a8c4b528e182ab00d368da459f9">
+                <source>sigtec.disabled</source>
+                <target>Disabled</target>
+            </trans-unit>
+            <trans-unit id="79caab90d67e4be7b383718160d18104">
+                <source>sigtec.active</source>
+                <target>Active</target>
+            </trans-unit>
+            <trans-unit id="1408fa17fc56f9fe8b0e12d2cf8706fb">
+                <source>sigtec.inactive</source>
+                <target>Inactive</target>
+            </trans-unit>
+            <trans-unit id="a23d61afee3909008b0c8130cd399dcd">
+                <source>sigtec.company</source>
+                <target>Company</target>
+            </trans-unit>
+            <trans-unit id="94fd3b3f066ed731bfa34f608106db48">
+                <source>sigtec.company_registration</source>
+                <target>Company registration</target>
+            </trans-unit>
+            <trans-unit id="46e70c1f8da1a12ac04436353c65a3eb">
+                <source>sigtec.save</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="fe16ba8b73475b1e03303a5cb52444d2">
+                <source>sigtec.cancel</source>
+                <target>Cancel</target>
+            </trans-unit>
+            <trans-unit id="d611a926ff5b7b7b33245a9dbb8cb7d2">
+                <source>sigtec.details</source>
+                <target>Details</target>
+            </trans-unit>
+            <trans-unit id="e40f5a7bb08e7bf00f0e986e16e83283">
+                <source>sigtec.edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="e96822fdb8a35bddba01ac1f9e355515">
+                <source>sigtec.question.delete</source>
+                <target>You want to delete this item</target>
+            </trans-unit>
+            <trans-unit id="b5ebfd11bbd1870f3b668642699d30c9">
+                <source>sigtec.company_update</source>
+                <target>Update company</target>
+            </trans-unit>
+            <trans-unit id="6c8a059fe438599a3e6fcefe384b27f8">
+                <source>sigtec.list</source>
+                <target>List</target>
+            </trans-unit>
+            <trans-unit id="6e7e3ffb837df928b3d54ee23781314a">
+                <source>sigtec.actions</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="4f0ab2dd4dc72a1d6648ea54639bb4a9">
+                <source>sigtec.validate_rif</source>
+                <target>Validate RIF</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

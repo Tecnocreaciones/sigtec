@@ -19,10 +19,16 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('tecnocreaciones_vzla_tools');
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        
+        $rootNode
+                ->children()
+                    ->arrayNode('rif')
+                        ->addDefaultsIfNotSet()
+                        ->children()
+                            ->booleanNode('translate_message')->defaultTrue()->cannotBeEmpty()->end()
+                    ->end();
+                ;
+        
 
         return $treeBuilder;
     }

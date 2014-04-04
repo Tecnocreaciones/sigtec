@@ -17,6 +17,10 @@
     padding: 10px;
 }
 
+.breadcrumb > h1 > span
+{
+    font-size: 18px;
+}
 .logo-menu-mobile{
     position: absolute;
     z-index: 5;

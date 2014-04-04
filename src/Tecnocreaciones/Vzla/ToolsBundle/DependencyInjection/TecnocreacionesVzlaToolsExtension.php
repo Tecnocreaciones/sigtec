@@ -21,7 +21,9 @@ class TecnocreacionesVzlaToolsExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-
+        
+        $container->setParameter('tecnocreaciones_vzla_tools.rif.translate_message', $config['rif']['translate_message']);
+        
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
     }

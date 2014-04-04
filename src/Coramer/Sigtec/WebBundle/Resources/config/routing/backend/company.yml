@@ -1,34 +1,41 @@
 coramer_sigtec_company_index:
     pattern:  /.{_format}
     defaults:
-        _controller:  coramer_sigtec.controller.company:indexAction 
+        _controller:  coramer_sigtec.controller.company:indexAction
         _format: html
-
+    options:
+        expose: true
+    requirements: { _method: GET }
 coramer_sigtec_company_show:
     pattern:  /{id}/show.{_format}
     defaults: 
         _controller:  coramer_sigtec.controller.company:showAction
         _format: html
 
-coramer_sigtec_company_new:
-    pattern:  /new
-    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:new" }
-
 coramer_sigtec_company_create:
     pattern:  /create
-    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:create" }
-    requirements: { _method: post }
-
-coramer_sigtec_company_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:edit" }
-
+    defaults:
+        _controller: coramer_sigtec.controller.company:createAction
+        _sylius:
+            form: coramer_sigtec_companybundle_company
+    requirements: { _method: GET|POST }
+    
 coramer_sigtec_company_update:
     pattern:  /{id}/update
-    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:update" }
-    requirements: { _method: post|put }
+    defaults:
+        _controller: coramer_sigtec.controller.company:updateAction
+        _sylius:
+            form: coramer_sigtec_companybundle_company
+    requirements: { _method: GET|PUT }
 
 coramer_sigtec_company_delete:
     pattern:  /{id}/delete
-    defaults: { _controller: "CoramerSigtecCompanyBundle:Company:delete" }
-    requirements: { _method: post|delete }
+    defaults: 
+        _controller: coramer_sigtec.controller.company:deleteAction
+    requirements: { _method: POST|DELETE }
+
+coramer_sigtec_company_validaterif:
+    pattern:  /{id}/validate-rif
+    defaults:
+        _controller: coramer_sigtec.controller.company:validateRifAction
+    requirements: { _method: GET }
