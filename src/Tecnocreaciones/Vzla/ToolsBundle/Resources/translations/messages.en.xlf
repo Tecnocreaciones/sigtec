@@ -14,6 +14,10 @@
                 <source>tecnocreaciones.vzlatools.the_rif_does_not_exist</source>
                 <target>The RIF does not exist</target>
             </trans-unit>
+            <trans-unit id="e23a30dbf9e0ac5029c98bf1124d3df2">
+                <source>tecnocreaciones.vzlatools.invalid_check_digit</source>
+                <target>Invalid check digit</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

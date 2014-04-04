@@ -51,18 +51,24 @@ class RifTool implements \Symfony\Component\DependencyInjection\ContainerAwareIn
     public function getRif($rifString){
         $rif = new Rif();
         
-        if($this->isValid($rifString)){
-            $parameters = array(
-                'rif' => $rifString
-            );
-            $request = new \Lsw\ApiCallerBundle\Call\HttpGetHtml($this->url, null,$parameters);
-            $response = $this->getApiCaller()->call($request);
-            if($request->getStatusCode() == 404){
-                $rif
-                ->setCodeResponse(Rif::STATUS_ERROR_SERVER_DOWN)
-                ->setMessage($this->buildMessage('tecnocreaciones.vzlatools.the_seniat_server_is_not_available_at_this_time'));
+        if($this->isValidFormat($rifString)){
+            if($this->isValidCheckDigit($rifString)){
+                $parameters = array(
+                    'rif' => $rifString
+                );
+                $request = new \Lsw\ApiCallerBundle\Call\HttpGetHtml($this->url, null,$parameters);
+                $response = $this->getApiCaller()->call($request);
+                if($request->getStatusCode() == 404){
+                    $rif
+                    ->setCodeResponse(Rif::STATUS_ERROR_SERVER_DOWN)
+                    ->setMessage($this->buildMessage('tecnocreaciones.vzlatools.the_seniat_server_is_not_available_at_this_time'));
+                }else{
+                    //TODO TERMINAR EL PROCESO CUANDO EL SERVIDOR DEL SENIAT RESPONDA
+                }
             }else{
-                //TODO TERMINAR EL PROCESO CUANDO EL SERVIDOR DEL SENIAT RESPONDA
+                $rif
+                ->setCodeResponse(Rif::STATUS_ERROR_INVALID_CHECK_DIGIT)
+                ->setMessage($this->buildMessage('tecnocreaciones.vzlatools.invalid_check_digit'));
             }
         }else{
             $rif
@@ -80,7 +86,7 @@ class RifTool implements \Symfony\Component\DependencyInjection\ContainerAwareIn
      * @throws Exception
      */
     public function getInfo() {
-        if ($this->isValid()) {
+        if ($this->isValidFormat()) {
             if(function_exists('curl_init')) {
                 $this->url .= $this->_rif;
 
@@ -133,17 +139,25 @@ class RifTool implements \Symfony\Component\DependencyInjection\ContainerAwareIn
     /**
      * Validar formato del RIF
      * 
+     * @return boolean 
+     */
+    public function isValidFormat($rif) {
+        $rif = str_replace('-', '', strtoupper($rif));
+        $retorno = preg_match("/^([VEJPG]{1})([0-9]{9}$)/", $rif);
+        return $retorno;
+    }
+    
+    /**
+     * Validar el digito verificador del RIF
+     * 
      * Basado en el método módulo 11 para el cálculo del dígito verificador 
      * y aplicando las modificaciones propias ejecutadas por el seniat
      * @link http://es.wikipedia.org/wiki/C%C3%B3digo_de_control#C.C3.A1lculo_del_d.C3.ADgito_verificador
      * 
      * @return boolean 
      */
-    public function isValid($rif) {
+    function isValidCheckDigit($rif) {
         $rif = str_replace('-', '', strtoupper($rif));
-        $retorno = preg_match("/^([VEJPG]{1})([0-9]{9}$)/", $rif);
-        
-        if ($retorno) {
             $digitos = str_split($rif);
            
             $digitos[8] *= 2; 
@@ -182,11 +196,9 @@ class RifTool implements \Symfony\Component\DependencyInjection\ContainerAwareIn
             $digitoVerificador = ($resta >= 10) ? 0 : $resta;
             
             if ($digitoVerificador != $digitos[9]) {
-                $retorno = false;
+                return false;
             }
-        }        
-        
-        return $retorno;
+        return true;
     }
     
     /**

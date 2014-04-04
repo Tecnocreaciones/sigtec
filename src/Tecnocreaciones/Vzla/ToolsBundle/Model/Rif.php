@@ -32,12 +32,15 @@ class Rif
      */
     const STATUS_ERROR_RIF_DOES_NOT_EXIST = 2;
     /**
+     * El digito verificador es invalido
+     */
+    const STATUS_ERROR_INVALID_CHECK_DIGIT = 3;
+    /**
      * El rif se recupero exisotamente
      */
-    const STATUS_OK = 3;
+    const STATUS_OK = 4;
     
     private $rif;
-    
     
     private $name;
     
