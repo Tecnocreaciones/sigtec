@@ -1,6 +1,6 @@
 'use strict';
 
-var coramerApp = angular.module('coramerApp',['notificationBarModule']);
+var coramerApp = angular.module('coramerApp',['notificationBarModule','notifyModule']);
 
 coramerApp.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');

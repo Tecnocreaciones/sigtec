@@ -238,6 +238,10 @@
                 <source>sigtec.actions</source>
                 <target>Acciones</target>
             </trans-unit>
+            <trans-unit id="4f0ab2dd4dc72a1d6648ea54639bb4a9">
+                <source>sigtec.validate_rif</source>
+                <target>Validar RIF</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

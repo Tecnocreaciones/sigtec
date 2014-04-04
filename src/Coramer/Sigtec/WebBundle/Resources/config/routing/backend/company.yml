@@ -18,7 +18,8 @@ coramer_sigtec_company_create:
         _controller: coramer_sigtec.controller.company:createAction
         _sylius:
             form: coramer_sigtec_companybundle_company
-
+    requirements: { _method: GET|POST }
+    
 coramer_sigtec_company_update:
     pattern:  /{id}/update
     defaults:
@@ -32,3 +33,9 @@ coramer_sigtec_company_delete:
     defaults: 
         _controller: coramer_sigtec.controller.company:deleteAction
     requirements: { _method: POST|DELETE }
+
+coramer_sigtec_company_validaterif:
+    pattern:  /{id}/validate-rif
+    defaults:
+        _controller: coramer_sigtec.controller.company:validateRifAction
+    requirements: { _method: GET }

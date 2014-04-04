@@ -16,6 +16,13 @@ angular.module('sigtecModule.controllers', []).
         });
           
   }])
-  .controller('MyCtrl2', [function() {
-
-  }]);
+  .controller('CompanyIndexController', function($scope,$http,notifyService) {
+          $scope.itemValidateRif = function(url){
+              $http.get(url).success(function(data){
+                  notifyService.success(url);
+              }).error(function(data){
+                  notifyService.error(data.message);
+              });
+              //$scope.tableParams.reload();
+          }
+  });

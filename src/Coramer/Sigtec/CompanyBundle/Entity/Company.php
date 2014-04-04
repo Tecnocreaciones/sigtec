@@ -189,7 +189,7 @@ class Company
      *
      * @return boolean 
      */
-    public function getRifValidated()
+    public function isRifValidated()
     {
         return $this->rifValidated;
     }

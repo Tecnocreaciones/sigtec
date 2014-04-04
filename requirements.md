@@ -1,0 +1,2 @@
+curl
+simplexml_load_string

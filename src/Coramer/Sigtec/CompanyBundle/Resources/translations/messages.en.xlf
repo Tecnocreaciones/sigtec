@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="c6763d3f5e69f53de4e0837a3adeadc9">
+                <source>sigtec.the_rif_has_already_been_validated</source>
+                <target>The RIF has already been validated</target>
+            </trans-unit>
+            <trans-unit id="96c4bf7b6fa3db9833cd021d7490029d">
+                <source>sigtec.the_rif_was_validated_correctly</source>
+                <target>The RIF was validated correctly</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

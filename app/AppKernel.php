@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),//Paginador
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),//Recursos CRUD
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),//Gestor del menu
+            new Lsw\ApiCallerBundle\LswApiCallerBundle(),//Api Conector
             new Coramer\Sigtec\CoreBundle\CoramerSigtecCoreBundle(),
             new Coramer\Sigtec\WebBundle\CoramerSigtecWebBundle(),
             new Tecnocreaciones\Vzla\ToolsBundle\TecnocreacionesVzlaToolsBundle(),
