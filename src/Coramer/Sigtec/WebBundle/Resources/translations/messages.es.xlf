@@ -242,6 +242,10 @@
                 <source>sigtec.validate_rif</source>
                 <target>Validar RIF</target>
             </trans-unit>
+            <trans-unit id="77ae8bced289cd14686e8a665e9a97cc">
+                <source>sigtec.email</source>
+                <target>Email</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

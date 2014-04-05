@@ -26,6 +26,17 @@
             </span>
             {{ form_errors(form.name) }}
         </div>
+        <div class="field-block button-height">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+            <span class="info-spot">
+                <span class="icon-info-round"></span>
+                <span class="info-bubble">
+                    This is an information bubble to help the user.
+                </span>
+            </span>
+            {{ form_errors(form.email) }}
+        </div>
         <div class="field-drop button-height black-inputs">
             {{ form_label(form.status) }}
             {{ form_widget(form.status,{'attr':{'data-text-on':('sigtec.active'|trans|upper),'data-text-off':('sigtec.inactive'|trans|upper)}}) }}

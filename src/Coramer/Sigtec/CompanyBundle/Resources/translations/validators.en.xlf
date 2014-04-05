@@ -10,6 +10,10 @@
                 <source>sigtec.validation.this_rif_already_registered</source>
                 <target>This RIF already registered</target>
             </trans-unit>
+            <trans-unit id="ee74e0b098b858ac0530f43bd1091b12">
+                <source>sigtec.validators.The_email_x_is_not_a_valid_email</source>
+                <target>The email is not a valid email</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
