@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Description of ParishData
+ * parroquia
  *
  * @author Jesus Zapata <programacion2@megabyteca.com>
  */
