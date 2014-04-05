@@ -34,7 +34,11 @@
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/doctrine-cache-bundle": "1.0.x-dev",
         "white-october/pagerfanta-bundle": "1.0.*@dev",
-        "leaseweb/api-caller-bundle": "1.0.*@dev"
+        "leaseweb/api-caller-bundle": "1.0.*@dev",
+        "tecnocreaciones/ajax-fos-user-bundle": "dev-master",
+        "tecnocreaciones/install-bundle": "dev-master",
+        "tecnocreaciones/tools-bundle": "dev-master",
+        "tecnocreaciones/resource-bundle": "dev-master"
     },
     "require-dev": {
         "nelmio/alice": "1.5.*@dev",
