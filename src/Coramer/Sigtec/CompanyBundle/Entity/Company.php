@@ -68,6 +68,14 @@ class Company
      * @ORM\Column(name="status", type="boolean")
      */
     private $status = true;
+    
+    /**
+     * Email
+     * 
+     * @var boolean
+     * @ORM\Column(name="email", type="string", length=100)
+     */
+    private $email;
 
     /**
      * Get id
@@ -215,5 +223,38 @@ class Company
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Get rifValidated
+     *
+     * @return boolean 
+     */
+    public function getRifValidated()
+    {
+        return $this->rifValidated;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Company
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }
