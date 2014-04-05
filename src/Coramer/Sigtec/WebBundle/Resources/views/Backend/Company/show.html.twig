@@ -39,11 +39,11 @@
         </p>
         <p class="inline-label">
             <label class="label">{{ 'sigtec.created_at'|trans }}</label>
-            {{ company.createdAt|date('Y-m-d H:i:s') }}
+            {{ company.createdAt|date('Y-m-d h:i a') }}
         </p>
         <p class="inline-label">
             <label class="label">{{ 'sigtec.updated_at'|trans }}</label>
-            {{ company.updatedAt|date('Y-m-d H:i:s') }}
+            {{ company.updatedAt|date('Y-m-d h:i a') }}
         </p>
     </fieldset>
     <p class="button-height">
