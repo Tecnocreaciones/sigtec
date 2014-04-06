@@ -92,8 +92,16 @@ class State
      */
     private $municipalities;
     
+    /**
+     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\City
+     * 
+     * @ORM\OneToMany(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\City", mappedBy="state")
+     */
+    private $cities;
+
     public function __construct() {
         $this->municipalities = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->cities = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -298,5 +306,38 @@ class State
     public function getMunicipalities()
     {
         return $this->municipalities;
+    }
+
+    /**
+     * Add cities
+     *
+     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\City $cities
+     * @return State
+     */
+    public function addCity(\Tecnocreaciones\Vzla\FixturesBundle\Entity\City $cities)
+    {
+        $this->cities[] = $cities;
+
+        return $this;
+    }
+
+    /**
+     * Remove cities
+     *
+     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\City $cities
+     */
+    public function removeCity(\Tecnocreaciones\Vzla\FixturesBundle\Entity\City $cities)
+    {
+        $this->cities->removeElement($cities);
+    }
+
+    /**
+     * Get cities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCities()
+    {
+        return $this->cities;
     }
 }
