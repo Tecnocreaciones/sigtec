@@ -1,14 +1,24 @@
 <?php
 
+/*
+ * This file is part of the TecnocreacionesVzlaFixturesBundle package.
+ * 
+ * (c) www.tecnocreaciones.com.ve
+ * 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Tecnocreaciones\Vzla\FixturesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Municipality(Municipio)
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Tecnocreaciones\Vzla\FixturesBundle\Repository\MunicipalityRepository")
  */
 class Municipality
 {
@@ -29,26 +39,46 @@ class Municipality
     private $description;
 
     /**
-     * @var integer
+     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\State
      *
-     * @ORM\Column(name="state", type="integer")
+     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\State", inversedBy="state")
      */
     private $state;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean")
+     */
+    private $active = true;
+    
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updateAt", type="datetime")
+     * @ORM\Column(name="updateAt", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="update")
      */
     private $updateAt;
-
+    
+    /**
+     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\Parish
+     * 
+     * @ORM\OneToMany(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\Parish", mappedBy="municipality")
+     */
+    private $parishes;
+    
+    public function __construct() {
+        $this->parishes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get id
@@ -84,26 +114,26 @@ class Municipality
     }
 
     /**
-     * Set state
+     * Set active
      *
-     * @param integer $state
+     * @param boolean $active
      * @return Municipality
      */
-    public function setState($state)
+    public function setActive($active)
     {
-        $this->state = $state;
+        $this->active = $active;
 
         return $this;
     }
 
     /**
-     * Get state
+     * Get active
      *
-     * @return integer 
+     * @return boolean 
      */
-    public function getState()
+    public function getActive()
     {
-        return $this->state;
+        return $this->active;
     }
 
     /**
@@ -150,5 +180,61 @@ class Municipality
     public function getUpdateAt()
     {
         return $this->updateAt;
+    }
+
+    /**
+     * Set state
+     *
+     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\State $state
+     * @return Municipality
+     */
+    public function setState(\Tecnocreaciones\Vzla\FixturesBundle\Entity\State $state = null)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return \Tecnocreaciones\Vzla\FixturesBundle\Entity\State 
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Add parishes
+     *
+     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\Parish $parishes
+     * @return Municipality
+     */
+    public function addParish(\Tecnocreaciones\Vzla\FixturesBundle\Entity\Parish $parishes)
+    {
+        $this->parishes[] = $parishes;
+
+        return $this;
+    }
+
+    /**
+     * Remove parishes
+     *
+     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\Parish $parishes
+     */
+    public function removeParish(\Tecnocreaciones\Vzla\FixturesBundle\Entity\Parish $parishes)
+    {
+        $this->parishes->removeElement($parishes);
+    }
+
+    /**
+     * Get parishes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getParishes()
+    {
+        return $this->parishes;
     }
 }

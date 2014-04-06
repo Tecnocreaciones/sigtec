@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tecnocreaciones\Vzla\FixturesBundle\;
+namespace Tecnocreaciones\Vzla\FixturesBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -2379,6 +2379,6 @@ class LoadMunicipalityData extends AbstractFixture implements OrderedFixtureInte
         
     }
     public function getOrder() {
-        return 2;
+        return 3;
     }
 }

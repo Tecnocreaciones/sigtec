@@ -9,234 +9,252 @@
  * file that was distributed with this source code.
  */
 
-namespace SIEMPRE\Core\DataFixtures;
+namespace Tecnocreaciones\Vzla\FixturesBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use SIEMPRE\Core\Entity\C_State;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Tecnocreaciones\Vzla\FixturesBundle\Entity\State;
 
 /**
- * Datos de los estados
+ * Data de los estados
  *
+ * @see https://github.com/marydn/venezuela-sql/blob/master/venezuela.sql
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
  */
-class StateFixture extends AbstractFixture implements ContainerAwareInterface,  OrderedFixtureInterface {
-    protected $container;
-
+class StateFixture extends AbstractFixture implements OrderedFixtureInterface
+{
     public function load(ObjectManager $manager) {
-        $entity = $this->container->get('entity');
-        
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Amazonas');
-            $c_State->setCodeDepartement('VE-X'); 
-            $c_State->setC_Regions($this->getReference('Regions-Guayana'));
-                $manager->persist($c_State);
-            $this->addReference('State-Amazonas', $c_State);
+            $countryVe = $this->getReference('Country-VE');
+            $state = new State();
+            
+            $state
+                    ->setDescription('Amazonas')
+                    ->setCode('VE-X')
+                    ->setRegion($this->getReference('Region-Guayana'))
+                    ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Amazonas', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Anzoátegui');
-            $c_State->setC_Regions($this->getReference('Regions-Nor-Oriental'));
-            $c_State->setCodeDepartement('VE-B');
-                $manager->persist($c_State);
-            $this->addReference('State-Anzoategui', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Anzoátegui')
+                  ->setRegion($this->getReference('Region-Nor-Oriental'))
+                  ->setCode('VE-B')
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Anzoategui', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Apure');
-            $c_State->setC_Regions($this->getReference('Regions-Nor-Oriental'));
-            $c_State->setCodeDepartement('VE-C');
-                $manager->persist($c_State);
-            $this->addReference('State-Apure', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Apure')
+                  ->setRegion($this->getReference('Region-Nor-Oriental'))
+                  ->setCode('VE-C')
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Apure', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Aragua');
-            $c_State->setCodeDepartement('VE-D'); 
-            $c_State->setC_Regions($this->getReference('Regions-Los-Llanos'));
-                $manager->persist($c_State);
-            $this->addReference('State-Aragua', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Aragua')
+                  ->setCode('VE-D')
+                  ->setRegion($this->getReference('Region-Los-Llanos'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Aragua', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Barinas');
-            $c_State->setCodeDepartement('VE-E'); 
-            $c_State->setC_Regions($this->getReference('Regions-Los-Llanos'));
-                $manager->persist($c_State);
-            $this->addReference('State-Barinas', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Barinas')
+                  ->setCode('VE-E')
+                  ->setRegion($this->getReference('Region-Los-Llanos'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Barinas', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Bolívar');
-            $c_State->setCodeDepartement('VE-F'); 
-            $c_State->setC_Regions($this->getReference('Regions-Guayana'));
-                $manager->persist($c_State);
-            $this->addReference('State-Bolivar', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Bolívar')
+                  ->setCode('VE-F')
+                  ->setRegion($this->getReference('Region-Guayana'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Bolivar', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Carabobo');
-            $c_State->setCodeDepartement('VE-G'); 
-            $c_State->setC_Regions($this->getReference('Regions-Central'));
-                $manager->persist($c_State);
-            $this->addReference('State-Carabobo', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Carabobo')
+                  ->setCode('VE-G')
+                  ->setRegion($this->getReference('Region-Central'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Carabobo', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Cojedes');
-            $c_State->setCodeDepartement('VE-H'); 
-            $c_State->setC_Regions($this->getReference('Regions-Central'));
-                $manager->persist($c_State);
-            $this->addReference('State-Cojedes', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Cojedes')
+                  ->setCode('VE-H')
+                  ->setRegion($this->getReference('Region-Central'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Cojedes', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Delta Amacuro');
-            $c_State->setCodeDepartement('VE-Y'); 
-            $c_State->setC_Regions($this->getReference('Regions-Guayana'));
-                $manager->persist($c_State);
-            $this->addReference('State-Delta-Amacuro', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Delta Amacuro')
+                  ->setCode('VE-Y')
+                  ->setRegion($this->getReference('Region-Guayana'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Delta-Amacuro', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Falcón');
-            $c_State->setCodeDepartement('VE-I'); 
-            $c_State->setC_Regions($this->getReference('Regions-Centro-Occidental'));
-                $manager->persist($c_State);
-            $this->addReference('State-Falcon', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Falcón')
+                  ->setCode('VE-I')
+                  ->setRegion($this->getReference('Region-Centro-Occidental'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Falcon', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Guárico');
-            $c_State->setCodeDepartement('VE-J'); 
-            $c_State->setC_Regions($this->getReference('Regions-Los-Llanos'));
-                $manager->persist($c_State);
-            $this->addReference('State-Guarico', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Guárico')
+                  ->setCode('VE-J')
+                  ->setRegion($this->getReference('Region-Los-Llanos'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Guarico', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Lara');
-            $c_State->setCodeDepartement('VE-K'); 
-            $c_State->setC_Regions($this->getReference('Regions-Centro-Occidental'));
-                $manager->persist($c_State);
-            $this->addReference('State-Lara', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Lara')
+                  ->setCode('VE-K')
+                  ->setRegion($this->getReference('Region-Centro-Occidental'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Lara', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Mérida');
-            $c_State->setCodeDepartement('VE-L'); 
-            $c_State->setC_Regions($this->getReference('Regions-Los-Andes'));
-                $manager->persist($c_State);
-            $this->addReference('State-Merida', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Mérida')
+                  ->setCode('VE-L')
+                  ->setRegion($this->getReference('Region-Los-Andes'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Merida', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Miranda');
-            $c_State->setCodeDepartement('VE-M'); 
-            $c_State->setC_Regions($this->getReference('Regions-Capital'));
-                $manager->persist($c_State);
-            $this->addReference('State-Miranda', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Miranda')
+                  ->setCode('VE-M')
+                  ->setRegion($this->getReference('Region-Capital'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Miranda', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Monagas');
-            $c_State->setCodeDepartement('VE-N'); 
-            $c_State->setC_Regions($this->getReference('Regions-Nor-Oriental'));
-                $manager->persist($c_State);
-            $this->addReference('State-Monagas', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Monagas')
+                  ->setCode('VE-N')
+                  ->setRegion($this->getReference('Region-Nor-Oriental'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Monagas', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Nueva Esparta');
-            $c_State->setCodeDepartement('VE-O'); 
-            //  Región Insular
-                $manager->persist($c_State);
-            $this->addReference('State-Nueva-Esparta', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Nueva Esparta')
+                  ->setCode('VE-O')
+                  ->setRegion($this->getReference('Region-Insular'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Nueva-Esparta', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Portuguesa');
-            $c_State->setCodeDepartement('VE-P'); 
-            $c_State->setC_Regions($this->getReference('Regions-Los-Llanos'));
-                $manager->persist($c_State);
-            $this->addReference('State-Portuguesa', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Portuguesa')
+                  ->setCode('VE-P')
+                  ->setRegion($this->getReference('Region-Los-Llanos'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Portuguesa', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Sucre');
-            $c_State->setCodeDepartement('VE-R'); 
-            $c_State->setC_Regions($this->getReference('Regions-Nor-Oriental'));
-                $manager->persist($c_State);
-            $this->addReference('State-Sucre', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Sucre')
+                  ->setCode('VE-R')
+                  ->setRegion($this->getReference('Region-Nor-Oriental'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Sucre', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Táchira');
-            $c_State->setCodeDepartement('VE-S'); 
-            $c_State->setC_Regions($this->getReference('Regions-Los-Andes'));
-                $manager->persist($c_State);
-            $this->addReference('State-Tachira', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Táchira')
+                  ->setCode('VE-S')
+                  ->setRegion($this->getReference('Region-Los-Andes'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Tachira', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Trujillo');
-            $c_State->setCodeDepartement('VE-T'); 
-            $c_State->setC_Regions($this->getReference('Regions-Los-Andes'));
-                $manager->persist($c_State);
-            $this->addReference('State-Trujillo', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Trujillo')
+                  ->setCode('VE-T')
+                  ->setRegion($this->getReference('Region-Los-Andes'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Trujillo', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Vargas');
-            $c_State->setCodeDepartement('VE-W');
-            $c_State->setC_Regions($this->getReference('Regions-Capital'));
-                $manager->persist($c_State);
-            $this->addReference('State-Vargas', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Vargas')
+                  ->setCode('VE-W')
+                  ->setRegion($this->getReference('Region-Capital'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Vargas', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Yaracuy');
-            $c_State->setCodeDepartement('VE-U'); 
-            $c_State->setC_Regions($this->getReference('Regions-Centro-Occidental'));
-                $manager->persist($c_State);
-            $this->addReference('State-Yaracuy', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Yaracuy')
+                  ->setCode('VE-U')
+                  ->setRegion($this->getReference('Region-Centro-Occidental'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Yaracuy', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Zulia');
-            $c_State->setCodeDepartement('VE-V'); 
-            $c_State->setC_Regions($this->getReference('Regions-Zuliana'));
-                $manager->persist($c_State);
-            $this->addReference('State-Zulia', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Zulia')
+                  ->setCode('VE-V')
+                  ->setRegion($this->getReference('Region-Zuliana'))
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Zulia', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Distrito Capital');
-            $c_State->setCodeDepartement('VE-A'); 
-            $c_State->setC_Regions($this->getReference('Regions-Capital'));
-                $manager->persist($c_State);
-            $this->addReference('State-Distrito-Capital', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Distrito Capital')
+                  ->setCode('VE-A')
+                  ->setRegion($this->getReference('Region-Capital'))
+                  ->setCountry($countryVe); 
+                $manager->persist($state);
+            $this->addReference('State-Distrito-Capital', $state);
 
-            $c_State = new C_State();
-            $c_State->setEntity($entity);
-            $c_State->setNom('Dependencias Federales');
-            $c_State->setCodeDepartement('VE-Z');
-                $manager->persist($c_State);
-            $this->addReference('State-Dependencias-Federales', $c_State);
+            $state = new State();
+            
+            $state->setDescription('Dependencias Federales')
+                  ->setCode('VE-Z')
+                  ->setCountry($countryVe);
+                $manager->persist($state);
+            $this->addReference('State-Dependencias-Federales', $state);
                 
         $manager->flush();
     }
     
     public function getOrder() {
-        return 4;
+        return 2;
     }
-
-    public function setContainer(ContainerInterface $container = null) {
-        $this->container = $container;
-    }
-
 }

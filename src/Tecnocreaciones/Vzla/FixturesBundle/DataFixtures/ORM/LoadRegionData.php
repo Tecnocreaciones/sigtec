@@ -9,109 +9,101 @@
  * file that was distributed with this source code.
  */
 
-namespace SIEMPRE\Core\DataFixtures;
+namespace Tecnocreaciones\Vzla\FixturesBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use SIEMPRE\Core\Entity\C_Regions;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Tecnocreaciones\Vzla\FixturesBundle\Entity\Region;
 
 /**
- * Datos de los estados
+ * Data de estados
  *
+ * @see https://github.com/marydn/venezuela-sql/blob/master/venezuela.sql
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
  */
-class RegionsFixture extends AbstractFixture implements ContainerAwareInterface,  OrderedFixtureInterface {
-    protected $container;
-
-    public function load(ObjectManager $manager) {
-        $entity = $this->container->get('entity');
+class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface
+{
+    public function load(ObjectManager $manager)
+    {
+        $countryVe = $this->getReference('Country-VE');
         
-        $c_PaysVE = $this->getReference('C_Pays-VE');
-        
-        $c_Regions = new C_Regions();
-            $c_Regions->setEntity($entity);
-            $c_Regions->setNom('Región Capital');
-            $c_Regions->setCodeRegion('VE-RC'); 
-            $c_Regions->setC_Pays($c_PaysVE);
-                $manager->persist($c_Regions);
-            $this->addReference('Regions-Capital', $c_Regions);
+        $region = new Region();
             
-        $c_Regions = new C_Regions();
-            $c_Regions->setEntity($entity);
-            $c_Regions->setNom('Región Guayana');
-            $c_Regions->setCodeRegion('VE-RC'); 
-            $c_Regions->setC_Pays($c_PaysVE);
-                $manager->persist($c_Regions);
-            $this->addReference('Regions-Guayana', $c_Regions); 
+            $region->setDescription('Región Capital');
+            $region->setCode('VE-RC'); 
+            $region->setCountry($countryVe);
+                $manager->persist($region);
+            $this->addReference('Region-Capital', $region);
+            
+        $region = new Region();
+            
+            $region->setDescription('Región Guayana');
+            $region->setCode('VE-RC'); 
+            $region->setCountry($countryVe);
+                $manager->persist($region);
+            $this->addReference('Region-Guayana', $region); 
 
-        $c_Regions = new C_Regions();
-            $c_Regions->setEntity($entity);
-            $c_Regions->setNom('Región Insular');
-            $c_Regions->setCodeRegion('VE-RC'); 
-            $c_Regions->setC_Pays($c_PaysVE);
-                $manager->persist($c_Regions);
-            $this->addReference('Regions-Insular-Insular', $c_Regions); 
+        $region = new Region();
             
-        $c_Regions = new C_Regions();
-            $c_Regions->setEntity($entity);
-            $c_Regions->setNom('Región Los Andes');
-            $c_Regions->setCodeRegion('VE-RC'); 
-            $c_Regions->setC_Pays($c_PaysVE);
-                $manager->persist($c_Regions);
-            $this->addReference('Regions-Los-Andes', $c_Regions); 
+            $region->setDescription('Región Insular');
+            $region->setCode('VE-RC'); 
+            $region->setCountry($countryVe);
+                $manager->persist($region);
+            $this->addReference('Region-Insular', $region); 
+            
+        $region = new Region();
+            
+            $region->setDescription('Región Los Andes');
+            $region->setCode('VE-RC'); 
+            $region->setCountry($countryVe);
+                $manager->persist($region);
+            $this->addReference('Region-Los-Andes', $region); 
 
-        $c_Regions = new C_Regions();
-            $c_Regions->setEntity($entity);
-            $c_Regions->setNom('Región Los Llanos');
-            $c_Regions->setCodeRegion('VE-RC'); 
-            $c_Regions->setC_Pays($c_PaysVE);
-                $manager->persist($c_Regions);
-            $this->addReference('Regions-Los-Llanos', $c_Regions); 
+        $region = new Region();
+            
+            $region->setDescription('Región Los Llanos');
+            $region->setCode('VE-RC'); 
+            $region->setCountry($countryVe);
+                $manager->persist($region);
+            $this->addReference('Region-Los-Llanos', $region); 
 
-        $c_Regions = new C_Regions();
-            $c_Regions->setEntity($entity);
-            $c_Regions->setNom('Región Nor-Oriental');
-            $c_Regions->setCodeRegion('VE-RC'); 
-            $c_Regions->setC_Pays($c_PaysVE);
-                $manager->persist($c_Regions);
-            $this->addReference('Regions-Nor-Oriental', $c_Regions); 
+        $region = new Region();
             
-        $c_Regions = new C_Regions();
-            $c_Regions->setEntity($entity);
-            $c_Regions->setNom('Región Zuliana');
-            $c_Regions->setCodeRegion('VE-RC'); 
-            $c_Regions->setC_Pays($c_PaysVE);
-                $manager->persist($c_Regions);
-            $this->addReference('Regions-Zuliana', $c_Regions); 
+            $region->setDescription('Región Nor-Oriental');
+            $region->setCode('VE-RC'); 
+            $region->setCountry($countryVe);
+                $manager->persist($region);
+            $this->addReference('Region-Nor-Oriental', $region); 
             
-        $c_Regions = new C_Regions();
-            $c_Regions->setEntity($entity);
-            $c_Regions->setNom('Región Centro-Occidental');
-            $c_Regions->setCodeRegion('VE-RC'); 
-            $c_Regions->setC_Pays($c_PaysVE);
-                $manager->persist($c_Regions);
-            $this->addReference('Regions-Centro-Occidental', $c_Regions); 
+        $region = new Region();
             
-        $c_Regions = new C_Regions();
-            $c_Regions->setEntity($entity);
-            $c_Regions->setNom('Región Central');
-            $c_Regions->setCodeRegion('VE-RC'); 
-            $c_Regions->setC_Pays($c_PaysVE);
-                $manager->persist($c_Regions);
-            $this->addReference('Regions-Central', $c_Regions); 
+            $region->setDescription('Región Zuliana');
+            $region->setCode('VE-RC'); 
+            $region->setCountry($countryVe);
+                $manager->persist($region);
+            $this->addReference('Region-Zuliana', $region); 
+            
+        $region = new Region();
+            
+            $region->setDescription('Región Centro-Occidental');
+            $region->setCode('VE-RC'); 
+            $region->setCountry($countryVe);
+                $manager->persist($region);
+            $this->addReference('Region-Centro-Occidental', $region); 
+            
+        $region = new Region();
+            
+            $region->setDescription('Región Central');
+            $region->setCode('VE-RC'); 
+            $region->setCountry($countryVe);
+                $manager->persist($region);
+            $this->addReference('Region-Central', $region); 
 
         $manager->flush();
     }
     
     public function getOrder() {
-        return 3;
+        return 1;
     }
-
-    public function setContainer(ContainerInterface $container = null) {
-        $this->container = $container;
-    }
-
 }
