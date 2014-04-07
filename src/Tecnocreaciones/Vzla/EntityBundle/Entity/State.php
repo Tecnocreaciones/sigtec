@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TecnocreacionesVzlaFixturesBundle package.
+ * This file is part of the TecnocreacionesVzlaEntityBundle package.
  * 
  * (c) www.tecnocreaciones.com.ve
  * 
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tecnocreaciones\Vzla\FixturesBundle\Entity;
+namespace Tecnocreaciones\Vzla\EntityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -18,7 +18,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * State
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Tecnocreaciones\Vzla\FixturesBundle\Repository\StateRepository")
+ * @ORM\Entity(repositoryClass="Tecnocreaciones\Vzla\EntityBundle\Repository\StateRepository")
  */
 class State
 {
@@ -49,9 +49,9 @@ class State
     private $code;
 
     /**
-     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\Region
+     * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\Region
      *
-     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\Region", inversedBy="states")
+     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\Region", inversedBy="states")
      */
     private $region;
     
@@ -79,23 +79,23 @@ class State
     private $updatedAt;
 
     /**
-     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\Country
+     * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\Country
      * 
-     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\Country", inversedBy="states")
+     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\Country", inversedBy="states")
      */
     private $country;
 
     /**
-     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\Municipality
+     * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality
      * 
-     * @ORM\OneToMany(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\Municipality", mappedBy="state")
+     * @ORM\OneToMany(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality", mappedBy="state")
      */
     private $municipalities;
     
     /**
-     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\City
+     * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\City
      * 
-     * @ORM\OneToMany(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\City", mappedBy="state")
+     * @ORM\OneToMany(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\City", mappedBy="state")
      */
     private $cities;
 
@@ -232,10 +232,10 @@ class State
     /**
      * Set region
      *
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\Region $region
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\Region $region
      * @return State
      */
-    public function setRegion(\Tecnocreaciones\Vzla\FixturesBundle\Entity\Region $region = null)
+    public function setRegion(\Tecnocreaciones\Vzla\EntityBundle\Entity\Region $region = null)
     {
         $this->region = $region;
 
@@ -245,7 +245,7 @@ class State
     /**
      * Get region
      *
-     * @return \Tecnocreaciones\Vzla\FixturesBundle\Entity\Region 
+     * @return \Tecnocreaciones\Vzla\EntityBundle\Entity\Region 
      */
     public function getRegion()
     {
@@ -255,10 +255,10 @@ class State
     /**
      * Set country
      *
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\Country $country
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\Country $country
      * @return State
      */
-    public function setCountry(\Tecnocreaciones\Vzla\FixturesBundle\Entity\Country $country = null)
+    public function setCountry(\Tecnocreaciones\Vzla\EntityBundle\Entity\Country $country = null)
     {
         $this->country = $country;
 
@@ -268,7 +268,7 @@ class State
     /**
      * Get country
      *
-     * @return \Tecnocreaciones\Vzla\FixturesBundle\Entity\Country 
+     * @return \Tecnocreaciones\Vzla\EntityBundle\Entity\Country 
      */
     public function getCountry()
     {
@@ -278,10 +278,10 @@ class State
     /**
      * Add municipalities
      *
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\Municipality $municipalities
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality $municipalities
      * @return State
      */
-    public function addMunicipality(\Tecnocreaciones\Vzla\FixturesBundle\Entity\Municipality $municipalities)
+    public function addMunicipality(\Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality $municipalities)
     {
         $this->municipalities[] = $municipalities;
 
@@ -291,9 +291,9 @@ class State
     /**
      * Remove municipalities
      *
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\Municipality $municipalities
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality $municipalities
      */
-    public function removeMunicipality(\Tecnocreaciones\Vzla\FixturesBundle\Entity\Municipality $municipalities)
+    public function removeMunicipality(\Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality $municipalities)
     {
         $this->municipalities->removeElement($municipalities);
     }
@@ -311,10 +311,10 @@ class State
     /**
      * Add cities
      *
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\City $cities
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\City $cities
      * @return State
      */
-    public function addCity(\Tecnocreaciones\Vzla\FixturesBundle\Entity\City $cities)
+    public function addCity(\Tecnocreaciones\Vzla\EntityBundle\Entity\City $cities)
     {
         $this->cities[] = $cities;
 
@@ -324,9 +324,9 @@ class State
     /**
      * Remove cities
      *
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\City $cities
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\City $cities
      */
-    public function removeCity(\Tecnocreaciones\Vzla\FixturesBundle\Entity\City $cities)
+    public function removeCity(\Tecnocreaciones\Vzla\EntityBundle\Entity\City $cities)
     {
         $this->cities->removeElement($cities);
     }

@@ -43,15 +43,15 @@ class Plant
     private $dedications;
 
     /**
-     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\State
+     * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\State
      *
-     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\State")
+     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\State")
      */
     private $state;
     /**
-     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\City
+     * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\City
      *
-     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\City")
+     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\City")
      */
     private $city;
     
@@ -225,10 +225,10 @@ class Plant
     /**
      * Set state
      *
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\State $state
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\State $state
      * @return Plant
      */
-    public function setState(\Tecnocreaciones\Vzla\FixturesBundle\Entity\State $state = null)
+    public function setState(\Tecnocreaciones\Vzla\EntityBundle\Entity\State $state = null)
     {
         $this->state = $state;
 
@@ -238,7 +238,7 @@ class Plant
     /**
      * Get state
      *
-     * @return \Tecnocreaciones\Vzla\FixturesBundle\Entity\State 
+     * @return \Tecnocreaciones\Vzla\EntityBundle\Entity\State 
      */
     public function getState()
     {
@@ -248,10 +248,10 @@ class Plant
     /**
      * Set city
      *
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\City $city
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\City $city
      * @return Plant
      */
-    public function setCity(\Tecnocreaciones\Vzla\FixturesBundle\Entity\City $city = null)
+    public function setCity(\Tecnocreaciones\Vzla\EntityBundle\Entity\City $city = null)
     {
         $this->city = $city;
 
@@ -261,7 +261,7 @@ class Plant
     /**
      * Get city
      *
-     * @return \Tecnocreaciones\Vzla\FixturesBundle\Entity\City 
+     * @return \Tecnocreaciones\Vzla\EntityBundle\Entity\City 
      */
     public function getCity()
     {

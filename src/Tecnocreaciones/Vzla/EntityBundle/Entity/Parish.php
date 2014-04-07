@@ -1,17 +1,26 @@
 <?php
 
-namespace Tecnocreaciones\Vzla\FixturesBundle\Entity;
+/*
+ * This file is part of the TecnocreacionesVzlaEntityBundle package.
+ * 
+ * (c) www.tecnocreaciones.com.ve
+ * 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Tecnocreaciones\Vzla\EntityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * City
+ * Parish(Parroquia)
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Tecnocreaciones\Vzla\FixturesBundle\Repository\CityRepository")
+ * @ORM\Entity(repositoryClass="Tecnocreaciones\Vzla\EntityBundle\Repository\ParishRepository")
  */
-class City
+class Parish
 {
     /**
      * @var integer
@@ -28,13 +37,6 @@ class City
      * @ORM\Column(name="description", type="string", length=100)
      */
     private $description;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="capital", type="boolean")
-     */
-    private $capital = false;
 
     /**
      * @var boolean
@@ -58,14 +60,14 @@ class City
      * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
-
+    
     /**
-     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\State
-     *
-     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\State", inversedBy="cities")
+     * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality
+     * 
+     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality", inversedBy="parishes")
      */
-    private $state;
-
+    private $municipality;
+    
 
     /**
      * Get id
@@ -81,7 +83,7 @@ class City
      * Set description
      *
      * @param string $description
-     * @return City
+     * @return Parish
      */
     public function setDescription($description)
     {
@@ -101,33 +103,10 @@ class City
     }
 
     /**
-     * Set capital
-     *
-     * @param boolean $capital
-     * @return City
-     */
-    public function setCapital($capital)
-    {
-        $this->capital = $capital;
-
-        return $this;
-    }
-
-    /**
-     * Get capital
-     *
-     * @return boolean 
-     */
-    public function getCapital()
-    {
-        return $this->capital;
-    }
-
-    /**
      * Set active
      *
      * @param boolean $active
-     * @return City
+     * @return Parish
      */
     public function setActive($active)
     {
@@ -150,7 +129,7 @@ class City
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return City
+     * @return Parish
      */
     public function setCreatedAt($createdAt)
     {
@@ -173,7 +152,7 @@ class City
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return City
+     * @return Parish
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -193,25 +172,25 @@ class City
     }
 
     /**
-     * Set state
+     * Set municipality
      *
-     * @param integer $state
-     * @return City
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality $municipality
+     * @return Parish
      */
-    public function setState($state)
+    public function setMunicipality(\Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality $municipality = null)
     {
-        $this->state = $state;
+        $this->municipality = $municipality;
 
         return $this;
     }
 
     /**
-     * Get state
+     * Get municipality
      *
-     * @return integer 
+     * @return \Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality 
      */
-    public function getState()
+    public function getMunicipality()
     {
-        return $this->state;
+        return $this->municipality;
     }
 }

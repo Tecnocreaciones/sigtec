@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TecnocreacionesVzlaFixturesBundle package.
+ * This file is part of the TecnocreacionesVzlaEntityBundle package.
  * 
  * (c) www.tecnocreaciones.com.ve
  * 
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tecnocreaciones\Vzla\FixturesBundle\Repository;
+namespace Tecnocreaciones\Vzla\EntityBundle\Repository;
 
 /**
  * CityRepository
@@ -21,7 +21,7 @@ class CityRepository extends EntityRepository
 {
     /**
      * 
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\State $state
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\State $state
      * @return type
      */
     function getQueryByState($state) {

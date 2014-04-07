@@ -47,25 +47,25 @@ class PlantType extends AbstractType
             ))
             ->add('state','entity',array(
                 'label' => 'sigtec.state',
-                'class' => 'Tecnocreaciones\Vzla\FixturesBundle\Entity\State',
+                'class' => 'Tecnocreaciones\Vzla\EntityBundle\Entity\State',
                 'property' => 'description',
                 'empty_value' => 'sigtec.select',
                 'attr' => array(
                     'class' => 'select blue-gradient glossy input-large'
                 ),
-                'query_builder' => function(\Tecnocreaciones\Vzla\FixturesBundle\Repository\EntityRepository $er){
+                'query_builder' => function(\Tecnocreaciones\Vzla\EntityBundle\Repository\EntityRepository $er){
                     return $er->getQueryAllActive();
                 },
             ))
             ->add('city','entity',array(
                 'label' => 'sigtec.city',
-                'class' => 'Tecnocreaciones\Vzla\FixturesBundle\Entity\City',
+                'class' => 'Tecnocreaciones\Vzla\EntityBundle\Entity\City',
                 'property' => 'description',
                 'empty_value' => 'sigtec.select',
                 'attr' => array(
                     'class' => 'select blue-gradient glossy replacement focus input-large'
                 ),
-                'query_builder' => function(\Tecnocreaciones\Vzla\FixturesBundle\Repository\EntityRepository $er) use ($data){
+                'query_builder' => function(\Tecnocreaciones\Vzla\EntityBundle\Repository\EntityRepository $er) use ($data){
                     
                     return $er->getQueryByState($data->getState());
                 },

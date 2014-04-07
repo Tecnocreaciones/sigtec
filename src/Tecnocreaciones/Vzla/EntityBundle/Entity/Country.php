@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TecnocreacionesVzlaFixturesBundle package.
+ * This file is part of the TecnocreacionesVzlaEntityBundle package.
  * 
  * (c) www.tecnocreaciones.com.ve
  * 
@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Tecnocreaciones\Vzla\FixturesBundle\Entity;
+namespace Tecnocreaciones\Vzla\EntityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Region
+ * Country
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Tecnocreaciones\Vzla\FixturesBundle\Repository\RegionRepository")
+ * @ORM\Entity(repositoryClass="Tecnocreaciones\Vzla\EntityBundle\Repository\CountryRepository")
  */
-class Region
+class Country
 {
     /**
      * @var integer
@@ -46,20 +46,6 @@ class Region
     private $code;
 
     /**
-     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\Country
-     *
-     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\Country", inversedBy="regions")
-     */
-    private $country;
-    
-    /**
-     *
-     * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\State
-     * @ORM\OneToMany(targetEntity="Tecnocreaciones\Vzla\FixturesBundle\Entity\State", mappedBy="region")
-     */
-    private $states;
-
-    /**
      * @var boolean
      *
      * @ORM\Column(name="active", type="boolean")
@@ -77,15 +63,29 @@ class Region
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
+     * @ORM\Column(name="updateAt", type="datetime", nullable=true)
      * @Gedmo\Timestampable(on="update")
      */
-    private $updatedAt;
+    private $updateAt;
+
+    /**
+     * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\Region
+     * 
+     * @ORM\OneToMany(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\Region", mappedBy="country")
+     */
+    private $regions;
     
+    /**
+     * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\State
+     * 
+     * @ORM\OneToMany(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\State", mappedBy="country")
+     */
+    private $states;
+
     public function __construct() {
+        $this->regions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->states = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
 
     /**
      * Get id
@@ -101,7 +101,7 @@ class Region
      * Set description
      *
      * @param string $description
-     * @return Region
+     * @return Country
      */
     public function setDescription($description)
     {
@@ -124,7 +124,7 @@ class Region
      * Set code
      *
      * @param string $code
-     * @return Region
+     * @return Country
      */
     public function setCode($code)
     {
@@ -147,7 +147,7 @@ class Region
      * Set active
      *
      * @param boolean $active
-     * @return Region
+     * @return Country
      */
     public function setActive($active)
     {
@@ -170,7 +170,7 @@ class Region
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Region
+     * @return Country
      */
     public function setCreatedAt($createdAt)
     {
@@ -190,58 +190,68 @@ class Region
     }
 
     /**
-     * Set updatedAt
+     * Set updateAt
      *
-     * @param \DateTime $updatedAt
-     * @return Region
+     * @param \DateTime $updateAt
+     * @return Country
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdateAt($updateAt)
     {
-        $this->updatedAt = $updatedAt;
+        $this->updateAt = $updateAt;
 
         return $this;
     }
 
     /**
-     * Get updatedAt
+     * Get updateAt
      *
      * @return \DateTime 
      */
-    public function getUpdatedAt()
+    public function getUpdateAt()
     {
-        return $this->updatedAt;
+        return $this->updateAt;
     }
 
     /**
-     * Set country
+     * Add regions
      *
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\Country $country
-     * @return Region
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\Region $regions
+     * @return Country
      */
-    public function setCountry(\Tecnocreaciones\Vzla\FixturesBundle\Entity\Country $country = null)
+    public function addRegion(\Tecnocreaciones\Vzla\EntityBundle\Entity\Region $regions)
     {
-        $this->country = $country;
+        $this->regions[] = $regions;
 
         return $this;
     }
 
     /**
-     * Get country
+     * Remove regions
      *
-     * @return \Tecnocreaciones\Vzla\FixturesBundle\Entity\Country 
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\Region $regions
      */
-    public function getCountry()
+    public function removeRegion(\Tecnocreaciones\Vzla\EntityBundle\Entity\Region $regions)
     {
-        return $this->country;
+        $this->regions->removeElement($regions);
+    }
+
+    /**
+     * Get regions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRegions()
+    {
+        return $this->regions;
     }
 
     /**
      * Add states
      *
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\State $states
-     * @return Region
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\State $states
+     * @return Country
      */
-    public function addState(\Tecnocreaciones\Vzla\FixturesBundle\Entity\State $states)
+    public function addState(\Tecnocreaciones\Vzla\EntityBundle\Entity\State $states)
     {
         $this->states[] = $states;
 
@@ -251,9 +261,9 @@ class Region
     /**
      * Remove states
      *
-     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\State $states
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\State $states
      */
-    public function removeState(\Tecnocreaciones\Vzla\FixturesBundle\Entity\State $states)
+    public function removeState(\Tecnocreaciones\Vzla\EntityBundle\Entity\State $states)
     {
         $this->states->removeElement($states);
     }
