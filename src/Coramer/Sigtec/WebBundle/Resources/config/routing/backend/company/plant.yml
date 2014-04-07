@@ -1,0 +1,7 @@
+coramer_sigtec_company_plant_create:
+    pattern:  /{idCompany}/create
+    defaults:
+        _controller: coramer_sigtec.controller.company_plant:createAction
+        _sylius:
+            form: coramer_sigtec_companybundle_plant
+    requirements: { _method: GET|POST }

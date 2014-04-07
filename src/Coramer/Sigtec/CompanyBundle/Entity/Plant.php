@@ -76,6 +76,13 @@ class Plant
      */
     private $updatedAt;
     
+    /**
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Company
+     * 
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Company", inversedBy="plants")
+     */
+    private $company;
+
     public function __construct() {
         $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -282,5 +289,28 @@ class Plant
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Company $company
+     * @return Plant
+     */
+    public function setCompany(\Coramer\Sigtec\CompanyBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Coramer\Sigtec\CompanyBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 }

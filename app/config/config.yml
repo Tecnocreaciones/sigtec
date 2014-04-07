@@ -186,3 +186,9 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\CompanyBundle\Controller\CompanyController
                 model: Coramer\Sigtec\CompanyBundle\Entity\Company
+         coramer_sigtec.company_plant:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/Plant
+            classes:
+                controller: Coramer\Sigtec\CompanyBundle\Controller\PlantController
+                model: Coramer\Sigtec\CompanyBundle\Entity\Plant

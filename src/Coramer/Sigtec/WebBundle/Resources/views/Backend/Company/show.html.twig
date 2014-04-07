@@ -7,7 +7,7 @@
         <h1>
             <a href="{{ path('coramer_sigtec_company_index') }}">{{ 'sigtec.company'|trans }}</a>
             <span class="icon-forward"></span>
-            <span class="thin">{{ 'sigtec.details'|trans }}</span>
+            <span class="thin"><a href="{{ path('coramer_sigtec_company_show',{id:company.id}) }}">{{ company.rif }}</a></span>
         </h1>
     </hgroup>
     <fieldset class="fieldset">
@@ -51,6 +51,8 @@
         </p>
     </fieldset>
     <p class="button-height">
+        
+        {{ buttons.edit(path('coramer_sigtec_company_plant_create', { 'idCompany': company.id })) }}
         {{ buttons.edit(path('coramer_sigtec_company_update', { 'id': company.id })) }}
         {{ buttons.delete(path('coramer_sigtec_company_delete', { 'id': company.id })) }}
     </p>

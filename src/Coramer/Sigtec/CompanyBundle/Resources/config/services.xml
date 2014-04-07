@@ -19,8 +19,10 @@
     -->
     <parameters>
         <parameter key="coramer_sigtec_company.company.class">Coramer\Sigtec\CompanyBundle\Entity\Company</parameter>
+        <parameter key="coramer_sigtec_company.plant.class">Coramer\Sigtec\CompanyBundle\Entity\Plant</parameter>
         <parameter key="coramer_sigtec_company.repository.company.class">Coramer\Sigtec\CompanyBundle\Repository\CompanyRepository</parameter>
         <parameter key="coramer_sigtec_company.form.type.company.class">Coramer\Sigtec\CompanyBundle\Form\CompanyType</parameter>
+        <parameter key="coramer_sigtec_company.form.type.plant.class">Coramer\Sigtec\CompanyBundle\Form\PlantType</parameter>
     </parameters>
 
     <services>
@@ -33,7 +35,10 @@
         <service id="coramer_sigtec_company.form.type.company" class="%coramer_sigtec_company.form.type.company.class%">
             <argument>%coramer_sigtec_company.company.class%</argument>
             <tag name="form.type" alias="coramer_sigtec_companybundle_company" />
-            
+        </service>
+        <service id="coramer_sigtec_company.form.type.plant" class="%coramer_sigtec_company.form.type.plant.class%">
+            <argument>%coramer_sigtec_company.plant.class%</argument>
+            <tag name="form.type" alias="coramer_sigtec_companybundle_plant" />
         </service>
     </services>
 </container>
