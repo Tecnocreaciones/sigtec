@@ -31,16 +31,16 @@ class Plant
     /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Phone
      *
-     * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Phone", mappedBy="plants", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Phone", mappedBy="plant", cascade={"persist"})
      */
     private $phones;
 
     /**
-     * @var string
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Dedication
      *
-     * @ORM\Column(name="usePlant", type="text")
+     * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Dedication", mappedBy="plants")
      */
-    private $usePlant;
+    private $dedications;
 
     /**
      * @var \Tecnocreaciones\Vzla\FixturesBundle\Entity\State
@@ -85,6 +85,7 @@ class Plant
 
     public function __construct() {
         $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dedications = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -118,29 +119,6 @@ class Plant
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     * Set usePlant
-     *
-     * @param string $usePlant
-     * @return Plant
-     */
-    public function setUsePlant($usePlant)
-    {
-        $this->usePlant = $usePlant;
-
-        return $this;
-    }
-
-    /**
-     * Get usePlant
-     *
-     * @return string 
-     */
-    public function getUsePlant()
-    {
-        return $this->usePlant;
     }
 
     /**
@@ -220,7 +198,6 @@ class Plant
      */
     public function addPhone(\Coramer\Sigtec\CompanyBundle\Entity\Phone $phones)
     {
-        $phones->addPlant($this);
         $this->phones->add($phones);
         return $this;
     }
@@ -312,5 +289,38 @@ class Plant
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Add dedications
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedications
+     * @return Plant
+     */
+    public function addDedication(\Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedications)
+    {
+        $this->dedications[] = $dedications;
+
+        return $this;
+    }
+
+    /**
+     * Remove dedications
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedications
+     */
+    public function removeDedication(\Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedications)
+    {
+        $this->dedications->removeElement($dedications);
+    }
+
+    /**
+     * Get dedications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDedications()
+    {
+        return $this->dedications;
     }
 }

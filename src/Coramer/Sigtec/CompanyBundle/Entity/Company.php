@@ -83,6 +83,13 @@ class Company
      * @ORM\OneToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Plant", mappedBy="company")
      */
     private $plants;
+    
+    /**
+     * @var \Coramer\Sigtec\CoreBundle\Entity\User
+     * 
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CoreBundle\Entity\User", inversedBy="companies")
+     */
+    private $user;
 
     public function __construct() {
         $this->plants = new \Doctrine\Common\Collections\ArrayCollection();
@@ -300,5 +307,28 @@ class Company
     public function getPlants()
     {
         return $this->plants;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Coramer\Sigtec\CoreBundle\Entity\User $user
+     * @return Company
+     */
+    public function setUser(\Coramer\Sigtec\CoreBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Coramer\Sigtec\CoreBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

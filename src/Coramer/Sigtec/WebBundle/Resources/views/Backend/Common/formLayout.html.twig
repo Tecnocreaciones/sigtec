@@ -9,3 +9,10 @@
 {% block javascripts %}
     <script src="{{  asset('bundles/coramersigtecweb/frontend/js/developr.input.js') }}"></script>
 {% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+        $.fn.styleSelect.defaults.allValuesText = '{{ 'sigtec.all'|trans }}';
+        $.fn.styleSelect.defaults.multipleValuesText = '%d {{ 'sigtec.selected'|trans }}';
+        $.fn.styleSelect.defaults.searchText = '{{ 'sigtec.search'|trans }}';
+    </script>
+{% endblock %}

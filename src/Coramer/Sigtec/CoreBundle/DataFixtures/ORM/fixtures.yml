@@ -1,8 +1,29 @@
+Coramer\Sigtec\CoreBundle\Entity\User:
+    user0:
+        username: cliente
+        email: cliente@example.com.ve
+        plainPassword: cliente
+        enabled: true
+        roles: [ROLE_CLIENT]
+    user{1..100}:
+        username: <username()>
+        email: <email()>
+        plainPassword: admin
+        enabled: true
+        roles: [ROLE_CLIENT]
 #Base fixtures
 Coramer\Sigtec\CompanyBundle\Entity\Company:
-    company{1..50}:
+    company{1..10}:
         name: <name()>
         rif: <randomElement(['V','J','E','P','G'])>-<randomNumber(8)>-<randomDigit()>
         rifValidated: <boolean()>
         email: <email()>
         status: <boolean()>
+        user: @user0
+    company{11..100}:
+        name: <name()>
+        rif: <randomElement(['V','J','E','P','G'])>-<randomNumber(8)>-<randomDigit()>
+        rifValidated: <boolean()>
+        email: <email()>
+        status: <boolean()>
+        user: @user*

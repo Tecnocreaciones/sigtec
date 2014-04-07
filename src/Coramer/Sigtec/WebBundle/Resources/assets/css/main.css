@@ -20,6 +20,12 @@
     color: red;
     font-weight: bold;
 }
+.input-large {
+    min-width: 200px;
+}
+.list-style-none {
+    list-style-type: none;
+}
 .breadcrumb > h1 > span
 {
     font-size: 18px;

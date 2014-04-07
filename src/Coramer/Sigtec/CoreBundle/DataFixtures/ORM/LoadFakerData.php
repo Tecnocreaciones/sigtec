@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Coramer\Sigtec\CoreBundle;
+namespace Coramer\Sigtec\CoreBundle\DataFixtures\ORM;
 
 /**
  * Carga datos de prueba

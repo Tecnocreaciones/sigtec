@@ -16,27 +16,55 @@ class PlantType extends AbstractType
     {
         $data = $options['data'];
         $builder
-            ->add('email')
+            ->add('email',null,array(
+                'label' => 'sigtec.email',
+                'attr' => array(
+                    'class' => 'input focus'
+                ),
+            ))
             ->add('phones','collection',array(
+                'label' => 'sigtec.phone',
                 'type' => new PhoneType(),
                 'allow_add'    => true,
                 'allow_delete' => true,
                 'by_reference' => false,
             ))
-            ->add('usePlant')
-            ->add('address')
+            ->add('dedications',null,array(
+                'label' => 'sigtec.use_plant',
+                'attr' => array(
+                    'class' => 'select multiple-as-single easy-multiple-selection expandable-list blue-gradient check-list replacement reversed focus input-large small-margin-right'
+                ),
+                'property' => 'description',
+                'empty_value' => 'sigtec.select',
+            ))
+            ->add('address',null,array(
+                'label' => 'sigtec.address',
+                'attr' => array(
+                    'class' => 'input autoexpanding',
+                    'cols' => '25',
+                    'rows' => '8',
+                ),
+            ))
             ->add('state','entity',array(
+                'label' => 'sigtec.state',
                 'class' => 'Tecnocreaciones\Vzla\FixturesBundle\Entity\State',
                 'property' => 'description',
                 'empty_value' => 'sigtec.select',
+                'attr' => array(
+                    'class' => 'select blue-gradient glossy input-large'
+                ),
                 'query_builder' => function(\Tecnocreaciones\Vzla\FixturesBundle\Repository\EntityRepository $er){
                     return $er->getQueryAllActive();
                 },
             ))
             ->add('city','entity',array(
+                'label' => 'sigtec.city',
                 'class' => 'Tecnocreaciones\Vzla\FixturesBundle\Entity\City',
                 'property' => 'description',
                 'empty_value' => 'sigtec.select',
+                'attr' => array(
+                    'class' => 'select blue-gradient glossy replacement focus input-large'
+                ),
                 'query_builder' => function(\Tecnocreaciones\Vzla\FixturesBundle\Repository\EntityRepository $er) use ($data){
                     
                     return $er->getQueryByState($data->getState());

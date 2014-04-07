@@ -10,6 +10,18 @@
                 <source>sigtec.the_rif_was_validated_correctly</source>
                 <target>The RIF was validated correctly</target>
             </trans-unit>
+            <trans-unit id="1b212232c7aac29191ccd1857a88bb9b">
+                <source>sigtec.registration_plant</source>
+                <target>Registration plant</target>
+            </trans-unit>
+            <trans-unit id="41edbb2ef79f7b308921322ef9d3b4e2">
+                <source>sigtec.use_plant</source>
+                <target>Use</target>
+            </trans-unit>
+            <trans-unit id="4e5119267ba40bf697c382cbe8a0ce3b">
+                <source>sigtec.add_a_phone</source>
+                <target>Add a phone</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

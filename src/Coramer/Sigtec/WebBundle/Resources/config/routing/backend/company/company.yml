@@ -6,6 +6,16 @@ coramer_sigtec_company_index:
     options:
         expose: true
     requirements: { _method: GET }
+    
+coramer_sigtec_company_client_index:
+    pattern:  /client/.{_format}
+    defaults:
+        _controller:  coramer_sigtec.controller.company:clientIndexAction
+        _format: html
+    options:
+        expose: true
+    requirements: { _method: GET }
+    
 coramer_sigtec_company_show:
     pattern:  /{id}/show.{_format}
     defaults: 

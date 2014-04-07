@@ -16,7 +16,11 @@ class PhoneType extends AbstractType
     {
         $builder
             //->add('name')
-            ->add('number')
+            ->add('number',null,array(
+                'attr' => array(
+                    'class' => 'input small-margin-right'
+                ),
+            ))
         ;
     }
     

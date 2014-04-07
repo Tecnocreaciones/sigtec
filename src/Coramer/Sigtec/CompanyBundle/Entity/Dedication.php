@@ -3,14 +3,15 @@
 namespace Coramer\Sigtec\CompanyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Phone
+ * Dedication
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Phone
+class Dedication
 {
     /**
      * @var integer
@@ -24,20 +25,21 @@ class Phone
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100)
+     * @ORM\Column(name="description", type="string", length=100)
      */
-    private $name;
+    private $description;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="number", type="string", length=20)
+     * @ORM\Column(name="active", type="boolean")
      */
-    private $number;
+    private $active = true;
 
     /**
      * @var \DateTime
-     *
+     * 
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="createdAt", type="datetime")
      */
     private $createdAt;
@@ -45,16 +47,21 @@ class Phone
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updatedAt", type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
      */
     private $updatedAt;
-    
+
     /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Plant
-     *
-     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Plant", inversedBy="phones")
+     * 
+     * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Plant", inversedBy="dedications")
      */
-    private $plant;
+    private $plants;
+
+    public function __construct() {
+        $this->plants = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     
     /**
      * Get id
@@ -67,56 +74,56 @@ class Phone
     }
 
     /**
-     * Set name
+     * Set description
      *
-     * @param string $name
-     * @return Phone
+     * @param string $description
+     * @return Dedication
      */
-    public function setName($name)
+    public function setDescription($description)
     {
-        $this->name = $name;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get description
      *
      * @return string 
      */
-    public function getName()
+    public function getDescription()
     {
-        return $this->name;
+        return $this->description;
     }
 
     /**
-     * Set number
+     * Set active
      *
-     * @param string $number
-     * @return Phone
+     * @param boolean $active
+     * @return Dedication
      */
-    public function setNumber($number)
+    public function setActive($active)
     {
-        $this->number = $number;
+        $this->active = $active;
 
         return $this;
     }
 
     /**
-     * Get number
+     * Get active
      *
-     * @return string 
+     * @return boolean 
      */
-    public function getNumber()
+    public function getActive()
     {
-        return $this->number;
+        return $this->active;
     }
 
     /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Phone
+     * @return Dedication
      */
     public function setCreatedAt($createdAt)
     {
@@ -139,7 +146,7 @@ class Phone
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Phone
+     * @return Dedication
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -157,25 +164,17 @@ class Phone
     {
         return $this->updatedAt;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->plants = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Add plants
      *
      * @param \Coramer\Sigtec\CompanyBundle\Entity\Plant $plants
-     * @return Phone
+     * @return Dedication
      */
     public function addPlant(\Coramer\Sigtec\CompanyBundle\Entity\Plant $plants)
     {
-        if (!$this->plants->contains($plants)) {
-            $this->plants->add($plants);
-        }
+        $this->plants[] = $plants;
+
         return $this;
     }
 
@@ -197,28 +196,5 @@ class Phone
     public function getPlants()
     {
         return $this->plants;
-    }
-
-    /**
-     * Set plant
-     *
-     * @param \Coramer\Sigtec\CompanyBundle\Entity\Plant $plant
-     * @return Phone
-     */
-    public function setPlant(\Coramer\Sigtec\CompanyBundle\Entity\Plant $plant = null)
-    {
-        $this->plant = $plant;
-
-        return $this;
-    }
-
-    /**
-     * Get plant
-     *
-     * @return \Coramer\Sigtec\CompanyBundle\Entity\Plant 
-     */
-    public function getPlant()
-    {
-        return $this->plant;
     }
 }
