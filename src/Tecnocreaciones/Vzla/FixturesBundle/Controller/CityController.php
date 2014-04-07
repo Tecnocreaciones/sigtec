@@ -2,18 +2,21 @@
 
 namespace Tecnocreaciones\Vzla\FixturesBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Routing\ClassResourceInterface;
+use FOS\RestBundle\Controller\Annotations\Get;
 
-class CityController extends Controller
+class CityController extends \Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController implements ClassResourceInterface
 {
+    // "api_vlza_get_cities"     [GET] /cities
     /**
-     * @Route("/hello/{name}")
-     * @Template()
+     * DELETE Route annotation.
+     * @GET("/cities.{_format}")
      */
-    public function indexAction($name)
+    public function getCitiesAction()
     {
-        return array('name' => $name);
+        $data = Array('aa');
+        $view = $this->view($data);
+        return $this->handleView($view);
     }
 }

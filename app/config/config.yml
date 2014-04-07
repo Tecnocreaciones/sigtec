@@ -192,3 +192,8 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\CompanyBundle\Controller\PlantController
                 model: Coramer\Sigtec\CompanyBundle\Entity\Plant
+         vzla_api.city:
+            driver: doctrine/orm
+            classes:
+                controller: Tecnocreaciones\Vzla\FixturesBundle\Controller\CityController
+                model: Tecnocreaciones\Vzla\FixturesBundle\Entity\City
