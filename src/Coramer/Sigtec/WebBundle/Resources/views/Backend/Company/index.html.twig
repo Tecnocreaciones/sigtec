@@ -6,6 +6,12 @@
             <a href="{{ path('coramer_sigtec_company_index') }}">{{ 'sigtec.company'|trans }}</a>
             <span class="icon-forward"></span>
             <span class="thin">{{ 'sigtec.list'|trans }}</span>
+            <p class="button-height align-right">
+                <a href="{{ path('coramer_sigtec_company_create') }}" class="button">
+                        <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                        {{ 'sigtec.create'|trans }}
+                </a>
+            </p>
         </h1>
     </hgroup>
     <div ng-controller="TableFormatController">
@@ -46,13 +52,6 @@
                 </div>
             </div>
         </div>
-        <ul>
-            <li>
-                <a href="{{ path('coramer_sigtec_company_create') }}" class="form-edit">
-                    Create a new entry
-                </a>
-            </li>
-        </ul>
 {% endblock %}
 
 {% block javascript %}

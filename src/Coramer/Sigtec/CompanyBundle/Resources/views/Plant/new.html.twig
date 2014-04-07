@@ -1,0 +1,86 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Plant creation</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.email) }}
+    <h3>Phones</h3>
+    <ul class="phones" data-prototype="{{ form_widget(form.phones.vars.prototype)|e }}">
+        {# iterate over each existing phone and render its only field: name #}
+        {% for phone in form.phones %}
+            <li>{{ form_row(phone.number) }}</li>
+        {% endfor %}
+    </ul>
+    {{ form_end(form) }}
+    <ul class="record_actions">
+    <li>
+        <a href="{{ path('plant') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+        <script type="text/javascript">
+            var $collectionHolder;
+
+            // setup an "add a phone" link
+            var $addTagLink = $('<a href="#" class="add_phone_link">Add a phone</a>');
+            var $newLinkLi = $('<span></span>').append($addTagLink);
+
+            jQuery(document).ready(function() {
+                // Get the ul that holds the collection of phones
+                $collectionHolder = $('ul.phones');
+
+                // add the "add a phone" anchor and li to the phones ul
+                $collectionHolder.append($newLinkLi);
+
+                // count the current form inputs we have (e.g. 2), use that as the new
+                // index when inserting a new item (e.g. 2)
+                $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+                $addTagLink.on('click', function(e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+
+                    // add a new phone form (see next code block)
+                    addTagForm($collectionHolder, $newLinkLi);
+                });
+                
+                $collectionHolder.find('li').each(function() {
+                    addTagFormDeleteLink($(this));
+                });
+                
+                function addTagForm($collectionHolder, $newLinkLi) {
+                // Get the data-prototype explained earlier
+                var prototype = $collectionHolder.data('prototype');
+
+                // get the new index
+                var index = $collectionHolder.data('index');
+
+                // Replace '__name__' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                var newForm = prototype.replace(/__name__/g, index);
+
+                // increase the index with one for the next item
+                $collectionHolder.data('index', index + 1);
+
+                // Display the form in the page in an li, before the "Add a tag" link li
+                var $newFormLi = $('<li></li>').append(newForm);
+                $newLinkLi.before($newFormLi);
+                // add a delete link to the new form
+                addTagFormDeleteLink($newFormLi);
+            }
+            function addTagFormDeleteLink($tagFormLi) {
+                    var $removeFormA = $('<a href="#">delete this phone</a>');
+                    $tagFormLi.append($removeFormA);
+
+                    $removeFormA.on('click', function(e) {
+                        // prevent the link from creating a "#" on the URL
+                        e.preventDefault();
+
+                        // remove the li for the tag form
+                        $tagFormLi.remove();
+                    });
+                }
+            });
+        </script>
+{% endblock %}

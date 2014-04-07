@@ -11,8 +11,6 @@
 
 namespace Tecnocreaciones\Vzla\FixturesBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-
 /**
  * CityRepository
  *
@@ -21,4 +19,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class CityRepository extends EntityRepository
 {
+    /**
+     * 
+     * @param \Tecnocreaciones\Vzla\FixturesBundle\Entity\State $state
+     * @return type
+     */
+    function getQueryByState($state) {
+        $qb = $this->createQueryBuilder('c');
+        if($state === null){
+           $qb->setMaxResults(0);
+           return $qb;
+        }
+        $qb
+                ->andWhere('c.state = :state')
+                ->setParameter('state', $state)
+                ;
+        return $state;
+    }
 }

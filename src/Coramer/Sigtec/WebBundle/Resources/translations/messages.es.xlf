@@ -246,6 +246,14 @@
                 <source>sigtec.email</source>
                 <target>Email</target>
             </trans-unit>
+            <trans-unit id="9338236a15678eb61df604c687deb189">
+                <source>sigtec.create</source>
+                <target>Crear</target>
+            </trans-unit>
+            <trans-unit id="eddee20a5e4aec4170549139d9dcd01c">
+                <source>sigtec.select</source>
+                <target>Seleccione</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

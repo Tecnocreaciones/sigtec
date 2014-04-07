@@ -21,10 +21,18 @@ use Doctrine\ORM\EntityRepository as BaseEntityRepository;
 class EntityRepository extends BaseEntityRepository
 {
     function getAllActive() {
-        return $this->findBy(array('active' => true));
+        return $this->getQueryAllActive()->getQuery()->getResult();
     }
     
     function getAllInactive() {
         return $this->findBy(array('active' => false));
+    }
+    
+    function getQueryAllActive() {
+        $qb = $this->createQueryBuilder('e');
+        $qb
+                ->andWhere('e.active = :active')
+                ->setParameter('active', true);
+        return $qb;
     }
 }
