@@ -18,7 +18,8 @@
         "doctrine/doctrine-fixtures-bundle": "2.*",
         "stof/doctrine-extensions-bundle": "*",
         "friendsofsymfony/rest-bundle":"@stable",
-        "tecnocreaciones/resource-bundle": "dev-master"
+        "tecnocreaciones/resource-bundle": "dev-master",
+        "nelmio/api-doc-bundle": "@stable"
     },
     "autoload": {
         "psr-0": { "Tecnocreaciones\\Vzla\\FixturesBundle": "" }

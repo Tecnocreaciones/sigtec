@@ -173,7 +173,9 @@ sensio_framework_extra:
     
 bazinga_js_translation:
     locale_fallback: "%locale%" 
-    
+
+nelmio_api_doc: ~
+
 sylius_resource:
     resources:
          coramer_sigtec.user:

@@ -12,7 +12,11 @@ web_bundle:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing.yml"
     requirements:
         _locale: es|en
-        
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+    
 tecnocreaciones_vzla_api:
     resource: "@TecnocreacionesVzlaApiBundle/Resources/config/routing.yml"
     prefix:   /api

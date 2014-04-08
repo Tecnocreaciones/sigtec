@@ -35,6 +35,7 @@
         "doctrine/doctrine-cache-bundle": "1.0.x-dev",
         "white-october/pagerfanta-bundle": "1.0.*@dev",
         "leaseweb/api-caller-bundle": "1.0.*@dev",
+        "nelmio/api-doc-bundle": "@stable",
         "tecnocreaciones/ajax-fos-user-bundle": "dev-master",
         "tecnocreaciones/install-bundle": "dev-master",
         "tecnocreaciones/tools-bundle": "dev-master",
