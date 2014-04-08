@@ -1,6 +1,10 @@
 {% extends 'CoramerSigtecWebBundle:Backend:Common/formLayoutShow.html.twig' %}
 
 {% import 'CoramerSigtecResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/table3860.css?v=1') }}">
+{% endblock %}
 
 {% block body -%}
     <hgroup id="main-title" class="thin breadcrumb">
@@ -50,10 +54,150 @@
             {{ company.updatedAt|date('Y-m-d h:i a') }}
         </p>
     </fieldset>
+    <fieldset class="fieldset">
+        <legend class="legend">{{ 'sigtec.plants'|trans }}</legend>
+			<table class="simple-table responsive-table" id="sorting-example2">
+
+				<thead>
+					<tr>
+						<th scope="col">Contact</th>
+						<th scope="col" width="15%" class="hide-on-mobile">Date</th>
+						<th scope="col" width="15%" class="hide-on-mobile-portrait">Status</th>
+						<th scope="col" width="15%" class="hide-on-tablet">Tags</th>
+						<th scope="col" width="120" class="align-right">Actions</th>
+					</tr>
+				</thead>
+
+				<tfoot>
+					<tr>
+						<td colspan="5">
+							6 entries found
+						</td>
+					</tr>
+				</tfoot>
+
+				<tbody>
+					<tr>
+						<th scope="row">
+							John Doe<br>
+							<small>Founder</small>
+						</th>
+						<td>Jul 5, 2011</td>
+						<td>Enabled</td>
+						<td><small class="tag">User</small> <small class="tag">Client</small> <small class="tag green-bg">Valid</small></td>
+						<td class="align-right vertical-center">
+							<span class="button-group compact">
+								<a href="javascript:void(0);" class="button icon-pencil">Edit</a>
+								<a href="javascript:void(0);" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="javascript:void(0);" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							John Appleseed<br>
+							<small>CEO</small>
+						</th>
+						<td>Jul 5, 2011</td>
+						<td>Enabled</td>
+						<td><small class="tag orange-bg">Non-verified</small></td>
+						<td class="align-right vertical-center">
+							<span class="button-group compact">
+								<a href="javascript:void(0);" class="button icon-pencil">Edit</a>
+								<a href="javascript:void(0);" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="javascript:void(0);" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							Sheldon Cooper<br>
+							<small>Genius</small>
+						</th>
+						<td>Jul 4, 2011</td>
+						<td>Enabled</td>
+						<td><small class="tag">User</small> <small class="tag green-bg">Valid</small></td>
+						<td class="align-right vertical-center">
+							<span class="button-group compact">
+								<a href="javascript:void(0);" class="button icon-pencil">Edit</a>
+								<a href="javascript:void(0);" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="javascript:void(0);" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							Rage Guy<br>
+							<small>Fuuuuu</small>
+						</th>
+						<td>Jun 25, 2011</td>
+						<td>Enabled</td>
+						<td><small class="tag red-bg">Fake</small></td>
+						<td class="align-right vertical-center">
+							<span class="button-group compact">
+								<a href="javascript:void(0);" class="button icon-pencil">Edit</a>
+								<a href="javascript:void(0);" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="javascript:void(0);" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							Thomas A. Anderson<br>
+							<small>Neo</small>
+						</th>
+						<td>Jun 16, 2011</td>
+						<td>Enabled</td>
+						<td><small class="tag">User</small> <small class="tag">Client</small> <small class="tag green-bg">Valid</small></td>
+						<td class="align-right vertical-center">
+							<span class="button-group compact">
+								<a href="javascript:void(0);" class="button icon-pencil">Edit</a>
+								<a href="javascript:void(0);" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="javascript:void(0);" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							Jane Doe<br>
+							<small>Designer</small>
+						</th>
+						<td>May 19, 2011</td>
+						<td>Enabled</td>
+						<td><small class="tag">User</small> <small class="tag">Client</small></td>
+						<td class="align-right vertical-center">
+							<span class="button-group compact">
+								<a href="javascript:void(0);" class="button icon-pencil">Edit</a>
+								<a href="javascript:void(0);" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="javascript:void(0);" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+    </fieldset>
+        
     <p class="button-height">
         
         {{ buttons.edit(path('coramer_sigtec_company_plant_create', { 'company_id': company.id })) }}
         {{ buttons.edit(path('coramer_sigtec_company_update', { 'id': company.id })) }}
         {{ buttons.delete(path('coramer_sigtec_company_delete', { 'id': company.id })) }}
     </p>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{  asset('bundles/coramersigtecweb/frontend/js/libs/jquery.tablesorter.min.js') }}"></script>
+{% endblock %}
+
+{% block javascript %} 
+    {{ parent() }}
+    <script type="text/javascript">
+        $('#sorting-example2').tablesorter({
+			headers: {
+				5: { sorter: false }
+			}
+		});
+    </script>
 {% endblock %}
