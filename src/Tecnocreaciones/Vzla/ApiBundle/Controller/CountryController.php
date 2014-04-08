@@ -11,13 +11,48 @@
 
 namespace Tecnocreaciones\Vzla\ApiBundle\Controller;
 
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+
 /**
- * Description of CountryController
+ * API Rest Country
  *
- * @author inhack20
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
  */
 class CountryController extends \Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController
 {
+    /**
+     * This is the documentation description of your method, it will appear
+     * on a specific pane. It will read all the text until the first
+     * annotation.
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="List all countries registered",
+     *  filters={
+     *      {"name"="limit", "dataType"="integer"},
+     *      {"name"="page", "dataType"="integer"},
+     *      {"name"="another-filter", "dataType"="string", "pattern"="(foo|bar) ASC|DESC"}
+     *  }
+     * )
+     */
+    public function indexAction(\Symfony\Component\HttpFoundation\Request $request) {
+        return parent::indexAction($request);
+    }
+    
+    /**
+     * This is the documentation description of your method, it will appear
+     * on a specific pane. It will read all the text until the first
+     * annotation.
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method",
+     *  filters={
+     *      {"name"="a-filter", "dataType"="integer"},
+     *      {"name"="another-filter", "dataType"="string", "pattern"="(foo|bar) ASC|DESC"}
+     *  }
+     * )
+     */
     public function showAction(\Symfony\Component\HttpFoundation\Request $request) {
         $view = $this
             ->view()

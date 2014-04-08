@@ -16,7 +16,7 @@ use Tecnocreaciones\Vzla\ToolsBundle\Model\Rif;
 /**
  * Description of RifTools
  *
- * @author inhack20
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
  */
 class RifTool implements \Symfony\Component\DependencyInjection\ContainerAwareInterface
 {   

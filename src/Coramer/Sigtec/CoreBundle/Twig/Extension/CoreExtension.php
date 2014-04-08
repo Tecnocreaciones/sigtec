@@ -14,7 +14,7 @@ namespace Coramer\Sigtec\CoreBundle\Twig\Extension;
 /**
  * Description of CoreExtension
  *
- * @author inhack20
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
  */
 class CoreExtension extends \Twig_Extension
 {
