@@ -17,4 +17,19 @@
         </service>
     </services>
     -->
+    <parameters>
+        <parameter key="tecnocreaciones_vzla_api.event_listener.serialize.class">Tecnocreaciones\Vzla\ApiBundle\EventListener\SerializeEventListerner</parameter>
+    </parameters>
+
+    <services>
+        <service id="tecnocreaciones_vzla_api.event_listener.serialize" class="%tecnocreaciones_vzla_api.event_listener.serialize.class%">
+            <tag name="jms_serializer.event_subscriber" />
+            <call method="setRouter">
+                <argument type="service" id="fos_rest.router" />
+            </call>
+            <call method="setTranslator">
+                <argument type="service" id="translator" />
+            </call>
+        </service>
+    </services>
 </container>

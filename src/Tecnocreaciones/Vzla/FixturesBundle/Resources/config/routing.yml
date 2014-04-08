@@ -1,4 +1,0 @@
-api_vzla_cities:
-    pattern:  /cities
-    defaults:
-        _controller: vzla_api.controller.city:indexAction

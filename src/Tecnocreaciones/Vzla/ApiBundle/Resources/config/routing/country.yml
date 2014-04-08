@@ -1,0 +1,27 @@
+tecnocreaciones_vzla_entity_country_index:
+    pattern:  /countries
+    defaults:
+        _controller: tecnocreaciones_vzla_entity.controller.country:indexAction
+        requirements:
+            _method: GET|POST
+            
+tecnocreaciones_vzla_entity_country_show:
+    pattern:  /countries/{id}
+    defaults:
+        _controller: tecnocreaciones_vzla_entity.controller.country:showAction
+        requirements:
+            _method: GET
+            
+tecnocreaciones_vzla_entity_country_states:
+    pattern:  /countries/{id}/states
+    defaults:
+        _controller: tecnocreaciones_vzla_entity.controller.country:getCountriesStatesAction
+        requirements:
+            _method: GET
+            
+tecnocreaciones_vzla_entity_country_regions:
+    pattern:  /countries/{id}/regions
+    defaults:
+        _controller: tecnocreaciones_vzla_entity.controller.country:getCountriesRegionsAction
+        requirements:
+            _method: GET

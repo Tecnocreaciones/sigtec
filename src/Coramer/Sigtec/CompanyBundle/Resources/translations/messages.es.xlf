@@ -22,6 +22,10 @@
                 <source>sigtec.add_a_phone</source>
                 <target>Añade un teléfono</target>
             </trans-unit>
+            <trans-unit id="ebdf8893c60f49648a1e11237717c50c">
+                <source>sigtec.plant</source>
+                <target>Planta</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

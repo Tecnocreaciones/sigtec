@@ -1,0 +1,9 @@
+tecnocreaciones_vzla_entity_city_index:
+    pattern:  /cities
+    defaults:
+        _controller: tecnocreaciones_vzla_entity.controller.city:indexAction
+        
+tecnocreaciones_vzla_entity_city_show:
+    pattern:  /cities/{id}
+    defaults:
+        _controller: tecnocreaciones_vzla_entity.controller.city:showAction

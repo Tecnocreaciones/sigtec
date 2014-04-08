@@ -14,9 +14,8 @@ web_bundle:
         _locale: es|en
         
 tecnocreaciones_vzla_api:
-    type: rest
-    resource: "@TecnocreacionesVzlaFixturesBundle/Resources/config/routing.yml"
-    prefix:   /api/vlza
+    resource: "@TecnocreacionesVzlaApiBundle/Resources/config/routing.yml"
+    prefix:   /api
     
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

@@ -11,7 +11,7 @@
 
 namespace Tecnocreaciones\Vzla\EntityBundle\Repository;
 
-use Doctrine\ORM\EntityRepository as BaseEntityRepository;
+use Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository as BaseEntityRepository;
 
 /**
  * Description of BaseRepository
