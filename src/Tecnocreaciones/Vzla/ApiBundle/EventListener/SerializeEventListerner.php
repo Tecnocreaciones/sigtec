@@ -30,6 +30,8 @@ class SerializeEventListerner implements EventSubscriberInterface
     
     public static function getSubscribedEvents() {
         return array(
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeCountry', 'class' => 'Tecnocreaciones\Vzla\EntityBundle\Entity\Country','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeRegion', 'class' => 'Tecnocreaciones\Vzla\EntityBundle\Entity\Region','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeState', 'class' => 'Tecnocreaciones\Vzla\EntityBundle\Entity\State','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeCity', 'class' => 'Tecnocreaciones\Vzla\EntityBundle\Entity\City','format' => 'json'),
         );
@@ -43,7 +45,39 @@ class SerializeEventListerner implements EventSubscriberInterface
         $object = $event->getObject();
         $event->getVisitor()->addData('_links', array(
             'self' => array(
-                'href' => $this->generateUrl('tecnocreaciones_vzla_entity_state_show',array('id' => $object->getId()))
+                'href' => $this->generateUrl('api_tecnocreaciones_vzla_entity_state_show',array('id' => $object->getId()))
+                ),
+        ));
+    }
+    
+    /**
+     * Captura el evento luego que se serealia una region
+     * @param \JMS\Serializer\EventDispatcher\ObjectEvent $event
+     */
+    function onPostSerializeRegion(ObjectEvent $event) {
+        $object = $event->getObject();
+        $event->getVisitor()->addData('_links', array(
+            'self' => array(
+                'href' => $this->generateUrl('api_tecnocreaciones_vzla_entity_region_show',array('id' => $object->getId()))
+                ),
+        ));
+    }
+    
+    /**
+     * Captura el evento luego que se serealia un pais
+     * @param \JMS\Serializer\EventDispatcher\ObjectEvent $event
+     */
+    function onPostSerializeCountry(ObjectEvent $event) {
+        $object = $event->getObject();
+        $event->getVisitor()->addData('_links', array(
+            'self' => array(
+                'href' => $this->generateUrl('api_tecnocreaciones_vzla_entity_country_show',array('id' => $object->getId()))
+                ),
+            'states' => array(
+                'href' => $this->generateUrl('api_tecnocreaciones_vzla_entity_country_states',array('id' => $object->getId()))
+                ),
+            'regions' => array(
+                'href' => $this->generateUrl('api_tecnocreaciones_vzla_entity_country_regions',array('id' => $object->getId()))
                 ),
         ));
     }
@@ -56,7 +90,7 @@ class SerializeEventListerner implements EventSubscriberInterface
         $object = $event->getObject();
         $event->getVisitor()->addData('_links', array(
             'self' => array(
-                'href' => $this->generateUrl('tecnocreaciones_vzla_entity_city_show',array('id' => $object->getId()))
+                'href' => $this->generateUrl('api_tecnocreaciones_vzla_entity_city_show',array('id' => $object->getId()))
                 ),
         ));
     }

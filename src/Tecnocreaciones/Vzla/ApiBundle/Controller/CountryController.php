@@ -72,7 +72,7 @@ class CountryController extends \Tecnocreaciones\Bundle\ResourceBundle\Controlle
             ->setTemplateVar('states')
             ->setData($resource->getStates())
         ;
-        $view->getSerializationContext()->setGroups('countries');
+        $view->getSerializationContext()->setGroups('country');
         return $this->handleView($view);
     }
     
@@ -84,7 +84,7 @@ class CountryController extends \Tecnocreaciones\Bundle\ResourceBundle\Controlle
             ->setTemplateVar('regions')
             ->setData($resource->getRegions())
         ;
-        $view->getSerializationContext()->setGroups('countries');
+        $view->getSerializationContext()->setGroups('country');
         return $this->handleView($view);
     }
 }

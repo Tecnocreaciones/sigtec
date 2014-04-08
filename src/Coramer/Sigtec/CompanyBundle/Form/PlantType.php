@@ -51,7 +51,9 @@ class PlantType extends AbstractType
                 'property' => 'description',
                 'empty_value' => 'sigtec.select',
                 'attr' => array(
-                    'class' => 'select blue-gradient glossy input-large'
+                    'class' => 'select blue-gradient glossy input-large',
+                    'ng-model' => 'model.state',
+                    'ng-change' => 'getCity()'
                 ),
                 'query_builder' => function(\Tecnocreaciones\Vzla\EntityBundle\Repository\EntityRepository $er){
                     return $er->getQueryAllActive();
@@ -63,7 +65,8 @@ class PlantType extends AbstractType
                 'property' => 'description',
                 'empty_value' => 'sigtec.select',
                 'attr' => array(
-                    'class' => 'select blue-gradient glossy replacement focus input-large'
+                    'class' => 'select blue-gradient glossy replacement focus input-large',
+                    'ng-model' => 'model.city',
                 ),
                 'query_builder' => function(\Tecnocreaciones\Vzla\EntityBundle\Repository\EntityRepository $er) use ($data){
                     

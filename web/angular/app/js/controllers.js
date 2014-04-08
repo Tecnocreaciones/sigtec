@@ -25,4 +25,10 @@ angular.module('sigtecModule.controllers', []).
               });
               //$scope.tableParams.reload();
           }
-  });
+  })
+  .controller('VzlaEntityController',function($scope){
+      $scope.getCity = function(car){
+          console.log($scope.model.state);
+      }
+  })
+  ;

@@ -34,37 +34,37 @@
     </parameters>
 
     <services>
-        <service id="tecnocreaciones_vzla_entity.repository.city" class="%tecnocreaciones_vzla_entity.repository.city.class%" 
+        <service id="api_tecnocreaciones_vzla_entity.repository.city" class="%tecnocreaciones_vzla_entity.repository.city.class%" 
             factory-service="tecnocreaciones_resource.manager_entity_repository"
             factory-method="getRepository"
         >
             <argument>%tecnocreaciones_vzla_entity.city.class%</argument>
         </service>
-        <service id="tecnocreaciones_vzla_entity.repository.country" class="%tecnocreaciones_vzla_entity.repository.country.class%" 
+        <service id="api_tecnocreaciones_vzla_entity.repository.country" class="%tecnocreaciones_vzla_entity.repository.country.class%" 
             factory-service="tecnocreaciones_resource.manager_entity_repository"
             factory-method="getRepository"
         >
             <argument>%tecnocreaciones_vzla_entity.country.class%</argument>
         </service>
-        <service id="tecnocreaciones_vzla_entity.repository.municipality" class="%tecnocreaciones_vzla_entity.municipality.class%" 
+        <service id="api_tecnocreaciones_vzla_entity.repository.municipality" class="%tecnocreaciones_vzla_entity.municipality.class%" 
             factory-service="tecnocreaciones_resource.manager_entity_repository"
             factory-method="getRepository"
         >
             <argument>%tecnocreaciones_vzla_entity.repository.municipality.class%</argument>
         </service>
-        <service id="tecnocreaciones_vzla_entity.repository.parish" class="%tecnocreaciones_vzla_entity.repository.parish.class%" 
+        <service id="api_tecnocreaciones_vzla_entity.repository.parish" class="%tecnocreaciones_vzla_entity.repository.parish.class%" 
             factory-service="tecnocreaciones_resource.manager_entity_repository"
             factory-method="getRepository"
         >
             <argument>%tecnocreaciones_vzla_entity.parish.class%</argument>
         </service>
-        <service id="tecnocreaciones_vzla_entity.repository.region" class="%tecnocreaciones_vzla_entity.repository.region.class%" 
+        <service id="api_tecnocreaciones_vzla_entity.repository.region" class="%tecnocreaciones_vzla_entity.repository.region.class%" 
             factory-service="tecnocreaciones_resource.manager_entity_repository"
             factory-method="getRepository"
         >
             <argument>%tecnocreaciones_vzla_entity.region.class%</argument>
         </service>
-        <service id="tecnocreaciones_vzla_entity.repository.state" class="%tecnocreaciones_vzla_entity.repository.state.class%" 
+        <service id="api_tecnocreaciones_vzla_entity.repository.state" class="%tecnocreaciones_vzla_entity.repository.state.class%" 
             factory-service="tecnocreaciones_resource.manager_entity_repository"
             factory-method="getRepository"
         >

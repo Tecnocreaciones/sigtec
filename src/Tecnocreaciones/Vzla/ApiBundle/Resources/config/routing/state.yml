@@ -3,16 +3,16 @@
 #    defaults:
 #        _controller: tecnocreaciones_vzla_entity.controller.state:indexAction
         
-tecnocreaciones_vzla_entity_state_show:
+api_tecnocreaciones_vzla_entity_state_show:
     pattern:  /states/{id}
     defaults:
-        _controller: tecnocreaciones_vzla_entity.controller.state:showAction
+        _controller: api_tecnocreaciones_vzla_entity.controller.state:showAction
     requirements:
         _method: GET
         
-tecnocreaciones_vzla_entity_state_cities:
+api_tecnocreaciones_vzla_entity_state_cities:
     pattern:  /states/{id}/cities
     defaults:
-        _controller: tecnocreaciones_vzla_entity.controller.state:showAction
+        _controller: api_tecnocreaciones_vzla_entity.controller.state:getStateCitiesAction
     requirements:
         _method: GET
