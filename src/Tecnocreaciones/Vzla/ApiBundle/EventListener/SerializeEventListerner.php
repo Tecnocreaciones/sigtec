@@ -25,8 +25,6 @@ class SerializeEventListerner implements EventSubscriberInterface
      * @var \Symfony\Bundle\FrameworkBundle\Translation\Translator
      */
     private $translator;
-
-    private $senderSms = null;
     
     public static function getSubscribedEvents() {
         return array(
@@ -46,6 +44,9 @@ class SerializeEventListerner implements EventSubscriberInterface
         $event->getVisitor()->addData('_links', array(
             'self' => array(
                 'href' => $this->generateUrl('api_tecnocreaciones_vzla_entity_state_show',array('id' => $object->getId()))
+                ),
+            'cities' => array(
+                'href' => $this->generateUrl('api_tecnocreaciones_vzla_entity_state_cities',array('id' => $object->getId()))
                 ),
         ));
     }
