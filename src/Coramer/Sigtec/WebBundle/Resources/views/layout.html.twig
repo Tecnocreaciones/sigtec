@@ -138,7 +138,7 @@
         <meta name="msapplication-task" content="name=My profile;action-uri=http://www.display-inline.fr/demo/developr/profile.html;icon-uri=http://www.display-inline.fr/demo/developr/img/favicons/favicon.ico">
     </head>
 
-    <body ng-cloak ng-app="coramerApp" class="clearfix with-menu with-shortcuts" >
+    <body ng-app="coramerApp" class="clearfix with-menu with-shortcuts" >
 
         <!-- Prompt IE 6 users to install Chrome Frame -->
         <!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
@@ -158,7 +158,7 @@
         </div>
         <div class="message-loading [[ notificationBarService.getLoadStatus().error_class ]]" ng-show="notificationBarService.getLoadStatus().showStatus">
                 [[ notificationBarService.getLoadStatus().text ]]
-                <i class="icon-spin icon-spinner red bigger-140"></i>
+                <span class="loader"></span>
         </div>
         <!-- Main content -->
         <section role="main" id="main" class="block main-frontend">

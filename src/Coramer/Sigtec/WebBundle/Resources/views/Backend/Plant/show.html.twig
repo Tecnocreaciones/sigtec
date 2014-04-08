@@ -2,51 +2,46 @@
 
 {% block body -%}
     <h1>Plant</h1>
-
+    {{ company_plant.company.rif }}
     <table class="record_properties">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ entity.id }}</td>
+                <td>{{ company_plant.id }}</td>
             </tr>
             <tr>
                 <th>Email</th>
-                <td>{{ entity.email }}</td>
+                <td>{{ company_plant.email }}</td>
             </tr>
             <tr>
                 <th>Phones</th>
-                <td>{{ entity.phones }}</td>
+                <td>
+                    {% for phone in company_plant.phones %}
+                        {{ phone.number }}
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Useplant</th>
-                <td>{{ entity.usePlant }}</td>
+                <td>
+                    {% for dedication in company_plant.dedications %}
+                        {{ dedication.description }}
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Address</th>
-                <td>{{ entity.address }}</td>
+                <td>{{ company_plant.address }}</td>
             </tr>
             <tr>
                 <th>Createdat</th>
-                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+                <td>{{ company_plant.createdAt|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
                 <th>Updatedat</th>
-                <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+                <td>{{ company_plant.updatedAt|date('Y-m-d H:i:s') }}</td>
             </tr>
         </tbody>
     </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('plant') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('plant_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
 </ul>
 {% endblock %}

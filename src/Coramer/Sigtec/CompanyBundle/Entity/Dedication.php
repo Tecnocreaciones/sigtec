@@ -55,7 +55,7 @@ class Dedication
     /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Plant
      * 
-     * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Plant", inversedBy="dedications")
+     * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Plant", mappedBy="dedications")
      */
     private $plants;
 
@@ -173,7 +173,9 @@ class Dedication
      */
     public function addPlant(\Coramer\Sigtec\CompanyBundle\Entity\Plant $plants)
     {
-        $this->plants[] = $plants;
+        if(!$this->plants->contains($plants)){
+            $this->plants->add($plants);
+        }
 
         return $this;
     }
