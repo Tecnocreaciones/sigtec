@@ -26,9 +26,16 @@ angular.module('sigtecModule.controllers', []).
               //$scope.tableParams.reload();
           }
   })
-  .controller('VzlaEntityController',function($scope){
-      $scope.getCity = function(car){
-          console.log($scope.model.state);
+  .controller('VzlaEntityController',function($scope,$http){
+      $scope.cities = {};
+      $scope.getCities = function(){
+          var url = Routing.generate('api_tecnocreaciones_vzla_entity_state_cities',{id: $scope.model.state});
+          console.log(url);
+          $http.get(url).success(function(data){
+              $scope.cities = data;
+          }).error(function(data){
+              $scope.cities = {};
+          });
       }
   })
   ;

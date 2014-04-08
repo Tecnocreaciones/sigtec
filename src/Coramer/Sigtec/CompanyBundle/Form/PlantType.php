@@ -53,7 +53,7 @@ class PlantType extends AbstractType
                 'attr' => array(
                     'class' => 'select blue-gradient glossy input-large',
                     'ng-model' => 'model.state',
-                    'ng-change' => 'getCity()'
+                    'ng-change' => 'getCities()'
                 ),
                 'query_builder' => function(\Tecnocreaciones\Vzla\EntityBundle\Repository\EntityRepository $er){
                     return $er->getQueryAllActive();
@@ -67,6 +67,7 @@ class PlantType extends AbstractType
                 'attr' => array(
                     'class' => 'select blue-gradient glossy replacement focus input-large',
                     'ng-model' => 'model.city',
+                    'ng-options' => 'c.description for c in cities',
                 ),
                 'query_builder' => function(\Tecnocreaciones\Vzla\EntityBundle\Repository\EntityRepository $er) use ($data){
                     
