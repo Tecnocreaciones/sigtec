@@ -156,11 +156,11 @@
             </trans-unit>
             <trans-unit id="80a35f34872c649a52bfb7a36bc8e081">
                 <source>sigtec.created_at</source>
-                <target>Creado en</target>
+                <target>Creado el</target>
             </trans-unit>
             <trans-unit id="d69d4e502a40a953b7cc43ee3f6bae0b">
                 <source>sigtec.updated_at</source>
-                <target>Actualizado en</target>
+                <target>Actualizado el</target>
             </trans-unit>
             <trans-unit id="3a8518990837f917ba18d0ebb2470254">
                 <source>sigtec.with_selected</source>
@@ -277,6 +277,10 @@
             <trans-unit id="5154b831c3f8e87ade2891863787b8f0">
                 <source>sigtec.selected</source>
                 <target>Seleccionado(s)</target>
+            </trans-unit>
+            <trans-unit id="ec1eeb8fe4d9e8956595d783c9c316e8">
+                <source>sigtec.phones</source>
+                <target>Teléfono(s)</target>
             </trans-unit>
         </body>
     </file>

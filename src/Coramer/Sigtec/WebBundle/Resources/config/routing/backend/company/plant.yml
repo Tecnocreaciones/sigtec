@@ -11,3 +11,17 @@ coramer_sigtec_company_plant_show:
     defaults:
         _controller: coramer_sigtec.controller.company_plant:showAction
     requirements: { _method: GET }
+    
+coramer_sigtec_company_plant_update:
+    pattern:  /{id}/update
+    defaults:
+        _controller: coramer_sigtec.controller.company_plant:updateAction
+        _sylius:
+            form: coramer_sigtec_companybundle_plant
+    requirements: { _method: GET|PUT }
+    
+coramer_sigtec_company_plant_delete:
+    pattern:  /{id}/delete
+    defaults:
+        _controller: coramer_sigtec.controller.company_delete:editAction
+    requirements: { _method: POST|DELETE }

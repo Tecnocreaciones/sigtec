@@ -278,6 +278,10 @@
                 <source>sigtec.selected</source>
                 <target>Selected</target>
             </trans-unit>
+            <trans-unit id="ec1eeb8fe4d9e8956595d783c9c316e8">
+                <source>sigtec.phones</source>
+                <target>Phone(s)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

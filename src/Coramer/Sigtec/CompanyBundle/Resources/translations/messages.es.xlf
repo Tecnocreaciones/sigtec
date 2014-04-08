@@ -26,6 +26,14 @@
                 <source>sigtec.plant</source>
                 <target>Planta</target>
             </trans-unit>
+            <trans-unit id="d650a8107e688de32f6c0a8b23500b71">
+                <source>sigtec.update_plant</source>
+                <target>Actualizar planta</target>
+            </trans-unit>
+            <trans-unit id="977aa3a14eb58815cc4d75cd88acc42f">
+                <source>sigtec.dedications</source>
+                <target>Usos</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

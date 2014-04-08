@@ -29,7 +29,6 @@ class PlantController extends ResourceController
         $form = $this->getForm($resource);
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $resource->setCompany($company);
-            
             $resource = $this->domainManager->create($resource);
 
             if (null === $resource) {
