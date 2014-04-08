@@ -76,7 +76,25 @@ class Company
      * @ORM\Column(name="email", type="string", length=100)
      */
     private $email;
+    
+    /**
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Plant
+     * 
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Plant", mappedBy="company")
+     */
+    private $plants;
+    
+    /**
+     * @var \Coramer\Sigtec\CoreBundle\Entity\User
+     * 
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CoreBundle\Entity\User", inversedBy="companies")
+     */
+    private $user;
 
+    public function __construct() {
+        $this->plants = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -256,5 +274,61 @@ class Company
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Add plants
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Plant $plants
+     * @return Company
+     */
+    public function addPlant(\Coramer\Sigtec\CompanyBundle\Entity\Plant $plants)
+    {
+        $this->plants[] = $plants;
+
+        return $this;
+    }
+
+    /**
+     * Remove plants
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Plant $plants
+     */
+    public function removePlant(\Coramer\Sigtec\CompanyBundle\Entity\Plant $plants)
+    {
+        $this->plants->removeElement($plants);
+    }
+
+    /**
+     * Get plants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlants()
+    {
+        return $this->plants;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Coramer\Sigtec\CoreBundle\Entity\User $user
+     * @return Company
+     */
+    public function setUser(\Coramer\Sigtec\CoreBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Coramer\Sigtec\CoreBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

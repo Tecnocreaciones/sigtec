@@ -14,7 +14,7 @@ namespace Tecnocreaciones\Vzla\FixturesBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Tecnocreaciones\Vzla\FixturesBundle\Entity\State;
+use Tecnocreaciones\Vzla\EntityBundle\Entity\State;
 
 /**
  * Data de los estados

@@ -29,53 +29,38 @@ class Plant
     private $email;
 
     /**
-     * @var array
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Phone
      *
-     * @ORM\Column(name="phones", type="array")
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Phone", mappedBy="plant", cascade={"persist"})
      */
     private $phones;
 
     /**
-     * @var string
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Dedication
      *
-     * @ORM\Column(name="usePlant", type="text")
+     * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Dedication", mappedBy="plants")
      */
-    private $usePlant;
+    private $dedications;
 
+    /**
+     * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\State
+     *
+     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\State")
+     */
+    private $state;
+    /**
+     * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\City
+     *
+     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\City")
+     */
+    private $city;
+    
     /**
      * @var string
      *
      * @ORM\Column(name="address", type="text")
      */
     private $address;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="country", type="integer")
-     */
-    private $country;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="state", type="integer")
-     */
-    private $state;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="municipality", type="integer")
-     */
-    private $municipality;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="city", type="integer")
-     */
-    private $city;
 
     /**
      * @var \DateTime
@@ -89,8 +74,19 @@ class Plant
      *
      * @ORM\Column(name="upda", type="datetime")
      */
-    private $upda;
+    private $updatedAt;
+    
+    /**
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Company
+     * 
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Company", inversedBy="plants")
+     */
+    private $company;
 
+    public function __construct() {
+        $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dedications = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -126,52 +122,6 @@ class Plant
     }
 
     /**
-     * Set phones
-     *
-     * @param array $phones
-     * @return Plant
-     */
-    public function setPhones($phones)
-    {
-        $this->phones = $phones;
-
-        return $this;
-    }
-
-    /**
-     * Get phones
-     *
-     * @return array 
-     */
-    public function getPhones()
-    {
-        return $this->phones;
-    }
-
-    /**
-     * Set usePlant
-     *
-     * @param string $usePlant
-     * @return Plant
-     */
-    public function setUsePlant($usePlant)
-    {
-        $this->usePlant = $usePlant;
-
-        return $this;
-    }
-
-    /**
-     * Get usePlant
-     *
-     * @return string 
-     */
-    public function getUsePlant()
-    {
-        return $this->usePlant;
-    }
-
-    /**
      * Set address
      *
      * @param string $address
@@ -192,98 +142,6 @@ class Plant
     public function getAddress()
     {
         return $this->address;
-    }
-
-    /**
-     * Set country
-     *
-     * @param integer $country
-     * @return Plant
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return integer 
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * Set state
-     *
-     * @param integer $state
-     * @return Plant
-     */
-    public function setState($state)
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
-    /**
-     * Get state
-     *
-     * @return integer 
-     */
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * Set municipality
-     *
-     * @param integer $municipality
-     * @return Plant
-     */
-    public function setMunicipality($municipality)
-    {
-        $this->municipality = $municipality;
-
-        return $this;
-    }
-
-    /**
-     * Get municipality
-     *
-     * @return integer 
-     */
-    public function getMunicipality()
-    {
-        return $this->municipality;
-    }
-
-    /**
-     * Set city
-     *
-     * @param integer $city
-     * @return Plant
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return integer 
-     */
-    public function getCity()
-    {
-        return $this->city;
     }
 
     /**
@@ -310,25 +168,159 @@ class Plant
     }
 
     /**
-     * Set upda
+     * Set updatedAt
      *
-     * @param \DateTime $upda
+     * @param \DateTime $updatedAt
      * @return Plant
      */
-    public function setUpda($upda)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->upda = $upda;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get upda
+     * Get updatedAt
      *
      * @return \DateTime 
      */
-    public function getUpda()
+    public function getUpdatedAt()
     {
-        return $this->upda;
+        return $this->updatedAt;
+    }
+
+    /**
+     * Add phones
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Phone $phones
+     * @return Plant
+     */
+    public function addPhone(\Coramer\Sigtec\CompanyBundle\Entity\Phone $phones)
+    {
+        $this->phones->add($phones);
+        return $this;
+    }
+
+    /**
+     * Remove phones
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Phone $phones
+     */
+    public function removePhone(\Coramer\Sigtec\CompanyBundle\Entity\Phone $phones)
+    {
+        $this->phones->removeElement($phones);
+    }
+
+    /**
+     * Get phones
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPhones()
+    {
+        return $this->phones;
+    }
+
+    /**
+     * Set state
+     *
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\State $state
+     * @return Plant
+     */
+    public function setState(\Tecnocreaciones\Vzla\EntityBundle\Entity\State $state = null)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return \Tecnocreaciones\Vzla\EntityBundle\Entity\State 
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \Tecnocreaciones\Vzla\EntityBundle\Entity\City $city
+     * @return Plant
+     */
+    public function setCity(\Tecnocreaciones\Vzla\EntityBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \Tecnocreaciones\Vzla\EntityBundle\Entity\City 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Company $company
+     * @return Plant
+     */
+    public function setCompany(\Coramer\Sigtec\CompanyBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Coramer\Sigtec\CompanyBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Add dedications
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedications
+     * @return Plant
+     */
+    public function addDedication(\Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedications)
+    {
+        $this->dedications[] = $dedications;
+
+        return $this;
+    }
+
+    /**
+     * Remove dedications
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedications
+     */
+    public function removeDedication(\Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedications)
+    {
+        $this->dedications->removeElement($dedications);
+    }
+
+    /**
+     * Get dedications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDedications()
+    {
+        return $this->dedications;
     }
 }

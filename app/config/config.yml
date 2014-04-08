@@ -186,3 +186,24 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\CompanyBundle\Controller\CompanyController
                 model: Coramer\Sigtec\CompanyBundle\Entity\Company
+         coramer_sigtec.company_plant:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/Plant
+            classes:
+                controller: Coramer\Sigtec\CompanyBundle\Controller\PlantController
+                model: Coramer\Sigtec\CompanyBundle\Entity\Plant
+         tecnocreaciones_vzla_entity.country:
+            driver: doctrine/orm
+            classes:
+                controller: Tecnocreaciones\Vzla\ApiBundle\Controller\CountryController
+                model: Tecnocreaciones\Vzla\EntityBundle\Entity\Country
+         tecnocreaciones_vzla_entity.state:
+            driver: doctrine/orm
+            classes:
+                controller: Tecnocreaciones\Vzla\ApiBundle\Controller\StateController
+                model: Tecnocreaciones\Vzla\EntityBundle\Entity\State
+         tecnocreaciones_vzla_entity.city:
+            driver: doctrine/orm
+            classes:
+                controller: Tecnocreaciones\Vzla\ApiBundle\Controller\CityController
+                model: Tecnocreaciones\Vzla\EntityBundle\Entity\City

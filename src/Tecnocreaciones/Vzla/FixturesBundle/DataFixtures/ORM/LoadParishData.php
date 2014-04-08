@@ -14,7 +14,7 @@ namespace Tecnocreaciones\Vzla\FixturesBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Tecnocreaciones\Vzla\FixturesBundle\Entity\Parish;
+use Tecnocreaciones\Vzla\EntityBundle\Entity\Parish;
 
 /**
  * Data de parroquias

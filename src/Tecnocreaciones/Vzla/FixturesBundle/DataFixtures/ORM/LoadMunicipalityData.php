@@ -14,7 +14,7 @@ namespace Tecnocreaciones\Vzla\FixturesBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Tecnocreaciones\Vzla\FixturesBundle\Entity\Municipality;
+use Tecnocreaciones\Vzla\EntityBundle\Entity\Municipality;
 
 /**
  * Data de municipios
@@ -24,7 +24,8 @@ use Tecnocreaciones\Vzla\FixturesBundle\Entity\Municipality;
  */
 class LoadMunicipalityData extends AbstractFixture implements OrderedFixtureInterface
 {
-    public function load(ObjectManager $manager) {
+    public function load(ObjectManager $manager)
+    {
         
         $state = $this->getReference('State-Amazonas');
             $municipality = new Municipality();

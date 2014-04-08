@@ -71,6 +71,12 @@ class User extends BaseUser {
      */
     private $lastName;
 
+    /**
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Company
+     *
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Company", mappedBy="user")
+     */
+    private $companies;
 
     /**
      * @var string
@@ -171,6 +177,7 @@ class User extends BaseUser {
     public function __construct()
     {
         $this->groups = new ArrayCollection();
+        $this->companies = new ArrayCollection();
         parent::__construct();
     }
 
@@ -330,5 +337,38 @@ class User extends BaseUser {
     public function getLastName()
     {
         return $this->lastName;
+    }
+
+    /**
+     * Add companies
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Company $companies
+     * @return User
+     */
+    public function addCompany(\Coramer\Sigtec\CompanyBundle\Entity\Company $companies)
+    {
+        $this->companies[] = $companies;
+
+        return $this;
+    }
+
+    /**
+     * Remove companies
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Company $companies
+     */
+    public function removeCompany(\Coramer\Sigtec\CompanyBundle\Entity\Company $companies)
+    {
+        $this->companies->removeElement($companies);
+    }
+
+    /**
+     * Get companies
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCompanies()
+    {
+        return $this->companies;
     }
 }

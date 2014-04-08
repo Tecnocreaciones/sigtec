@@ -13,7 +13,7 @@ namespace Tecnocreaciones\Vzla\FixturesBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Tecnocreaciones\Vzla\FixturesBundle\Entity\Country;
+use Tecnocreaciones\Vzla\EntityBundle\Entity\Country;
 
 /**
  * Data de Paises

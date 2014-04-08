@@ -11,7 +11,10 @@
 
 namespace Tecnocreaciones\Vzla\FixturesBundle\DataFixtures\ORM;
 
-use Tecnocreaciones\Vzla\FixturesBundle\Entity\City;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Tecnocreaciones\Vzla\EntityBundle\Entity\City;
 
 /**
  * Data de las ciudades
@@ -19,9 +22,9 @@ use Tecnocreaciones\Vzla\FixturesBundle\Entity\City;
  * @see https://github.com/marydn/venezuela-sql/blob/master/venezuela.sql
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
  */
-class LoadCityData extends \Doctrine\Common\DataFixtures\AbstractFixture implements \Doctrine\Common\DataFixtures\OrderedFixtureInterface
+class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
 {
-    public function load(\Doctrine\Common\Persistence\ObjectManager $manager) {
+    public function load(ObjectManager $manager) {
         $city = new City();
         $city
                 ->setDescription('Maroa')

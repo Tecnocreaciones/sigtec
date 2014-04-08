@@ -44,6 +44,8 @@ class AppKernel extends Kernel
             new Coramer\Sigtec\RestBundle\CoramerSigtecRestBundle(),
             new Coramer\Sigtec\ResourceBundle\CoramerSigtecResourceBundle(),
             new Tecnocreaciones\Vzla\FixturesBundle\TecnocreacionesVzlaFixturesBundle(),
+            new Tecnocreaciones\Vzla\ApiBundle\TecnocreacionesVzlaApiBundle(),
+            new Tecnocreaciones\Vzla\EntityBundle\TecnocreacionesVzlaEntityBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

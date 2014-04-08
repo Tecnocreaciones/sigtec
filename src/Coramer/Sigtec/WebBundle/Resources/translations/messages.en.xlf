@@ -246,6 +246,38 @@
                 <source>sigtec.email</source>
                 <target>Email</target>
             </trans-unit>
+            <trans-unit id="9338236a15678eb61df604c687deb189">
+                <source>sigtec.create</source>
+                <target>Create</target>
+            </trans-unit>
+            <trans-unit id="eddee20a5e4aec4170549139d9dcd01c">
+                <source>sigtec.select</source>
+                <target>Select</target>
+            </trans-unit>
+            <trans-unit id="393584e402ca48e5aa2fc1d6ae2db943">
+                <source>sigtec.phone</source>
+                <target>Phone</target>
+            </trans-unit>
+            <trans-unit id="44ef13132a5d5c1fbaa5f69a517430d0">
+                <source>sigtec.address</source>
+                <target>Address</target>
+            </trans-unit>
+            <trans-unit id="b6a1908f1e7fa445aa707699d3af9d8b">
+                <source>sigtec.state</source>
+                <target>State</target>
+            </trans-unit>
+            <trans-unit id="73722c4406236ab418b5f51cc6832b3d">
+                <source>sigtec.city</source>
+                <target>City</target>
+            </trans-unit>
+            <trans-unit id="6a709e64872613a5b4b35a5ed3b55000">
+                <source>sigtec.all</source>
+                <target>All</target>
+            </trans-unit>
+            <trans-unit id="5154b831c3f8e87ade2891863787b8f0">
+                <source>sigtec.selected</source>
+                <target>Selected</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,3 +1,8 @@
+tecnocreaciones_vzla_api:
+    resource: "@TecnocreacionesVzlaApiBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 coramer_sigtec_company:
     resource: "@CoramerSigtecCompanyBundle/Controller/"
     type:     annotation
@@ -8,6 +13,10 @@ web_bundle:
     requirements:
         _locale: es|en
         
+tecnocreaciones_vzla_api:
+    resource: "@TecnocreacionesVzlaApiBundle/Resources/config/routing.yml"
+    prefix:   /api
+    
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
