@@ -39,6 +39,7 @@ class SerializeEventListerner implements EventSubscriberInterface
     public static function getSubscribedEvents() {
         return array(
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeCompany', 'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Company','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializePlant', 'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Plant','format' => 'json'),
         );
     }
     
@@ -60,6 +61,25 @@ class SerializeEventListerner implements EventSubscriberInterface
                 ),
             'validate_rif' => array(
                 'href' => $this->generateUrl('coramer_sigtec_company_validaterif',array('id' => $object->getId()))
+                ),
+        ));
+    }
+    
+    /**
+     * Captura el evento luego que se serealia una planta
+     * @param \JMS\Serializer\EventDispatcher\ObjectEvent $event
+     */
+    function onPostSerializePlant(ObjectEvent $event) {
+        $object = $event->getObject();
+        $event->getVisitor()->addData('_links', array(
+            'self' => array(
+                'href' => $this->generateUrl('coramer_sigtec_company_plant_show',array('id' => $object->getId()))
+                ),
+            'edit' => array(
+                'href' => $this->generateUrl('coramer_sigtec_company_plant_update',array('id' => $object->getId()))
+                ),
+            'delete' => array(
+                'href' => $this->generateUrl('coramer_sigtec_company_plant_delete',array('id' => $object->getId()))
                 ),
         ));
     }

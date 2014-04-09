@@ -23,5 +23,5 @@ coramer_sigtec_company_plant_update:
 coramer_sigtec_company_plant_delete:
     pattern:  /{id}/delete
     defaults:
-        _controller: coramer_sigtec.controller.company_delete:editAction
+        _controller: coramer_sigtec.controller.company_plant:deleteAction
     requirements: { _method: POST|DELETE }

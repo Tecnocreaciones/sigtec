@@ -27,6 +27,8 @@ angular.module('sigtecModule.controllers', []).
           }
   })
   .controller('VzlaEntityController',function($scope,$http,notificationBarService){
+      $scope.model = {};
+      $scope.model.state = $("#coramer_sigtec_companybundle_plant_state").val();
       $scope.cities = {};
       $scope.getCities = function(){
           var url = Routing.generate('api_tecnocreaciones_vzla_entity_state_cities',{id: $scope.model.state});
@@ -43,5 +45,8 @@ angular.module('sigtecModule.controllers', []).
               notificationBarService.getLoadStatus().done();
           });
       }
+      $scope.getCities();
+      $scope.model.city = cityId;
+      console.log(cityId);
   })
   ;

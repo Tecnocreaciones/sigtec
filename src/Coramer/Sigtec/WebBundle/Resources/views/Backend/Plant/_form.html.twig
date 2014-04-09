@@ -48,11 +48,16 @@
         {{ actions.update() }}
     {% endif %}
     
-    {{ form_end(form) }}
+    {{ form_widget(form._token) }}
+    {{ company_plant.city.id }}
 </fieldset>
 <script type="text/javascript">
+    var cityId = 0;
+    {% if company_plant.state %}
+        cityId = {{ company_plant.city.id }};
+    {% endif %}
     var $collectionHolder;
-
+    
     // setup an "add a phone" link
     var $addPhoneLink = $('<a href="#" class="add_phone_link">{{ 'sigtec.add_a_phone'|trans }}</a>');
     var $newLinkLi = $('<li></li>').append($addPhoneLink);

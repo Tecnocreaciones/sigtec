@@ -34,6 +34,14 @@
                 <source>sigtec.dedications</source>
                 <target>Uses</target>
             </trans-unit>
+            <trans-unit id="8e63f4b16b0dba031e1e08eefebee070">
+                <source>sigtec.plants</source>
+                <target>Plant(s)</target>
+            </trans-unit>
+            <trans-unit id="311440af73aaf99084ea5077f987a449">
+                <source>sigtec.no_plants_recorded</source>
+                <target>No plants recorded</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

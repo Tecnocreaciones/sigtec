@@ -56,6 +56,7 @@ class PlantType extends AbstractType
                     'ng-model' => 'model.state',
                     'ng-change' => 'getCities()'
                 ),
+                'required' => true,
                 'query_builder' => function(\Tecnocreaciones\Vzla\EntityBundle\Repository\EntityRepository $er){
                     return $er->getQueryAllActive();
                 },
@@ -65,6 +66,7 @@ class PlantType extends AbstractType
                 'class' => 'Tecnocreaciones\Vzla\EntityBundle\Entity\City',
                 'property' => 'description',
                 'empty_value' => 'sigtec.select',
+                'required' => true,
                 'attr' => array(
                     'class' => 'select blue-gradient glossy replacement input-large auto-refesh',
                     'ng-model' => 'model.city',

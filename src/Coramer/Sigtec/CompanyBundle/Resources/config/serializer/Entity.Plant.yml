@@ -1,0 +1,24 @@
+Coramer\Sigtec\CompanyBundle\Entity\Plant:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [list,companies]
+        email:
+            expose: true
+            groups: [list,companies]
+        phones:
+            expose: true
+            groups: [companies]
+        dedications:
+            expose: true
+            groups: [companies]
+        address:
+            expose: true
+            groups: [list,companies]
+        createdAt:
+            expose: true
+            groups: [list,companies]
+        updatedAt:
+            expose: true
+            groups: [list,companies]

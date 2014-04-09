@@ -3,9 +3,6 @@
 namespace Coramer\Sigtec\CompanyBundle\Controller;
 
 use Coramer\Sigtec\CompanyBundle\Entity\Phone;
-use Coramer\Sigtec\CompanyBundle\Entity\Plant;
-use Coramer\Sigtec\CompanyBundle\Form\PlantType;
-use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -16,6 +13,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
  */
 class PlantController extends ResourceController
 {
+    public function updateAction(Request $request) {
+        
+        return parent::updateAction($request);
+    }
     /**
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -26,6 +27,10 @@ class PlantController extends ResourceController
     public function newAction(Request $request, \Coramer\Sigtec\CompanyBundle\Entity\Company $company)
     {
         $resource = $this->createNew();
+        if($request->isMethod('GET')){
+            $phone = new Phone();
+            $resource->getPhones()->add($phone);
+        }
         $form = $this->getForm($resource);
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $resource->setCompany($company);
@@ -36,10 +41,6 @@ class PlantController extends ResourceController
             }
 
             return $this->redirectHandler->redirectTo($resource);
-        }
-        if($request->isMethod('GET')){
-            $phone = new Phone();
-            $resource->getPhones()->add($phone);
         }
         
         if ($this->config->isApiRequest()) {

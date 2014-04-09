@@ -32,7 +32,7 @@ class Plant
     /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Phone
      *
-     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Phone", mappedBy="plant", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Phone", mappedBy="plant", cascade={"persist","remove"})
      */
     private $phones;
 

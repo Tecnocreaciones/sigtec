@@ -282,6 +282,10 @@
                 <source>sigtec.phones</source>
                 <target>Teléfono(s)</target>
             </trans-unit>
+            <trans-unit id="448a10d0101141cabe1b584147cc96eb">
+                <source>sigtec.add</source>
+                <target>Añadir</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

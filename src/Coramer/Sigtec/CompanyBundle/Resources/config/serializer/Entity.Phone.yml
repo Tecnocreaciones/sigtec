@@ -1,0 +1,13 @@
+Coramer\Sigtec\CompanyBundle\Entity\Phone:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [list,companies]
+        name:
+            expose: true
+            groups: [list,companies]
+        number:
+            expose: true
+            groups: [list,companies]
+        
