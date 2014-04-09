@@ -14,8 +14,39 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class PlantController extends ResourceController
 {
     public function updateAction(Request $request) {
-        
-        return parent::updateAction($request);
+        $resource = $this->findOr404($request);
+        $em = $this->getDoctrine()->getManager();
+        $originalPhones = new \Doctrine\Common\Collections\ArrayCollection();
+        foreach ($resource->getPhones() as $phone) {
+            $originalPhones->add($phone);
+        }
+        $form = $this->getForm($resource);
+
+        if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
+            foreach ($originalPhones as $phone) {
+                if (false === $resource->getPhones()->contains($phone)) {
+                    $em->remove($phone);
+                }
+            }
+            $this->domainManager->update($resource);
+
+            return $this->redirectHandler->redirectTo($resource);
+        }
+
+        if ($this->config->isApiRequest()) {
+            return $this->handleView($this->view($form));
+        }
+
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('update.html'))
+            ->setData(array(
+                $this->config->getResourceName() => $resource,
+                'form'                           => $form->createView()
+            ))
+        ;
+
+        return $this->handleView($view);
     }
     /**
      * 
