@@ -1,7 +1,12 @@
 {% import 'CoramerSigtecResourceBundle:Macros:actions.html.twig' as actions %}
 <fieldset ng-controller="VzlaEntityController" class="fieldset fields-list">
     <legend class="legend">{{ 'sigtec.plant'|trans }}</legend>
-    {{ form_start(form) }}
+    
+    <div class="field-block button-height">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
     <div class="field-block button-height">
         {{ form_label(form.email) }}
         {{ form_widget(form.email) }}
@@ -49,8 +54,6 @@
     {% endif %}
     
     {{ form_widget(form._token) }}
-    {{ form_rest(form) }}
-    {{ form_end(form) }}
 </fieldset>
 <script type="text/javascript">
     var cityId = 0;

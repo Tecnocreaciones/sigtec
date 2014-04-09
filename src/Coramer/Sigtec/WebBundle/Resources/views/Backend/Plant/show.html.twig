@@ -13,6 +13,10 @@
         <legend class="legend">{{ 'sigtec.plant'|trans }}</legend>
 
         <p class="inline-label">
+            <label class="label">{{ 'sigtec.name'|trans }}</label>
+            {{ company_plant.name }}
+        </p>
+        <p class="inline-label">
             <label class="label">{{ 'sigtec.company'|trans }}</label>
             <a href="{{ path('coramer_sigtec_company_show',{id:company_plant.company.id}) }}">{{ company_plant.company.rif }}</a>
         </p>

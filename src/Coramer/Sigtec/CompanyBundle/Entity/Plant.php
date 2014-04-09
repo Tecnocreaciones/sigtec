@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Plant
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Coramer\Sigtec\CompanyBundle\Repository\PlantRepository")
  */
 class Plant
 {
@@ -21,6 +21,13 @@ class Plant
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=10)
+     */
+    private $name;
 
     /**
      * @var string
@@ -327,5 +334,28 @@ class Plant
     public function getDedications()
     {
         return $this->dedications;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Plant
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

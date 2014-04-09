@@ -16,6 +16,12 @@ class PlantType extends AbstractType
     {
         $data = $options['data'];
         $builder
+            ->add('name',null,array(
+                'label' => 'sigtec.name',
+                'attr' => array(
+                    'class' => 'input'
+                ),
+            ))
             ->add('email','email',array(
                 'label' => 'sigtec.email',
                 'attr' => array(
