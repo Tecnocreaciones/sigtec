@@ -70,7 +70,7 @@ class PlantType extends AbstractType
                 'attr' => array(
                     'class' => 'select blue-gradient glossy replacement input-large auto-refesh',
                     'ng-model' => 'model.city',
-                    'ng-options' => 'key as value for (key,value) in cities',
+                    'ng-options' => 'value as value for (key,value) in cities',
                 ),
 //                'query_builder' => function(\Tecnocreaciones\Vzla\EntityBundle\Repository\EntityRepository $er) use ($data){
 //                    
