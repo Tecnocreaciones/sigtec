@@ -1,52 +1,62 @@
-{% extends '::base.html.twig' %}
+{% extends 'CoramerSigtecWebBundle:Backend:Common/formLayoutShow.html.twig' %}
 
+{% import 'CoramerSigtecResourceBundle:Macros:buttons.html.twig' as buttons %}
 {% block body -%}
-    <h1>Plant</h1>
+    <hgroup id="main-title" class="thin breadcrumb">
+        <h1>
+            <a href="{{ path('coramer_sigtec_company_index') }}">{{ 'sigtec.company'|trans }}</a>
+            <span class="icon-forward"></span>
+            <span class="thin"><a href="{{ path('coramer_sigtec_company_show',{id:company_plant.company.id}) }}">{{ company_plant.company.rif }}</a></span>
+        </h1>
+    </hgroup>
+    <fieldset class="fieldset">
+        <legend class="legend">{{ 'sigtec.plant'|trans }}</legend>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ entity.email }}</td>
-            </tr>
-            <tr>
-                <th>Phones</th>
-                <td>{{ entity.phones }}</td>
-            </tr>
-            <tr>
-                <th>Useplant</th>
-                <td>{{ entity.usePlant }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ entity.address }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Updatedat</th>
-                <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('plant') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('plant_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.company'|trans }}</label>
+            <a href="{{ path('coramer_sigtec_company_show',{id:company_plant.company.id}) }}">{{ company_plant.company.rif }}</a>
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.email'|trans }}</label>
+            {{ company_plant.email }}
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.phones'|trans }}</label>
+            {% for phone in company_plant.phones %}
+                <span class="icon-mobile "></span>&nbsp;{{ phone.number }}<br/>
+            {% endfor %}
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.dedications'|trans }}</label>
+            <ul class="bullet-list ">
+                {% for dedication in company_plant.dedications %}
+                    <li>{{ dedication.description }}</li>
+                {% endfor %}
+            </ul>
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.address'|trans }}</label>
+            {{ company_plant.address }}
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.state'|trans }}</label>
+            {{ company_plant.state.description }}
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.city'|trans }}</label>
+            {{ company_plant.city.description }}
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.created_at'|trans }}</label>
+            {{ company_plant.company.createdAt|date('Y-m-d h:i a') }}
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.updated_at'|trans }}</label>
+            {{ company_plant.company.updatedAt|date('Y-m-d h:i a') }}
+        </p>
+    </fieldset>
+    <p class="button-height align-right">
+        {{ buttons.edit(path('coramer_sigtec_company_plant_update', { 'id': company_plant.id })) }}
+        {{ buttons.delete(path('coramer_sigtec_company_plant_delete', { 'id': company_plant.id })) }}
+    </p>
 {% endblock %}

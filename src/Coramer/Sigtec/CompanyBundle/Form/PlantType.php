@@ -16,10 +16,10 @@ class PlantType extends AbstractType
     {
         $data = $options['data'];
         $builder
-            ->add('email',null,array(
+            ->add('email','email',array(
                 'label' => 'sigtec.email',
                 'attr' => array(
-                    'class' => 'input focus'
+                    'class' => 'input'
                 ),
             ))
             ->add('phones','collection',array(
@@ -32,8 +32,9 @@ class PlantType extends AbstractType
             ->add('dedications',null,array(
                 'label' => 'sigtec.use_plant',
                 'attr' => array(
-                    'class' => 'select multiple-as-single easy-multiple-selection expandable-list blue-gradient check-list replacement reversed focus input-large small-margin-right'
+                    'class' => 'select multiple-as-single easy-multiple-selection expandable-list blue-gradient glossy check-list replacement reversed input-large small-margin-right'
                 ),
+                'multiple' => true,
                 'property' => 'description',
                 'empty_value' => 'sigtec.select',
             ))
@@ -51,8 +52,11 @@ class PlantType extends AbstractType
                 'property' => 'description',
                 'empty_value' => 'sigtec.select',
                 'attr' => array(
-                    'class' => 'select blue-gradient glossy input-large'
+                    'class' => 'select blue-gradient replacement glossy input-large',
+                    'ng-model' => 'model.state',
+                    'ng-change' => 'getCities()'
                 ),
+                'required' => true,
                 'query_builder' => function(\Tecnocreaciones\Vzla\EntityBundle\Repository\EntityRepository $er){
                     return $er->getQueryAllActive();
                 },
@@ -62,13 +66,16 @@ class PlantType extends AbstractType
                 'class' => 'Tecnocreaciones\Vzla\EntityBundle\Entity\City',
                 'property' => 'description',
                 'empty_value' => 'sigtec.select',
+                'required' => true,
                 'attr' => array(
-                    'class' => 'select blue-gradient glossy replacement focus input-large'
+                    'class' => 'select blue-gradient glossy replacement input-large auto-refesh',
+                    'ng-model' => 'model.city',
+                    'ng-options' => 'key as value for (key,value) in cities',
                 ),
-                'query_builder' => function(\Tecnocreaciones\Vzla\EntityBundle\Repository\EntityRepository $er) use ($data){
-                    
-                    return $er->getQueryByState($data->getState());
-                },
+//                'query_builder' => function(\Tecnocreaciones\Vzla\EntityBundle\Repository\EntityRepository $er) use ($data){
+//                    
+//                    return $er->getQueryByState($data->getState());
+//                },
             ))
         ;
     }

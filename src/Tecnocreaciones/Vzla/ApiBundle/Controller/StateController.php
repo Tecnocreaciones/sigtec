@@ -18,5 +18,16 @@ namespace Tecnocreaciones\Vzla\ApiBundle\Controller;
  */
 class StateController extends \Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController
 {
-
+    
+    function getStateCitiesAction(\Symfony\Component\HttpFoundation\Request $request) {
+        $resource = $this->findOr404($request);
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('stateCities.html'))
+            ->setTemplateVar($this->config->getResourceName())
+            ->setData($resource->getCities())
+        ;
+        $view->getSerializationContext()->setGroups('state');
+        return $this->handleView($view);
+    }
 }

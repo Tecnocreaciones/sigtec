@@ -20,6 +20,7 @@ NelmioApiDocBundle:
 tecnocreaciones_vzla_api:
     resource: "@TecnocreacionesVzlaApiBundle/Resources/config/routing.yml"
     prefix:   /api
+    type: rest
     
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

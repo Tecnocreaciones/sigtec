@@ -1,0 +1,18 @@
+Coramer\Sigtec\CompanyBundle\Entity\Dedication:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [list,companies]
+        description:
+            expose: true
+            groups: [list,companies]
+        active:
+            expose: true
+            groups: [list]
+        createdAt:
+            expose: true
+            groups: [list]
+        updatedAt:
+            expose: true
+            groups: [list]

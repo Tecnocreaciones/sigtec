@@ -103,4 +103,16 @@ class CompanyController extends ResourceController
         
         return $response;
     }
+    
+    function plantsAction(Request $request) {
+        $resource = $this->findOr404($request);
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('plants.html'))
+            ->setTemplateVar($this->config->getResourceName())
+            ->setData($resource->getPlants())
+        ;
+        $view->getSerializationContext()->setGroups('companies');
+        return $this->handleView($view);
+    }
 }

@@ -1,11 +1,15 @@
 {% extends 'CoramerSigtecWebBundle:Backend:Common/formLayoutShow.html.twig' %}
 
 {% import 'CoramerSigtecResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/table3860.css?v=1') }}">
+{% endblock %}
 
 {% block body -%}
     <hgroup id="main-title" class="thin breadcrumb">
         <h1>
-            <a href="{{ path('coramer_sigtec_company_client_index') }}">{{ 'sigtec.company'|trans }}</a>
+            <a href="{{ path('coramer_sigtec_company_index') }}">{{ 'sigtec.company'|trans }}</a>
             <span class="icon-forward"></span>
             <span class="thin"><a href="{{ path('coramer_sigtec_company_show',{id:company.id}) }}">{{ company.rif }}</a></span>
         </h1>
@@ -50,10 +54,83 @@
             {{ company.updatedAt|date('Y-m-d h:i a') }}
         </p>
     </fieldset>
-    <p class="button-height">
-        
-        {{ buttons.edit(path('coramer_sigtec_company_plant_create', { 'company_id': company.id })) }}
+
+            <div class="block">
+                <div class="block-title">
+                    <h3>{{ 'sigtec.plants'|trans }}</h3>
+                    <div class="button-group absolute-right compact">
+                        <a href="{{ path('coramer_sigtec_company_plant_create', { 'company_id': company.id }) }}" class="button icon-list-add">{{ 'sigtec.add'|trans }}</a>
+                    </div>
+                </div>
+
+                <div class="with-padding">
+                    <table class="simple-table responsive-table" id="sorting-example2">
+                        <thead>
+                            <tr>
+                                <th scope="col">{{ 'sigtec.address'|trans }}</th>
+                                <th scope="col" width="15%" class="hide-on-mobile">{{ 'sigtec.email'|trans }}</th>
+                                <th scope="col" width="15%" class="hide-on-mobile-portrait">{{ 'sigtec.phones'|trans }}</th>
+                                <th scope="col" width="15%" class="hide-on-tablet">{{ 'sigtec.dedications'|trans }}</th>
+                                <th scope="col" width="120" class="align-right">{{ 'sigtec.actions'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for plant in company.plants %}
+                                <tr id="table-row-{{ plant.id }}">
+                                    <th scope="row">
+                                        <small>{{ ('sigtec.plant'|trans) ~ ' ' ~ loop.index }}:</small>
+                                        <a href="{{ path('coramer_sigtec_company_plant_show',{id:plant.id}) }}">{{ plant.address }}</a>
+                                    </th>
+                                    <td>{{ plant.email }}</td>
+                                    <td>
+                                        {% for phone in plant.phones %}
+                                            {{ phone.number }}<b>; </b>
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for dedication in plant.dedications %}
+                                            {{ dedication.description }}<b>; </b>
+                                        {% endfor %}
+                                    </td>
+                                    <td class="align-right vertical-center">
+                                        <span class="button-group compact">
+                                            <a href="{{ path('coramer_sigtec_company_plant_update',{id:plant.id}) }}" class="button icon-pencil">{{ 'sigtec.edit'|trans }}</a>
+                                            {{ buttons.delete_mini(path('coramer_sigtec_company_plant_delete',{id:plant.id}),null,plant.id) }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                    <tr>
+                                        <td scope="row" colspan="5" class="align-center">
+                                            {{ 'sigtec.no_plants_recorded'|trans }}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+    <br />
+    <p class="button-height align-right">
         {{ buttons.edit(path('coramer_sigtec_company_update', { 'id': company.id })) }}
         {{ buttons.delete(path('coramer_sigtec_company_delete', { 'id': company.id })) }}
     </p>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{  asset('bundles/coramersigtecweb/frontend/js/libs/jquery.tablesorter.min.js') }}"></script>
+{% endblock %}
+
+{% block javascript %} 
+    {{ parent() }}
+    <script type="text/javascript">
+        $('#sorting-example2').tablesorter({
+            headers: {
+                4: {sorter: false}
+            }
+        });
+    </script>
 {% endblock %}

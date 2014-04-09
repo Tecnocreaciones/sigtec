@@ -33,21 +33,37 @@
 </a>
 {% endmacro %}
 
-{% macro delete_mini(url, message, disabled=false, modal=true) %}
-{% if disabled %}
-<span class="btn btn-sm btn-danger disabled">
-    <i class="glyphicon glyphicon-trash"></i><span>{{ message is empty ? 'sms_facilito.delete'|trans : message }}</span>
-</span>
-{% else %}
-<form action="{{ url }}" method="post" novalidate>
-    <input type="hidden" name="_method" value="DELETE">
-    <button class="btn-link {% if modal %} btn-confirm{% endif %} " type="submit" question="{{ message }}">
-        <a class="red" href="#" data-rel="tooltip" title="{{ 'sms_facilito.delete'|trans }}">
-            <i class="icon-trash bigger-130"></i>
-        </a>
-    </button>
-</form>
-{% endif %}
+{% macro delete_mini(url, message, tableIdRow = null) %}
+{% set idForm = url|hash %}
+    <a href="" class="button icon-trash with-tooltip confirm" onclick="openDelete2('{{ url }}','{{ tableIdRow }}')" title="{{ 'sigtec.delete'|trans }}"></a>
+    
+    <script type="text/javascript">
+        function openDelete2(url,tableIdRow)
+        {
+                $.modal.confirm('¿{{ message is empty ? 'sigtec.question.delete'|trans : message }}?', function()
+                {
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: { _method:'DELETE' }
+                    }).done(function(data){
+                        if(tableIdRow > 0){
+                            $('#table-row-'+tableIdRow).remove();
+                        }
+                    }).fail(function(data){
+                        
+                    });
+
+                }, function()
+                {
+                        
+                },
+                {
+                    textConfirm: '{{ 'sigtec.yes'|trans }}',
+                    textCancel: '{{ 'sigtec.no'|trans }}'
+                });
+        };
+    </script>
 {% endmacro %}
 
 {% macro delete(url, message, disabled=false, modal=true) %}
@@ -57,19 +73,20 @@
 </span>
 {% else %}
     {% set idForm = url|hash %}
-    <button type="button" class="button" onclick="openDelete('{{ idForm }}')">
+    <button type="button" class="button" onclick="openDelete('{{ url }}')">
         <span class="button-icon red-gradient left-side"><span class="icon-trash"></span></span>
         {{ 'sigtec.delete'|trans }}
-        <form action="{{ url }}" id="{{ idForm }}" method="post" novalidate>
-            <input type="hidden" name="_method" value="DELETE">
-        </form>
     </button>
     <script type="text/javascript">
-        function openDelete(idForm)
+        function openDelete(url)
         {
                 $.modal.confirm('¿{{ message is empty ? 'sigtec.question.delete'|trans : message }}?', function()
                 {
-                    $('#'+idForm).submit();
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: { _method:'DELETE' }
+                    });
 
                 }, function()
                 {

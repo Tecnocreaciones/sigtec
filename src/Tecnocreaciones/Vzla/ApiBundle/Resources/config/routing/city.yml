@@ -1,13 +1,13 @@
-tecnocreaciones_vzla_entity_city_index:
+api_tecnocreaciones_vzla_entity_city_index:
     pattern:  /cities
     defaults:
-        _controller: tecnocreaciones_vzla_entity.controller.city:indexAction
+        _controller: api_tecnocreaciones_vzla_entity.controller.city:indexAction
     requirements:
         _method: GET
         
-tecnocreaciones_vzla_entity_city_show:
+api_tecnocreaciones_vzla_entity_city_show:
     pattern:  /cities/{id}
     defaults:
-        _controller: tecnocreaciones_vzla_entity.controller.city:showAction
+        _controller: api_tecnocreaciones_vzla_entity.controller.city:showAction
     requirements:
         _method: GET

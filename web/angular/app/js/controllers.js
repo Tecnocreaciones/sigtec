@@ -25,4 +25,28 @@ angular.module('sigtecModule.controllers', []).
               });
               //$scope.tableParams.reload();
           }
-  });
+  })
+  .controller('VzlaEntityController',function($scope,$http,notificationBarService){
+      $scope.model = {};
+      $scope.model.state = $("#coramer_sigtec_companybundle_plant_state").val();
+      $scope.cities = {};
+      $scope.getCities = function(){
+          var url = Routing.generate('api_tecnocreaciones_vzla_entity_state_cities',{id: $scope.model.state});
+          notificationBarService.getLoadStatus().loading();
+          $http.get(url).success(function(data){
+              var cities = [];
+              jQuery.each(data,function(i,val){
+                  cities[val.id] = val.description;
+              });
+              $scope.cities = cities;
+              notificationBarService.getLoadStatus().done();
+          }).error(function(data){
+              $scope.cities = {};
+              notificationBarService.getLoadStatus().done();
+          });
+      }
+      $scope.getCities();
+      $scope.model.city = cityId;
+      console.log(cityId);
+  })
+  ;

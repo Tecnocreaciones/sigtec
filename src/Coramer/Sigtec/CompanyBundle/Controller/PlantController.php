@@ -3,9 +3,6 @@
 namespace Coramer\Sigtec\CompanyBundle\Controller;
 
 use Coramer\Sigtec\CompanyBundle\Entity\Phone;
-use Coramer\Sigtec\CompanyBundle\Entity\Plant;
-use Coramer\Sigtec\CompanyBundle\Form\PlantType;
-use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -16,6 +13,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
  */
 class PlantController extends ResourceController
 {
+    public function updateAction(Request $request) {
+        
+        return parent::updateAction($request);
+    }
     /**
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -26,11 +27,13 @@ class PlantController extends ResourceController
     public function newAction(Request $request, \Coramer\Sigtec\CompanyBundle\Entity\Company $company)
     {
         $resource = $this->createNew();
-        $phone = new Phone();
-        $resource->getPhones()->add($phone);
+        if($request->isMethod('GET')){
+            $phone = new Phone();
+            $resource->getPhones()->add($phone);
+        }
         $form = $this->getForm($resource);
-
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
+            $resource->setCompany($company);
             $resource = $this->domainManager->create($resource);
 
             if (null === $resource) {
@@ -39,7 +42,7 @@ class PlantController extends ResourceController
 
             return $this->redirectHandler->redirectTo($resource);
         }
-
+        
         if ($this->config->isApiRequest()) {
             return $this->handleView($this->view($form));
         }
@@ -56,20 +59,4 @@ class PlantController extends ResourceController
 
         return $this->handleView($view);
     }
-    
-    /**
-     * @param type $companyId
-     */
-//    public function newAction($companyId)
-//    {
-//        $phone1 = new Phone();
-//        $entity = new Plant();
-//        $entity->getPhones()->add($phone1);
-//        $form   = $this->createCreateForm($entity);
-//
-//        return array(
-//            'entity' => $entity,
-//            'form'   => $form->createView(),
-//        );
-//    }
 }

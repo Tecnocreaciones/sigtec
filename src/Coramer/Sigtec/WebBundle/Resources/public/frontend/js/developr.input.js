@@ -899,7 +899,7 @@
 			search = false, searchSpan, searchField,
 			date = new Date(), time = date.getTime(),
 			isWatching, updateList, onBlur;
-
+                
 		// Prevent event default
 		if (event)
 		{
@@ -2665,7 +2665,10 @@
 		doc.on('click', '.select-arrow, span.select-value', function(event)
 		{
 			var select = $(this).parent();
-
+			if (select.hasClass('auto-refesh'))
+			{
+                                _refreshSelectValues.apply(select[0]);
+			}
 			// Filter here rather than in the delegated event, a little bit faster overall
 			if (!select.hasClass('auto-open'))
 			{

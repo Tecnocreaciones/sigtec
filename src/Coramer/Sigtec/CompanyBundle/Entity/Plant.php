@@ -3,6 +3,7 @@
 namespace Coramer\Sigtec\CompanyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Plant
@@ -31,14 +32,14 @@ class Plant
     /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Phone
      *
-     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Phone", mappedBy="plant", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Phone", mappedBy="plant", cascade={"persist","remove"})
      */
     private $phones;
 
     /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Dedication
      *
-     * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Dedication", mappedBy="plants")
+     * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Dedication", inversedBy="plants")
      */
     private $dedications;
 
@@ -65,14 +66,16 @@ class Plant
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createdAt", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="upda", type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="update_at", type="datetime", nullable=true)
      */
     private $updatedAt;
     
@@ -198,6 +201,7 @@ class Plant
      */
     public function addPhone(\Coramer\Sigtec\CompanyBundle\Entity\Phone $phones)
     {
+        $phones->setPlant($this);
         $this->phones->add($phones);
         return $this;
     }
@@ -299,7 +303,8 @@ class Plant
      */
     public function addDedication(\Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedications)
     {
-        $this->dedications[] = $dedications;
+        $dedications->addPlant($this);
+        $this->dedications->add($dedications);
 
         return $this;
     }
