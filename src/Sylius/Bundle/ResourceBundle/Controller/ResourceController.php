@@ -182,8 +182,7 @@ class ResourceController extends FOSRestController
         $form = $this->getForm($resource);
 
         if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
-            var_dump($_POST['coramer_sigtec_companybundle_plant']);
-            die;
+
             $this->domainManager->update($resource);
 
             return $this->redirectHandler->redirectTo($resource);

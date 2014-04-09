@@ -78,7 +78,7 @@
                             {% for plant in company.plants %}
                                 <tr id="table-row-{{ plant.id }}">
                                     <th scope="row">
-                                        <small>{{ ('sigtec.plant'|trans) ~ ' ' ~ loop.index }}:</small>
+                                        <small>{{ plant.name }}:</small>
                                         <a href="{{ path('coramer_sigtec_company_plant_show',{id:plant.id}) }}">{{ plant.address }}</a>
                                     </th>
                                     <td>{{ plant.email }}</td>

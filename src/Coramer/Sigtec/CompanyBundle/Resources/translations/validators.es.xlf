@@ -14,6 +14,10 @@
                 <source>sigtec.validators.The_email_x_is_not_a_valid_email</source>
                 <target>El email no es un correo electrónico válido</target>
             </trans-unit>
+            <trans-unit id="502d3735a4ab15e72428229aceea8927">
+                <source>sigtec.validators.this_plant_has_already_been_recorded</source>
+                <target>Esta planta ya ha sido agregada</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

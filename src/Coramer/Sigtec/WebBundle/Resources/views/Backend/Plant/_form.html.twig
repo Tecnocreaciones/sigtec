@@ -1,7 +1,12 @@
 {% import 'CoramerSigtecResourceBundle:Macros:actions.html.twig' as actions %}
 <fieldset ng-controller="VzlaEntityController" class="fieldset fields-list">
     <legend class="legend">{{ 'sigtec.plant'|trans }}</legend>
-    {{ form_start(form) }}
+    
+    <div class="field-block button-height">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
     <div class="field-block button-height">
         {{ form_label(form.email) }}
         {{ form_widget(form.email) }}
@@ -11,7 +16,7 @@
         {{ form_label(form.phones) }}
         <ul class="phones list-style-none no-margin-left" data-prototype="{{ form_widget(form.phones.vars.prototype)|e }}">
             {% for phone in form.phones %}
-                <li class="input" style="display:block;width:197px;margin-bottom:7px;margin-top:7px">{{ form_widget(phone.number) }}</li>
+                <li class="input" style="display:block;width:197px;margin-bottom:7px;margin-top:7px">{{ form_widget(phone.number) }}{{ form_errors(phone) }}</li>
             {% endfor %}
         </ul>
         {{ form_errors(form.phones) }}
@@ -49,7 +54,6 @@
     {% endif %}
     
     {{ form_widget(form._token) }}
-    {{ company_plant.city.id }}
 </fieldset>
 <script type="text/javascript">
     var cityId = 0;
@@ -59,7 +63,8 @@
     var $collectionHolder;
     
     // setup an "add a phone" link
-    var $addPhoneLink = $('<a href="#" class="add_phone_link">{{ 'sigtec.add_a_phone'|trans }}</a>');
+    var help = '<span class="info-spot"><span class="icon-info-round"></span><span class="info-bubble">{{ 'sigtec.help.add_a_phone'|trans }}</span></span>';
+    var $addPhoneLink = $('<a href="#" class="add_phone_link small-margin-right">{{ 'sigtec.add_a_phone'|trans }}</a>'+help);
     var $newLinkLi = $('<li></li>').append($addPhoneLink);
 
     jQuery(document).ready(function() {
@@ -101,7 +106,6 @@
             var input = $form.find('input');
             // increase the index with one for the next item
             $collectionHolder.data('index', index + 1);
-
             // Display the form in the page in an li, before the "Add a phone" link li
             var $newFormLi = $('<li class="input" style="display:block;width:197px;margin-bottom:7px;margin-top:7px"></li>').append(input[0]);
             $newLinkLi.before($newFormLi);

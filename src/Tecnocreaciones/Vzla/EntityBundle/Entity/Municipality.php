@@ -41,7 +41,7 @@ class Municipality
     /**
      * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\State
      *
-     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\State", inversedBy="state")
+     * @ORM\ManyToOne(targetEntity="Tecnocreaciones\Vzla\EntityBundle\Entity\State", inversedBy="municipalities")
      */
     private $state;
 
