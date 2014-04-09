@@ -90,4 +90,23 @@ class PlantController extends ResourceController
 
         return $this->handleView($view);
     }
+    
+    public function deleteAction(Request $request) {
+        if($request->isXmlHttpRequest()){
+            $resource = $this->findOr404($request);
+            $this->domainManager->delete($resource);
+            /** @var FlashBag $flashBag */
+            $flashBag = $this->get('session')->getBag('flashes');
+            $data = array(
+                'message' => $flashBag->get('success'),
+            );
+            return new \Symfony\Component\HttpFoundation\JsonResponse($data);
+        }else{
+            $resource = $this->findOr404($request);
+            $company = $resource->getCompany();
+            $this->domainManager->delete($resource);
+
+            return $this->redirect($this->generateUrl('coramer_sigtec_company_show',array('id' => $company->getId())));
+        }
+    }
 }

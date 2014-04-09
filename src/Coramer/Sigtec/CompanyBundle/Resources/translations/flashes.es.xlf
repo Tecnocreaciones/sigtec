@@ -10,6 +10,10 @@
                 <source>coramer_sigtec.company_plant.update</source>
                 <target>La planta ha sido actualizada</target>
             </trans-unit>
+            <trans-unit id="9dcb2e5a58e0f15aa3ba9d0ee4cd2fbe">
+                <source>coramer_sigtec.company_plant.delete</source>
+                <target>La planta ha sido eliminada</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

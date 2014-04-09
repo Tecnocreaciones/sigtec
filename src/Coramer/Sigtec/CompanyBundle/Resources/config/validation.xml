@@ -17,8 +17,27 @@
         <property name="email">
             <constraint name="Email">
                 <option name="message">sigtec.validators.The_email_x_is_not_a_valid_email</option>
-                <option name="checkMX">true</option>
+                <option name="checkMX">false</option>
             </constraint>
+        </property>
+    </class>
+    <class name="Coramer\Sigtec\CompanyBundle\Entity\Phone">
+        <property name="number">
+            <constraint name="Regex">
+                <option name="pattern">/^((\+\d{2}-\d{3}\-\d{3}-\d{4})|(0\d{3}-\d{3}-\d{4}))$/</option>
+                <option name="message">sigtec.validation.must_enter_a_valid_phone</option>
+            </constraint>
+        </property>
+    </class>
+    <class name="Coramer\Sigtec\CompanyBundle\Entity\Plant">
+        <property name="email">
+            <constraint name="Email">
+                <option name="message">sigtec.validators.The_email_x_is_not_a_valid_email</option>
+                <option name="checkMX">false</option>
+            </constraint>
+        </property>
+        <property name="phones">
+            <constraint name="Valid" />
         </property>
     </class>
 </constraint-mapping>

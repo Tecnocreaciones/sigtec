@@ -35,10 +35,10 @@
 
 {% macro delete_mini(url, message, tableIdRow = null) %}
 {% set idForm = url|hash %}
-    <a href="" class="button icon-trash with-tooltip confirm" onclick="openDelete2('{{ url }}','{{ tableIdRow }}')" title="{{ 'sigtec.delete'|trans }}"></a>
+    <a href="" class="button icon-trash with-tooltip confirm" onclick="openDeleteAjax('{{ url }}','{{ tableIdRow }}')" title="{{ 'sigtec.delete'|trans }}"></a>
     
     <script type="text/javascript">
-        function openDelete2(url,tableIdRow)
+        function openDeleteAjax(url,tableIdRow)
         {
                 $.modal.confirm('¿{{ message is empty ? 'sigtec.question.delete'|trans : message }}?', function()
                 {
@@ -73,20 +73,20 @@
 </span>
 {% else %}
     {% set idForm = url|hash %}
-    <button type="button" class="button" onclick="openDelete('{{ url }}')">
+    <button type="button" class="button" onclick="openDelete('{{ idForm }}')">
         <span class="button-icon red-gradient left-side"><span class="icon-trash"></span></span>
         {{ 'sigtec.delete'|trans }}
+        <form action="{{ url }}" id="{{ idForm }}" method="post" novalidate>
+            <input type="hidden" name="_method" value="DELETE">
+        </form>
     </button>
     <script type="text/javascript">
-        function openDelete(url)
+        // Demo confirm
+        function openDelete(idForm)
         {
                 $.modal.confirm('¿{{ message is empty ? 'sigtec.question.delete'|trans : message }}?', function()
                 {
-                    $.ajax({
-                      type: "POST",
-                      url: url,
-                      data: { _method:'DELETE' }
-                    });
+                    $('#'+idForm).submit();
 
                 }, function()
                 {
