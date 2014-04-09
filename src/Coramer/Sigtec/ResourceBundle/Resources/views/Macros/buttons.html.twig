@@ -50,8 +50,29 @@
                         if(tableIdRow > 0){
                             $('#table-row-'+tableIdRow).remove();
                         }
+                        $.each(data.message,function(index,value){
+                            notify(value,'', {
+                                    system:		false,   
+                                    autoClose:		4000,
+                                    icon:               ConfApp.assetPath + 'bundles/coramersigtecweb/frontend/img/icons/icon-success.png',
+                                    iconOutside:        false,
+                                    closeButton:        true,
+                                    showCloseOnHover:	false,
+                                    groupSimilar:	true
+                                });
+                        });
                     }).fail(function(data){
-                        
+                        $.each(data.message,function(index,value){
+                            notify(value,'', {
+                                    system:		false,   
+                                    autoClose:		4000,
+                                    icon:               ConfApp.assetPath + 'bundles/coramersigtecweb/frontend/img/icons/icon-error.png',
+                                    iconOutside:        false,
+                                    closeButton:        true,
+                                    showCloseOnHover:	false,
+                                    groupSimilar:	true
+                                });
+                        });
                     });
 
                 }, function()

@@ -13,8 +13,34 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
  */
 class PlantController extends ResourceController
 {
+    public function showAction(Request $request) {
+        $resource = $this->findOr404($request);
+        
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($resource->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
+        
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('show.html'))
+            ->setTemplateVar($this->config->getResourceName())
+            ->setData($resource)
+        ;
+        $view->getSerializationContext()->setGroups('show');
+        return $this->handleView($view);
+    }
+    
     public function updateAction(Request $request) {
         $resource = $this->findOr404($request);
+        
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($resource->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
+        
         $em = $this->getDoctrine()->getManager();
         $originalPhones = new \Doctrine\Common\Collections\ArrayCollection();
         foreach ($resource->getPhones() as $phone) {
@@ -57,6 +83,11 @@ class PlantController extends ResourceController
      */
     public function newAction(Request $request, \Coramer\Sigtec\CompanyBundle\Entity\Company $company)
     {
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($company)){
+            throw $this->createAccessDeniedHttpException();
+        }
         $resource = $this->createNew();
         if($request->isMethod('GET')){
             $phone = new Phone();
@@ -92,9 +123,15 @@ class PlantController extends ResourceController
     }
     
     public function deleteAction(Request $request) {
+        $resource = $this->findOr404($request);
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($resource->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
+        
+        $this->domainManager->delete($resource);
         if($request->isXmlHttpRequest()){
-            $resource = $this->findOr404($request);
-            $this->domainManager->delete($resource);
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
             $data = array(
@@ -102,11 +139,7 @@ class PlantController extends ResourceController
             );
             return new \Symfony\Component\HttpFoundation\JsonResponse($data);
         }else{
-            $resource = $this->findOr404($request);
-            $company = $resource->getCompany();
-            $this->domainManager->delete($resource);
-
-            return $this->redirect($this->generateUrl('coramer_sigtec_company_show',array('id' => $company->getId())));
+            return $this->redirect($this->generateUrl('coramer_sigtec_company_show',array('id' => $resource->getCompany()->getId())));
         }
     }
 }

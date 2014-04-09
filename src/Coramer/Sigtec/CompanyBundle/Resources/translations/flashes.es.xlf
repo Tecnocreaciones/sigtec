@@ -14,6 +14,18 @@
                 <source>coramer_sigtec.company_plant.delete</source>
                 <target>La planta ha sido eliminada</target>
             </trans-unit>
+            <trans-unit id="9fa0789da9c22918bb611b1113e46baa">
+                <source>coramer_sigtec.company.delete</source>
+                <target>La empresa ha sido eliminada</target>
+            </trans-unit>
+            <trans-unit id="d95b4519de7ff90f4a3059f30c7cd0f7">
+                <source>coramer_sigtec.company.update</source>
+                <target>La empresa se ha actualizado</target>
+            </trans-unit>
+            <trans-unit id="2566f1be74cd2418f0dd59c777d41e93">
+                <source>coramer_sigtec.company.create</source>
+                <target>La empresa se ha creado</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
