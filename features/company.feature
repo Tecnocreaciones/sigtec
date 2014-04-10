@@ -69,8 +69,10 @@ Feature: Company
         When I fill in the following:
             | Nombre    | Eduardo                    |
             | Email     | carlos@tecnocreaciones.com |
-            | Dirección | Direcion toda              |
+            | Dirección | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie at enim sed commodo. Nullam scelerisque arcu eu suscipit. |
         When I fill in "coramer_sigtec_companybundle_plant_phones_0_number" with "+58-412-000-0000"
+        And I click on the text "Añade un teléfono"
+        When I fill in "coramer_sigtec_companybundle_plant_phones_1_number" with "0800-555-5555"
         Given I additionally select "Almacenaje de materia prima" from "coramer_sigtec_companybundle_plant_dedications"
         Given I additionally select "Producción" from "coramer_sigtec_companybundle_plant_dedications"
         Given I additionally select "Apure" from "coramer_sigtec_companybundle_plant_state"

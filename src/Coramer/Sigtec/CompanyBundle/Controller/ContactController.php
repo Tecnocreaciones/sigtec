@@ -12,6 +12,40 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
  */
 class ContactController extends ResourceController
 {
+    public function updateAction(Request $request) {
+         $resource = $this->findOr404($request);
+         
+         //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($resource->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
+         
+        $form = $this->getForm($resource);
+
+        if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
+
+            $this->domainManager->update($resource);
+
+            return $this->redirect($this->generateUrl('coramer_sigtec_backend_company_show',array('id' => $resource->getCompany()->getId())));
+        }
+
+        if ($this->config->isApiRequest()) {
+            return $this->handleView($this->view($form));
+        }
+
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('update.html'))
+            ->setData(array(
+                $this->config->getResourceName() => $resource,
+                'form'                           => $form->createView()
+            ))
+        ;
+
+        return $this->handleView($view);
+    }
+    
     /**
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request

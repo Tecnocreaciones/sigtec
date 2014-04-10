@@ -55,8 +55,7 @@ class PlantController extends ResourceController
                 }
             }
             $this->domainManager->update($resource);
-
-            return $this->redirectHandler->redirectTo($resource);
+            return $this->redirect($this->generateUrl('coramer_sigtec_backend_company_show',array('id' => $resource->getCompany()->getId())));
         }
 
         if ($this->config->isApiRequest()) {

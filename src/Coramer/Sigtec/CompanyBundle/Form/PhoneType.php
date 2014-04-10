@@ -19,7 +19,7 @@ class PhoneType extends AbstractType
             ->add('number',null,array(
                 'attr' => array(
                     'class' => 'input small-margin-right',
-                    'title' => '0800-555-555 +58-412-555-555 +58-212-111-1111'
+                    'title' => '0800-555-5555 +58-412-555-5555 +58-212-111-1111'
                 ),
             ))
         ;
