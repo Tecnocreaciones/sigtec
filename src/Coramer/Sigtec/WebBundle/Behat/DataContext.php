@@ -147,25 +147,6 @@ class DataContext extends BehatContext implements KernelAwareInterface
         }
     }
     
-     /**
-     * Proporciona unos grupos de contactos
-     * 
-     * @Given /^there are following groups contacs:$/
-     */
-    public function thereAreFollowingGroupsContacs(TableNode $table)
-    {
-        $manager = $this->getEntityManager();
-        $repository = $this->getRepository('contact_group');
-        foreach ($table->getHash() as $data) {
-            $groupContact = $repository->createNew();
-            $groupContact->setName($data['name'])
-                         ->setUser($this->getUser());
-            
-            $manager->persist($groupContact);
-        }
-        $manager->flush();
-    }
-    
     /**
      * Proporciona unos contactos
      * @Given /^there are following contacs:$/
@@ -191,6 +172,30 @@ class DataContext extends BehatContext implements KernelAwareInterface
                 }
             }
             $manager->persist($contact);
+        }
+        $manager->flush();
+    }
+    
+    /**
+     * Genera compañias
+     * @Given /^there are following companies:$/
+     */
+    public function thereAreFollowingCompanies(TableNode $table)
+    {
+        $manager = $this->getEntityManager();
+        $repository = $this->getRepository('company');
+        foreach ($table->getHash() as $data) {
+            $company = $repository->createNew();
+            $company
+                    ->setRif($data['rif'])
+                    ->setName($data['name'])
+                    ->setEmail($data['email'])
+                    ->setEmail($data['email'])
+                    ->setStatus($data['status'] === 'yes')
+                    ;
+                $user = $this->findOneBy('user', array('username' => $data['user']));
+                $company->setUser($user);
+            $manager->persist($company);
         }
         $manager->flush();
     }

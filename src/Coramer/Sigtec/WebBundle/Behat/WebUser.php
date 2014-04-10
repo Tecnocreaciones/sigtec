@@ -411,7 +411,7 @@ class WebUser extends MinkContext implements KernelAwareInterface
      */
     public function iAmLoggedInAsClient()
     {
-        $this->iAmLoggedInAsRole('ROLE_CLIENT', 'cliente');
+        $this->iAmLoggedInAsRole('ROLE_CLIENT', 'client');
     }
 
     /**
@@ -524,7 +524,29 @@ class WebUser extends MinkContext implements KernelAwareInterface
         $element->click();
  
     }
+    
+    /** Click on the element with the provided xpath query
+    *
+    * @When /^I click on the element with xpath "([^"]*)"$/
+    */
+   public function iClickOnTheElementWithXPath($xpath)
+   {
+       $session = $this->getSession(); // get the mink session
+       $element = $session->getPage()->find(
+           'xpath',
+           $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+       ); // runs the actual query and returns the element
 
+       // errors must not pass silently
+       if (null === $element) {
+           throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+       }
+
+       // ok, let's click on it
+       $element->click();
+
+   }
+    
     /**
      * Assert that given code equals the current one.
      *
