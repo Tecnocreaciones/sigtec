@@ -60,3 +60,14 @@ Feature: Company
         And I press "Si"
         And I wait a few seconds
         Then I should see "La empresa se ha eliminado"
+
+    @javascript
+    Scenario: Registering existing company by rif
+        Given I am on the company create page
+        Then I should see "Registro de empresa"
+        When I fill in the following:
+            | RIF | V-19000001-0 |
+            | Nombre | Calos Ortega |
+            | Email | carlos@tecnocreaciones.com |
+        And I press "Registrar"
+        Then I should see "Este RIF ya se encuentra registrado"
