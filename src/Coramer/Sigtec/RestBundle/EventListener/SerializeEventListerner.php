@@ -51,16 +51,16 @@ class SerializeEventListerner implements EventSubscriberInterface
         $object = $event->getObject();
         $event->getVisitor()->addData('_links', array(
             'self' => array(
-                'href' => $this->generateUrl('coramer_sigtec_company_show',array('id' => $object->getId()))
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_show',array('id' => $object->getId()))
                 ),
             'edit' => array(
-                'href' => $this->generateUrl('coramer_sigtec_company_update',array('id' => $object->getId()))
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_update',array('id' => $object->getId()))
                 ),
             'delete' => array(
-                'href' => $this->generateUrl('coramer_sigtec_company_delete',array('id' => $object->getId()))
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_delete',array('id' => $object->getId()))
                 ),
             'validate_rif' => array(
-                'href' => $this->generateUrl('coramer_sigtec_company_validaterif',array('id' => $object->getId()))
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_validaterif',array('id' => $object->getId()))
                 ),
         ));
     }
@@ -73,13 +73,13 @@ class SerializeEventListerner implements EventSubscriberInterface
         $object = $event->getObject();
         $event->getVisitor()->addData('_links', array(
             'self' => array(
-                'href' => $this->generateUrl('coramer_sigtec_company_plant_show',array('id' => $object->getId()))
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_plant_show',array('id' => $object->getId()))
                 ),
             'edit' => array(
-                'href' => $this->generateUrl('coramer_sigtec_company_plant_update',array('id' => $object->getId()))
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_plant_update',array('id' => $object->getId()))
                 ),
             'delete' => array(
-                'href' => $this->generateUrl('coramer_sigtec_company_plant_delete',array('id' => $object->getId()))
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_plant_delete',array('id' => $object->getId()))
                 ),
         ));
     }

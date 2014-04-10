@@ -1,1 +1,1 @@
-fos.Router.setData({"base_url":"","routes":{"coramer_sigtec_company_index":{"tokens":[["variable",".","[^\/]++","_format"],["text","\/company\/"]],"defaults":{"_format":"html"},"requirements":{"_locale":"es|en"},"hosttokens":[]}},"prefix":"","host":"localhost","scheme":"http"});
+fos.Router.setData({"base_url":"","routes":{"coramer_sigtec_backend_company_index":{"tokens":[["variable",".","[^\/]++","_format"],["text","\/company\/"]],"defaults":{"_format":"html"},"requirements":{"_locale":"es|en"},"hosttokens":[]}},"prefix":"","host":"localhost","scheme":"http"});

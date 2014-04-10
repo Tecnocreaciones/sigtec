@@ -7,7 +7,7 @@ angular.module('sigtecModule.controllers', []).
           $scope.data = {};
           $scope.limit = '40';
           
-          var url = Routing.generate('coramer_sigtec_company_index',{_format:'json'});
+          var url = Routing.generate('coramer_sigtec_backend_company_index',{_format:'json'});
           return $http.get(url).success(function(data) {
             $scope.data = data;
             

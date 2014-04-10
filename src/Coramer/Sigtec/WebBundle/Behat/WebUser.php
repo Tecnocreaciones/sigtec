@@ -405,6 +405,14 @@ class WebUser extends MinkContext implements KernelAwareInterface
     {
         $this->iAmLoggedInAsRole('ROLE_USER', $username);
     }
+    
+    /**
+     * @Given /^I am logged in as client$/
+     */
+    public function iAmLoggedInAsClient()
+    {
+        $this->iAmLoggedInAsRole('ROLE_CLIENT', 'client');
+    }
 
     /**
      * @Then /^I should be logged in$/
@@ -485,6 +493,30 @@ class WebUser extends MinkContext implements KernelAwareInterface
             "$('.suggestions-results').children().length > 0"
         );
     }
+    
+    /**
+     * @Given /^I am on a "([^"]*)" company$/
+     */
+    public function iAmOnACompany($rif)
+    {
+        $company = $this->getSubContext('data')->thereIsCompany($rif);
+        $this->getSession()->visit($this->generatePageUrl('company show',array('id'=> $company->getId())));
+    }
+    
+    /**
+     * @When /^I click on (edit|delete) button$/
+     */
+    public function iClickOnButton($action)
+    {
+        if($action == 'delete'){
+            $this->iClickOnTheElementWithXPath("//*[@id='main']/div[2]/p/button");
+            $this->assertPageContainsText('Desea eliminar este elemento');
+            $this->pressButton('Si');
+            $this->iWaitAFewSeconds();
+        }elseif($action == 'edit'){
+            $this->iClickOnTheElementWithXPath("//*[@id='main']/div[2]/p/a");
+        }
+    }
 
     
     /**
@@ -516,7 +548,29 @@ class WebUser extends MinkContext implements KernelAwareInterface
         $element->click();
  
     }
+    
+    /** Click on the element with the provided xpath query
+    *
+    * @When /^I click on the element with xpath "([^"]*)"$/
+    */
+   public function iClickOnTheElementWithXPath($xpath)
+   {
+       $session = $this->getSession(); // get the mink session
+       $element = $session->getPage()->find(
+           'xpath',
+           $session->getSelectorsHandler()->selectorToXpath('xpath', $xpath)
+       ); // runs the actual query and returns the element
 
+       // errors must not pass silently
+       if (null === $element) {
+           throw new \InvalidArgumentException(sprintf('Could not evaluate XPath: "%s"', $xpath));
+       }
+
+       // ok, let's click on it
+       $element->click();
+
+   }
+    
     /**
      * Assert that given code equals the current one.
      *
@@ -568,7 +622,7 @@ class WebUser extends MinkContext implements KernelAwareInterface
     }
 
     /**
-     * Create user and login with given role.sms_facilito
+     * Create user and login with given role.coramer_sigtec
      *
      * @param string $role
      */
@@ -578,11 +632,12 @@ class WebUser extends MinkContext implements KernelAwareInterface
         $user = $this->getSubContext('data')->thereIsUser($username, $password, $role);
         $this->getSession()->visit($this->generatePageUrl('fos_user_security_login'));
         
-        $this->fillField('_username', $username);
-        $this->fillField('_password', $password);
+        $this->fillField('login', $username);
+        $this->fillField('pass', $password);
         $this->pressButton('login');
         
-        $this->assertPageContainsText('Home');
+        $this->iWaitAFewSeconds();
+        $this->assertPageContainsText('Dashboard');
         if ('Selenium2Driver' === strstr(get_class($this->getSession()->getDriver()), 'Selenium2Driver')) {
             $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken($user, $password, array($role));
             $this->getSecurityContext()->setToken($token);
@@ -607,11 +662,11 @@ class WebUser extends MinkContext implements KernelAwareInterface
         $routes = $this->getContainer()->get('router')->getRouteCollection();
 
         if (null === $routes->get($route)) {
-            $route = 'sms_facilito_'.$route;
+            $route = 'coramer_sigtec_'.$route;
         }
 
         if (null === $routes->get($route)) {
-            $route = str_replace('sms_facilito_', 'sms_facilito_backend_', $route);
+            $route = str_replace('coramer_sigtec_', 'coramer_sigtec_backend_', $route);
         }
 
         $route = str_replace(array_keys($this->actions), array_values($this->actions), $route);

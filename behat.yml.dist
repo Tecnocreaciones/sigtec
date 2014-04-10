@@ -11,8 +11,14 @@ default:
                 env: test
                 debug: true
         Behat\MinkExtension\Extension:
-            base_url: http://localhost/symfony/pequiven/web/app_test.php
+            base_url: http://localhost/symfony/sigtec/web/app_test.php
             default_session: symfony2
             browser_name: chrome
             goutte: ~
             selenium2: ~
+        VIPSoft\DoctrineDataFixturesExtension\Extension:
+            lifetime:    feature
+            autoload:    true
+            directories: ~
+            fixtures: ~
+        Tecnocreaciones\Bundle\BehatBundle\Extension\DoctrineDataFixturesExtension: ~

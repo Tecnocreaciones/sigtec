@@ -147,25 +147,6 @@ class DataContext extends BehatContext implements KernelAwareInterface
         }
     }
     
-     /**
-     * Proporciona unos grupos de contactos
-     * 
-     * @Given /^there are following groups contacs:$/
-     */
-    public function thereAreFollowingGroupsContacs(TableNode $table)
-    {
-        $manager = $this->getEntityManager();
-        $repository = $this->getRepository('contact_group');
-        foreach ($table->getHash() as $data) {
-            $groupContact = $repository->createNew();
-            $groupContact->setName($data['name'])
-                         ->setUser($this->getUser());
-            
-            $manager->persist($groupContact);
-        }
-        $manager->flush();
-    }
-    
     /**
      * Proporciona unos contactos
      * @Given /^there are following contacs:$/
@@ -191,6 +172,77 @@ class DataContext extends BehatContext implements KernelAwareInterface
                 }
             }
             $manager->persist($contact);
+        }
+        $manager->flush();
+    }
+    
+    /**
+     * Genera compañias
+     * @Given /^there are following companies:$/
+     */
+    public function thereAreFollowingCompanies(TableNode $table)
+    {
+        $manager = $this->getEntityManager();
+        $repository = $this->getRepository('company');
+        foreach ($table->getHash() as $data) {
+            $company = $repository->createNew();
+            $company
+                    ->setRif($data['rif'])
+                    ->setName($data['name'])
+                    ->setEmail($data['email'])
+                    ->setStatus($data['status'] === 'yes')
+                    ;
+                $user = $this->findOneBy('user', array('username' => $data['user']));
+                $company->setUser($user);
+            $manager->persist($company);
+        }
+        $manager->flush();
+    }
+    
+    /**
+     * @Given /^there is company "([^"]*)"$/
+     */
+    function thereIsCompany($rif)
+    {
+        $manager = $this->getEntityManager();
+        $repository = $this->getRepository('company');
+        $company = $repository->createNew();
+        $company
+                ->setRif($rif)
+                ->setName($this->faker->name)
+                ->setEmail($this->faker->email)
+                ->setStatus(true)
+                ;
+        
+                $contact = new \Coramer\Sigtec\CompanyBundle\Entity\Contact();
+                $contact->setFirstName('Rafael')->setLastName('Carrillo')->setCharge('Contador');
+                $contact->setCompany($company);
+                
+                $user = $this->findOneBy('user', array('username' => 'client'));
+                $company->setUser($user);
+            $manager->persist($company);
+            $manager->persist($contact);
+        $manager->flush();
+        return $company;
+    }
+    
+     /**
+     * @Given /^there are following plants:$/
+     */
+    public function thereAreFollowingPlants(TableNode $table)
+    {
+        $manager = $this->getEntityManager();
+        $repository = $this->getRepository('company_plant');
+        foreach ($table->getHash() as $data) {
+            $plant = $repository->createNew();
+            $plant
+                    ->setName($data['name'])
+                    ->setEmail($data['email'])
+                    ->setAddress($data['address'])
+                    ;
+                $company = $this->findOneBy('company', array('rif' => $data['company']));
+                $plant->setCompany($company);
+            $manager->persist($plant);
         }
         $manager->flush();
     }
@@ -244,7 +296,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
      */
     public function getRepository($resource)
     {
-        return $this->getService('tec.repository.'.$resource);
+        return $this->getService('coramer_sigtec_backend.repository.'.$resource);
     }
 
     /**

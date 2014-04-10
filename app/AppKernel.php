@@ -47,6 +47,7 @@ class AppKernel extends Kernel
             new Tecnocreaciones\Vzla\FixturesBundle\TecnocreacionesVzlaFixturesBundle(),
             new Tecnocreaciones\Vzla\ApiBundle\TecnocreacionesVzlaApiBundle(),
             new Tecnocreaciones\Vzla\EntityBundle\TecnocreacionesVzlaEntityBundle(),
+            new Tecnocreaciones\Bundle\BehatBundle\TecnocreacionesBehatBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

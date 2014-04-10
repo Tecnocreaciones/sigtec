@@ -1,24 +1,24 @@
-coramer_sigtec_company_contact_show:
+coramer_sigtec_backend_company_contact_show:
     pattern:  /{id}/show
-    defaults: { _controller: coramer_sigtec.controller.company_contact:showAction }
+    defaults: { _controller: coramer_sigtec_backend.controller.company_contact:showAction }
 
-coramer_sigtec_company_contact_create:
+coramer_sigtec_backend_company_contact_create:
     pattern:  /{company_id}/create
     defaults:
-        _controller: coramer_sigtec.controller.company_contact:newAction
+        _controller: coramer_sigtec_backend.controller.company_contact:newAction
         _sylius:
             form: coramer_sigtec_companybundle_contact
     requirements: { _method: get|post }
 
-coramer_sigtec_company_contact_update:
+coramer_sigtec_backend_company_contact_update:
     pattern:  /{id}/update
     defaults:
-        _controller: coramer_sigtec.controller.company_contact:updateAction
+        _controller: coramer_sigtec_backend.controller.company_contact:updateAction
         _sylius:
             form: coramer_sigtec_companybundle_contact
     requirements: { _method: get|post|put }
 
-coramer_sigtec_company_contact_delete:
+coramer_sigtec_backend_company_contact_delete:
     pattern:  /{id}/delete
-    defaults: { _controller: coramer_sigtec.controller.company_contact:deleteAction }
+    defaults: { _controller: coramer_sigtec_backend.controller.company_contact:deleteAction }
     requirements: { _method: post|delete }

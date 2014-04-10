@@ -100,6 +100,7 @@ class Company
 
     public function __construct() {
         $this->plants = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->contacts = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
