@@ -493,6 +493,30 @@ class WebUser extends MinkContext implements KernelAwareInterface
             "$('.suggestions-results').children().length > 0"
         );
     }
+    
+    /**
+     * @Given /^I am on a "([^"]*)" company$/
+     */
+    public function iAmOnACompany($rif)
+    {
+        $company = $this->getSubContext('data')->thereIsCompany($rif);
+        $this->getSession()->visit($this->generatePageUrl('company show',array('id'=> $company->getId())));
+    }
+    
+    /**
+     * @When /^I click on (edit|delete) button$/
+     */
+    public function iClickOnButton($action)
+    {
+        if($action == 'delete'){
+            $this->iClickOnTheElementWithXPath("//*[@id='main']/div[2]/p/button");
+            $this->assertPageContainsText('Desea eliminar este elemento');
+            $this->pressButton('Si');
+            $this->iWaitAFewSeconds();
+        }elseif($action == 'edit'){
+            $this->iClickOnTheElementWithXPath("//*[@id='main']/div[2]/p/a");
+        }
+    }
 
     
     /**

@@ -190,7 +190,6 @@ class DataContext extends BehatContext implements KernelAwareInterface
                     ->setRif($data['rif'])
                     ->setName($data['name'])
                     ->setEmail($data['email'])
-                    ->setEmail($data['email'])
                     ->setStatus($data['status'] === 'yes')
                     ;
                 $user = $this->findOneBy('user', array('username' => $data['user']));
@@ -198,6 +197,33 @@ class DataContext extends BehatContext implements KernelAwareInterface
             $manager->persist($company);
         }
         $manager->flush();
+    }
+    
+    /**
+     * @Given /^there is company "([^"]*)"$/
+     */
+    function thereIsCompany($rif)
+    {
+        $manager = $this->getEntityManager();
+        $repository = $this->getRepository('company');
+        $company = $repository->createNew();
+        $company
+                ->setRif($rif)
+                ->setName($this->faker->name)
+                ->setEmail($this->faker->email)
+                ->setStatus(true)
+                ;
+        
+                $contact = new \Coramer\Sigtec\CompanyBundle\Entity\Contact();
+                $contact->setFirstName('Rafael')->setLastName('Carrillo')->setCharge('Contador');
+                $contact->setCompany($company);
+                
+                $user = $this->findOneBy('user', array('username' => 'client'));
+                $company->setUser($user);
+            $manager->persist($company);
+            $manager->persist($contact);
+        $manager->flush();
+        return $company;
     }
     
      /**

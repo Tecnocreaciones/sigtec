@@ -76,8 +76,7 @@ Feature: Company Plant
         And I click on the text "Carlos"
         Then I should see "Detalles"
         And I click on the text "addres for test plant"
-        #Button edit plant
-        When I click on the element with xpath "//*[@id='main']/div[2]/p/a"
+        When I click on edit button
         Then I should see "Actualizar planta"
         When I fill in the following:
             | Nombre    | Planta 5                   |
@@ -103,9 +102,5 @@ Feature: Company Plant
         And I click on the text "Carlos"
         Then I should see "Detalles"
         And I click on the text "addres for test plant"
-        #Button delete plant
-        When I click on the element with xpath "//*[@id='main']/div[2]/p/button"
-        Then I should see "Desea eliminar este elemento"
-        And I press "Si"
-        And I wait a few seconds
+        When I click on delete button
         Then I should see "La planta ha sido eliminada"
