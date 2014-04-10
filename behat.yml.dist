@@ -16,3 +16,8 @@ default:
             browser_name: chrome
             goutte: ~
             selenium2: ~
+        VIPSoft\DoctrineDataFixturesExtension\Extension:
+            lifetime:    feature
+            autoload:    true
+            directories: ~
+            fixtures: ~

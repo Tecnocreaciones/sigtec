@@ -62,7 +62,8 @@ class FeatureContext extends RawMinkContext implements KernelAwareInterface
     }
 
     /**
-     * @BeforeScenario
+     * Se quito este paso para poder tener los fixtures en el escenario
+     * BeforeScenario
      */
     public function purgeDatabase()
     {
