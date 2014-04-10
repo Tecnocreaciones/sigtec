@@ -244,7 +244,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
      */
     public function getRepository($resource)
     {
-        return $this->getService('tec.repository.'.$resource);
+        return $this->getService('coramer_sigtec.repository.'.$resource);
     }
 
     /**

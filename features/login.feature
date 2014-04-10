@@ -1,5 +1,5 @@
 Feature: Login
-  In order to see a word definition
+  In order to see a user process
   As a website user
   I users credentials to login
     

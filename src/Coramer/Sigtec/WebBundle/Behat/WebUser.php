@@ -405,6 +405,14 @@ class WebUser extends MinkContext implements KernelAwareInterface
     {
         $this->iAmLoggedInAsRole('ROLE_USER', $username);
     }
+    
+    /**
+     * @Given /^I am logged in as client$/
+     */
+    public function iAmLoggedInAsClient()
+    {
+        $this->iAmLoggedInAsRole('ROLE_CLIENT', 'client');
+    }
 
     /**
      * @Then /^I should be logged in$/
@@ -568,7 +576,7 @@ class WebUser extends MinkContext implements KernelAwareInterface
     }
 
     /**
-     * Create user and login with given role.sms_facilito
+     * Create user and login with given role.coramer_sigtec
      *
      * @param string $role
      */
@@ -578,11 +586,11 @@ class WebUser extends MinkContext implements KernelAwareInterface
         $user = $this->getSubContext('data')->thereIsUser($username, $password, $role);
         $this->getSession()->visit($this->generatePageUrl('fos_user_security_login'));
         
-        $this->fillField('_username', $username);
-        $this->fillField('_password', $password);
+        $this->fillField('login', $username);
+        $this->fillField('pass', $password);
         $this->pressButton('login');
         
-        $this->assertPageContainsText('Home');
+        $this->assertPageContainsText('Dashboard');
         if ('Selenium2Driver' === strstr(get_class($this->getSession()->getDriver()), 'Selenium2Driver')) {
             $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken($user, $password, array($role));
             $this->getSecurityContext()->setToken($token);
@@ -607,11 +615,11 @@ class WebUser extends MinkContext implements KernelAwareInterface
         $routes = $this->getContainer()->get('router')->getRouteCollection();
 
         if (null === $routes->get($route)) {
-            $route = 'sms_facilito_'.$route;
+            $route = 'coramer_sigtec_'.$route;
         }
 
         if (null === $routes->get($route)) {
-            $route = str_replace('sms_facilito_', 'sms_facilito_backend_', $route);
+            $route = str_replace('coramer_sigtec_', 'coramer_sigtec_backend_', $route);
         }
 
         $route = str_replace(array_keys($this->actions), array_values($this->actions), $route);
