@@ -32,7 +32,7 @@ class ContactController extends ResourceController
             $resource->setCompany($company);
             $resource = $this->domainManager->create($resource);
 
-            return $this->redirect($this->generateUrl('coramer_sigtec_company_show',array('id' => $company->getId())));
+            return $this->redirect($this->generateUrl('coramer_sigtec_backend_company_show',array('id' => $company->getId())));
         }
         
         if ($this->config->isApiRequest()) {
@@ -69,7 +69,7 @@ class ContactController extends ResourceController
             );
             return new \Symfony\Component\HttpFoundation\JsonResponse($data);
         }else{
-            return $this->redirect($this->generateUrl('coramer_sigtec_company_show',array('id' => $resource->getCompany()->getId())));
+            return $this->redirect($this->generateUrl('coramer_sigtec_backend_company_show',array('id' => $resource->getCompany()->getId())));
         }
     }
 }

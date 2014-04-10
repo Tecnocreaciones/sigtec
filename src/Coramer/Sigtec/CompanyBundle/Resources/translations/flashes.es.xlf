@@ -3,39 +3,39 @@
     <file source-language="es" datatype="plaintext" original="file.ext">
         <body>
             <trans-unit id="0c330fd6af0e4ef447d2f0e2b8b381df">
-                <source>coramer_sigtec.company_plant.create</source>
+                <source>coramer_sigtec_backend.company_plant.create</source>
                 <target>La planta ha sido creada</target>
             </trans-unit>
             <trans-unit id="1512ad89a61e0751501b1c91752277f5">
-                <source>coramer_sigtec.company_plant.update</source>
+                <source>coramer_sigtec_backend.company_plant.update</source>
                 <target>La planta ha sido actualizada</target>
             </trans-unit>
             <trans-unit id="9dcb2e5a58e0f15aa3ba9d0ee4cd2fbe">
-                <source>coramer_sigtec.company_plant.delete</source>
+                <source>coramer_sigtec_backend.company_plant.delete</source>
                 <target>La planta ha sido eliminada</target>
             </trans-unit>
             <trans-unit id="9fa0789da9c22918bb611b1113e46baa">
-                <source>coramer_sigtec.company.delete</source>
+                <source>coramer_sigtec_backend.company.delete</source>
                 <target>La empresa ha sido eliminada</target>
             </trans-unit>
             <trans-unit id="d95b4519de7ff90f4a3059f30c7cd0f7">
-                <source>coramer_sigtec.company.update</source>
+                <source>coramer_sigtec_backend.company.update</source>
                 <target>La empresa se ha actualizado</target>
             </trans-unit>
             <trans-unit id="2566f1be74cd2418f0dd59c777d41e93">
-                <source>coramer_sigtec.company.create</source>
+                <source>coramer_sigtec_backend.company.create</source>
                 <target>La empresa se ha creado</target>
             </trans-unit>
             <trans-unit id="29bc8b65641044b07be5a276a2c6f134">
-                <source>coramer_sigtec.company_contact.create</source>
+                <source>coramer_sigtec_backend.company_contact.create</source>
                 <target>El contacto ha sido creado</target>
             </trans-unit>
             <trans-unit id="54d1e9708b4fab5a705f952e8f98a7f7">
-                <source>coramer_sigtec.company_contact.update</source>
+                <source>coramer_sigtec_backend.company_contact.update</source>
                 <target>El contacto ha sido actualizado</target>
             </trans-unit>
             <trans-unit id="fabaa1ef270b0e9431d2aa8ed27f2516">
-                <source>coramer_sigtec.company_contact.delete</source>
+                <source>coramer_sigtec_backend.company_contact.delete</source>
                 <target>El contacto ha sido eliminado</target>
             </trans-unit>
         </body>

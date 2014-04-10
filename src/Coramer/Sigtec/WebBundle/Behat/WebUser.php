@@ -411,7 +411,7 @@ class WebUser extends MinkContext implements KernelAwareInterface
      */
     public function iAmLoggedInAsClient()
     {
-        $this->iAmLoggedInAsRole('ROLE_CLIENT', 'client');
+        $this->iAmLoggedInAsRole('ROLE_CLIENT', 'cliente');
     }
 
     /**
@@ -590,6 +590,7 @@ class WebUser extends MinkContext implements KernelAwareInterface
         $this->fillField('pass', $password);
         $this->pressButton('login');
         
+        $this->iWaitAFewSeconds();
         $this->assertPageContainsText('Dashboard');
         if ('Selenium2Driver' === strstr(get_class($this->getSession()->getDriver()), 'Selenium2Driver')) {
             $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken($user, $password, array($role));

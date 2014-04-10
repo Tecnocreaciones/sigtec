@@ -3,14 +3,14 @@
 {% block body -%}
     <hgroup id="main-title" class="thin breadcrumb">
         <h1>
-            <a href="{{ path('coramer_sigtec_company_index') }}">{{ 'sigtec.company'|trans }}</a>
+            <a href="{{ path('coramer_sigtec_backend_company_index') }}">{{ 'sigtec.company'|trans }}</a>
             <span class="icon-forward"></span>
-            <span class="thin"><a href="{{ path('coramer_sigtec_company_show',{id:company.id}) }}">{{ company.rif }}</a></span>
+            <span class="thin"><a href="{{ path('coramer_sigtec_backend_company_show',{id:company.id}) }}">{{ company.rif }}</a></span>
             <span class="icon-forward"></span>
             <span class="thin">{{ 'sigtec.contact_record'|trans }}</a></span>
         </h1>
     </hgroup>
-    <form method="POST" action="{{ path('coramer_sigtec_company_contact_create',{company_id : company.id}) }}">
+    <form method="POST" action="{{ path('coramer_sigtec_backend_company_contact_create',{company_id : company.id}) }}">
     {% include 'CoramerSigtecWebBundle:Backend:Contact/_form.html.twig' with {'action':'create'} %}
     </form>
 {% endblock %}

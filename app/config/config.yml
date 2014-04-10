@@ -178,23 +178,23 @@ nelmio_api_doc: ~
 
 sylius_resource:
     resources:
-         coramer_sigtec.user:
+         coramer_sigtec_backend.user:
             driver: doctrine/orm
             classes:
                 model: Coramer\Sigtec\CoreBundle\Entity\User
-         coramer_sigtec.company:
+         coramer_sigtec_backend.company:
             driver: doctrine/orm
             templates: CoramerSigtecWebBundle:Backend/Company
             classes:
                 controller: Coramer\Sigtec\CompanyBundle\Controller\CompanyController
                 model: Coramer\Sigtec\CompanyBundle\Entity\Company
-         coramer_sigtec.company_plant:
+         coramer_sigtec_backend.company_plant:
             driver: doctrine/orm
             templates: CoramerSigtecWebBundle:Backend/Plant
             classes:
                 controller: Coramer\Sigtec\CompanyBundle\Controller\PlantController
                 model: Coramer\Sigtec\CompanyBundle\Entity\Plant
-         coramer_sigtec.company_contact:
+         coramer_sigtec_backend.company_contact:
             driver: doctrine/orm
             templates: CoramerSigtecWebBundle:Backend/Contact
             classes:

@@ -1,50 +1,50 @@
-coramer_sigtec_company_index:
+coramer_sigtec_backend_company_index:
     pattern:  /.{_format}
     defaults:
-        _controller:  coramer_sigtec.controller.company:clientIndexAction
+        _controller:  coramer_sigtec_backend.controller.company:clientIndexAction
         _format: html
     options:
         expose: true
     requirements: { _method: GET }
     
-coramer_sigtec_company_show:
+coramer_sigtec_backend_company_show:
     pattern:  /{id}/show.{_format}
     defaults: 
-        _controller:  coramer_sigtec.controller.company:showAction
+        _controller:  coramer_sigtec_backend.controller.company:showAction
         _format: html
 
-coramer_sigtec_company_create:
+coramer_sigtec_backend_company_create:
     pattern:  /create
     defaults:
-        _controller: coramer_sigtec.controller.company:createAction
+        _controller: coramer_sigtec_backend.controller.company:createAction
         _sylius:
             form: coramer_sigtec_companybundle_company
     requirements: { _method: GET|POST }
     
-coramer_sigtec_company_update:
+coramer_sigtec_backend_company_update:
     pattern:  /{id}/update
     defaults:
-        _controller: coramer_sigtec.controller.company:updateAction
+        _controller: coramer_sigtec_backend.controller.company:updateAction
         _sylius:
             form: coramer_sigtec_companybundle_company
     requirements: { _method: GET|PUT }
 
-coramer_sigtec_company_delete:
+coramer_sigtec_backend_company_delete:
     pattern:  /{id}/delete
     defaults: 
-        _controller: coramer_sigtec.controller.company:deleteAction
+        _controller: coramer_sigtec_backend.controller.company:deleteAction
     requirements: { _method: POST|DELETE }
 
-coramer_sigtec_company_validaterif:
+coramer_sigtec_backend_company_validaterif:
     pattern:  /{id}/validate-rif
     defaults:
-        _controller: coramer_sigtec.controller.company:validateRifAction
+        _controller: coramer_sigtec_backend.controller.company:validateRifAction
     requirements: { _method: GET }
 
-coramer_sigtec_company_plants:
+coramer_sigtec_backend_company_plants:
     pattern:  /{id}/plants.{_format}
     defaults:
-        _controller: coramer_sigtec.controller.company:plantsAction
+        _controller: coramer_sigtec_backend.controller.company:plantsAction
         _format: json
     requirements:
         _method: GET
