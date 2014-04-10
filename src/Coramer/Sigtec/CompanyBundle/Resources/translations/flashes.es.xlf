@@ -16,7 +16,7 @@
             </trans-unit>
             <trans-unit id="9fa0789da9c22918bb611b1113e46baa">
                 <source>coramer_sigtec_backend.company.delete</source>
-                <target>La empresa ha sido eliminada</target>
+                <target>La empresa se ha eliminado</target>
             </trans-unit>
             <trans-unit id="d95b4519de7ff90f4a3059f30c7cd0f7">
                 <source>coramer_sigtec_backend.company.update</source>
