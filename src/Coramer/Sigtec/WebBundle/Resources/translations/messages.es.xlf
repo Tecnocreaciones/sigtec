@@ -286,6 +286,14 @@
                 <source>sigtec.add</source>
                 <target>Añadir</target>
             </trans-unit>
+            <trans-unit id="728c66536b0a4551fcf62447ecafe727">
+                <source>sigtec.contacts</source>
+                <target>Contacto(s)</target>
+            </trans-unit>
+            <trans-unit id="4026b564bb1fbe7e4f70c214496bbb22">
+                <source>sigtec.contact</source>
+                <target>Contacto</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

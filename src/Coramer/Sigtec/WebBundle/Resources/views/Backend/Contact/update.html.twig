@@ -1,0 +1,17 @@
+{% extends 'CoramerSigtecWebBundle:Backend:Common/formLayout.html.twig' %}
+
+{% block body -%}
+    <hgroup id="main-title" class="thin breadcrumb">
+        <h1>
+            <a href="{{ path('coramer_sigtec_company_index') }}">{{ 'sigtec.company'|trans }}</a>
+            <span class="icon-forward"></span>
+            <span class="thin"><a href="{{ path('coramer_sigtec_company_show',{id:company_contact.company.id}) }}">{{ company_contact.company.rif }}</a></span>
+            <span class="icon-forward"></span>
+            <span class="thin">{{ 'sigtec.update_contact'|trans }}</a></span>
+        </h1>
+    </hgroup>
+    <form method="POST" action="{{ path('coramer_sigtec_company_contact_update',{id:company_contact.id}) }}">
+        <input type="hidden" name="_method" value="PUT" />
+    {% include 'CoramerSigtecWebBundle:Backend:Contact/_form.html.twig' with {'action':'update'} %}
+    </form>
+{% endblock %}
