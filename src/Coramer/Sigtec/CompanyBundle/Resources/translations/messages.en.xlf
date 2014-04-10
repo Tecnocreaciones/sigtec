@@ -42,6 +42,30 @@
                 <source>sigtec.no_plants_recorded</source>
                 <target>No plants recorded</target>
             </trans-unit>
+            <trans-unit id="5291e919dfa6686a0f83a32e0bf1a1a5">
+                <source>sigtec.no_contacts_recorded</source>
+                <target>No contacts recorded</target>
+            </trans-unit>
+            <trans-unit id="9056f16201228811ff0f6d6d800f64f4">
+                <source>sigtec.contact_record</source>
+                <target>Contact record</target>
+            </trans-unit>
+            <trans-unit id="18e2e9a6f67cb286c4bb5ecba89c3203">
+                <source>sigtec.first_name</source>
+                <target>First name</target>
+            </trans-unit>
+            <trans-unit id="1652469c03fd5f85ed5efbc68623493c">
+                <source>sigtec.last_name</source>
+                <target>Last name</target>
+            </trans-unit>
+            <trans-unit id="45e237f0959cb835388cb8162747ac2b">
+                <source>sigtec.charge</source>
+                <target>Charge</target>
+            </trans-unit>
+            <trans-unit id="f2d151e57c813052db362d33a5a94171">
+                <source>sigtec.update_contact</source>
+                <target>Update contact</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

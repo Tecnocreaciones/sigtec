@@ -15,9 +15,12 @@ class PlantRepository extends EntityRepository
 {   
     function findByCompanyNameAndUser(array $parameters)
     {
-        $name = null;
+        $name = $company = null;
         if(isset($parameters['name'])){
             $name = $parameters['name'];
+        }
+        if(isset($parameters['company'])){
+            $company = $parameters['company'];
         }
         $qb = $this->createQueryBuilder('p');
         $qb
@@ -25,10 +28,12 @@ class PlantRepository extends EntityRepository
                 ->andWhere('p.name = :name')
                 ->innerJoin('p.company', 'c')
                 ->innerJoin('c.user', 'u')
+                ->andWhere('c.id = :company')
                 ->andWhere('u.id = :user')
                 ->setParameters(array(
                     'name' => $name,
                     'user' => $this->getUser(),
+                    'company' => $company,
                 ))
                 ;
         return $qb->getQuery()->getResult();

@@ -85,6 +85,13 @@ class Company
     private $plants;
     
     /**
+     *
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Contact
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Contact", mappedBy="company")
+     */
+    private $contacts;
+
+    /**
      * @var \Coramer\Sigtec\CoreBundle\Entity\User
      * 
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CoreBundle\Entity\User", inversedBy="companies")
@@ -330,5 +337,38 @@ class Company
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add contacts
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Contact $contacts
+     * @return Company
+     */
+    public function addContact(\Coramer\Sigtec\CompanyBundle\Entity\Contact $contacts)
+    {
+        $this->contacts[] = $contacts;
+
+        return $this;
+    }
+
+    /**
+     * Remove contacts
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Contact $contacts
+     */
+    public function removeContact(\Coramer\Sigtec\CompanyBundle\Entity\Contact $contacts)
+    {
+        $this->contacts->removeElement($contacts);
+    }
+
+    /**
+     * Get contacts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
     }
 }

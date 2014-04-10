@@ -16,7 +16,7 @@
             </trans-unit>
             <trans-unit id="502d3735a4ab15e72428229aceea8927">
                 <source>sigtec.validators.this_plant_has_already_been_recorded</source>
-                <target>Esta planta ya ha sido agregada</target>
+                <target>Esta planta ya ha sido agregada a esta empresa</target>
             </trans-unit>
         </body>
     </file>

@@ -13,12 +13,12 @@
         <legend class="legend">{{ 'sigtec.plant'|trans }}</legend>
 
         <p class="inline-label">
-            <label class="label">{{ 'sigtec.name'|trans }}</label>
-            {{ company_plant.name }}
-        </p>
-        <p class="inline-label">
             <label class="label">{{ 'sigtec.company'|trans }}</label>
             <a href="{{ path('coramer_sigtec_company_show',{id:company_plant.company.id}) }}">{{ company_plant.company.rif }}</a>
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.name'|trans }}</label>
+            {{ company_plant.name }}
         </p>
         <p class="inline-label">
             <label class="label">{{ 'sigtec.email'|trans }}</label>
@@ -52,11 +52,11 @@
         </p>
         <p class="inline-label">
             <label class="label">{{ 'sigtec.created_at'|trans }}</label>
-            {{ company_plant.company.createdAt|date('Y-m-d h:i a') }}
+            {{ company_plant.createdAt|date('Y-m-d h:i a') }}
         </p>
         <p class="inline-label">
             <label class="label">{{ 'sigtec.updated_at'|trans }}</label>
-            {{ company_plant.company.updatedAt|date('Y-m-d h:i a') }}
+            {{ company_plant.updatedAt|date('Y-m-d h:i a') }}
         </p>
     </fieldset>
     <p class="button-height align-right">

@@ -194,6 +194,12 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\CompanyBundle\Controller\PlantController
                 model: Coramer\Sigtec\CompanyBundle\Entity\Plant
+         coramer_sigtec.company_contact:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/Contact
+            classes:
+                controller: Coramer\Sigtec\CompanyBundle\Controller\ContactController
+                model: Coramer\Sigtec\CompanyBundle\Entity\Contact
          api_tecnocreaciones_vzla_entity.country:
             driver: doctrine/orm
             classes:

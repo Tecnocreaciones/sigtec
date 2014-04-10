@@ -26,6 +26,18 @@
                 <source>coramer_sigtec.company.create</source>
                 <target>The company has been created</target>
             </trans-unit>
+            <trans-unit id="29bc8b65641044b07be5a276a2c6f134">
+                <source>coramer_sigtec.company_contact.create</source>
+                <target>The contact has been created</target>
+            </trans-unit>
+            <trans-unit id="54d1e9708b4fab5a705f952e8f98a7f7">
+                <source>coramer_sigtec.company_contact.update</source>
+                <target>The contact has been updated</target>
+            </trans-unit>
+            <trans-unit id="fabaa1ef270b0e9431d2aa8ed27f2516">
+                <source>coramer_sigtec.company_contact.delete</source>
+                <target>The contact has been deleted</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

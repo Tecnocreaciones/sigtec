@@ -31,7 +31,10 @@
     </class>
     <class name="Coramer\Sigtec\CompanyBundle\Entity\Plant">
         <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
-            <option name="fields">name</option>
+            <option name="fields">
+                <value>name</value>
+                <value>company</value>
+            </option>
             <option name="message">sigtec.validators.this_plant_has_already_been_recorded</option>
             <option name="repositoryMethod">findByCompanyNameAndUser</option>
         </constraint>
