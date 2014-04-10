@@ -199,6 +199,27 @@ class DataContext extends BehatContext implements KernelAwareInterface
         }
         $manager->flush();
     }
+    
+     /**
+     * @Given /^there are following plants:$/
+     */
+    public function thereAreFollowingPlants(TableNode $table)
+    {
+        $manager = $this->getEntityManager();
+        $repository = $this->getRepository('company_plant');
+        foreach ($table->getHash() as $data) {
+            $plant = $repository->createNew();
+            $plant
+                    ->setName($data['name'])
+                    ->setEmail($data['email'])
+                    ->setAddress($data['address'])
+                    ;
+                $company = $this->findOneBy('company', array('rif' => $data['company']));
+                $plant->setCompany($company);
+            $manager->persist($plant);
+        }
+        $manager->flush();
+    }
 
 
     /**

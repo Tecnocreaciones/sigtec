@@ -6,16 +6,18 @@
 
     <!--
     <parameters>
-        <parameter key="tecnocreaciones_vzla_fixtures.example.class">Tecnocreaciones\Vzla\FixturesBundle\Example</parameter>
+        <parameter key="tecnocreaciones_behat.example.class">Tecnocreaciones\Bundle\BehatBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="tecnocreaciones_vzla_fixtures.example" class="%tecnocreaciones_vzla_fixtures.example.class%">
+        <service id="tecnocreaciones_behat.example" class="%tecnocreaciones_behat.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>
         </service>
     </services>
     -->
-    
+    <parameters>
+        <parameter key="behat.doctrine_data_fixtures.service.hook_listener.class">Tecnocreaciones\Bundle\BehatBundle\EventListener\DoctrineDataFixturesExtension\HookListener</parameter>
+    </parameters>
 </container>

@@ -21,3 +21,4 @@ default:
             autoload:    true
             directories: ~
             fixtures: ~
+        Tecnocreaciones\Bundle\BehatBundle\Extension\DoctrineDataFixturesExtension: ~

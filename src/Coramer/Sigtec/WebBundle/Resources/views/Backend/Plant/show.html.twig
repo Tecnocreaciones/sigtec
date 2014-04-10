@@ -44,11 +44,11 @@
         </p>
         <p class="inline-label">
             <label class="label">{{ 'sigtec.state'|trans }}</label>
-            {{ company_plant.state.description }}
+            {{ company_plant.state ? company_plant.state.description : '' }}
         </p>
         <p class="inline-label">
             <label class="label">{{ 'sigtec.city'|trans }}</label>
-            {{ company_plant.city.description }}
+            {{ company_plant.city ? company_plant.city.description : '' }}
         </p>
         <p class="inline-label">
             <label class="label">{{ 'sigtec.created_at'|trans }}</label>
