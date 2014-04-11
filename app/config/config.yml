@@ -141,6 +141,12 @@ tecnocreaciones_tools:
     table_prefix:
         use_prefix: true
         prefix: %app.db.prefix%
+    sequence_generator:
+        options:
+            additional_masks:
+                - mask1
+                - mask2
+            
         
 jms_serializer:
     handlers:

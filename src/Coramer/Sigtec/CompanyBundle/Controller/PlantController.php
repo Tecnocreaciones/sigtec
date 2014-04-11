@@ -87,11 +87,14 @@ class PlantController extends ResourceController
         if(!$user->getCompanies()->contains($company)){
             throw $this->createAccessDeniedHttpException();
         }
+        $sequence = $this->get('sigtec.sequence_generator')->getNextNamePlant($company);
+        
         $resource = $this->createNew();
         if($request->isMethod('GET')){
             $phone = new Phone();
             $resource->getPhones()->add($phone);
         }
+        $resource->setName($sequence);//Pre set sequence
         $form = $this->getForm($resource);
         $resource->setCompany($company);
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
