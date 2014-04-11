@@ -91,4 +91,96 @@ class SubSegment
     {
         return $this->description;
     }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return SubSegment
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return SubSegment
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return SubSegment
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set segment
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment $segment
+     * @return SubSegment
+     */
+    public function setSegment(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment $segment = null)
+    {
+        $this->segment = $segment;
+
+        return $this;
+    }
+
+    /**
+     * Get segment
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment 
+     */
+    public function getSegment()
+    {
+        return $this->segment;
+    }
 }

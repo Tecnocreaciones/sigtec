@@ -125,4 +125,106 @@ class Segment
     {
         return $this->note;
     }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Segment
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Segment
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Segment
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Add subSegments
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment $subSegments
+     * @return Segment
+     */
+    public function addSubSegment(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment $subSegments)
+    {
+        $this->subSegments[] = $subSegments;
+
+        return $this;
+    }
+
+    /**
+     * Remove subSegments
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment $subSegments
+     */
+    public function removeSubSegment(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment $subSegments)
+    {
+        $this->subSegments->removeElement($subSegments);
+    }
+
+    /**
+     * Get subSegments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSubSegments()
+    {
+        return $this->subSegments;
+    }
 }

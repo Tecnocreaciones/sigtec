@@ -95,4 +95,106 @@ class Resin
     {
         return $this->description;
     }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Resin
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Resin
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Resin
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Add grades
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Grade $grades
+     * @return Resin
+     */
+    public function addGrade(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Grade $grades)
+    {
+        $this->grades[] = $grades;
+
+        return $this;
+    }
+
+    /**
+     * Remove grades
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Grade $grades
+     */
+    public function removeGrade(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Grade $grades)
+    {
+        $this->grades->removeElement($grades);
+    }
+
+    /**
+     * Get grades
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGrades()
+    {
+        return $this->grades;
+    }
 }

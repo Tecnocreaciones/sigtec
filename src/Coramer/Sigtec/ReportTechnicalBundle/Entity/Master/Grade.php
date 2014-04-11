@@ -91,4 +91,96 @@ class Grade
     {
         return $this->description;
     }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Grade
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Grade
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Grade
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set resin
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Resin $resin
+     * @return Grade
+     */
+    public function setResin(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Resin $resin = null)
+    {
+        $this->resin = $resin;
+
+        return $this;
+    }
+
+    /**
+     * Get resin
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Resin 
+     */
+    public function getResin()
+    {
+        return $this->resin;
+    }
 }

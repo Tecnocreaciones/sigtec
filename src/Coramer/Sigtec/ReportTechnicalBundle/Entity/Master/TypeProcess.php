@@ -94,4 +94,106 @@ class TypeProcess
     {
         return $this->description;
     }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return TypeProcess
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return TypeProcess
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return TypeProcess
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Add processes
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process $processes
+     * @return TypeProcess
+     */
+    public function addProcess(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process $processes)
+    {
+        $this->processes[] = $processes;
+
+        return $this;
+    }
+
+    /**
+     * Remove processes
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process $processes
+     */
+    public function removeProcess(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process $processes)
+    {
+        $this->processes->removeElement($processes);
+    }
+
+    /**
+     * Get processes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProcesses()
+    {
+        return $this->processes;
+    }
 }
