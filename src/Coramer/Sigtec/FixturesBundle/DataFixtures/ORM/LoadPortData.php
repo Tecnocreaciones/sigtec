@@ -28,6 +28,78 @@ class LoadPortData implements FixtureInterface
         $port->setDescription('Bachaquero');
             $manager->persist($port);
             
+        $port = new Port();
+        $port->setDescription('Cabello');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Coro');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Cúcuta');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('El Tablazo');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Guanta');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Guayaquil');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('La Guaira');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Maicao');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Maracaibo');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Miami');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Paraguachón');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Puerto Principe');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Punto Fijo');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Río Hacha');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('San Antonio');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('San Felix');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Sta. Elena');
+            $manager->persist($port);
+            
+        $port = new Port();
+        $port->setDescription('Ureña');
+            $manager->persist($port);
+            
         $manager->flush();
     }
 }
