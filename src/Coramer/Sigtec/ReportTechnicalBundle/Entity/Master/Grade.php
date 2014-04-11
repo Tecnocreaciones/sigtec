@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Grado
+ * Grade
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\GradoRepository")
+ * @ORM\Entity(repositoryClass="Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\GradeRepository")
  */
-class Grado
+class Grade
 {
     /**
      * @var integer
@@ -66,7 +66,7 @@ class Grado
      * Set description
      *
      * @param string $description
-     * @return Grado
+     * @return Grade
      */
     public function setDescription($description)
     {

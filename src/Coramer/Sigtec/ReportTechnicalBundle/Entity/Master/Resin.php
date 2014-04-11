@@ -51,7 +51,7 @@ class Resin
      * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
-
+    
     /**
      * Get id
      *
