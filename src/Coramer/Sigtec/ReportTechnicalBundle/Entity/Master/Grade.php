@@ -53,6 +53,13 @@ class Grade
     private $updatedAt;
     
     /**
+     * @var Resin
+     * 
+     * @ORM\ManyToOne(targetEntity="Resin", inversedBy="grades")
+     */
+    private $resin;
+
+    /**
      * Get id
      *
      * @return integer 

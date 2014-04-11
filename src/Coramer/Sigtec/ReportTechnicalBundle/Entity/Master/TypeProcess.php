@@ -51,7 +51,17 @@ class TypeProcess
      * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
-
+    
+    /**
+     *
+     * @var Process
+     * @ORM\OneToMany(targetEntity="Process",mappedBy="typeProcess")
+     */
+    private $processes;
+    
+    public function __construct() {
+        $this->processes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     /**
      * Get id
      *

@@ -53,6 +53,13 @@ class SubSegment
     private $updatedAt;
 
     /**
+     * @var Segment
+     * 
+     * @ORM\ManyToOne(targetEntity="Segment",inversedBy="subSegments")
+     */
+    private $segment;
+
+    /**
      * Get id
      *
      * @return integer 

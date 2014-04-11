@@ -53,6 +53,17 @@ class Resin
     private $updatedAt;
     
     /**
+     * @var Grade
+     * 
+     * @ORM\OneToMany(targetEntity="Grade",mappedBy="resin")
+     */
+    private $grades;
+    
+    public function __construct() {
+        $this->grades = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
      * Get id
      *
      * @return integer 

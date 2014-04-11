@@ -60,6 +60,17 @@ class Segment
     private $updatedAt;
     
     /**
+     * @var SubSegment
+     * 
+     * @ORM\OneToMany(targetEntity="SubSegment", mappedBy="segment")
+     */
+    private $subSegments;
+
+    public function __construct() {
+        $this->subSegments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
      * Get id
      *
      * @return integer 

@@ -65,6 +65,13 @@ class Process
      * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
+    
+    /**
+     *
+     * @var TypeProcess
+     * @ORM\ManyToOne(targetEntity="TypeProcess",inversedBy="processes")
+     */
+    private $typeProcess;
 
     /**
      * Get id
