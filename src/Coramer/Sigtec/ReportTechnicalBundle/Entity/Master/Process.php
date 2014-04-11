@@ -34,14 +34,14 @@ class Process
      *
      * @ORM\Column(name="form", type="string", length=100)
      */
-    private $form;
+    private $form = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="equation", type="string", length=255)
      */
-    private $equation;
+    private $equation = '';
 
     /**
      * @var boolean
