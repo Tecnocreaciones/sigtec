@@ -31,7 +31,17 @@ class LoadTypeProcessData extends AbstractFixture implements FixtureInterface,  
     public function load(ObjectManager $manager) {
         $typeProcess = new TypeProcess();
         $typeProcess->setDescription('Primario');
-        $this->addReference('typeProcess-Primario', $typeProcess);
+        $this->addReference('typeProcess-primario', $typeProcess);
+            $manager->persist($typeProcess);
+            
+        $typeProcess = new TypeProcess();
+        $typeProcess->setDescription('Secundario');
+        $this->addReference('typeProcess-secundario', $typeProcess);
+            $manager->persist($typeProcess);
+            
+        $typeProcess = new TypeProcess();
+        $typeProcess->setDescription('Preparacion');
+        $this->addReference('typeProcess-preparacion', $typeProcess);
             $manager->persist($typeProcess);
         
         $manager->flush();
