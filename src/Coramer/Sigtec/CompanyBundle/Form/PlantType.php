@@ -21,6 +21,7 @@ class PlantType extends AbstractType
                 'attr' => array(
                     'class' => 'input'
                 ),
+                'disabled' => true,
             ))
             ->add('email','email',array(
                 'label' => 'sigtec.email',
