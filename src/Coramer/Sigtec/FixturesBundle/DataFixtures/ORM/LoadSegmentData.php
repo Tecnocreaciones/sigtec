@@ -34,6 +34,7 @@ class LoadSegmentData extends AbstractFixture implements FixtureInterface,Ordere
             $this->addReference('segment-alimentos', $segment);
             $manager->persist($segment);
             
+            
         $manager->flush();
     }
 }
