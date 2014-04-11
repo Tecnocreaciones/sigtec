@@ -34,6 +34,16 @@ class LoadResinData extends AbstractFixture implements FixtureInterface,  Ordere
             $this->addReference('resin-PVC', $resin);
             $manager->persist($resin);
             
+        $resin = new Resin();
+        $resin->setDescription('PP');
+            $this->addReference('resin-PP', $resin);
+            $manager->persist($resin);
+            
+        $resin = new Resin();
+        $resin->setDescription('PE');
+            $this->addReference('resin-PE', $resin);
+            $manager->persist($resin);
+            
         $manager->flush();
     }
 }
