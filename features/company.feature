@@ -12,7 +12,7 @@ Feature: Company
             | V-17816302-3 |   Pedro    | lpe@example.com     | no        | client |
         And there are following plants:
             | name     | email               | address       | company      |
-            | Planta 1 | planta1@example.com | addres for test plant |V-19000001-0  |
+            | Planta 001 | planta1@example.com | addres for test plant |V-19000001-0  |
 
     @javascript
     Scenario: Registering new company

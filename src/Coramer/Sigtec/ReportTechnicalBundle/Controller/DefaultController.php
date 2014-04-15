@@ -1,6 +1,6 @@
 <?php
 
-namespace Coramer\Sigtec\FixturesBundle\Controller;
+namespace Coramer\Sigtec\ReportTechnicalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

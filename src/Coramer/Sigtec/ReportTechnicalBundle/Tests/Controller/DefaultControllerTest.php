@@ -1,6 +1,6 @@
 <?php
 
-namespace Coramer\Sigtec\FixturesBundle\Tests\Controller;
+namespace Coramer\Sigtec\ReportTechnicalBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
