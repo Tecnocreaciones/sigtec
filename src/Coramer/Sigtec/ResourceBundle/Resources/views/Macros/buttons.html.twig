@@ -5,8 +5,9 @@
 {% endmacro %}
 
 {% macro generic(url, message, icon) %}
-<a href="{{ url }}" class="btn btn-default">
-    {% if icon is not empty %}<i class="glyphicon glyphicon-{{ icon }}"></i>{% endif %}<span>{{ message }}</span>
+<a href="{{ url }}" class="button">
+    {% if icon is not empty %}<span class="button-icon left-side"><span class="{{ icon }}"></span></span>{% endif %}
+    {{ message |trans }}
 </a>
 {% endmacro %}
 

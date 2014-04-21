@@ -23,8 +23,8 @@
         <ul id="access" class="children-tooltip">
             <li><a href="inbox.html" title="Messages"><span class="icon-inbox"></span><span class="count">2</span></a></li>
             <li><a href="calendars.html" title="Calendar"><span class="icon-calendar"></span></a></li>
-            <li><a href="login.html" title="Profile"><span class="icon-user"></span></a></li>
-            <li><a href="{{ path('fos_user_security_logout') }}" title="Cerrar sesión"><span class="icon-lock"></span></a></li>
+            <li><a href="{{ path('fos_user_profile_show') }}" title="{{ 'sigtec.profile'|trans }}"><span class="icon-user"></span></a></li>
+            <li><a href="{{ path('fos_user_security_logout') }}" title="{{ 'sigtec.logout'|trans }}"><span class="icon-lock"></span></a></li>
         </ul>
 
         <section class="navigable">
