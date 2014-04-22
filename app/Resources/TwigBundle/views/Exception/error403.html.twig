@@ -1,1 +1,14 @@
-No tiene permisos
+{% extends "::base.html.twig" %}
+{% block body %}
+    <p class="wrapped relative" style="min-height: 200px; font-size: 30px;padding: 2em">
+        <span>
+            <span class="ribbon"><span class="ribbon-inner red-gradient glossy">403</span></span>
+            
+            <span class="tag red-bg"><span class="icon-forbidden"></span> ERROR 403</span>
+            <br />
+            <br />
+            <br />
+            Acceso denegado al recurso solicitado.
+        </span>
+    </p>
+{% endblock body %}
