@@ -26,3 +26,6 @@ tecnocreaciones_vzla_government.validators.email_is_not_valid: Email is not vali
 tecnocreaciones_vzla_government.validators.registering: Registering
 tecnocreaciones_vzla_government.validators.sending_instructions: Sending instructions
 tecnocreaciones_vzla_government.registration: Register
+
+tecnocreaciones_vzla_government.profile: Profile
+tecnocreaciones_vzla_government.logout: Logout

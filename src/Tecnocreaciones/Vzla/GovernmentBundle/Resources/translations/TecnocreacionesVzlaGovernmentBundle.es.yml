@@ -27,3 +27,6 @@ tecnocreaciones_vzla_government.validators.sending_instructions: Enviando instru
 tecnocreaciones_vzla_government.registration: Registro
 
 "Bad credentials": Nombre de usuario o contraseña invalida
+
+tecnocreaciones_vzla_government.profile: Perfil
+tecnocreaciones_vzla_government.logout: Salir

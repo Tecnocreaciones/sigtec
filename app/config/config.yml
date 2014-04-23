@@ -33,6 +33,8 @@ twig:
     form:
         resources:
             - 'CoramerSigtecCoreBundle:Form:fields.html.twig'
+    globals:
+        tecnocreaciones_vzla_government_menu_builder_developer_logo: "%tecnocreaciones_vzla_government.menu_builder.developer.logo%"
 
 # Assetic Configuration
 assetic:
