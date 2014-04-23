@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Coramer\Sigtec\WebBundle\Menu;
+namespace Tecnocreaciones\Vzla\GovernmentBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\Request;

@@ -14,7 +14,7 @@
         </header>
 
         <div id="profile">
-            <img src="{{ asset('bundles/coramersigtecweb/frontend/img/user.png') }}" width="64" height="64" alt="User name" class="user-icon">
+            <img src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/img/user.png') }}" width="64" height="64" alt="User name" class="user-icon">
             {{ 'sigtec.hello' | trans }}
             <span class="name">{{ app.user.firstName }} <b>{{ app.user.lastName }}</b></span>
         </div>
@@ -28,12 +28,12 @@
         </ul>
 
         <section class="navigable">
-            {{ knp_menu_render('sigtec.menu.backend.sidebar', {'template': 'CoramerSigtecWebBundle::menu.html.twig', 'currentClass': 'current navigable-current'}) }}
+            {{ knp_menu_render('app.menu.backend.sidebar', {'template': 'TecnocreacionesVzlaGovernmentBundle:Template/Developer:menu.html.twig', 'currentClass': 'current navigable-current'}) }}
         </section>
         <ul class="unstyled-list">
             <li class="title-menu">&nbsp;</li>
             <li style="background-color:white;text-align:center" class="with-padding">
-                <img src="{{ asset('bundles/coramersigtecweb/frontend/img/favicons/logo.png') }}" width="220px" height="80px" />
+                <img src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/img/favicons/logo.png') }}" width="220px" height="80px" />
             </li>
     </ul>
         <div>

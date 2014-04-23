@@ -1,24 +1,9 @@
-<!DOCTYPE html>
+{% extends "TecnocreacionesVzlaGovernmentBundle:Template:Developer/layout.html.twig" %}
 
-<!--[if IEMobile 7]><html class="no-js iem7 oldie"><![endif]-->
-<!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie" lang="{{ app.request.locale }}"><![endif]-->
-<!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie" lang="{{ app.request.locale }}"><![endif]-->
-<!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9" lang="{{ app.request.locale }}"><![endif]-->
-<!--[if (gt IE 9)|(gt IEMobile 7)]><!--><html class="no-js linen" lang="{{ app.request.locale }}"><!--<![endif]-->
-
-    <head>
-        <meta charset="utf-8">
-        <style>
-        [ng-cloak] {
-          display: none;
-        }
-      </style>
-      {#
-      <script src="{{ asset('angular/app/lib/ng-table/examples/js/jquery-1.9.1.min.js') }}"></script>
-      <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-      #}
-      <script src="{{ asset('bundles/coramersigtecweb/frontend/js/libs/jquery-1.8.2.min.js') }}"></script>
-      <script>
+{% set appTitle = 'SIGTEC' %}
+    
+{% block head %}
+    <script>
     // include angular loader, which allows the files to load in any order
     
 /*
@@ -43,13 +28,13 @@
     // load all of the dependencies asynchronously.
     $script([
       '{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}',
-      '{{ asset('angular/app/lib/angular/angular.js') }}',
-      '{{ asset('angular/app/lib/angular/angular-route.js') }}',
-      '{{ asset('angular/app/lib/angular/angular-resource.js') }}',
-      '{{ asset('angular/app/js/modules/sfTranslatorModule.js') }}',
-      '{{ asset('angular/app/js/modules/notificationBarModule/notificationBarModule.js') }}',
-      '{{ asset('angular/app/js/modules/notifyModule.js') }}',
-      '{{ asset('angular/app/js/coramerApp.js') }}'
+      '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/lib/angular/angular.js') }}',
+      '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/lib/angular/angular-route.js') }}',
+      '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/lib/angular/angular-resource.js') }}',
+      '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/modules/sfTranslatorModule.js') }}',
+      '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/modules/notificationBarModule/notificationBarModule.js') }}',
+      '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/modules/notifyModule.js') }}',
+      '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/coramerApp.js') }}'
     ], function() {
       // when all is done, execute bootstrap angular application
         coramerApp.run(['$rootScope','notificationBarService',function($rootScope,notificationBarService){
@@ -60,216 +45,18 @@
        }]);
     });
   </script>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+{% endblock head %}
 
-        <title>Coramer {% block title ''%}</title>
-        <meta name="description" content="">
-        <meta name="author" content="">
+{% block stylesheets_base %}
+    
+{% endblock stylesheets_base %}
 
-        <!-- http://davidbcalhoun.com/2010/viewport-metatag -->
-        <meta name="HandheldFriendly" content="True">
-        <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-        <!-- For all browsers -->
-        <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/reset3860.css?v=1') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/style3860.css?v=1') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/colors3860.css?v=1') }}">
-        <link rel="stylesheet" media="print" href="{{ asset('bundles/coramersigtecweb/frontend/css/print3860.css?v=1') }}">
-        <!-- For progressively larger displays -->
-        <link rel="stylesheet" media="only all and (min-width: 480px)" href="{{ asset('bundles/coramersigtecweb/frontend/css/4803860.css?v=1') }}">
-        <link rel="stylesheet" media="only all and (min-width: 768px)" href="{{ asset('bundles/coramersigtecweb/frontend/css/7683860.css?v=1') }}">
-        <link rel="stylesheet" media="only all and (min-width: 992px)" href="{{ asset('bundles/coramersigtecweb/frontend/css/9923860.css?v=1') }}">
-        <link rel="stylesheet" media="only all and (min-width: 1200px)" href="{{ asset('bundles/coramersigtecweb/frontend/css/12003860.css?v=1') }}">
-        <!-- For Retina displays -->
-        <link rel="stylesheet" media="only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)" href="{{ asset('bundles/coramersigtecweb/frontend/css/2x3860.css?v=1') }}">
-
-        <!-- Webfonts -->
-        {% if app.debug %}
-            {% set fontUrl = asset('bundles/coramersigtecweb/frontend/css/fonts/font.css?v=1') %}
-        {% else %}
-            {% set fontUrl = 'http://fonts.googleapis.com/css?family=Open+Sans:300' %}
-        {% endif  %}
-        <link href='{{ fontUrl }}' rel='stylesheet' type='text/css'>
-
-        <!-- Additional styles -->
-        {% stylesheets output='css/compiled/main.css' filter='cssrewrite' 
-            '@CoramerSigtecWebBundle/Resources/assets/css/main.css'
-            '@CoramerSigtecWebBundle/Resources/assets/css/gobierno-vzla.css'
-        %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
-        <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/modal3860.css') }}?v=1" />
-        <link rel="stylesheet" href="{{ asset('angular/app/js/modules/notificationBarModule/notificationBarModule.css') }}" />
-        {% block stylesheets '' %}
-
-        <!-- JavaScript at bottom except for Modernizr -->
-        <script src="{{ asset('bundles/coramersigtecweb/frontend/js/libs/modernizr.custom.js') }}"></script>
-
-        <!-- For Modern Browsers -->
-        <link rel="shortcut icon" href="{{ asset('bundles/coramersigtecweb/frontend/img/favicons/favicon.png') }}">
-        <!-- For everything else -->
-        <link rel="shortcut icon" href="{{ asset('bundles/coramersigtecweb/frontend/img/favicons/favicon.ico') }}">
-        <!-- For retina screens -->
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/coramersigtecweb/frontend/img/favicons/apple-touch-icon-retina.png') }}">
-        <!-- For iPad 1-->
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/coramersigtecweb/frontend/img/favicons/apple-touch-icon-ipad.png') }}">
-        <!-- For iPhone 3G, iPod Touch and Android -->
-        <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/coramersigtecweb/frontend/img/favicons/apple-touch-icon.png') }}">
-
-        <!-- iOS web-app metas -->
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-        <!-- Startup image for web apps -->
-        <link rel="apple-touch-startup-image" href="{{ asset('bundles/coramersigtecweb/frontend/img/splash/ipad-landscape.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-        <link rel="apple-touch-startup-image" href="{{ asset('bundles/coramersigtecweb/frontend/img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-        <link rel="apple-touch-startup-image" href="{{ asset('bundles/coramersigtecweb/frontend/img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
-
-        <!-- Microsoft clear type rendering -->
-        <meta http-equiv="cleartype" content="on">
-
-        <!-- IE9 Pinned Sites: http://msdn.microsoft.com/en-us/library/gg131029.aspx -->
-        <meta name="application-name" content="SIGTEC">
-        <meta name="msapplication-tooltip" content="Cross-platform admin template.">
-        <meta name="msapplication-starturl" content="http://www.display-inline.fr/demo/developr">
-        <!-- These custom tasks are examples, you need to edit them to show actual pages -->
-        <meta name="msapplication-task" content="name=Agenda;action-uri=http://www.display-inline.fr/demo/developr/agenda.html;icon-uri=http://www.display-inline.fr/demo/developr/img/favicons/favicon.ico">
-        <meta name="msapplication-task" content="name=My profile;action-uri=http://www.display-inline.fr/demo/developr/profile.html;icon-uri=http://www.display-inline.fr/demo/developr/img/favicons/favicon.ico">
-    </head>
-
-    <body ng-app="coramerApp" class="clearfix with-menu with-shortcuts" >
-
-        <!-- Prompt IE 6 users to install Chrome Frame -->
-        <!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-        
-        <!-- Title bar -->
-            <header role="banner" id="title-bar" class="hidden-on-desktop">
-                <h2>{% block appTitle %} 
-                    SIGTEC
-                    {% endblock %}</h2>
-            </header>
-        <!-- Button to open/hide menu -->
-        <a href="javascript:void(0);" id="open-menu"><span>Menu</span></a>
-        
-        <!-- Button to open/hide shortcuts -->
-        <div class="hidden-on-desktop">
-            <img class="logo-menu-mobile" src="{{ asset('bundles/coramersigtecweb/frontend/img/favicons/favicon.png') }}" height="24px" width="24px" />
-        </div>
-        <div class="message-loading [[ notificationBarService.getLoadStatus().error_class ]]" ng-show="notificationBarService.getLoadStatus().showStatus">
-                [[ notificationBarService.getLoadStatus().text ]]
-                <span class="loader"></span>
-        </div>
-        <!-- Main content -->
-        <section role="main" id="main" class="block main-frontend">
-            <noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
-            {% include 'TecnocreacionesVzlaGovernmentBundle:Block:header.html.twig' %}
-            <div  class="content-container">
-                {% block body %}
-                    {% block mainTitle %}
-
-                        <hgroup id="main-title" class="thin">
-                                <h1>Dashboard</h1>
-                                <h2>nov <strong>10</strong></h2>
-                        </hgroup>
-                    {% endblock %}
-                    Contenido (Sobrescribir el bloque content)
-                {% endblock %}
-            </div>
-            {% include 'TecnocreacionesVzlaGovernmentBundle:Block:footer.html.twig' %}
-        </section>
-        <!-- End main content -->
-        
-        <!-- Side tabs shortcuts -->
-        {# include 'CoramerSigtecWebBundle:Layout:_side-tabs-shortcuts.html.twig' #}
-        
-        <!-- Sidebar/drop-down menu -->
-        {% include 'CoramerSigtecWebBundle:Layout:_sidebar-drop-down-menu.html.twig' %}
-        <!-- End sidebar/drop-down menu -->
-
-        <!-- JavaScript at the bottom for fast page loading -->
-
-        <!-- Scripts -->
-        <script type="text/javascript">
-                var ConfApp = {};
-                ConfApp.assetPath = "{{ asset('') }}";
-        </script>
+{% block javascripts_base %}
         {# Traductor javascript #}
         <script src="{{ url('bazinga_jstranslation_js') }}"></script>
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-        <script src="{{ asset('bundles/coramersigtecweb/frontend/js/setup.js') }}"></script>
-        <script src="{{  asset('bundles/coramersigtecweb/frontend/js/developr.modal.js') }}"></script>
-        {% javascripts output='css/compiled/main.js' 
-            '@CoramerSigtecWebBundle/Resources/assets/js/main.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        {# Bloque para cargar archivos javascript adicionales #}
-        {% block javascripts '' %}
+        <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/setup.js') }}"></script>
+        <script src="{{  asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.modal.js') }}"></script>
         
-            {# Template base functions #}
-            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.navigable.js') }}"></script>
-            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.notify.js') }}"></script>
-            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.scroll.js') }}"></script>
-            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/developr.tooltip.js') }}"></script>
-            <!-- Tinycon -->
-            <script src="{{ asset('bundles/coramersigtecweb/frontend/js/libs/tinycon.min.js') }}"></script>
-            
-            <script src="{{ asset('angular/app/js/modules/sigtecModule.js') }}"></script>
-            <script src="{{ asset('angular/app/js/services.js') }}"></script>
-            <script src="{{ asset('angular/app/js/controllers.js') }}"></script>
-            <script src="{{ asset('angular/app/js/filters.js') }}"></script>
-            <script src="{{ asset('angular/app/js/directives.js') }}"></script>
-        {# Bloque para escribir javascript #}    
-        {% block javascript '' %}
-        <script>
-
-            // Call template init (optional, but faster if called manually)
-            $.template.init();
-
-            // Favicon count
-            Tinycon.setBubble(2);
-
-            // If the browser support the Notification API, ask user for permission (with a little delay)
-            if (notify.hasNotificationAPI() && !notify.isNotificationPermissionSet())
-            {
-                setTimeout(function()
-                {
-                    notify.showNotificationPermission('Your browser supports desktop notification, click here to enable them.', function()
-                    {
-                        // Confirmation message
-                        if (notify.hasNotificationPermission())
-                        {
-                            notify('Notifications API enabled!', 'You can now see notifications even when the application is in background', {
-                                icon: '{{ asset('bundles/coramersigtecweb/frontend/img/demo/icon.png') }}',
-                                system: true
-                            });
-                        }
-                        else
-                        {
-                            notify('Notifications API disabled!', 'Desktop notifications will not be used.', {
-                                icon: '{{ asset('bundles/coramersigtecweb/frontend/img/demo/icon.png') }}'
-                            });
-                        }
-                    });
-
-                }, 2000);
-            }
-            {% for type in ['success', 'error'] %}
-                {% for message in app.session.flashbag.get(type) %}
-                    // Gather options
-                    notify('{{ message }}','', {
-                            system:		false,   
-                            autoClose:		4000,
-                            icon:               '{{ asset('bundles/coramersigtecweb/frontend/img/icons/icon-'~ type ~'.png') }}',
-                            iconOutside:        false,
-                            closeButton:        true,
-                            showCloseOnHover:	false,
-                            groupSimilar:	true
-                    });
-                {% endfor %}
-            {% endfor %}
-        </script>
-    </body>
-</html>
+{% endblock javascripts_base %}

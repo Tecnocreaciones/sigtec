@@ -38,7 +38,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        ['CoramerSigtecWebBundle','FOSUserBundle']
+    bundles:        ['CoramerSigtecWebBundle','FOSUserBundle','TecnocreacionesVzlaGovernmentBundle']
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
