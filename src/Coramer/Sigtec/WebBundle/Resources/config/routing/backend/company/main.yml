@@ -9,3 +9,7 @@ coramer_sigtec_company_plant:
 coramer_sigtec_company_contact:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/contact.yml"
     prefix:   /contacts
+    
+coramer_sigtec_company_report_technical:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical.yml"
+    prefix:   /report-technical

@@ -27,3 +27,12 @@ Coramer\Sigtec\CompanyBundle\Entity\Company:
         email: <email()>
         status: <boolean()>
         user: @user*
+Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
+    report_technical{1..50}:
+        archive: <numerify()>-<date('Y')>
+        company: @company<numberBetween(1, 10)>
+        status: <numberBetween(0, 3)>
+    report_technical{51..100}:
+        archive: <numerify()>-<date('Y')>
+        company: @company*
+        status: <numberBetween(0, 3)>

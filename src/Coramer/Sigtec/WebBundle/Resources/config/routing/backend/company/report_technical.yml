@@ -1,0 +1,10 @@
+coramer_sigtec_backend_company_report_technical_index:
+    pattern:  /.{_format}
+    defaults:
+        _controller:  coramer_sigtec_backend.controller.company_report_technical:indexClientAction
+        _format: html
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        
