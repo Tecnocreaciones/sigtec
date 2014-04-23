@@ -1,9 +1,10 @@
 {% import 'TecnocreacionesVzlaGovernmentBundle:Template:Developer/Macros/actions.html.twig' as actions %}
-{% trans_default_domain 'FOSUserBundle' %}
+
+{% trans_default_domain 'TecnocreacionesVzlaGovernmentBundle' %}
 
 <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
     <fieldset class="fieldset fields-list">
-        <legend class="legend">{{ 'sigtec.details'|trans }}</legend>
+        <legend class="legend">{{ 'tecnocreaciones_vzla_government.details'|trans }}</legend>
         <div class="field-block button-height">
             {{ form_label(form.username) }}
             {{ form_widget(form.username,{'attr':{'class':'input' }  }) }}

@@ -29,3 +29,16 @@ tecnocreaciones_vzla_government.registration: Register
 
 tecnocreaciones_vzla_government.profile: Profile
 tecnocreaciones_vzla_government.logout: Logout
+
+# Profile
+tecnocreaciones_vzla_government.profile: Profile
+tecnocreaciones_vzla_government:
+                            profile:
+                                details: Details
+                                username: Username
+                                first_name: First name
+                                last_name: Last name
+                                email: Email
+                                groups: Groups
+                                update_password: Update password
+                                update: Update

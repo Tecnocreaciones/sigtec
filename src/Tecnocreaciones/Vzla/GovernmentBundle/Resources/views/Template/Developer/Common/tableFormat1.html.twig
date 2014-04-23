@@ -1,11 +1,11 @@
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
     <!-- Additional styles -->
-    <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/form3860.css?v=1') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/coramersigtecweb/frontend/css/styles/table3860.css?v=1') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/form3860.css?v=1') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/table3860.css?v=1') }}">
 
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('angular/app/lib/ng-table/ng-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/lib/ng-table/ng-table.css') }}">
    
     <style>
         .loading-container {
@@ -30,10 +30,10 @@
 
 {% block javascripts %}
     <!-- Template functions -->
-    <script src="{{  asset('bundles/coramersigtecweb/frontend/js/developr.input.js') }}"></script>	
+    <script src="{{  asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.input.js') }}"></script>	
     
     <!-- Plugins -->
-    <script src="{{ asset('angular/app/lib/ng-table/ng-table.js') }}"></script> 
+    <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/lib/ng-table/ng-table.js') }}"></script> 
 
 {% endblock %}
 
@@ -76,7 +76,7 @@ var tableFormat1 = angular.module('tableFormat1', ['ngTable'])
                             notify(value,'', {
                                 system:		false,   
                                 autoClose:		4000,
-                                icon:               '{{ asset('bundles/coramersigtecweb/frontend/img/icons/icon-success.png') }}',
+                                icon:               '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/img/icons/icon-success.png') }}',
                                 iconOutside:        false,
                                 closeButton:        true,
                                 showCloseOnHover:	false,

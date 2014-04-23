@@ -1,3 +1,4 @@
+# Login
 tecnocreaciones_vzla_government.sign_in: Ingresar
 tecnocreaciones_vzla_government.remind_me: Recuerdame
 tecnocreaciones_vzla_government.login: Iniciar sesión
@@ -30,3 +31,19 @@ tecnocreaciones_vzla_government.registration: Registro
 
 tecnocreaciones_vzla_government.profile: Perfil
 tecnocreaciones_vzla_government.logout: Salir
+
+# Profile
+tecnocreaciones_vzla_government.profile: Perfil
+tecnocreaciones_vzla_government:
+                        details: Detalles
+                        profile:
+                            details: Detalles
+                            username: Nombre de usuario
+                            first_name: Nombre
+                            last_name: Apellido
+                            email: Email
+                            registed_at: Registrado el
+                            last_login: Última visita
+                            groups: Grupos
+                            update_password: Actualizar contraseña
+                            update: Actualizar
