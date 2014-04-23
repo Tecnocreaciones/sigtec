@@ -184,10 +184,10 @@ bazinga_js_translation:
 
 nelmio_api_doc: ~
 
-#tecnocreaciones_vzla_government:
-#    template:
-#        developer:
-#            menu: Coramer\Sigtec\TemplateBundle\Menu\Template\Developer\BackendMenuBuilder
+tecnocreaciones_vzla_government:
+    template:
+        developer:
+            menu: Coramer\Sigtec\TemplateBundle\Menu\Template\Developer\BackendMenuBuilder
 
 sylius_resource:
     resources:
