@@ -33,12 +33,14 @@ twig:
     form:
         resources:
             - 'CoramerSigtecCoreBundle:Form:fields.html.twig'
+    globals:
+        tecnocreaciones_vzla_government_menu_builder_developer_logo: "%tecnocreaciones_vzla_government.menu_builder.developer.logo%"
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        ['CoramerSigtecWebBundle','FOSUserBundle']
+    bundles:        ['CoramerSigtecWebBundle','FOSUserBundle','TecnocreacionesVzlaGovernmentBundle']
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -181,6 +183,11 @@ bazinga_js_translation:
     locale_fallback: "%locale%" 
 
 nelmio_api_doc: ~
+
+tecnocreaciones_vzla_government:
+    template:
+        developer:
+            menu: Coramer\Sigtec\TemplateBundle\Menu\Template\Developer\BackendMenuBuilder
 
 sylius_resource:
     resources:

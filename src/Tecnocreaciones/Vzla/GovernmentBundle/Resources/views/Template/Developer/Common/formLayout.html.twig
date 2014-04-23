@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <!-- Additional styles -->
+    <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/form3860.css?v=1') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/switches3860.css?v=1') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{  asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.input.js') }}"></script>
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+        $.fn.styleSelect.defaults.allValuesText = '{{ 'sigtec.all'|trans }}';
+        $.fn.styleSelect.defaults.multipleValuesText = '%d {{ 'sigtec.selected'|trans }}';
+        $.fn.styleSelect.defaults.searchText = '{{ 'sigtec.search'|trans }}';
+    </script>
+{% endblock %}

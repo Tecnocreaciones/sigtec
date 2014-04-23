@@ -1,0 +1,130 @@
+{% macro show(url, message) %}
+<a href="{{ url }}" class="btn btn-default">
+   <i class="glyphicon glyphicon-book"></i><span>{{ message is empty ? 'sms_facilito.show'|trans : message }}</span>
+</a>
+{% endmacro %}
+
+{% macro generic(url, message, icon) %}
+<a href="{{ url }}" class="button">
+    {% if icon is not empty %}<span class="button-icon left-side"><span class="{{ icon }}"></span></span>{% endif %}
+    {{ message |trans }}
+</a>
+{% endmacro %}
+
+{% macro create(url, message) %}
+<a href="{{ url }}" class="btn btn-sm btn-primary">
+    <i class="glyphicon glyphicon-plus-sign"></i><span>{{ message is empty ? 'sms_facilito.new'|trans : message }}</span>
+</a>
+{% endmacro %}
+
+{% macro show(url, message) %}
+<a class="blue pull-left" href="{{ url }}" class="tooltip-info" data-rel="tooltip" title="{{ 'sms_facilito.view'|trans }}">
+    <i class="icon-zoom-in bigger-130"></i>
+</a>
+{% endmacro %}
+{% macro edit(url, message) %}
+<a href="{{ url }}" class="button">
+    <span class="button-icon left-side"><span class="icon-pencil"></span></span>
+    {{ 'sigtec.edit'|trans }}
+</a>
+{% endmacro %}
+{% macro edit_mini(url, message) %}
+<a class="green pull-left" href="{{ url }}" class="tooltip-success" data-rel="tooltip" title="{{ 'sms_facilito.edit'|trans }}">
+    <i class="icon-pencil bigger-130"></i>
+</a>
+{% endmacro %}
+
+{% macro delete_mini(url, message, tableIdRow = null) %}
+{% set idForm = url|hash %}
+    <a href="" class="button icon-trash with-tooltip confirm" onclick="openDeleteAjax('{{ url }}','{{ tableIdRow }}')" title="{{ 'sigtec.delete'|trans }}"></a>
+    
+    <script type="text/javascript">
+        function openDeleteAjax(url,tableIdRow)
+        {
+                $.modal.confirm('¿{{ message is empty ? 'sigtec.question.delete'|trans : message }}?', function()
+                {
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: { _method:'DELETE' }
+                    }).done(function(data){
+                        if(tableIdRow > 0){
+                            $('#table-row-'+tableIdRow).remove();
+                        }
+                        $.each(data.message,function(index,value){
+                            notify(value,'', {
+                                    system:		false,   
+                                    autoClose:		4000,
+                                    icon:               ConfApp.assetPath + 'bundles/tecnocreacionesvzlagovernment/template/developer/img/icons/icon-success.png',
+                                    iconOutside:        false,
+                                    closeButton:        true,
+                                    showCloseOnHover:	false,
+                                    groupSimilar:	true
+                                });
+                        });
+                    }).fail(function(data){
+                        $.each(data.message,function(index,value){
+                            notify(value,'', {
+                                    system:		false,   
+                                    autoClose:		4000,
+                                    icon:               ConfApp.assetPath + 'bundles/tecnocreacionesvzlagovernment/template/developer/img/icons/icon-error.png',
+                                    iconOutside:        false,
+                                    closeButton:        true,
+                                    showCloseOnHover:	false,
+                                    groupSimilar:	true
+                                });
+                        });
+                    });
+
+                }, function()
+                {
+                        
+                },
+                {
+                    textConfirm: '{{ 'sigtec.yes'|trans }}',
+                    textCancel: '{{ 'sigtec.no'|trans }}'
+                });
+        };
+    </script>
+{% endmacro %}
+
+{% macro delete(url, message, disabled=false, modal=true) %}
+{% if disabled %}
+<span class="btn btn-sm btn-danger disabled">
+    <i class="glyphicon glyphicon-trash"></i><span>{{ message is empty ? 'sigtec.delete'|trans : message }}</span>
+</span>
+{% else %}
+    {% set idForm = url|hash %}
+    <button type="button" class="button" onclick="openDelete('{{ idForm }}')">
+        <span class="button-icon red-gradient left-side"><span class="icon-trash"></span></span>
+        {{ 'sigtec.delete'|trans }}
+        <form action="{{ url }}" id="{{ idForm }}" method="post" novalidate>
+            <input type="hidden" name="_method" value="DELETE">
+        </form>
+    </button>
+    <script type="text/javascript">
+        // Demo confirm
+        function openDelete(idForm)
+        {
+                $.modal.confirm('¿{{ message is empty ? 'sigtec.question.delete'|trans : message }}?', function()
+                {
+                    $('#'+idForm).submit();
+
+                }, function()
+                {
+                        
+                },
+                {
+                    textConfirm: '{{ 'sigtec.yes'|trans }}',
+                    textCancel: '{{ 'sigtec.no'|trans }}'
+                });
+        };
+    </script>
+{% endif %}
+{% endmacro %}
+
+{% macro manage(url, message) %}
+<a href="{{ url }}" class="btn btn-sm btn-success">
+    <i class="glyphicon glyphicon-folder-open"></i><span>{{ message is empty ? 'sms_facilito.manage'|trans : message }}</span>
+</a>
+{% endmacro %}

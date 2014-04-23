@@ -1,0 +1,53 @@
+# Login
+tecnocreaciones_vzla_government.sign_in: Ingresar
+tecnocreaciones_vzla_government.remind_me: Recuerdame
+tecnocreaciones_vzla_government.login: Iniciar sesión
+tecnocreaciones_vzla_government.lost_password: Recuperar contraseña
+tecnocreaciones_vzla_government.username: Nombre de usuario
+tecnocreaciones_vzla_government.password: Contraseña
+tecnocreaciones_vzla_government.message_remember_password: Si no recuerda su contraseña, rellene la entrada a continuación con su e-mail y le enviaremos las instrucciones para recuperarla
+tecnocreaciones_vzla_government.your_email: Su correo electrónico
+tecnocreaciones_vzla_government.enable_auto_login: Habilitar inicio de sesión automático
+tecnocreaciones_vzla_government.send_instructions: Enviarme las instrucciones
+tecnocreaciones_vzla_government.register: Registrar
+tecnocreaciones_vzla_government.message_register: ¿Nuevo usuario? Yay! Háganos saber un poquito acerca de usted antes de empezar
+tecnocreaciones_vzla_government.your_name: Su nombre
+
+tecnocreaciones_vzla_government.message_header_center: Cabecera de la aplicación
+tecnocreaciones_vzla_government.message_app_title: Nombre de la aplicación
+tecnocreaciones_vzla_government.message_footer: Todos los Derechos Reservados © 2014 CORAMER C.A
+
+tecnocreaciones_vzla_government.login.validators.please_fill_in_your_login: Por favor, ingrese su nombre de usuario
+tecnocreaciones_vzla_government.login.validators.please_fill_in_your_password: Por favor, ingrese su contraseña
+tecnocreaciones_vzla_government.login.validators.checking_credentials: Comprobando de credenciales
+tecnocreaciones_vzla_government.login.validators.please_fill_in_your_email: Por favor, ingrese su correo
+tecnocreaciones_vzla_government.login.validators.please_fill_in_your_name: Por favor, ingrese su nombre
+tecnocreaciones_vzla_government.validators.email_is_not_valid: El correo no es correcto
+tecnocreaciones_vzla_government.validators.registering: Registrando
+tecnocreaciones_vzla_government.validators.sending_instructions: Enviando instrucciones
+tecnocreaciones_vzla_government.registration: Registro
+
+"Bad credentials": Nombre de usuario o contraseña invalida
+
+tecnocreaciones_vzla_government.profile: Perfil
+tecnocreaciones_vzla_government.logout: Salir
+
+# Profile
+tecnocreaciones_vzla_government.profile: Perfil
+tecnocreaciones_vzla_government:
+                        details: Detalles
+                        profile:
+                            details: Detalles
+                            username: Nombre de usuario
+                            first_name: Nombre
+                            last_name: Apellido
+                            email: Email
+                            registed_at: Registrado el
+                            last_login: Última visita
+                            groups: Grupos
+                            update_password: Actualizar contraseña
+                            update: Actualizar
+                            
+sigtec:
+    quantity_companies: Cantidad de compañias
+    companies: Compañias

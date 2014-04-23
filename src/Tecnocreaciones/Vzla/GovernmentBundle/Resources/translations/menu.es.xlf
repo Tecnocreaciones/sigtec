@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+This file is part of the TecnoCreaciones package.
+
+(c) www.tecnocreaciones.com.ve
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+-->
+
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="2c9323850a4933411ff666fa675ab7a0">
+                <source>sigtec.backend.menu.sidebar.home</source>
+                <target>Inicio</target>
+            </trans-unit>
+            <trans-unit id="7b6756539f78dc862081d03232d15945">
+                <source>sigtec.backend.menu.sidebar.client</source>
+                <target>Cliente</target>
+            </trans-unit>
+            <trans-unit id="b13f8325386bfed089a0a686b5d7d787">
+                <source>sigtec.backend.menu.sidebar.support</source>
+                <target>Soporte</target>
+            </trans-unit>
+            <trans-unit id="858419ce2e7d2e8d6b68c0887b1dc201">
+                <source>sigtec.backend.menu.sidebar.client.company</source>
+                <target>Empresa</target>
+            </trans-unit>
+            <trans-unit id="0ef44256d5acfd60d0dab86fd9b10f2c">
+                <source>sigtec.backend.menu.sidebar.client.technical_reports</source>
+                <target>Reporte técnico</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

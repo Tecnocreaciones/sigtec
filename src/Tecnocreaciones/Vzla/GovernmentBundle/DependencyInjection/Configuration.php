@@ -19,10 +19,21 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('tecnocreaciones_vzla_government');
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        
+        $rootNode
+                ->children()
+                    ->arrayNode('template')
+                        ->addDefaultsIfNotSet()
+                        ->children()
+                            ->arrayNode('developer')
+                                ->addDefaultsIfNotSet()
+                                ->children()
+                                    ->scalarNode('menu')->defaultValue('Tecnocreaciones\Vzla\GovernmentBundle\Menu\Template\Developer\BackendMenuBuilder')->cannotBeEmpty()->end()
+                                    ->scalarNode('logo')->defaultValue('bundles/tecnocreacionesvzlagovernment/template/developer/img/favicons/logo.png')->cannotBeEmpty()->end()
+                                ->end()
+                        ->end()
+                    ->end()
+                ->end();
 
         return $treeBuilder;
     }
