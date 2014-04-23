@@ -62,9 +62,8 @@ class ReportTechnicalController extends ResourceController
         $criteria = $request->get('filter',$this->config->getCriteria());
         $sorting = $request->get('sorting',$this->config->getSorting());
         $repository = $this->getRepository();
-        //$criteria['user'] = $user->getId();
+        //$criteria['company.user'] = $user->getId();
         
-        if ($this->config->isPaginated()) {
             $resources = $this->resourceResolver->getResource(
                 $repository,
                 'createPaginator',
@@ -79,14 +78,9 @@ class ReportTechnicalController extends ResourceController
             }
             $resources->setCurrentPage($request->get('page', 1), true, true);
             $resources->setMaxPerPage($maxPerPage);
-        } else {
-            $resources = $this->resourceResolver->getResource(
-                $repository,
-                'findBy',
-                array($criteria, $sorting, $this->config->getLimit())
-            );
-        }
-
+            
+        $qb = $resources->getAdapter()->getQuery()->getDQL();
+        var_dump($qb);
         $view = $this
             ->view()
             ->setTemplate($this->config->getTemplate('index.html'))
