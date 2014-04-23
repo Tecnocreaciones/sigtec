@@ -17,24 +17,22 @@
     <div ng-controller="TableFormatController">
         <div ng-controller="CompanyIndexController">
                 <div loading-container="tableParams.settings().$loading">
-                    <table ng-table="tableParams" template-pagination="custom/pager"  template-header="custom/header" api-data-url="{{ path('coramer_sigtec_backend_company_index',{_format:'json'}) }}" class="table table-responsive table-extra-info">
+                    <table ng-table="tableParams" template-pagination="custom/pager"  template-header="custom/header" api-data-url="{{ path('coramer_sigtec_backend_company_report_technical_index',{_format:'json'}) }}" class="table table-responsive table-extra-info">
                         <tr ng-repeat="result in $data | filter:tableParams.search" data="[[ result|json ]]">
                             <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
                                 <input type="checkbox" ng-model="checkboxes.items[result.id]" />
                             </td>
-                            <td data-title="'{{ 'sigtec.name'|trans }}'" sortable="'name'">
-                                <a href="[[ result._links.self.href ]]">[[result.name]]</a>
+                            <td data-title="'{{ 'sigtec.archive'|trans }}'" sortable="'archive'">
+                                <a href="[[ result._links.self.href ]]">[[result.archive]]</a>
                             </td>
-                            <td data-title="'{{ 'sigtec.rif'|trans }}'" sortable="'rif'">
-                                [[result.rif]]
-                            </td>
-                            <td data-title="'¿{{ 'sigtec.rif_validated' | trans }}?'" sortable="'rifValidated'">
-                                <small ng-if="result.rif_validated" class="tag green-bg">{{ 'sigtec.yes'|trans }}</small> 
-                                <small ng-if="!result.rif_validated" class="tag red-bg">{{ 'sigtec.no'|trans }}</small>
+                            <td data-title="'{{ 'sigtec.company'|trans }}'" sortable="'company'" >
+                                <a href="[[ result.company._links.self.href ]]" title="[[ result.company.name ]]" >[[result.company.rif]]</a>
                             </td>
                             <td data-title="'{{ 'sigtec.status'|trans }}'" sortable="'status'">
-                                <small ng-if="result.status" class="tag green-bg">{{ 'sigtec.yes'|trans }}</small> 
-                                <small ng-if="!result.status" class="tag red-bg">{{ 'sigtec.no'|trans }}</small>
+                                <small ng-if="result.status == 0" class="tag orange-bg">{{ 'sigtec.status.in_progress'|trans }}</small> 
+                                <small ng-if="result.status == 1" class="tag red-bg">{{ 'sigtec.status.canceled'|trans }}</small>
+                                <small ng-if="result.status == 2" class="tag green-bg">{{ 'sigtec.status.approved'|trans }}</small>
+                                <small ng-if="result.status == 3" class="tag red-bg">{{ 'sigtec.status.rejected'|trans }}</small>
                             </td>
                             <td class="low-padding">
                                 <span class="select compact full-width" tabindex="0">
@@ -43,7 +41,6 @@
                                     <span class="drop-down">
                                         <a href ng-click="itemEdit(result._links.edit.href)" >{{ 'sigtec.edit'|trans }}</a>
                                         <a href ng-click="itemDelete(result._links.delete.href)" >{{ 'sigtec.delete'|trans }}</a>
-                                        <a ng-if="!result.rif_validated" href ng-click="itemValidateRif(result._links.validate_rif.href)" >{{ 'sigtec.validate_rif'|trans }}</a>
                                     </span>
                                 </span>
                             </td>
@@ -69,7 +66,7 @@
                         'Remove' +
                         '</button>' +
                         '</div>' +
-                        '<strong>{{ 'sigtec.name'|trans }}:</strong> ' + data.name + '<br>' +
+                        '<strong>{{ 'sigtec.company'|trans }}:</strong> ' + data.company.name + '<br>' +
                         '<strong>{{ 'sigtec.created_at' |trans }}:</strong> ' + data.created_at + '<br>' +
                         '<strong>{{ 'sigtec.updated_at' | trans }}:</strong> ' + data.updated_at + '<br>'
                         ;

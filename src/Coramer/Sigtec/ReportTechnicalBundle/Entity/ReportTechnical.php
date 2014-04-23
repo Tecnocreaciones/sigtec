@@ -12,7 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Coramer\Sigtec\ReportTechnicalBundle\Repository\ReportTechnicalRepository")
  */
-class ReportTechnical
+class ReportTechnical implements ReportTechnicalInterface
 {
     /**
      * @var integer
