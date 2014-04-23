@@ -1,16 +1,17 @@
-tecnocreaciones_vzla_government.sign_in: Sign in
-tecnocreaciones_vzla_government.remind_me: Remind me
-tecnocreaciones_vzla_government.enable_auto_login: Enable auto-login
-tecnocreaciones_vzla_government.login: Login
-tecnocreaciones_vzla_government.lost_password: Lost password
-tecnocreaciones_vzla_government.username: Username
-tecnocreaciones_vzla_government.password: Password
-tecnocreaciones_vzla_government.message_remember_password: If you can’t remember your password, fill the input below with your e-mail and we’ll send you instructions to recover
-tecnocreaciones_vzla_government.your_email: Your e-mail
-tecnocreaciones_vzla_government.send_instructions: Send instructions
-tecnocreaciones_vzla_government.register: Register
-tecnocreaciones_vzla_government.message_register: New user? Yay! Let us know a little bit about you before you start
-tecnocreaciones_vzla_government.your_name: Your name
+tecnocreaciones_vzla_government:
+                        sign_in: Sign in
+                        remind_me: Remind me
+                        enable_auto_login: Enable auto-login
+                        login: Login
+                        lost_password: Lost password
+                        username: Username
+                        password: Password
+                        message_remember_password: If you can’t remember your password, fill the input below with your e-mail and we’ll send you instructions to recover
+                        your_email: Your e-mail
+                        send_instructions: Send instructions
+                        register: Register
+                        message_register: New user? Yay! Let us know a little bit about you before you start
+                        your_name: Your name
 
 tecnocreaciones_vzla_government.message_header_center: App Header
 tecnocreaciones_vzla_government.message_app_title: Message App Name
@@ -42,3 +43,7 @@ tecnocreaciones_vzla_government:
                                 groups: Groups
                                 update_password: Update password
                                 update: Update
+                                
+sigtec:
+    quantity_companies: Quantity companies
+    companies: Companies

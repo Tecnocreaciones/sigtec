@@ -26,6 +26,23 @@
             {{ user.email }}
         </p>
         <p class="inline-label">
+            <label class="label">{{ 'sigtec.quantity_companies'|trans }}</label>
+            {{ user.companies | length }}
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.companies'|trans }}</label>
+            {% for company in user.companies %}
+
+                {% set separator = '' %}
+                {% if loop.last  %}
+                    {% set separator = '.' %}
+                {% else %}
+                    {% set separator = ',' %}
+                {% endif %}
+                <a href="{{ path('coramer_sigtec_backend_company_show',{id:company.id}) }}" title="{{ company.name }}" >{{ company.rif }}</a>{{ separator }}
+            {% endfor %}
+        </p>
+        <p class="inline-label">
             <label class="label">{{ 'tecnocreaciones_vzla_government.profile.registed_at'|trans }}</label>
             {{ user.createdAt | date('Y-m-d h:i a') }}
         </p>

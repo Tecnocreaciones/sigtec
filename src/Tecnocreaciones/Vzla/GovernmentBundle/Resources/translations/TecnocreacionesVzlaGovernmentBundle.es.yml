@@ -47,3 +47,7 @@ tecnocreaciones_vzla_government:
                             groups: Grupos
                             update_password: Actualizar contraseña
                             update: Actualizar
+                            
+sigtec:
+    quantity_companies: Cantidad de compañias
+    companies: Compañias
