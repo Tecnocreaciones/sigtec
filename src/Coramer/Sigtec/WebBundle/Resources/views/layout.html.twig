@@ -34,10 +34,10 @@
       '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/modules/sfTranslatorModule.js') }}',
       '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/modules/notificationBarModule/notificationBarModule.js') }}',
       '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/modules/notifyModule.js') }}',
-      '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/coramerApp.js') }}'
+      '{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/mainApp.js') }}'
     ], function() {
       // when all is done, execute bootstrap angular application
-        coramerApp.run(['$rootScope','notificationBarService',function($rootScope,notificationBarService){
+        mainApp.run(['$rootScope','notificationBarService',function($rootScope,notificationBarService){
            $rootScope.notificationBarService = notificationBarService;
            $rootScope.asset = function(path){
                return ConfApp.assetPath+path;

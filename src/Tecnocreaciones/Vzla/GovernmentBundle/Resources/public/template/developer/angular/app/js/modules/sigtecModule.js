@@ -1,6 +1,6 @@
 'use strict';
 
-coramerApp.requires.push('sigtecModule');
+mainApp.requires.push('sigtecModule');
 
 // Declare app level module which depends on filters, and services
 var sigtecModule = angular.module('sigtecModule', [
