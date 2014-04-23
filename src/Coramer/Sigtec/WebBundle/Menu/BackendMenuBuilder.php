@@ -86,7 +86,7 @@ class BackendMenuBuilder extends MenuBuilder
                 ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.company', $section)));
         $child
                 ->addChild('client.technical_reports', array(
-                    'route' => 'coramer_sigtec_web_dashboard_new',
+                    'route' => 'coramer_sigtec_backend_company_report_technical_index',
                     ))
                 ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.technical_reports', $section)));
         

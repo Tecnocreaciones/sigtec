@@ -8,6 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Company
  *
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Coramer\Sigtec\CompanyBundle\Repository\CompanyRepository")
  */
@@ -62,6 +63,13 @@ class Company
     private $updatedAt;
     
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
+     */
+    private $deletedAt;
+    
+    /**
      * Estatus
      * 
      * @var boolean
@@ -97,10 +105,18 @@ class Company
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CoreBundle\Entity\User", inversedBy="companies")
      */
     private $user;
+    
+    /**
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical
+     * 
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical", mappedBy="company")
+     */
+    private $reportTechnicals;
 
     public function __construct() {
         $this->plants = new \Doctrine\Common\Collections\ArrayCollection();
         $this->contacts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reportTechnicals = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
