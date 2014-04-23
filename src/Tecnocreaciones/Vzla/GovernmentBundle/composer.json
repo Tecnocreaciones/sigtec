@@ -15,7 +15,8 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/framework-bundle": "~2.1",
-        "lunetics/locale-bundle": "2.2.*"
+        "lunetics/locale-bundle": "2.2.*",
+        "tecnocreaciones/ajax-fos-user-bundle": "dev-master"
     },
     "autoload": {
         "psr-0": { "Tecnocreaciones\\Vzla\\GovernmentBundle": "" }

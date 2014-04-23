@@ -6,4 +6,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class CoramerSigtecTemplateBundle extends Bundle
 {
+    public function getParent() {
+        return 'TecnocreacionesVzlaGovernmentBundle';
+    }
 }

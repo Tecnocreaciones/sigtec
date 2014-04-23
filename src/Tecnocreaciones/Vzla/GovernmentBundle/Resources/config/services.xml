@@ -17,16 +17,14 @@
         </service>
     </services>
     -->
-    <parameters>
-        <parameter key="sigtec.menu_builder.backend.class">Tecnocreaciones\Vzla\GovernmentBundle\Menu\Template\Developer\BackendMenuBuilder</parameter>
-    </parameters>
+    
     <services>
-        <service id="sigtec.menu_builder.backend" class="%sigtec.menu_builder.backend.class%">
+        <service id="tecnocreaciones_vzla_government.menu_builder.backend" class="%tecnocreaciones_vzla_government.menu_builder.developer.class%">
             <argument type="service" id="knp_menu.factory" />
             <argument type="service" id="security.context" />
             <argument type="service" id="translator" />
         </service>
-        <service id="app.menu.backend.sidebar" class="Knp\Menu\MenuItem" factory-service="sigtec.menu_builder.backend" factory-method="createSidebarMenu" scope="request" >
+        <service id="app.menu.backend.sidebar" class="Knp\Menu\MenuItem" factory-service="tecnocreaciones_vzla_government.menu_builder.backend" factory-method="createSidebarMenu" scope="request" >
             <argument type="service" id="request" />
             <tag name="knp_menu.menu" alias="app.menu.backend.sidebar" />
         </service>

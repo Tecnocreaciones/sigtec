@@ -98,7 +98,7 @@
     </head>
 
     <body ng-app="mainApp" class="clearfix with-menu with-shortcuts" >
-
+        {% block content %}
         <!-- Prompt IE 6 users to install Chrome Frame -->
         <!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
         
@@ -151,6 +151,7 @@
                 var ConfApp = {};
                 ConfApp.assetPath = "{{ asset('') }}";
         </script>
+        {% endblock content %}
         {# Bloque para cargar archivos javascript bases #}
         {% block javascripts_base '' %}
             {% javascripts output='css/compiled/main_developer.js' 

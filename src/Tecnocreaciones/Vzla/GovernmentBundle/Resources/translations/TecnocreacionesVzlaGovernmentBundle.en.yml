@@ -1,0 +1,28 @@
+tecnocreaciones_vzla_government.sign_in: Sign in
+tecnocreaciones_vzla_government.remind_me: Remind me
+tecnocreaciones_vzla_government.enable_auto_login: Enable auto-login
+tecnocreaciones_vzla_government.login: Login
+tecnocreaciones_vzla_government.lost_password: Lost password
+tecnocreaciones_vzla_government.username: Username
+tecnocreaciones_vzla_government.password: Password
+tecnocreaciones_vzla_government.message_remember_password: If you can’t remember your password, fill the input below with your e-mail and we’ll send you instructions to recover
+tecnocreaciones_vzla_government.your_email: Your e-mail
+tecnocreaciones_vzla_government.send_instructions: Send instructions
+tecnocreaciones_vzla_government.register: Register
+tecnocreaciones_vzla_government.message_register: New user? Yay! Let us know a little bit about you before you start
+tecnocreaciones_vzla_government.your_name: Your name
+
+tecnocreaciones_vzla_government.message_header_center: App Header
+tecnocreaciones_vzla_government.message_app_title: Message App Name
+tecnocreaciones_vzla_government.message_footer: Message Footer
+
+tecnocreaciones_vzla_government.login.validators.please_fill_in_your_login: Please fill in your login
+tecnocreaciones_vzla_government.login.validators.please_fill_in_your_password: Please fill in your password
+tecnocreaciones_vzla_government.login.validators.checking_credentials: Checking credentials
+"Bad credentials": Username or Password invalid
+tecnocreaciones_vzla_government.login.validators.please_fill_in_your_email: Please fill in your email
+tecnocreaciones_vzla_government.login.validators.please_fill_in_your_name: Please fill in your name
+tecnocreaciones_vzla_government.validators.email_is_not_valid: Email is not valid
+tecnocreaciones_vzla_government.validators.registering: Registering
+tecnocreaciones_vzla_government.validators.sending_instructions: Sending instructions
+tecnocreaciones_vzla_government.registration: Register
