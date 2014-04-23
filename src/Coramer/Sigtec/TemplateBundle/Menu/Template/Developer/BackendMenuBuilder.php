@@ -23,21 +23,6 @@ use Tecnocreaciones\Vzla\GovernmentBundle\Menu\Template\Developer\BackendMenuBui
 class BackendMenuBuilder extends BaseBackendMenuBuilder
 {
     /**
-     * Base de segundo nivel de sidebar
-     * @var array 
-     */
-    private $secondLevelOptions = array('childrenAttributes' => array('class' => 'big-menu'));
-
-    /**
-     * Base de tercer nivel de sidebar
-     * @var array 
-     */
-    private $thirdLevelOptions = array('childrenAttributes' => array('class' => 'big-menu'));
-    
-    const ROUTE_DEFAULT = 'fos_user_security_check';
-
-
-    /**
      * Builds backend sidebar menu.
      *
      * @param Request $request
@@ -272,13 +257,5 @@ class BackendMenuBuilder extends BaseBackendMenuBuilder
                          ))->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.generic.group', $section)));
             
          $menu->addChild($child);   
-    }
-    
-    protected function getSecondLevelOptions(array $parameters = array()) {
-        return array_merge($this->secondLevelOptions,$parameters);
-    }
-
-    protected function getThirdLevelOptions(array $parameters = array()) {
-        return $this->thirdLevelOptions;
     }
 }

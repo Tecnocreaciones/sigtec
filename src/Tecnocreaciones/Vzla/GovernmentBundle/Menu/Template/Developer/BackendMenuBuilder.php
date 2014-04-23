@@ -111,4 +111,8 @@ class BackendMenuBuilder extends MenuBuilder
     protected function getSubLevelOptions(array $parameters = array()) {
         return array_merge($this->secondLevelOptions,$parameters);
     }
+    
+    protected function getSecondLevelOptions(array $parameters = array()) {
+        return array_merge($this->secondLevelOptions,$parameters);
+    }
 }
