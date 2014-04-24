@@ -18,8 +18,6 @@ namespace Tecnocreaciones\Vzla\GovernmentBundle\Model;
  */
 class TemplateConfig implements \Symfony\Component\DependencyInjection\ContainerAwareInterface
 {
-    private $templatesAvailable;
-    
     private $templates = array();
     
     private $container;
