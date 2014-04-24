@@ -16,7 +16,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity()
  * @ORM\Table(name="user")
  */
-class User extends BaseUser {
+class User extends BaseUser
+{
     
     /**
      * @ORM\Id

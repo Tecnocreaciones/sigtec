@@ -72,7 +72,7 @@ class BackendMenuBuilder extends MenuBuilder
                     'labelAttributes' => array('icon' => 'icon-book',),
                     ))
                 )
-                ->setLabel($this->translate(sprintf('app.backend.menu.%s.example', $section)));
+                ->setLabel($this->translate(sprintf('app.backend.menu.%s.example.main', $section)));
         $child
                 ->addChild('example.company', array(
                     'route' => '',
@@ -91,17 +91,17 @@ class BackendMenuBuilder extends MenuBuilder
                         'labelAttributes' => array('icon' => 'icon-book',),
                         ))
                     )
-                    ->setLabel($this->translate(sprintf('menu.%s.examples', $section)));
+                    ->setLabel($this->translate(sprintf('app.backend.menu.%s.example.other.main', $section)));
             $subchild
-                    ->addChild('subexample.manager', array(
+                    ->addChild('example.other.admin', array(
                         'route' => self::ROUTE_DEFAULT,
                         ))
-                    ->setLabel($this->translate(sprintf('%s.subexample.example.manager', $section)));
+                    ->setLabel($this->translate(sprintf('app.backend.menu.%s.example.other.admin', $section)));
 
-            $subchild->addChild('subexample.group', array(
+            $subchild->addChild('example.other.groups', array(
                         'route' => self::ROUTE_DEFAULT,
                     ))
-                    ->setLabel($this->translate(sprintf('%s.subexample.generic.group', $section)));
+                    ->setLabel($this->translate(sprintf('app.backend.menu.%s.example.other.groups', $section)));
         
             $child->addChild($subchild);
                

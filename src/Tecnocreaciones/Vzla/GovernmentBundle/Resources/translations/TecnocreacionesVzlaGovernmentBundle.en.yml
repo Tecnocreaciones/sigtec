@@ -12,38 +12,37 @@ tecnocreaciones_vzla_government:
                         register: Register
                         message_register: New user? Yay! Let us know a little bit about you before you start
                         your_name: Your name
+                        registration: Register
 
-tecnocreaciones_vzla_government.message_header_center: App Header
-tecnocreaciones_vzla_government.message_app_title: Message App Name
-tecnocreaciones_vzla_government.message_footer: Message Footer
+                        message_header_center: App Header
+                        message_app_title: Message App Name
+                        message_footer: Message Footer
 
-tecnocreaciones_vzla_government.login.validators.please_fill_in_your_login: Please fill in your login
-tecnocreaciones_vzla_government.login.validators.please_fill_in_your_password: Please fill in your password
-tecnocreaciones_vzla_government.login.validators.checking_credentials: Checking credentials
+                        profile: Profile
+                        logout: Logout
+                        
+                        login:
+                            validators:
+                                please_fill_in_your_login: Please fill in your login
+                                please_fill_in_your_password: Please fill in your password
+                                checking_credentials: Checking credentials
+                                please_fill_in_your_email: Please fill in your email
+                                please_fill_in_your_name: Please fill in your name
+                                email_is_not_valid: Email is not valid
+                                registering: Registering
+                                sending_instructions: Sending instructions
+                        profile:
+                            details: Details
+                            username: Username
+                            first_name: First name
+                            last_name: Last name
+                            email: Email
+                            groups: Groups
+                            update_password: Update password
+                            update: Update
+                            
 "Bad credentials": Username or Password invalid
-tecnocreaciones_vzla_government.login.validators.please_fill_in_your_email: Please fill in your email
-tecnocreaciones_vzla_government.login.validators.please_fill_in_your_name: Please fill in your name
-tecnocreaciones_vzla_government.validators.email_is_not_valid: Email is not valid
-tecnocreaciones_vzla_government.validators.registering: Registering
-tecnocreaciones_vzla_government.validators.sending_instructions: Sending instructions
-tecnocreaciones_vzla_government.registration: Register
 
-tecnocreaciones_vzla_government.profile: Profile
-tecnocreaciones_vzla_government.logout: Logout
-
-# Profile
-tecnocreaciones_vzla_government.profile: Profile
-tecnocreaciones_vzla_government:
-                            profile:
-                                details: Details
-                                username: Username
-                                first_name: First name
-                                last_name: Last name
-                                email: Email
-                                groups: Groups
-                                update_password: Update password
-                                update: Update
-                                
 sigtec:
     quantity_companies: Quantity companies
     companies: Companies
