@@ -5,9 +5,6 @@ mainApp.requires.push('sigtecModule');
 // Declare app level module which depends on filters, and services
 var sigtecModule = angular.module('sigtecModule', [
     'ngRoute',
-    'sigtecModule.filters',
-    'sigtecModule.services',
-    'sigtecModule.directives',
     'sigtecModule.controllers',
     'notificationBarModule'
 ]).

@@ -2,7 +2,7 @@
 
 /* Filters */
 
-angular.module('sigtecModule.filters', []).
+angular.module('mainApp.filters', []).
   filter('interpolate', ['version', function(version) {
     return function(text) {
       return String(text).replace(/\%VERSION\%/mg, version);

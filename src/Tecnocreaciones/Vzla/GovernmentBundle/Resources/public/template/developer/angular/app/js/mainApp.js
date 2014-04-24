@@ -2,6 +2,9 @@
 
 var mainApp = angular.module('mainApp',[
     'mainApp.controllers',
+    'mainApp.directives',
+    'mainApp.filters',
+    'mainApp.services',
     'notificationBarModule',
     'notifyModule'
 ]);
