@@ -6,9 +6,10 @@
     <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/switches3860.css?v=1') }}">
 {% endblock %}
 
-{% block javascripts %}
+{% block javascripts_base %}
+    {{ parent() }}
     <script src="{{  asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.input.js') }}"></script>
-{% endblock %}
+{% endblock javascripts_base %}
 {% block javascript %}
     <script type="text/javascript">
         $.fn.styleSelect.defaults.allValuesText = '{{ 'sigtec.all'|trans }}';

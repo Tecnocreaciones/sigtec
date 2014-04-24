@@ -1,11 +1,11 @@
 {% extends "TecnocreacionesVzlaGovernmentBundle:Template:Developer/base.html.twig" %}
 
-{% block javascripts %}
+{% block javascripts_base %}
+    {{ parent() }}
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/setup.js') }}"></script>
     
-    <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/modules/sigtecModule.js') }}"></script>
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/services.js') }}"></script>
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/controllers.js') }}"></script>
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/filters.js') }}"></script>
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/angular/app/js/directives.js') }}"></script>
-{% endblock %}
+{% endblock javascripts_base %}

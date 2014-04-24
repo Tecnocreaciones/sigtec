@@ -2,8 +2,14 @@
 
 /* Controllers */
 
-angular.module('sigtecModule.controllers', []).
-  controller('ShowCompanyList', ['$scope','$http','notificationBarService',function($scope,$http,notificationBarService) {
+angular.module('sigtecModule.controllers', [])
+   .controller('MainController',function($rootScope,notificationBarService){
+       $rootScope.notificationBarService = notificationBarService;
+       $rootScope.asset = function(path){
+           return ConfApp.assetPath+path;
+       }
+   })
+  .controller('ShowCompanyList', ['$scope','$http','notificationBarService',function($scope,$http,notificationBarService) {
           $scope.data = {};
           $scope.limit = '40';
           
@@ -32,6 +38,9 @@ angular.module('sigtecModule.controllers', []).
       $scope.model.city = 0;
       $scope.cities = {};
       $scope.getCities = function(selected){
+          if($scope.model.state == undefined || $scope.model.state == ''){
+              return ;
+          }
           var url = Routing.generate('api_tecnocreaciones_vzla_entity_state_cities',{id: $scope.model.state});
           notificationBarService.getLoadStatus().loading();
           $http.get(url).success(function(data){
