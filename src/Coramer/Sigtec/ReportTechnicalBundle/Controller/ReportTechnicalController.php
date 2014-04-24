@@ -76,11 +76,11 @@ class ReportTechnicalController extends ResourceController
                 }
                 $maxPerPage = $limit;
             }
-            $resources->setCurrentPage($request->get('page', 1), true, true);
-            $resources->setMaxPerPage($maxPerPage);
-            
-        $qb = $resources->getAdapter()->getQuery()->getDQL();
-        var_dump($qb);
+                $resources->setCurrentPage($request->get('page', 1), true, true);
+                $resources->setMaxPerPage($maxPerPage);
+
+            $qb = $resources->getAdapter()->getQuery()->getSql();
+            //print_r($qb);
         $view = $this
             ->view()
             ->setTemplate($this->config->getTemplate('index.html'))

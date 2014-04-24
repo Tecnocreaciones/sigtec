@@ -12,7 +12,5 @@ use Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class ReportTechnicalRepository extends EntityRepository
 {
-    public function createPaginator(array $criteria = null, array $orderBy = null) {
-        parent::createPaginator($criteria, $orderBy);
-    }
+    
 }

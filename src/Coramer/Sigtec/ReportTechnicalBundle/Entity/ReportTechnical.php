@@ -63,7 +63,7 @@ class ReportTechnical implements ReportTechnicalInterface
     /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Company
      * 
-     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Company", inversedBy="reportTechnicals")
+     * @ORM\ManyToOne(targetEntity="\Coramer\Sigtec\CompanyBundle\Entity\Company", inversedBy="reportTechnicals")
      */
     private $company;
     
