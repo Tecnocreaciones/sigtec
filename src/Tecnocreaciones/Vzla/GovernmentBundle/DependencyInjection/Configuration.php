@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
                                 ->children()
                                     ->scalarNode('menu')->defaultValue('Tecnocreaciones\Vzla\GovernmentBundle\Menu\Template\Developer\BackendMenuBuilder')->cannotBeEmpty()->end()
                                     ->scalarNode('logo')->defaultValue('bundles/tecnocreacionesvzlagovernment/template/developer/img/favicons/logo.png')->cannotBeEmpty()->end()
+                                    ->arrayNode('angular_dependencies')->prototype('scalar')->end()
                                 ->end()
                         ->end()
                     ->end()

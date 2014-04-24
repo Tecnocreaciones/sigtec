@@ -28,6 +28,11 @@ class TecnocreacionesVzlaGovernmentExtension extends Extension
         $container->setParameter('tecnocreaciones_vzla_government.menu_builder.developer.class', $config['template']['developer']['menu']);
         $container->setParameter('tecnocreaciones_vzla_government.menu_builder.developer.logo', $config['template']['developer']['logo']);
         
+        $templatesConfig = array();
+        $templatesConfig['developer']= $config['template']['developer'];
+        
+        $globalConfig = $container->getDefinition('tecnocreaciones_vzla_government.global_config');
+        $globalConfig->addMethodCall('setTemplates',array($templatesConfig));
         
     }
 }

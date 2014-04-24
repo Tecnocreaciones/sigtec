@@ -188,6 +188,7 @@ tecnocreaciones_vzla_government:
     template:
         developer:
             menu: Coramer\Sigtec\TemplateBundle\Menu\Template\Developer\BackendMenuBuilder
+            angular_dependencies: ['bundles/coramersigtecweb/angular/modules/sigtecModule.js']
 
 sylius_resource:
     resources:

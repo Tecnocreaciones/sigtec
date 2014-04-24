@@ -28,5 +28,16 @@
             <argument type="service" id="request" />
             <tag name="knp_menu.menu" alias="app.menu.backend.sidebar" />
         </service>
+        <service id="tecnocreaciones_vzla_government.global_config_extension" class="Tecnocreaciones\Vzla\GovernmentBundle\Twig\Extension\GlobalConfExtension">
+            <tag name="twig.extension" />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="tecnocreaciones_vzla_government.global_config" class="Tecnocreaciones\Vzla\GovernmentBundle\Model\TemplateConfig">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
     </services>
 </container>
