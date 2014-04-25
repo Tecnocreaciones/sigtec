@@ -33,8 +33,6 @@ twig:
     form:
         resources:
             - 'CoramerSigtecCoreBundle:Form:fields.html.twig'
-    globals:
-        tecnocreaciones_vzla_government_menu_builder_developer_logo: "%tecnocreaciones_vzla_government.menu_builder.developer.logo%"
 
 # Assetic Configuration
 assetic:
@@ -189,6 +187,11 @@ tecnocreaciones_vzla_government:
         developer:
             menu: Coramer\Sigtec\TemplateBundle\Menu\Template\Developer\BackendMenuBuilder
             angular_dependencies: ['bundles/coramersigtecweb/angular/modules/sigtecModule.js']
+            logo:
+                login_watermark: 'bundles/coramersigtectemplate/template/developer/img/favicons/watermark.png'
+                panel_right: 'bundles/coramersigtectemplate/template/developer/img/favicons/logo.png'
+                icon_png: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.png'
+                icon_ico: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.ico'
 
 sylius_resource:
     resources:
