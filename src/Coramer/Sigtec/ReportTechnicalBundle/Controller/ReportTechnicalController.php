@@ -37,7 +37,7 @@ class ReportTechnicalController extends ResourceController
         
         //Security Check
         $user = $this->getUser();
-        if(!$user->getCompanies()->contains($resource)){
+        if(!$user->getCompanies()->contains($resource->getCompany())){
             throw $this->createAccessDeniedHttpException();
         }
         
@@ -66,7 +66,7 @@ class ReportTechnicalController extends ResourceController
         
             $resources = $this->resourceResolver->getResource(
                 $repository,
-                'createPaginator',
+                'createPaginatorByClient',
                 array($criteria, $sorting)
             );
             $maxPerPage = $this->config->getPaginationMaxPerPage();
@@ -78,9 +78,7 @@ class ReportTechnicalController extends ResourceController
             }
                 $resources->setCurrentPage($request->get('page', 1), true, true);
                 $resources->setMaxPerPage($maxPerPage);
-
-            $qb = $resources->getAdapter()->getQuery()->getSql();
-            //print_r($qb);
+                
         $view = $this
             ->view()
             ->setTemplate($this->config->getTemplate('index.html'))

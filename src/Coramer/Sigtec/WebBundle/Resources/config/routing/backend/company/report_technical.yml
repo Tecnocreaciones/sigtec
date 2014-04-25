@@ -1,10 +1,34 @@
 coramer_sigtec_backend_company_report_technical_index:
     pattern:  /.{_format}
     defaults:
-        _controller:  coramer_sigtec_backend.controller.company_report_technical:indexClientAction
+        _controller: coramer_sigtec_backend.controller.company_report_technical:indexClientAction
         _format: html
     options:
         expose: true
     requirements:
         _method: GET
+        
+coramer_sigtec_backend_company_report_technical_show:
+    pattern:  /{id}/show.{_format}
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical:showAction
+        _format: html
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        
+coramer_sigtec_backend_company_report_technical_update:
+    pattern:  /{id}/update
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical:updateAction
+    requirements:
+        _method: GET|PUT
+        
+coramer_sigtec_backend_company_report_technical_delete:
+    pattern:  /{id}/delete
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical:deleteAction
+    requirements:
+        _method: POST|DELETE
         

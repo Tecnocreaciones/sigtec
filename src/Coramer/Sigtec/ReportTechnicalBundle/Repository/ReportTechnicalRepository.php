@@ -12,5 +12,23 @@ use Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class ReportTechnicalRepository extends EntityRepository
 {
-    
+    /**
+     * {@inheritdoc}
+     */
+    public function createPaginatorByClient(array $criteria = null, array $orderBy = null)
+    {
+        $queryBuilder = $this->getCollectionQueryBuilder();
+
+        $this->applyCriteria($queryBuilder, $criteria);
+        $this->applySorting($queryBuilder, $orderBy);
+        
+        $queryBuilder
+                ->innerJoin('o.company', 'c')
+                ->innerJoin('c.user', 'u')
+                ->andWhere('u.id = :user')
+                ->setParameter('user', $this->getUser())
+                ;
+        
+        return $this->getPaginator($queryBuilder);
+    }
 }
