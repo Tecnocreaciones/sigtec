@@ -54,16 +54,53 @@ class RifTool implements \Symfony\Component\DependencyInjection\ContainerAwareIn
         if($this->isValidFormat($rifString)){
             if($this->isValidCheckDigit($rifString)){
                 $parameters = array(
-                    'rif' => $rifString
+                    'rif' => $this->normalizeRif($rifString)
                 );
-                $request = new \Lsw\ApiCallerBundle\Call\HttpGetHtml($this->url, null,$parameters);
+                $request = new \Tecnocreaciones\Vzla\ToolsBundle\Call\HttpGetXml($this->url,null,$parameters);
                 $response = $this->getApiCaller()->call($request);
                 if($request->getStatusCode() == 404){
                     $rif
                     ->setCodeResponse(Rif::STATUS_ERROR_SERVER_DOWN)
                     ->setMessage($this->buildMessage('tecnocreaciones.vzlatools.the_seniat_server_is_not_available_at_this_time'));
                 }else{
-                    //TODO TERMINAR EL PROCESO CUANDO EL SERVIDOR DEL SENIAT RESPONDA
+                    try {
+                        if(substr($response,0,1)!= '<' ) {
+                            throw new \Exception($response);
+                        }
+
+                        $xml = simplexml_load_string($response);
+
+                        if(!is_bool($xml)) {
+                            $elements = $xml->children('rif');
+                            $rif->setRif($rifString);
+                            foreach($elements as $key => $node) {
+                                $value = (string)$node;
+                                switch ($node->getName()){
+                                    case 'Nombre':
+                                        $rif->setName($value);
+                                        break;
+                                    case 'AgenteRetencionIVA':
+                                        if($value === 'SI'){
+                                            $rif->setWithholdingAgentVAT(true);
+                                        }
+                                        break;
+                                    case 'ContribuyenteIVA':
+                                        if($value === 'SI'){
+                                            $rif->setContributorVAT(true);
+                                        }
+                                        break;
+                                    case 'Tasa':
+                                        $rif->setRate($value);
+                                        break;
+                                }
+                            }
+                            $rif->setCodeResponse(Rif::STATUS_OK);
+                        }
+                    } catch(\Exception $e) {
+                        $rif
+                            ->setCodeResponse(Rif::STATUS_ERROR_RIF_DOES_NOT_EXIST)
+                            ->setMessage($this->buildMessage('tecnocreaciones.vzlatools.the_rif_does_not_exist'));
+                    }
                 }
             }else{
                 $rif
@@ -145,6 +182,10 @@ class RifTool implements \Symfony\Component\DependencyInjection\ContainerAwareIn
         $rif = str_replace('-', '', strtoupper($rif));
         $retorno = preg_match("/^([VEJPG]{1})([0-9]{9}$)/", $rif);
         return $retorno;
+    }
+    
+    public function normalizeRif($rif) {
+        return str_replace('-', '', strtoupper($rif));
     }
     
     /**

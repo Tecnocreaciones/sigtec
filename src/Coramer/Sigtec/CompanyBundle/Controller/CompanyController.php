@@ -113,7 +113,13 @@ class CompanyController extends ResourceController
             
             $rifResponse= $rifService->getRif($resource->getRif());
             if($rifResponse->isValid()){
-                
+                $resource
+                        ->setName($rifResponse->getName())
+                        ->setRifValidated(true);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($resource);
+                $em->flush();
+                $data['message'] = $this->get('translator')->trans('sigtec.the_rif_has_already_been_validated');
             }else{
                 $response->setStatusCode(400);
                 $data = $rifResponse->getArrayResponse();
@@ -177,12 +183,21 @@ class CompanyController extends ResourceController
         $form = $this->getForm($resource);
 
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
+            /** \Tecnocreaciones\Vzla\ToolsBundle\Tools\RifTool **/
+            $rifService = $this->get('tecnocreaciones_vzla_tools.rif');
+            
+            $rifResponse= $rifService->getRif($resource->getRif());
+            if($rifResponse->isValid()){
+                $resource
+                        ->setName($rifResponse->getName())
+                        ->setRifValidated(true);
+            }
             $resource = $this->domainManager->create($resource);
 
             if (null === $resource) {
                 return $this->redirectHandler->redirectToIndex();
             }
-
+            
             return $this->redirectHandler->redirectTo($resource);
         }
 

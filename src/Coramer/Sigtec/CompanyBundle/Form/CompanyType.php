@@ -14,6 +14,11 @@ class CompanyType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $company = $builder->getData();
+        $disabled = false; 
+        if($company->isRifValidated()){
+           $disabled = true; 
+        }
         $builder
             ->add('rif',null,array(
                 'label' => 'sigtec.rif',
@@ -21,10 +26,12 @@ class CompanyType extends AbstractType
                     'class' => 'input small-margin-right',
                     'title' => '(X-12345678-9)'
                     ),
+                'disabled' => $disabled,
             ))
             ->add('name',null,array(
                 'label' => 'sigtec.name',
                 'attr' => array('class' => 'input small-margin-right'),
+                'disabled' => $disabled,
             ))
             ->add('email',null,array(
                 'label' => 'sigtec.email',

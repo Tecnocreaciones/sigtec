@@ -44,6 +44,24 @@ class Rif
     
     private $name;
     
+    /**
+     * Agente de retencion de iva
+     * @var string
+     */
+    private $withholdingAgentVAT = false;
+    
+    /**
+     * Contribuyente iva
+     * @var string
+     */
+    private $contributorVAT = false;
+    
+    /**
+     * Tasa
+     * @var string
+     */
+    private $rate = 0;
+    
     private $message;
     
     private $codeResponse;
@@ -99,6 +117,10 @@ class Rif
     public function getArrayResponse() {
         $data = array(
             'message' => $this->getMessage(),
+            'name' => $this->getName(),
+            'withholdingAgentVAT' => $this->getWithholdingAgentVAT(),
+            'contributorVAT' => $this->getContributorVAT(),
+            'rate' => $this->getRate(),
         );
         return $data;
     }
@@ -110,4 +132,30 @@ class Rif
     public function isValid() {
         return $this->valid;
     }
+    
+    public function getWithholdingAgentVAT() {
+        return $this->withholdingAgentVAT;
+    }
+
+    public function getContributorVAT() {
+        return $this->contributorVAT;
+    }
+
+    public function getRate() {
+        return $this->rate;
+    }
+
+    public function setWithholdingAgentVAT($withholdingAgentVAT) {
+        $this->withholdingAgentVAT = $withholdingAgentVAT;
+    }
+
+    public function setContributorVAT($contributorVAT) {
+        $this->contributorVAT = $contributorVAT;
+    }
+
+    public function setRate($rate) {
+        $this->rate = $rate;
+    }
+
+
 }

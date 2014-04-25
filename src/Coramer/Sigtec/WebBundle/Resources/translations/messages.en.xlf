@@ -126,10 +126,6 @@
                 <source>sigtec.edit</source>
                 <target>Edit</target>
             </trans-unit>
-            <trans-unit id="e96822fdb8a35bddba01ac1f9e355515">
-                <source>sigtec.question.delete</source>
-                <target>You want to delete this item</target>
-            </trans-unit>
             <trans-unit id="b5ebfd11bbd1870f3b668642699d30c9">
                 <source>sigtec.company_update</source>
                 <target>Update company</target>

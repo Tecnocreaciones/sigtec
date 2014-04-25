@@ -33,11 +33,11 @@ angular.module('sigtecModule.controllers', [])
   .controller('CompanyIndexController', function($scope,$http,notifyService) {
           $scope.itemValidateRif = function(url){
               $http.get(url).success(function(data){
-                  notifyService.success(url);
+                  notifyService.success(data.message);
+                  $scope.tableParams.reload();
               }).error(function(data){
                   notifyService.error(data.message);
               });
-              //$scope.tableParams.reload();
           }
   })
   .controller('VzlaEntityController',function($scope,$http,notificationBarService){
