@@ -19,7 +19,7 @@ use Tecnocreaciones\Vzla\EntityBundle\Entity\Country;
  * Data de Paises
  * 
  * @see https://github.com/marydn/venezuela-sql/blob/master/venezuela.sql
- * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
 class LoadCountryData extends AbstractFixture
 {   

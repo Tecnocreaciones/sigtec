@@ -20,7 +20,7 @@ use Tecnocreaciones\Vzla\EntityBundle\Entity\Parish;
  * Data de parroquias
  *
  * @see https://github.com/marydn/venezuela-sql/blob/master/venezuela.sql
- * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
 class LoadParishData extends AbstractFixture implements OrderedFixtureInterface
 {

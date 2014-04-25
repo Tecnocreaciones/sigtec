@@ -1,2 +1,4 @@
 sigtec:
     register: Register
+    company:
+        report_technical: Report technical

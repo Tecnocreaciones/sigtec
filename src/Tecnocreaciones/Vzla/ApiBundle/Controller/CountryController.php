@@ -16,7 +16,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 /**
  * API Rest Country
  *
- * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
 class CountryController extends \Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController
 {

@@ -14,7 +14,7 @@ namespace Tecnocreaciones\Vzla\ApiBundle\Controller;
 /**
  * Description of CityController
  *
- * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
 class CityController extends \Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController
 {

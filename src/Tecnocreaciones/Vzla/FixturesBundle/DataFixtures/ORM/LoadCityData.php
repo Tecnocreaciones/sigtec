@@ -20,7 +20,7 @@ use Tecnocreaciones\Vzla\EntityBundle\Entity\City;
  * Data de las ciudades
  *
  * @see https://github.com/marydn/venezuela-sql/blob/master/venezuela.sql
- * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
 class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
 {

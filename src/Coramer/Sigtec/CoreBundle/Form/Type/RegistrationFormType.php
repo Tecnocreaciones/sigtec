@@ -16,7 +16,7 @@ use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 /**
  * Description of RegistrationFormType
  *
- * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
 class RegistrationFormType extends BaseType
 {

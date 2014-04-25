@@ -20,7 +20,7 @@ use JMS\Serializer\EventDispatcher\ObjectEvent;
 /**
  * Description of SerializeEventListerner
  *
- * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
 class SerializeEventListerner implements EventSubscriberInterface
 {

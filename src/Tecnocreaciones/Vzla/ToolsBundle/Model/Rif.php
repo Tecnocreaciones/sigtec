@@ -14,7 +14,7 @@ namespace Tecnocreaciones\Vzla\ToolsBundle\Model;
 /**
  * Description of Rif
  *
- * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
 class Rif 
 {

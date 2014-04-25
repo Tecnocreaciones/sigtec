@@ -15,7 +15,7 @@ namespace Coramer\Sigtec\FixturesBundle\DataFixtures\ORM;
 /**
  * Description of LoadDedicationData
  *
- * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
 class LoadDedicationData implements \Doctrine\Common\DataFixtures\FixtureInterface
 {

@@ -14,7 +14,7 @@ namespace Coramer\Sigtec\CoreBundle\DataFixtures\ORM;
 /**
  * Carga datos de prueba
  *
- * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
 class LoadFakerData implements \Doctrine\Common\DataFixtures\FixtureInterface
 {

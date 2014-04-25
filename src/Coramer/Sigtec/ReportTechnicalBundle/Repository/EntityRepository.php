@@ -16,7 +16,7 @@ use Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository as BaseE
 /**
  * Description of BaseRepository
  *
- * @author Carlos Mendoza <inhack20@tecnocreaciones.com.ve>
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
 class EntityRepository extends BaseEntityRepository
 {
