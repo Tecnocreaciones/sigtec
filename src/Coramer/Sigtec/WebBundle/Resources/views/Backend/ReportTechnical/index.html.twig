@@ -12,6 +12,10 @@
                         {{ 'sigtec.create'|trans }}
                 </a>
             </p>
+            <button type="button" class="button" onclick="openComplexModal()">
+                <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                {{ 'sigtec.create'|trans }}
+            </button>
         </h1>
     </hgroup>
     <div ng-controller="TableFormatController">
@@ -71,5 +75,44 @@
                         '<strong>{{ 'sigtec.updated_at' | trans }}:</strong> ' + data.updated_at + '<br>'
                         ;
             }
+        function openComplexModal()
+        {
+            
+                $.modal({
+                        content: '<p>This is an example of modal window. You can open several at the same time (click links below!), move them and resize them.</p>'+
+                                          '<p>The plugin provides several other functions to control them, try below:</p>'+
+                                          '<ul class="simple-list with-icon">'+
+                                          '    <li><a href="javascript:void(0)" onclick="openModal()">Open new blocking modal</a></li>'+
+                                          '    <li><a href="javascript:void(0)" onclick="$.modal.alert(\'This is a non-blocking modal, you can switch between me and the other modal\', { blocker: false, contentBg: false })">Open non-blocking modal</a></li>'+
+                                          '    <li><a href="javascript:void(0)" onclick="$(this).getModalWindow().setModalTitle(\'\')">Remove title</a></li>'+
+                                          '    <li><a href="javascript:void(0)" onclick="$(this).getModalWindow().setModalTitle(\'New title\')">Change title</a></li>'+
+                                          '    <li><a href="javascript:void(0)" onclick="$(this).getModalWindow().loadModalContent(\'ajax-demo/auto-setup.html\')">Load Ajax content</a></li>'+
+                                          '</ul>',
+                        title: 'Complex modal window',
+                        width: 300,
+                        scrolling: false,
+                        actions: {
+                                'Close' : {
+                                        color: 'red',
+                                        click: function(win) { win.closeModal(); }
+                                },
+                                'Center' : {
+                                        color: 'green',
+                                        click: function(win) { win.centerModal(true); }
+                                }
+                        },
+                        buttons: {
+                                'Cancel': {
+                                        classes:	'button glossy',
+                                        click:		function(win) { win.closeModal(); }
+                                },
+                                'Submit': {
+                                        classes:	'button blue-gradient glossy mid-margin-left',
+                                        click:		function(win) { win.closeModal(); }
+                                }
+                        },
+                        buttonsLowPadding: true
+                });
+        };
     </script>
 {% endblock %}

@@ -57,12 +57,11 @@ class ReportTechnicalController extends ResourceController
      * @return type
      * @Security("is_granted('ROLE_CLIENT')")
      */
-    function indexClientAction(Request $request) {
-        $user = $this->getUser();
+    function indexClientAction(Request $request)
+    {
         $criteria = $request->get('filter',$this->config->getCriteria());
         $sorting = $request->get('sorting',$this->config->getSorting());
         $repository = $this->getRepository();
-        //$criteria['company.user'] = $user->getId();
         
             $resources = $this->resourceResolver->getResource(
                 $repository,
