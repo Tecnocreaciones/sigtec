@@ -40,6 +40,7 @@ class SerializeEventListerner implements EventSubscriberInterface
         return array(
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeCompany', 'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Company','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializePlant', 'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Plant','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeReportTechnical', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical','format' => 'json'),
         );
     }
     
@@ -80,6 +81,24 @@ class SerializeEventListerner implements EventSubscriberInterface
                 ),
             'delete' => array(
                 'href' => $this->generateUrl('coramer_sigtec_backend_company_plant_delete',array('id' => $object->getId()))
+                ),
+        ));
+    }
+    /**
+     * Captura el evento luego que se serealia un reporte tecnico
+     * @param \JMS\Serializer\EventDispatcher\ObjectEvent $event
+     */
+    function onPostSerializeReportTechnical(ObjectEvent $event) {
+        $object = $event->getObject();
+        $event->getVisitor()->addData('_links', array(
+            'self' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_show',array('id' => $object->getId()))
+                ),
+            'edit' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_update',array('id' => $object->getId()))
+                ),
+            'delete' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_delete',array('id' => $object->getId()))
                 ),
         ));
     }

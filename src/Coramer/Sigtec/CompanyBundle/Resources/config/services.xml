@@ -34,6 +34,9 @@
             factory-method="getRepository"
         >
             <argument>%coramer_sigtec_company.company.class%</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
         </service>
         <service id="coramer_sigtec_backend.repository.company_plant" class="%coramer_sigtec_company.repository.plant.class%" 
             factory-service="tecnocreaciones_resource.manager_entity_repository"

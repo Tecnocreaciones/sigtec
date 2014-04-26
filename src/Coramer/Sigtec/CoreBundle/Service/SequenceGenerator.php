@@ -41,6 +41,14 @@ class SequenceGenerator
         return $this->sequenceGenerator->generateNext($qb,$mask,'name');
     }
     
+    function getNextTempArchive()
+    {
+        $qb = $this->sequenceGenerator->createQueryBuilder();
+        $qb->from('Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical', 'rt')
+            ;
+        return $this->sequenceGenerator->generateNextTemp($qb,'archive');
+    }
+    
     public function setSequenceGenerator(\Tecnocreaciones\Bundle\ToolsBundle\Service\SequenceGenerator $sequenceGenerator) {
         $this->sequenceGenerator = $sequenceGenerator;
     }

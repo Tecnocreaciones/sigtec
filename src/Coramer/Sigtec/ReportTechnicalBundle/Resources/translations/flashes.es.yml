@@ -1,0 +1,5 @@
+coramer_sigtec_backend:
+    company_report_technical:
+        create: El reporte técnico se ha creado
+        update: El reporte técnico se ha actualizado
+        delete: El reporte técnico se ha eliminado

@@ -37,7 +37,7 @@ class ReportTechnicalController extends ResourceController
         
         //Security Check
         $user = $this->getUser();
-        if(!$user->getCompanies()->contains($resource)){
+        if(!$user->getCompanies()->contains($resource->getCompany())){
             throw $this->createAccessDeniedHttpException();
         }
         
@@ -57,16 +57,16 @@ class ReportTechnicalController extends ResourceController
      * @return type
      * @Security("is_granted('ROLE_CLIENT')")
      */
-    function indexClientAction(Request $request) {
-        $user = $this->getUser();
+    function indexClientAction(Request $request)
+    {
+        $formCompany = $this->buildFormCompanyField();
         $criteria = $request->get('filter',$this->config->getCriteria());
         $sorting = $request->get('sorting',$this->config->getSorting());
         $repository = $this->getRepository();
-        //$criteria['company.user'] = $user->getId();
-        
+//        print_r($criteria);
             $resources = $this->resourceResolver->getResource(
                 $repository,
-                'createPaginator',
+                'createPaginatorByClient',
                 array($criteria, $sorting)
             );
             $maxPerPage = $this->config->getPaginationMaxPerPage();
@@ -78,20 +78,79 @@ class ReportTechnicalController extends ResourceController
             }
                 $resources->setCurrentPage($request->get('page', 1), true, true);
                 $resources->setMaxPerPage($maxPerPage);
-
-            $qb = $resources->getAdapter()->getQuery()->getSql();
-            //print_r($qb);
+                
         $view = $this
             ->view()
             ->setTemplate($this->config->getTemplate('index.html'))
             ->setTemplateVar($this->config->getPluralResourceName())
         ;
         if($request->get('_format') == 'html'){
-            $view->setData($resources);
+        $view->setData(array(
+            'form_company' => $formCompany->createView(),'company_report_technicals' => $resources
+        ));
         }else{
             $formatData = $request->get('_formatData','default');
             $view->setData($resources->toArray($this->config->getRedirectRoute('index'),array(),$formatData));
         }
         return $this->handleView($view);
+    }
+    
+    public function createAction(Request $request) {
+        $resource = $this->createNew();
+        $formCompany = $this->buildFormCompanyField($resource);
+        $sequenceGenerator = $this->get('sigtec.sequence_generator');
+                
+        if ($request->isMethod('POST') && $formCompany->submit($request)->isValid()) {
+            $resource->setArchive($sequenceGenerator->getNextTempArchive());
+            $resource = $this->domainManager->create($resource);
+
+            if (null === $resource) {
+                return $this->redirectHandler->redirectToIndex();
+            }
+
+            return $this->redirectHandler->redirectTo($resource);
+        }
+
+        if ($this->config->isApiRequest()) {
+            return $this->handleView($this->view($formCompany));
+        }
+
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('index.html'))
+            ->setData(array(
+                $this->config->getResourceName() => $resource,
+                'form_company'                   => $formCompany->createView()
+            ))
+        ;
+
+        return $this->handleView($view);
+    }
+    
+    private function buildFormCompanyField($resource = null) {
+        $user = $this->getUser();
+        $form =  $this->createFormBuilder($resource)->add('company','entity',array(
+                'label' => 'sigtec.company',
+                'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Company',
+                'property' => 'rif',
+                'empty_value' => 'sigtec.select',
+                'attr' => array(
+                    'class' => 'select blue-gradient replacement glossy input-large',
+                ),
+                'required' => true,
+                'query_builder' => function(\Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository $er) use ($user) {
+                    $qb = $er->createQueryBuilder('c');
+                    $qb
+                        ->select('c')
+                        ->innerJoin('c.user','u')
+                        ->andWhere('c.status = :status')
+                        ->andWhere('u.id = :user')
+                        ->setParameter('user', $user)
+                        ->setParameter('status', true)
+                            ;
+                    return $qb;
+                },
+            ));
+        return $form->getForm();
     }
 }

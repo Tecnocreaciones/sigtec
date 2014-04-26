@@ -7,17 +7,17 @@
             <span class="icon-forward"></span>
             <span class="thin">{{ 'sigtec.list'|trans }}</span>
             <p class="button-height align-right">
-                <a href="{{ path('coramer_sigtec_backend_company_create') }}" class="button">
-                        <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
-                        {{ 'sigtec.create'|trans }}
-                </a>
+                <button type="button" class="button" onclick="openComplexModal()">
+                    <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                    {{ 'sigtec.create'|trans }}
+                </button>
             </p>
         </h1>
     </hgroup>
     <div ng-controller="TableFormatController">
         <div ng-controller="CompanyIndexController">
                 <div loading-container="tableParams.settings().$loading">
-                    <table ng-table="tableParams" template-pagination="custom/pager"  template-header="custom/header" api-data-url="{{ path('coramer_sigtec_backend_company_report_technical_index',{_format:'json'}) }}" class="table table-responsive table-extra-info">
+                    <table ng-table="tableParams" show-filter="true" template-pagination="custom/pager"  template-header="custom/header" api-data-url="{{ path('coramer_sigtec_backend_company_report_technical_index',{_format:'json'}) }}" class="table table-responsive table-extra-info">
                         <tr ng-repeat="result in $data | filter:tableParams.search" data="[[ result|json ]]">
                             <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
                                 <input type="checkbox" ng-model="checkboxes.items[result.id]" />
@@ -25,7 +25,7 @@
                             <td data-title="'{{ 'sigtec.archive'|trans }}'" sortable="'archive'">
                                 <a href="[[ result._links.self.href ]]">[[result.archive]]</a>
                             </td>
-                            <td data-title="'{{ 'sigtec.company'|trans }}'" sortable="'company'" >
+                            <td data-title="'{{ 'sigtec.company'|trans }}'" sortable="'company'">
                                 <a href="[[ result.company._links.self.href ]]" title="[[ result.company.name ]]" >[[result.company.rif]]</a>
                             </td>
                             <td data-title="'{{ 'sigtec.status'|trans }}'" sortable="'status'">
@@ -71,5 +71,42 @@
                         '<strong>{{ 'sigtec.updated_at' | trans }}:</strong> ' + data.updated_at + '<br>'
                         ;
             }
+        function openComplexModal()
+        {
+            var content = '<fieldset class="fieldset fields-list">\n\
+                            <legend class="legend">{{ 'sigtec.company'|trans }}</legend>\n\
+                            <form id="form_company" action="{{ path('coramer_sigtec_backend_company_report_technical_create') }}" method="POST">\n\
+                            <div class="field-block button-height">\n\
+                            {{ form_label(form_company.company) }}{{ form_widget(form_company.company) }}'+
+                            '{{ form_errors(form_company.company) }}{{ form_rest(form_company) }}</div></form>\n\
+                          </fieldset>';
+                $.modal({
+                        content: content,
+                        //title: 'Complex modal window',
+                        
+                        scrolling: false,
+                        actions: {
+                                'Close' : {
+                                        color: 'red',
+                                        click: function(win) { win.closeModal(); }
+                                },
+                                'Center' : {
+                                        color: 'green',
+                                        click: function(win) { win.centerModal(true); }
+                                }
+                        },
+                        buttons: {
+                                '{{ 'sigtec.cancel'|trans }}': {
+                                        classes:	'button glossy',
+                                        click:		function(win) { win.closeModal(); }
+                                },
+                                '{{ 'sigtec.create'|trans }}': {
+                                        classes:	'button blue-gradient glossy mid-margin-left',
+                                        click:		function(win) { $("#form_company").submit(); }
+                                }
+                        },
+                        buttonsLowPadding: true
+                });
+        };
     </script>
 {% endblock %}
