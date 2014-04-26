@@ -98,8 +98,10 @@ class ReportTechnicalController extends ResourceController
     public function createAction(Request $request) {
         $resource = $this->createNew();
         $formCompany = $this->buildFormCompanyField($resource);
-
+        $sequenceGenerator = $this->get('sigtec.sequence_generator');
+                
         if ($request->isMethod('POST') && $formCompany->submit($request)->isValid()) {
+            $resource->setArchive($sequenceGenerator->getNextTempArchive());
             $resource = $this->domainManager->create($resource);
 
             if (null === $resource) {

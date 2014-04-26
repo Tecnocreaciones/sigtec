@@ -15,7 +15,7 @@ class ContactController extends ResourceController
     public function updateAction(Request $request) {
          $resource = $this->findOr404($request);
          
-         //Security Check
+        //Security Check
         $user = $this->getUser();
         if(!$user->getCompanies()->contains($resource->getCompany())){
             throw $this->createAccessDeniedHttpException();
