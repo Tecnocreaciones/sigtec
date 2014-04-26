@@ -1,3 +1,5 @@
 coramer_sigtec_backend:
     company_report_technical:
+        create: The technical report has been created
+        update: The technical report has been updated
         delete: The technical report has been removed

@@ -63,7 +63,7 @@ class ReportTechnicalController extends ResourceController
         $criteria = $request->get('filter',$this->config->getCriteria());
         $sorting = $request->get('sorting',$this->config->getSorting());
         $repository = $this->getRepository();
-        
+//        print_r($criteria);
             $resources = $this->resourceResolver->getResource(
                 $repository,
                 'createPaginatorByClient',
