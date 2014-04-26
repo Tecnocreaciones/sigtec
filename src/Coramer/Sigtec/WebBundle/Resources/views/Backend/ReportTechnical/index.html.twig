@@ -7,15 +7,11 @@
             <span class="icon-forward"></span>
             <span class="thin">{{ 'sigtec.list'|trans }}</span>
             <p class="button-height align-right">
-                <a href="{{ path('coramer_sigtec_backend_company_create') }}" class="button">
-                        <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
-                        {{ 'sigtec.create'|trans }}
-                </a>
+                <button type="button" class="button" onclick="openComplexModal()">
+                    <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                    {{ 'sigtec.create'|trans }}
+                </button>
             </p>
-            <button type="button" class="button" onclick="openComplexModal()">
-                <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
-                {{ 'sigtec.create'|trans }}
-            </button>
         </h1>
     </hgroup>
     <div ng-controller="TableFormatController">
@@ -77,19 +73,17 @@
             }
         function openComplexModal()
         {
-            
+            var content = '<fieldset class="fieldset fields-list">\n\
+                            <legend class="legend">{{ 'sigtec.company'|trans }}</legend>\n\
+                            <form id="form_company" action="{{ path('coramer_sigtec_backend_company_report_technical_create') }}" method="POST">\n\
+                            <div class="field-block button-height">\n\
+                            {{ form_label(form_company.company) }}{{ form_widget(form_company.company) }}'+
+                            '{{ form_errors(form_company.company) }}{{ form_rest(form_company) }}</div></form>\n\
+                          </fieldset>';
                 $.modal({
-                        content: '<p>This is an example of modal window. You can open several at the same time (click links below!), move them and resize them.</p>'+
-                                          '<p>The plugin provides several other functions to control them, try below:</p>'+
-                                          '<ul class="simple-list with-icon">'+
-                                          '    <li><a href="javascript:void(0)" onclick="openModal()">Open new blocking modal</a></li>'+
-                                          '    <li><a href="javascript:void(0)" onclick="$.modal.alert(\'This is a non-blocking modal, you can switch between me and the other modal\', { blocker: false, contentBg: false })">Open non-blocking modal</a></li>'+
-                                          '    <li><a href="javascript:void(0)" onclick="$(this).getModalWindow().setModalTitle(\'\')">Remove title</a></li>'+
-                                          '    <li><a href="javascript:void(0)" onclick="$(this).getModalWindow().setModalTitle(\'New title\')">Change title</a></li>'+
-                                          '    <li><a href="javascript:void(0)" onclick="$(this).getModalWindow().loadModalContent(\'ajax-demo/auto-setup.html\')">Load Ajax content</a></li>'+
-                                          '</ul>',
-                        title: 'Complex modal window',
-                        width: 300,
+                        content: content,
+                        //title: 'Complex modal window',
+                        
                         scrolling: false,
                         actions: {
                                 'Close' : {
@@ -102,13 +96,13 @@
                                 }
                         },
                         buttons: {
-                                'Cancel': {
+                                '{{ 'sigtec.cancel'|trans }}': {
                                         classes:	'button glossy',
                                         click:		function(win) { win.closeModal(); }
                                 },
-                                'Submit': {
+                                '{{ 'sigtec.create'|trans }}': {
                                         classes:	'button blue-gradient glossy mid-margin-left',
-                                        click:		function(win) { win.closeModal(); }
+                                        click:		function(win) { $("#form_company").submit(); }
                                 }
                         },
                         buttonsLowPadding: true

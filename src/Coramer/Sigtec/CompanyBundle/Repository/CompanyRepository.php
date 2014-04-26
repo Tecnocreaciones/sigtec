@@ -19,5 +19,16 @@ use Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class CompanyRepository extends EntityRepository
 {
-    
+    function getQueryAllCompanyCurrentClient() {
+        $qb = $this->createQueryBuilder('c');
+        $qb
+            ->select('c')
+            ->innerJoin('c.user','u')
+            ->andWhere('c.status = :status')
+            ->andWhere('u.id = :user')
+            ->setParameter('user', $this->getUser())
+            ->setParameter('status', true)
+                ;
+        return $qb;
+    }
 }

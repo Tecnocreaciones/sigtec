@@ -185,6 +185,7 @@ nelmio_api_doc: ~
 tecnocreaciones_vzla_government:
     template:
         developer:
+            app_title: SIGTEC
             menu: Coramer\Sigtec\TemplateBundle\Menu\Template\Developer\BackendMenuBuilder
             angular_dependencies: ['bundles/coramersigtecweb/angular/modules/sigtecModule.js']
             logo:

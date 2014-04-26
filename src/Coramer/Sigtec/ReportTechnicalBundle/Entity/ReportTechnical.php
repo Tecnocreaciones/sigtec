@@ -58,7 +58,7 @@ class ReportTechnical implements ReportTechnicalInterface
      *
      * @ORM\Column(name="status", type="integer")
      */
-    private $status = 0;
+    private $status = self::STATUS_IN_PROGRESS;
 
     /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Company
