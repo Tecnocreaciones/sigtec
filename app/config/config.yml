@@ -194,6 +194,9 @@ tecnocreaciones_vzla_government:
                 icon_png: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.png'
                 icon_ico: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.ico'
 
+tecnocreaciones_vzla_entity:
+    backend_admin: true
+
 sonata_block:
     default_contexts: [cms]
     blocks:

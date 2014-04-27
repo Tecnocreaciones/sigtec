@@ -63,10 +63,10 @@ class Country
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updateAt", type="datetime", nullable=true)
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
      * @Gedmo\Timestampable(on="update")
      */
-    private $updateAt;
+    private $updatedAt;
 
     /**
      * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\Region
@@ -190,26 +190,26 @@ class Country
     }
 
     /**
-     * Set updateAt
+     * Set updatedAt
      *
-     * @param \DateTime $updateAt
+     * @param \DateTime $updatedAt
      * @return Country
      */
-    public function setUpdateAt($updateAt)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->updateAt = $updateAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get updateAt
+     * Get updatedAt
      *
      * @return \DateTime 
      */
-    public function getUpdateAt()
+    public function getUpdatedAt()
     {
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
     /**
