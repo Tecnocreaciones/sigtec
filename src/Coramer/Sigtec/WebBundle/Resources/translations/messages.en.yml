@@ -1,4 +1,7 @@
 sigtec:
     register: Register
+    total: Total
     company:
         report_technical: Report technical
+        
+"Validation Failed": Validation Failed

@@ -63,7 +63,6 @@ class ReportTechnicalController extends ResourceController
         $criteria = $request->get('filter',$this->config->getCriteria());
         $sorting = $request->get('sorting',$this->config->getSorting());
         $repository = $this->getRepository();
-//        print_r($criteria);
             $resources = $this->resourceResolver->getResource(
                 $repository,
                 'createPaginatorByClient',
@@ -101,7 +100,10 @@ class ReportTechnicalController extends ResourceController
         $sequenceGenerator = $this->get('sigtec.sequence_generator');
                 
         if ($request->isMethod('POST') && $formCompany->submit($request)->isValid()) {
-            $resource->setArchive($sequenceGenerator->getNextTempArchive());
+            $resource
+                    ->setArchive($sequenceGenerator->getNextTempArchive())
+                    ->setProfessionalProfile(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile());
+                    ;
             $resource = $this->domainManager->create($resource);
 
             if (null === $resource) {
@@ -121,6 +123,65 @@ class ReportTechnicalController extends ResourceController
             ->setData(array(
                 $this->config->getResourceName() => $resource,
                 'form_company'                   => $formCompany->createView()
+            ))
+        ;
+
+        return $this->handleView($view);
+    }
+    
+    public function updateAction(Request $request) {
+        $resource = $this->findOr404($request);
+                
+        $form = $this->getForm($resource);
+        $data = array();
+        if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
+
+
+            if($request->isXmlHttpRequest()){
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($resource);
+                $em->flush();
+                $data['message'] = 'sigtec.the_changes_have_been_successfully_saved';
+            }else{
+                $this->domainManager->update($resource);
+                return $this->redirectHandler->redirectTo($resource);
+            }
+        }else{
+            $data = $form;
+        }
+
+        if ($this->config->isApiRequest()) {
+            return $this->handleView($this->view($form));
+        }
+        $view = $this
+                ->view();
+        if($request->isXmlHttpRequest()){
+            $view
+                ->setFormat('json')
+                ->setTemplate($this->config->getTemplate('update.html'))
+                ->setData($data)
+            ;
+        }else{
+            $view
+                ->setTemplate($this->config->getTemplate('update.html'))
+                ->setData(array(
+                    $this->config->getResourceName() => $resource,
+                    'form'                           => $form->createView()
+                ))
+            ;
+        }
+
+        return $this->handleView($view);
+    }
+    
+    function getProfessionalProfileAction(Request $request)
+    {
+        $resource = $this->findOr404($request);
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('show.html'))
+            ->setData(array(
+                $resource->getProfessionalProfile(),
             ))
         ;
 

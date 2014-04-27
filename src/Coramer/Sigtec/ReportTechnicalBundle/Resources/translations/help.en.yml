@@ -1,0 +1,8 @@
+sigtec:
+    help:
+        professional_profile:
+            professional_profile: Describe the level of training of workers in the company
+            quantity_professionals: Number of university graduates working in the company (engineers, economists, lawyers, etc.)
+            quantity_technical: Number of graduates (average or higher) technical schools
+            quantity_laborers: Numbers of workers undergraduate universities or technical institutes
+            quantity_other: Numbers of workers who do not qualify in the above classifications

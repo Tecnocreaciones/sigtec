@@ -40,6 +40,70 @@ angular.module('sigtecModule.controllers', [])
               });
           }
   })
+  .controller('ReportTechnicalController',function($scope,$http,reportTechnicalManager,notificationBarService,notifyService){
+      var reportTechnical = {
+              professional_profile: {
+                  quantity_professionals: 0,
+                    quantity_technical: 0,
+                    quantity_laborers: 0,
+                    quantity_other: 0,
+                    total: 0
+              }
+          };
+      $scope.reportTechnical = reportTechnical;
+      $scope.form = {};
+      
+      $scope.reportTechnicalHelper = {
+          professional_profile: {}
+      };
+      //Calcula el total de los empleados de la empresa
+      $scope.reportTechnicalHelper.professional_profile.calculeTotal = function(){
+          $scope.reportTechnical.professional_profile.total =
+                 $scope.reportTechnical.professional_profile.quantity_professionals + 
+                 $scope.reportTechnical.professional_profile.quantity_technical +
+                 $scope.reportTechnical.professional_profile.quantity_laborers +
+                 $scope.reportTechnical.professional_profile.quantity_other;
+      };
+      
+      $scope.save = function(){
+          sendAjaxForm('form_company_report_technical');
+      };
+      
+      function sendAjaxForm(idForm){
+            notificationBarService.getLoadStatus().loading();
+            var url = $('#'+idForm).attr('action');
+            var formData = $('#'+idForm).serialize();
+            $http({
+                method  : 'POST',
+                url     : url,
+                data    : formData,
+                headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With':'XMLHttpRequest' }  // set the headers so angular passing info as form data (not request payload)
+            }).success(function(data){
+                $scope.form.errors = {};
+                notifyService.success(Translator.trans(data.message));
+                notificationBarService.getLoadStatus().done();
+            }).error(function(data){
+                notifyService.error(Translator.trans(data.message));
+                $scope.form.errors = {};
+                if(data.errors){
+                    if(data.errors.errors){
+                        $.each(data.errors.errors,function(index,value){
+                            notifyService.error(Translator.trans(value));
+                        });
+                    }
+                    $scope.form.errors = data.errors.children;
+                }
+                notificationBarService.getLoadStatus().done();
+            });
+        }
+      
+      $scope.loadReportTechnical = function(id){
+          reportTechnicalManager.setId(id);
+          reportTechnicalManager.init($scope);
+      };
+      
+      $scope.reportTechnicalHelper.professional_profile.calculeTotal();
+  })
   .controller('VzlaEntityController',function($scope,$http,notificationBarService){
       $scope.model = {};
       $scope.model.state = $("#coramer_sigtec_companybundle_plant_state").val();
@@ -69,3 +133,46 @@ angular.module('sigtecModule.controllers', [])
       $scope.getCities(cityId);
   })
   ;
+  
+sigtecModule.factory('reportTechnicalManager',function($http,notificationBarService){
+    var config = {
+        routes:{
+            show: 'coramer_sigtec_backend_company_report_technical_show',
+            update: 'coramer_sigtec_backend_company_report_technical_update',
+            delete: 'coramer_sigtec_backend_company_report_technical_delete',
+            professional_profile: 'coramer_sigtec_backend_company_report_technical_professional_profile'
+        }
+    };
+    var data = {};
+    var idReportTechnical = null;
+    return {
+        init: function($scope){
+            notificationBarService.getLoadStatus().loading();
+            return $http.get(this.generateRoute('coramer_sigtec_backend_company_report_technical_show')).success(function(d){
+                $scope.reportTechnical = d;
+                data = d;
+                notificationBarService.getLoadStatus().done();
+            });
+        },
+        getData: function(route){
+            return $http.get(this.generateRoute(route)).success(function(d){
+                data = d;
+                return data;
+            });
+        },
+        setId: function(i){
+            idReportTechnical = i;
+        },
+        getId: function(){
+            return idReportTechnical;
+        },
+        generateRoute: function(route){
+            return Routing.generate(route,{id:idReportTechnical,_format:'json'});
+        },
+        getProfessionalProfile: function(){
+            return $http.get(this.generateRoute(config.routes.professional_profile)).success(function(d){
+                
+            });
+        }
+    }
+});

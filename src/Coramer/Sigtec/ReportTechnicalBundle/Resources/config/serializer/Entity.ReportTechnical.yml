@@ -1,0 +1,21 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show]
+        archive:
+            expose: true
+            groups: [show]
+        createdAt:
+            expose: true
+            groups: [show]
+        updatedAt:
+            expose: true
+            groups: [show]
+        status:
+            expose: true
+            groups: [show]
+        professionalProfile:
+            expose: true
+            groups: [show]

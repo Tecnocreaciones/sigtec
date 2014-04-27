@@ -15,12 +15,9 @@ class ReportTechnicalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('archive')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('deletedAt')
-            ->add('status')
-            ->add('company')
+            ->add('professionalProfile',new Properties\ProfessionalProfileType(),array(
+//                'type' => ,
+            ))
         ;
     }
     

@@ -1,0 +1,21 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show]
+        quantityProfessionals:
+            expose: true
+            groups: [show]
+        quantityTechnical:
+            expose: true
+            groups: [show]
+        quantityLaborers:
+            expose: true
+            groups: [show]
+        quantityOther:
+            expose: true
+            groups: [show]
+        total:
+            expose: true
+            groups: [show]

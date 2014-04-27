@@ -67,6 +67,12 @@ class ReportTechnical implements ReportTechnicalInterface
      */
     private $company;
     
+    /**
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile
+     *
+     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile",cascade={"persist","remove"})
+     */
+    private $professionalProfile;
 
     /**
      * Get id
@@ -214,5 +220,28 @@ class ReportTechnical implements ReportTechnicalInterface
     public function getArchive()
     {
         return $this->archive;
+    }
+
+    /**
+     * Set professionalProfile
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile $professionalProfile
+     * @return ReportTechnical
+     */
+    public function setProfessionalProfile(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile $professionalProfile = null)
+    {
+        $this->professionalProfile = $professionalProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get professionalProfile
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile 
+     */
+    public function getProfessionalProfile()
+    {
+        return $this->professionalProfile;
     }
 }

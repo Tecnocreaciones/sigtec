@@ -29,6 +29,8 @@ coramer_sigtec_backend_company_report_technical_update:
     pattern:  /{id}/update
     defaults:
         _controller: coramer_sigtec_backend.controller.company_report_technical:updateAction
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_reporttechnical
     requirements:
         _method: GET|PUT
         
@@ -39,3 +41,13 @@ coramer_sigtec_backend_company_report_technical_delete:
     requirements:
         _method: POST|DELETE
         
+coramer_sigtec_backend_company_report_technical_professional_profile:
+    pattern:  /{id}/professional-profile.{_format}
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical:getProfessionalProfileAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml

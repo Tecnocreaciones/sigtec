@@ -1,0 +1,8 @@
+sigtec:
+    help:
+        professional_profile: 
+            professional_profile: Detalle el nivel de formación de los trabajadores de la empresa
+            quantity_professionals: Número de graduados universitarios que laboran en la empresa (ingenieros, economistas, licenciados, etc)
+            quantity_technical: Número de graduados de escuelas técnicas (superiores o medias)
+            quantity_laborers: Número de trabajadores no graduados de universidades o institutos técnicos
+            quantity_other: Número de trabajadores que no califiquen en las clasificaciones anteriores
