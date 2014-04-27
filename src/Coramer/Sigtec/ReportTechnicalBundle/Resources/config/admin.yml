@@ -79,3 +79,23 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [admin]]
+    sonata.admin.type_process:
+        class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\TypeProcessAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "admin.group.report_technical",label_catalogue: "admin", label: "admin.type_process" }
+        arguments:
+            - ~
+            - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\TypeProcess
+            - ~
+        calls:
+            - [ setTranslationDomain, [admin]]
+    sonata.admin.process:
+        class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\ProcessAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "admin.group.report_technical",label_catalogue: "admin", label: "admin.process" }
+        arguments:
+            - ~
+            - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process
+            - ~
+        calls:
+            - [ setTranslationDomain, [admin]]

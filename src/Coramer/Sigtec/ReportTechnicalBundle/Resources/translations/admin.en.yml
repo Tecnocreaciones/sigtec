@@ -9,6 +9,8 @@ admin:
     segment: Segment
     sub_segment: Sub segment
     supplier: Supplier
+    type_process: Type process
+    process: Process
     
 #Table show
 Description: Description
@@ -17,6 +19,7 @@ Updated At: Updated At
 Active: Active
 
 Resin: Resin
+"Type Process": Type Process
 
 #Breadcumbs
 "Additive List": Additive List
@@ -27,3 +30,5 @@ Resin: Resin
 "Segment List": Segment List
 "Sub Segment List": Sub Segment List
 "Supplier List": Supplier List
+"Type Process List": Type Process List
+"Process List": Process List

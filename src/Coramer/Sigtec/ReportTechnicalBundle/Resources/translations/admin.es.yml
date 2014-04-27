@@ -9,6 +9,8 @@ admin:
     segment: Segmento
     sub_segment: Sub segmento
     supplier: Proveedor
+    type_process: Tipo de proceso
+    process: Proceso
     
 #Table show
 Description: Descripción
@@ -17,6 +19,7 @@ Updated At: Actualizado el
 Active: Activo
 
 Resin: Resina
+"Type Process": Tipo de proceso
 
 #Breadcumbs
 "Additive List": Lista de aditivos
@@ -27,3 +30,5 @@ Resin: Resina
 "Segment List": Lista de segmentos
 "Sub Segment List": Lista de sub segmentos
 "Supplier List": Lista de proveedores
+"Type Process List": Lista de los tipos de procesos
+"Process List": Lista de los procesos
