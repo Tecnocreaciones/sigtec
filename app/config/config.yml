@@ -201,6 +201,10 @@ sonata_block:
         sonata.admin.block.admin_list:
             contexts:   [admin]
 
+sonata_admin:
+    title:      SIGTEC
+    title_logo: bundles/coramersigtectemplate/template/developer/img/favicons/logo.png
+
 sylius_resource:
     resources:
          coramer_sigtec_backend.user:
