@@ -39,7 +39,7 @@ class City
     /**
      * @var boolean
      *
-     * @ORM\Column(name="active", type="boolean")
+     * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active = true;
 
