@@ -22,7 +22,12 @@ class CoramerSigtecReportTechnicalExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $locator = new FileLocator(__DIR__.'/../Resources/config');
+        
+        $loader = new Loader\XmlFileLoader($container, $locator);
         $loader->load('services.xml');
+        
+        $loaderYml = new Loader\YamlFileLoader($container, $locator);
+        $loaderYml->load('admin.yml');
     }
 }

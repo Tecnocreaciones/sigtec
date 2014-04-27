@@ -32,6 +32,14 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),//Gestor del menu
             new Lsw\ApiCallerBundle\LswApiCallerBundle(),//Api Conector curl
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),//Documentador de API REST
+            //SonataAdminBundle dependencias
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),//Requerido por SonataAdminBundle
+            new Sonata\AdminBundle\SonataAdminBundle(),//Administracion
+            
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            
             new Coramer\Sigtec\CoreBundle\CoramerSigtecCoreBundle(),
             new Coramer\Sigtec\WebBundle\CoramerSigtecWebBundle(),
             new Tecnocreaciones\Vzla\ToolsBundle\TecnocreacionesVzlaToolsBundle(),

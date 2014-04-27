@@ -39,7 +39,10 @@
         "tecnocreaciones/ajax-fos-user-bundle": "dev-master",
         "tecnocreaciones/install-bundle": "dev-master",
         "tecnocreaciones/tools-bundle": "dev-master",
-        "tecnocreaciones/resource-bundle": "dev-master"
+        "tecnocreaciones/resource-bundle": "dev-master",
+        "sonata-project/admin-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/easy-extends-bundle": "dev-master"
     },
     "require-dev": {
         "nelmio/alice": "1.5.*@dev",

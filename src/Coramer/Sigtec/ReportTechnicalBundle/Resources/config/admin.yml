@@ -1,0 +1,81 @@
+services:
+    sonata.admin.additive:
+        class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\AdditiveAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Additive" }
+        arguments:
+            - ~
+            - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Additive
+            - ~
+        calls:
+            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+    sonata.admin.grade:
+        class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\GradeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Grade" }
+        arguments:
+            - ~
+            - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Grade
+            - ~
+        calls:
+            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+    sonata.admin.port:
+        class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\PortAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Port" }
+        arguments:
+            - ~
+            - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Port
+            - ~
+        calls:
+            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+    sonata.admin.product:
+        class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\ProductAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Product" }
+        arguments:
+            - ~
+            - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product
+            - ~
+        calls:
+            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+    sonata.admin.resin:
+        class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\ResinAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Resin" }
+        arguments:
+            - ~
+            - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Resin
+            - ~
+        calls:
+            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+    sonata.admin.segment:
+        class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\SegmentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Segment" }
+        arguments:
+            - ~
+            - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment
+            - ~
+        calls:
+            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+    sonata.admin.sub_segment:
+        class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\SubSegmentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Sub Segment" }
+        arguments:
+            - ~
+            - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment
+            - ~
+        calls:
+            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+    sonata.admin.supplier:
+        class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\SupplierAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Supplier" }
+        arguments:
+            - ~
+            - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Supplier
+            - ~
+        calls:
+            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]

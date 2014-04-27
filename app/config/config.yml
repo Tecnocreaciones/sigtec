@@ -194,6 +194,13 @@ tecnocreaciones_vzla_government:
                 icon_png: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.png'
                 icon_ico: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.ico'
 
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
 sylius_resource:
     resources:
          coramer_sigtec_backend.user:

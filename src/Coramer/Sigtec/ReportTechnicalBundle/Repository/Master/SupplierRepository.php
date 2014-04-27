@@ -1,6 +1,6 @@
 <?php
 
-namespace Coramer\Sigtec\ReportTechnicalBundle\Entity\Master;
+namespace Coramer\Sigtec\ReportTechnicalBundle\Repository\Master;
 
 use Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository as BaseEntityRepository;
 
@@ -12,4 +12,5 @@ use Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository as BaseE
  */
 class SupplierRepository extends BaseEntityRepository
 {
+    
 }
