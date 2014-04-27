@@ -2,80 +2,80 @@ services:
     sonata.admin.additive:
         class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\AdditiveAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Additive" }
+            - { name: sonata.admin, manager_type: orm, group: "admin.group.report_technical",label_catalogue: "admin", label: "admin.additive" }
         arguments:
             - ~
             - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Additive
             - ~
         calls:
-            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+            - [ setTranslationDomain, [admin]]
     sonata.admin.grade:
         class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\GradeAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Grade" }
+            - { name: sonata.admin, manager_type: orm, group: "admin.group.report_technical",label_catalogue: "admin", label: "admin.grade" }
         arguments:
             - ~
             - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Grade
             - ~
         calls:
-            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+            - [ setTranslationDomain, [admin]]
     sonata.admin.port:
         class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\PortAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Port" }
+            - { name: sonata.admin, manager_type: orm, group: "admin.group.report_technical",label_catalogue: "admin", label: "admin.port" }
         arguments:
             - ~
             - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Port
             - ~
         calls:
-            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+            - [ setTranslationDomain, [admin]]
     sonata.admin.product:
         class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\ProductAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Product" }
+            - { name: sonata.admin, manager_type: orm, group: "admin.group.report_technical",label_catalogue: "admin", label: "admin.product" }
         arguments:
             - ~
             - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product
             - ~
         calls:
-            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+            - [ setTranslationDomain, [admin]]
     sonata.admin.resin:
         class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\ResinAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Resin" }
+            - { name: sonata.admin, manager_type: orm, group: "admin.group.report_technical",label_catalogue: "admin", label: "admin.resin" }
         arguments:
             - ~
             - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Resin
             - ~
         calls:
-            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+            - [ setTranslationDomain, [admin]]
     sonata.admin.segment:
         class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\SegmentAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Segment" }
+            - { name: sonata.admin, manager_type: orm, group: "admin.group.report_technical",label_catalogue: "admin", label: "admin.segment" }
         arguments:
             - ~
             - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment
             - ~
         calls:
-            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+            - [ setTranslationDomain, [admin]]
     sonata.admin.sub_segment:
         class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\SubSegmentAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Sub Segment" }
+            - { name: sonata.admin, manager_type: orm, group: "admin.group.report_technical",label_catalogue: "admin", label: "admin.sub_segment" }
         arguments:
             - ~
             - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment
             - ~
         calls:
-            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+            - [ setTranslationDomain, [admin]]
     sonata.admin.supplier:
         class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Master\SupplierAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Report Technical", label: "Supplier" }
+            - { name: sonata.admin, manager_type: orm, group: "admin.group.report_technical",label_catalogue: "admin", label: "admin.supplier" }
         arguments:
             - ~
             - Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Supplier
             - ~
         calls:
-            - [ setTranslationDomain, [CoramerSigtecReportTechnicalBundle]]
+            - [ setTranslationDomain, [admin]]

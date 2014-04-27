@@ -1,0 +1,29 @@
+admin:
+    group:
+        report_technical: Report technical
+    additive: Additive
+    grade: Grade
+    port: Port
+    product: Product
+    resin: Resin
+    segment: Segment
+    sub_segment: Sub segment
+    supplier: Supplier
+    
+#Table show
+Description: Description
+Created At: Created At
+Updated At: Updated At
+Active: Active
+
+Resin: Resin
+
+#Breadcumbs
+"Additive List": Additive List
+"Grade List": Grade List
+"Port List": Port List
+"Product List": Product List
+"Resin List": Resin List
+"Segment List": Segment List
+"Sub Segment List": Sub Segment List
+"Supplier List": Supplier List
