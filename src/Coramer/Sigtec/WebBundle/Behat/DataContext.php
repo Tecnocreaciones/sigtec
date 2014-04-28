@@ -60,7 +60,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
                 'ROLE_USER',
                 isset($data['enabled']) ? $data['enabled'] : 'yes',
                 isset($data['address']) && !empty($data['address']) ? $data['address'] : null,
-                false
+                true
             );
         }
     }
