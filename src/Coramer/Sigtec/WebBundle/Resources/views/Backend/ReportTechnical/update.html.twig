@@ -5,8 +5,10 @@
     <div class="full-page-wizard" ng-controller="ReportTechnicalController">
 	<form method="POST" id="form_company_report_technical" action="{{ path('coramer_sigtec_backend_company_report_technical_update',{ id:company_report_technical.id }) }}" class="block wizard same-height">
             <input ng-init="loadReportTechnical({{ company_report_technical.id }});" type="hidden" name="_method" value="PUT" />
-		<h3 class="block-title">
+		<h3 class="block-title breadcrumb">
                     <a href="{{ path('coramer_sigtec_backend_company_report_technical_index') }}">{{ 'sigtec.company.report_technical'|trans }}</a>
+                    <span class="icon-forward"></span>
+                    <span class="thin"><a href="{{ path('coramer_sigtec_backend_company_show',{id:company_report_technical.company.id}) }}">{{ company_report_technical.company.rif }}</a></span>
                     <span class="icon-forward"></span>
                     <span class="thin"><a href="{{ path('coramer_sigtec_backend_company_report_technical_show',{id:company_report_technical.id}) }}">{{ company_report_technical.archive }}</a></span>
                 </h3>

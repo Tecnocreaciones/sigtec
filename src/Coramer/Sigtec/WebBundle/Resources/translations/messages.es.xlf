@@ -170,14 +170,6 @@
                 <source>sigtec.city</source>
                 <target>Ciudad</target>
             </trans-unit>
-            <trans-unit id="6a709e64872613a5b4b35a5ed3b55000">
-                <source>sigtec.all</source>
-                <target>Todos</target>
-            </trans-unit>
-            <trans-unit id="5154b831c3f8e87ade2891863787b8f0">
-                <source>sigtec.selected</source>
-                <target>Seleccionado(s)</target>
-            </trans-unit>
             <trans-unit id="ec1eeb8fe4d9e8956595d783c9c316e8">
                 <source>sigtec.phones</source>
                 <target>Teléfono(s)</target>
