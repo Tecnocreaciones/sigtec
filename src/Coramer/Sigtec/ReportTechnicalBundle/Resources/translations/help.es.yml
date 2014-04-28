@@ -6,3 +6,5 @@ sigtec:
             quantity_technical: Número de graduados de escuelas técnicas (superiores o medias)
             quantity_laborers: Número de trabajadores no graduados de universidades o institutos técnicos
             quantity_other: Número de trabajadores que no califiquen en las clasificaciones anteriores
+        description_of_the_business_areas:
+            description_of_the_business_areas: Se recopila la informacón de las áreas generales, de producción y almacenaje que conforman la empresa y se detallan las condiciones de conservación de los productos

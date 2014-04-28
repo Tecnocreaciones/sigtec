@@ -6,3 +6,5 @@ sigtec:
             quantity_technical: Number of graduates (average or higher) technical schools
             quantity_laborers: Numbers of workers undergraduate universities or technical institutes
             quantity_other: Numbers of workers who do not qualify in the above classifications
+        description_of_the_business_areas:
+            description_of_the_business_areas: Info of the general areas, production and storage that make up the company and the storage conditions of the products listed is collected

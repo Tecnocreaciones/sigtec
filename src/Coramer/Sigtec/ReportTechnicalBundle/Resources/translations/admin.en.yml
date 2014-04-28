@@ -11,6 +11,9 @@ admin:
     supplier: Supplier
     type_process: Type process
     process: Process
+    report_technical:
+        description_area_company:
+            description_area: Areas of the company
     
 #Table show
 Description: Description
@@ -19,6 +22,7 @@ Updated At: Updated At
 Active: Active
 
 Resin: Resin
+Parent: Parent
 "Type Process": Type Process
 
 #Breadcumbs
@@ -32,3 +36,4 @@ Resin: Resin
 "Supplier List": Supplier List
 "Type Process List": Type Process List
 "Process List": Process List
+"Description Area List": Description Area of Company List

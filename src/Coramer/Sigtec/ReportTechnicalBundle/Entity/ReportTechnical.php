@@ -73,7 +73,13 @@ class ReportTechnical implements ReportTechnicalInterface
      * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile",cascade={"persist","remove"})
      */
     private $professionalProfile;
-
+    
+    /**
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany
+     * 
+     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany")
+     */
+    private $descriptionAreaCompany;
     /**
      * Get id
      *
@@ -243,5 +249,28 @@ class ReportTechnical implements ReportTechnicalInterface
     public function getProfessionalProfile()
     {
         return $this->professionalProfile;
+    }
+
+    /**
+     * Set descriptionAreaCompany
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany $descriptionAreaCompany
+     * @return ReportTechnical
+     */
+    public function setDescriptionAreaCompany(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany $descriptionAreaCompany = null)
+    {
+        $this->descriptionAreaCompany = $descriptionAreaCompany;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionAreaCompany
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany 
+     */
+    public function getDescriptionAreaCompany()
+    {
+        return $this->descriptionAreaCompany;
     }
 }

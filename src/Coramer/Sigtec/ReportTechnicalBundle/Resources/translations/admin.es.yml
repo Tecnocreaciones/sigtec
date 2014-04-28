@@ -11,6 +11,9 @@ admin:
     supplier: Proveedor
     type_process: Tipo de proceso
     process: Proceso
+    report_technical:
+        description_area_company:
+            description_area: Áreas de la empresa
     
 #Table show
 Description: Descripción
@@ -19,6 +22,7 @@ Updated At: Actualizado el
 Active: Activo
 
 Resin: Resina
+Parent: Padre
 "Type Process": Tipo de proceso
 
 #Breadcumbs
@@ -32,3 +36,4 @@ Resin: Resina
 "Supplier List": Lista de proveedores
 "Type Process List": Lista de los tipos de procesos
 "Process List": Lista de los procesos
+"Description Area List": Lista de las areas de la empresa
