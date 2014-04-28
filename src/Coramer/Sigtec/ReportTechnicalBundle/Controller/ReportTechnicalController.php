@@ -109,8 +109,10 @@ class ReportTechnicalController extends ResourceController
             if (null === $resource) {
                 return $this->redirectHandler->redirectToIndex();
             }
-
-            return $this->redirectHandler->redirectTo($resource);
+            
+            return $this->redirectHandler->redirectToRoute('coramer_sigtec_backend_company_report_technical_update',array(
+                'id' => $resource->getId(),
+            ));
         }
 
         if ($this->config->isApiRequest()) {
