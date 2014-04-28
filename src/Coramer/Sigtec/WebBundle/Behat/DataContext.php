@@ -63,16 +63,14 @@ class DataContext extends BehatContext implements KernelAwareInterface
                 false
             );
         }
-
-        $this->getEntityManager()->flush();
     }
 
     public function thereIsUser($username, $password, $role = null, $enabled = 'yes', $address = null, $flush = true)
     {
-        if (null === $user = $this->getRepository('user')->findOneBy(array('username' => $username))) {
+        if (null === $user = $this->getUserManager()->findOneBy(array('username' => $username))) {
             
             /* @var $user UserInterface */
-            $user = $this->getRepository('user')->createNew();
+            $user = $this->getUserManager()->create();
             $user->setUsername($username);
             $user->setEmail($this->faker->email);
             $user->setEnabled('yes' === $enabled);
@@ -81,10 +79,9 @@ class DataContext extends BehatContext implements KernelAwareInterface
             if (null !== $role) {
                 $user->addRole($role);
             }
-
-            $this->getEntityManager()->persist($user);
+            
             if ($flush) {
-                $this->getEntityManager()->flush();
+                $this->getUserManager()->save($user);
             }
         }
 
@@ -192,7 +189,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
                     ->setEmail($data['email'])
                     ->setStatus($data['status'] === 'yes')
                     ;
-                $user = $this->findOneBy('user', array('username' => $data['user']));
+                $user = $this->getUserManager()->findOneBy(array('username' => $data['user']));
                 $company->setUser($user);
             $manager->persist($company);
         }
@@ -218,7 +215,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
                 $contact->setFirstName('Rafael')->setLastName('Carrillo')->setCharge('Contador');
                 $contact->setCompany($company);
                 
-                $user = $this->findOneBy('user', array('username' => 'client'));
+                $user = $this->getUserManager()->findOneBy(array('username' => 'client'));
                 $company->setUser($user);
             $manager->persist($company);
             $manager->persist($contact);
@@ -358,5 +355,10 @@ class DataContext extends BehatContext implements KernelAwareInterface
         }
 
         return $token->getUser();
+    }
+    
+    protected function getUserManager()
+    {
+        return $this->getContainer()->get('fos_user.user_manager');
     }
 }

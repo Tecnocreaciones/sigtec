@@ -12,4 +12,5 @@ use Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository as BaseE
  */
 class AdditiveRepository extends BaseEntityRepository
 {
+    
 }

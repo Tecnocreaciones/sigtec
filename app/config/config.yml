@@ -57,6 +57,8 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: "%kernel.root_dir%/data/data.db3"
         # path:     "%database_path%"
@@ -67,6 +69,9 @@ doctrine:
             default:
                 auto_mapping: true
                 mappings:
+                    ApplicationSonataUserBundle: ~
+                    SonataUserBundle: ~
+                    FOSUserBundle: ~
                     gedmo_loggable:
                         type: annotation
                         prefix: Gedmo\Loggable\Entity
@@ -90,11 +95,16 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: Coramer\Sigtec\CoreBundle\Entity\User
+    user_class: Application\Sonata\UserBundle\Entity\User
     registration:
         form:
             type: sigtec_user_registration
-    
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)
+    service:
+        user_manager: sonata.user.orm.user_manager
+        
 stof_doctrine_extensions:
     default_locale: %locale%
     orm:
@@ -133,7 +143,6 @@ lunetics_locale:
         show_current_locale: true
         
 tecnocreaciones_install:
-    user_class: Coramer\Sigtec\CoreBundle\Entity\User
     credentials:
         email: inhack20@gmail.com
                 
@@ -194,6 +203,47 @@ tecnocreaciones_vzla_government:
                 icon_png: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.png'
                 icon_ico: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.ico'
 
+tecnocreaciones_vzla_entity:
+    backend_admin: true
+
+sonata_user:
+    security_acl: true
+    manager_type: orm # can be orm or mongodb
+    impersonating:
+        route:                coramer_sigtec_web_dashboard_index
+        parameters:           { path: / }
+
+sonata_block:
+    default_contexts: [cms]
+        
+    blocks:
+        sonata.block.service.menu:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        sonata.user.block.menu:    # used to display the menu in profile pages
+            contexts: [user]
+        sonata.user.block.account: # used to display menu option (login option)
+            contexts: [user]
+
+sonata_admin:
+    title:      SIGTEC
+    title_logo: bundles/coramersigtectemplate/template/developer/img/favicons/logo.png
+    dashboard:
+        groups:
+            sonata.admin.group.administration:
+                label:           sonata_administration
+                label_catalogue: SonataAdminBundle
+                icon:            '<i class="fa fa-cogs"></i>'
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+            admin.group.report_technical:
+                label_catalogue: admin
+                icon:            '<i class="fa fa-pencil-square-o"></i>'
+            admin.group.vzla_entity:
+                label_catalogue: admin
+                icon:            '<i class="fa fa fa-play-circle"></i>'
 sylius_resource:
     resources:
          coramer_sigtec_backend.user:

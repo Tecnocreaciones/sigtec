@@ -16,9 +16,11 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            
             new FOS\UserBundle\FOSUserBundle(),//Manejador se session y usuario
             new FOS\RestBundle\FOSRestBundle(),//Trabaja con el serializador de objetos
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),//Generado de rutas javascript
+            
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),//Extensiones de doctrine
             new Liip\ImagineBundle\LiipImagineBundle(),//Manejador de imagenes
             new Liip\DoctrineCacheBundle\LiipDoctrineCacheBundle(),//Cache para doctrine
@@ -29,15 +31,30 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),//Para cargar fixtures de la base de datos
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),//Paginador
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),//Recursos CRUD
+            
+            new Tecnocreaciones\Bundle\AjaxFOSUserBundle\TecnocreacionesAjaxFOSUserBundle(),
+            
+            //SonataAdminBundle dependencias
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),//Requerido por SonataAdminBundle
+            //new Sonata\jQueryBundle\SonatajQueryBundle(),
+            
+            new Sonata\AdminBundle\SonataAdminBundle(),//Administracion
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Sonata\UserBundle\SonataUserBundle(),
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),//Bundle generado por SonataUserBundle
+            
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),//Gestor del menu
             new Lsw\ApiCallerBundle\LswApiCallerBundle(),//Api Conector curl
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),//Documentador de API REST
+            
             new Coramer\Sigtec\CoreBundle\CoramerSigtecCoreBundle(),
             new Coramer\Sigtec\WebBundle\CoramerSigtecWebBundle(),
             new Tecnocreaciones\Vzla\ToolsBundle\TecnocreacionesVzlaToolsBundle(),
             new Tecnocreaciones\Vzla\GovernmentBundle\TecnocreacionesVzlaGovernmentBundle(),
             new Tecnocreaciones\Bundle\InstallBundle\TecnocreacionesInstallBundle(),
-            new Tecnocreaciones\Bundle\AjaxFOSUserBundle\TecnocreacionesAjaxFOSUserBundle(),
+            
             new Tecnocreaciones\Bundle\ToolsBundle\TecnocreacionesToolsBundle(),
             new Coramer\Sigtec\CompanyBundle\CoramerSigtecCompanyBundle(),
             new Tecnocreaciones\Bundle\ResourceBundle\TecnocreacionesResourceBundle(),

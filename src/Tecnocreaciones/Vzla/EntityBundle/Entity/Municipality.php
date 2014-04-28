@@ -48,7 +48,7 @@ class Municipality
     /**
      * @var boolean
      *
-     * @ORM\Column(name="active", type="boolean")
+     * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active = true;
     
@@ -63,10 +63,10 @@ class Municipality
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updateAt", type="datetime", nullable=true)
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
      * @Gedmo\Timestampable(on="update")
      */
-    private $updateAt;
+    private $updatedAt;
     
     /**
      * @var \Tecnocreaciones\Vzla\EntityBundle\Entity\Parish
@@ -160,26 +160,26 @@ class Municipality
     }
 
     /**
-     * Set updateAt
+     * Set updatedAt
      *
-     * @param \DateTime $updateAt
+     * @param \DateTime $updatedAt
      * @return Municipality
      */
-    public function setUpdateAt($updateAt)
+    public function setUpdatedAt($updateAt)
     {
-        $this->updateAt = $updateAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get updateAt
+     * Get updatedAt
      *
      * @return \DateTime 
      */
-    public function getUpdateAt()
+    public function getupdatedAt()
     {
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
     /**

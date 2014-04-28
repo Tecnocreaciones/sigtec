@@ -1,4 +1,4 @@
-Coramer\Sigtec\CoreBundle\Entity\User:
+Application\Sonata\UserBundle\Entity\User:
     user0:
         username: cliente
         email: cliente@example.com.ve
