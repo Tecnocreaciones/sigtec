@@ -1,6 +1,6 @@
 admin:
     group:
-        vzla_entity: Maestros de Venezuela
+        vzla_entity: Venezuela
     city: Ciudad
     country: Pais
     municipality: Municipio

@@ -12,7 +12,7 @@
 namespace Coramer\Sigtec\CoreBundle\EventListener;
 
 use FOS\UserBundle\Event\FormEvent;
-use FOS\UserBundle\FOSUserEvents;
+//use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 
@@ -26,7 +26,7 @@ class RegistrationListerner implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FOSUserEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess',
+            //FOSUserEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess',
         );
     }
     

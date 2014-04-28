@@ -100,9 +100,9 @@ class Company
     private $contacts;
 
     /**
-     * @var \Coramer\Sigtec\CoreBundle\Entity\User
+     * @var \Application\Sonata\UserBundle\Entity\User
      * 
-     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CoreBundle\Entity\User", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="companies")
      */
     private $user;
     
@@ -336,10 +336,10 @@ class Company
     /**
      * Set user
      *
-     * @param \Coramer\Sigtec\CoreBundle\Entity\User $user
+     * @param \Application\Sonata\UserBundle\Entity\User $user
      * @return Company
      */
-    public function setUser(\Coramer\Sigtec\CoreBundle\Entity\User $user = null)
+    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -349,7 +349,7 @@ class Company
     /**
      * Get user
      *
-     * @return \Coramer\Sigtec\CoreBundle\Entity\User 
+     * @return \Application\Sonata\UserBundle\Entity\User 
      */
     public function getUser()
     {

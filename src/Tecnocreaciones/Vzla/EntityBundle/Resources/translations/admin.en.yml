@@ -1,6 +1,6 @@
 admin:
     group:
-        vzla_entity: Master Venezuela
+        vzla_entity: Venezuela
     city: City
     country: Country
     municipality: Municipality
