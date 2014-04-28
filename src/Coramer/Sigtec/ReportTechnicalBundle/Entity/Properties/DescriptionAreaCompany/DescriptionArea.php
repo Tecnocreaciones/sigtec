@@ -20,7 +20,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  * 
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Coramer\Sigtec\ReportTechnicalBundle\Repository\Properties\DescriptionAreaCompany\DescriptionAreaRepository")
  */
 class DescriptionArea
 {

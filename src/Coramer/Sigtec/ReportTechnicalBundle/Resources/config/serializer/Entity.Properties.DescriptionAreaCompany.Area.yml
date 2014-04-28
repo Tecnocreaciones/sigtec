@@ -1,24 +1,21 @@
-Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area:
     exclusion_policy: ALL
     properties:
         id:
             expose: true
             groups: [show]
-        archive:
+        descriptionArea:
             expose: true
             groups: [show]
-        createdAt:
+        areas:
             expose: true
             groups: [show]
-        updatedAt:
+        parent:
             expose: true
             groups: [show]
-        status:
+        totalArea:
             expose: true
             groups: [show]
-        professionalProfile:
-            expose: true
-            groups: [show]
-        descriptionAreaCompany:
+        coveredArea:
             expose: true
             groups: [show]

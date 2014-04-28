@@ -100,10 +100,13 @@ class ReportTechnicalController extends ResourceController
         $sequenceGenerator = $this->get('sigtec.sequence_generator');
                 
         if ($request->isMethod('POST') && $formCompany->submit($request)->isValid()) {
+            $descriptionAreaCompanyManager = $this->get('coramer_sigtec_report_technical.properties.description_area_company_manager');
             $resource
                     ->setArchive($sequenceGenerator->getNextTempArchive())
-                    ->setProfessionalProfile(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile());
+                    ->setProfessionalProfile(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile())
+                    ->setDescriptionAreaCompany($descriptionAreaCompanyManager->build())
                     ;
+            
             $resource = $this->domainManager->create($resource);
 
             if (null === $resource) {

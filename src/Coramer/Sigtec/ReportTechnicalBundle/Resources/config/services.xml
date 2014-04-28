@@ -35,5 +35,8 @@
             <argument>%coramer_sigtec_company.company.class%</argument>
             <tag name="form.type" alias="coramer_sigtec_reporttechnicalbundle_reporttechnical" />
         </service>
+        <service id="coramer_sigtec_report_technical.properties.description_area_company_manager" class="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompanyManager">
+            <argument type="service" id="doctrine.orm.entity_manager"  />
+        </service>
     </services>
 </container>

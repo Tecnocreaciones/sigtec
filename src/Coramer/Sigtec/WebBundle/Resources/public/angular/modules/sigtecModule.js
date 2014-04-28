@@ -48,6 +48,11 @@ angular.module('sigtecModule.controllers', [])
                     quantity_laborers: 0,
                     quantity_other: 0,
                     total: 0
+              },
+              description_area_company: {
+                  area: {
+                      
+                  }
               }
           };
       $scope.reportTechnical = reportTechnical;

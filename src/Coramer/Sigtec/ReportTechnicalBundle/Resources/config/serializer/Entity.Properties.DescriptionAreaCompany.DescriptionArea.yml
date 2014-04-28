@@ -1,0 +1,9 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DescriptionArea:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show]
+        description:
+            expose: true
+            groups: [show]

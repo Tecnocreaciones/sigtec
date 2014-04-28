@@ -32,7 +32,7 @@ class DescriptionAreaAdmin extends Admin
                 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DescriptionArea',
                 'property' => 'description'
             ))
-            ->add('active', null, array('label' => 'Active'))
+            ->add('active')
         ;
     }
 
