@@ -84,6 +84,7 @@ class PlantType extends AbstractType
 //                    return $er->getQueryByState($data->getState());
 //                },
             ))
+            ->add('active')
         ;
     }
     

@@ -1,22 +1,23 @@
 <?php
 
-namespace Coramer\Sigtec\ReportTechnicalBundle\Form;
+namespace Coramer\Sigtec\ReportTechnicalBundle\Form\Properties;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ReportTechnicalType extends AbstractType
+class DescriptionAreaCompanyType extends AbstractType
 {
-    /**
+        /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('professionalProfile',new Properties\ProfessionalProfileType())
-            ->add('descriptionAreaCompany',new Properties\DescriptionAreaCompanyType())
+            ->add('plantsDescription','collection',array(
+                'type' => new DescriptionAreaCompany\PlantDescriptionType()
+            ))
         ;
     }
     
@@ -26,7 +27,7 @@ class ReportTechnicalType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical'
+            'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany'
         ));
     }
 
@@ -35,6 +36,6 @@ class ReportTechnicalType extends AbstractType
      */
     public function getName()
     {
-        return 'coramer_sigtec_reporttechnicalbundle_reporttechnical';
+        return 'coramer_sigtec_reporttechnicalbundle_properties_descriptionareacompany';
     }
 }

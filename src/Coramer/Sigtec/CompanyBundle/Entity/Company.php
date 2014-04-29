@@ -388,4 +388,60 @@ class Company
     {
         return $this->contacts;
     }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Company
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Add reportTechnicals
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnicals
+     * @return Company
+     */
+    public function addReportTechnical(\Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnicals)
+    {
+        $this->reportTechnicals[] = $reportTechnicals;
+
+        return $this;
+    }
+
+    /**
+     * Remove reportTechnicals
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnicals
+     */
+    public function removeReportTechnical(\Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnicals)
+    {
+        $this->reportTechnicals->removeElement($reportTechnicals);
+    }
+
+    /**
+     * Get reportTechnicals
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReportTechnicals()
+    {
+        return $this->reportTechnicals;
+    }
 }

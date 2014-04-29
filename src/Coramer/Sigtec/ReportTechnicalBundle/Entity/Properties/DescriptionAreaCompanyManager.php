@@ -36,25 +36,36 @@ class DescriptionAreaCompanyManager
         return new DescriptionAreaCompany();
     }
     
-    function build($andFlush = true) 
+    function build(\Coramer\Sigtec\CompanyBundle\Entity\Company $company, $andFlush = true) 
     {
         $descriptionAreaCompany = $this->create();
-        
+        $plants = $this->em->getRepository('Coramer\Sigtec\CompanyBundle\Entity\Plant')->getAllActiveByCompany($company);
         $descriptionAreas = $this->em->getRepository('Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DescriptionArea')->getAllParentActive();
-        foreach ($descriptionAreas as $descriptionArea) {
-            $area = $this->creatNewArea();
-            $area->setDescriptionArea($descriptionArea);
-            foreach ($descriptionArea->getDescriptionAreas() as $subDescriptionArea) {
-                
-                $subArea = $this->creatNewArea();
-                $subArea->setDescriptionArea($subDescriptionArea);
-                $subArea->setParent($area);
-                
-                $this->em->persist($subArea);
+        
+        foreach ($plants as $plant) {
+            $plantDescription = $this->createNewPlantDescription();
+            foreach ($descriptionAreas as $descriptionArea) {
+                $area = $this->creatNewArea();
+                $area->setDescriptionArea($descriptionArea);
+                foreach ($descriptionArea->getDescriptionAreas() as $subDescriptionArea) {
+                    $subArea = $this->creatNewArea();
+                    $subArea->setDescriptionArea($subDescriptionArea);
+                    $subArea->setParent($area);
+
+                    $this->em->persist($subArea);
+                }
+                $this->em->persist($area);
             }
-            $this->em->persist($area);
+            
+            $plantDescription
+                    ->setPlant($plant)
+                    ->setArea($area)
+                    ->setDescriptionAreaCompany($descriptionAreaCompany)
+                    ;
+            $this->em->persist($plantDescription);
+            
+            $descriptionAreaCompany->addPlantsDescription($plantDescription);
         }
-        $descriptionAreaCompany->setArea($area);
         $this->em->persist($descriptionAreaCompany);
         if($andFlush){
             $this->em->flush();
@@ -65,7 +76,15 @@ class DescriptionAreaCompanyManager
     
     /**
      * 
-     * @param type $param
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription
+     */
+    function createNewPlantDescription()
+    {
+        return new DescriptionAreaCompany\PlantDescription();
+    }
+    
+    /**
+     * 
      * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area
      */
     function creatNewArea()

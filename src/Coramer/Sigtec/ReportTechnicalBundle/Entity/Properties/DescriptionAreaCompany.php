@@ -33,12 +33,15 @@ class DescriptionAreaCompany
     private $id;
     
     /**
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription
      * 
-     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area")
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription", mappedBy="descriptionAreaCompany")
      */
-    protected $area;
+    protected $plantsDescription;
     
+    public function __construct() {
+        $this->plantsDescription = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -51,25 +54,35 @@ class DescriptionAreaCompany
     }
 
     /**
-     * Set area
+     * Add plantsDescription
      *
-     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area $area
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription $plantsDescription
      * @return DescriptionAreaCompany
      */
-    public function setArea(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area $area = null)
+    public function addPlantsDescription(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription $plantsDescription)
     {
-        $this->area = $area;
+        $this->plantsDescription[] = $plantsDescription;
 
         return $this;
     }
 
     /**
-     * Get area
+     * Remove plantsDescription
      *
-     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area 
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription $plantsDescription
      */
-    public function getArea()
+    public function removePlantsDescription(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription $plantsDescription)
     {
-        return $this->area;
+        $this->plantsDescription->removeElement($plantsDescription);
+    }
+
+    /**
+     * Get plantsDescription
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlantsDescription()
+    {
+        return $this->plantsDescription;
     }
 }

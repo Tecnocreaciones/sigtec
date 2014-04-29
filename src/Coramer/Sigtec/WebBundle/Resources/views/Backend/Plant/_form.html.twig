@@ -48,6 +48,11 @@
         {{ form_widget(form.city) }}
         {{ form_errors(form.city) }}
     </div>
+    <div class="field-block button-height">
+        {{ form_label(form.active) }}
+        {{ form_widget(form.active) }}
+        {{ form_errors(form.active) }}
+    </div>
     {% if action == 'create' %}
         {{ actions.create() }}
     {% elseif action == 'update' %}

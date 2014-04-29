@@ -92,6 +92,13 @@ class Plant
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Company", inversedBy="plants")
      */
     private $company;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=true)
+     */
+    private $active = true;
 
     public function __construct() {
         $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
@@ -357,5 +364,28 @@ class Plant
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Plant
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 }

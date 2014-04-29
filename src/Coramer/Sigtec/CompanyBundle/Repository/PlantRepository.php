@@ -38,4 +38,29 @@ class PlantRepository extends EntityRepository
                 ;
         return $qb->getQuery()->getResult();
     }
+    
+    function getAllActiveByCompany(\Coramer\Sigtec\CompanyBundle\Entity\Company $company) 
+    {
+        return $this->getQueryAllActive()
+                ->andWhere('p.company = :company')
+                ->setParameter('company', $company)
+                ->getQuery()
+                ->getResult();
+    }
+    
+    function getAllActive() {
+        return $this->getQueryAllActive()->getQuery()->getResult();
+    }
+    
+    function getAllInactive() {
+        return $this->findBy(array('active' => false));
+    }
+    
+    function getQueryAllActive() {
+        $qb = $this->createQueryBuilder('p');
+        $qb
+                ->andWhere('p.active = :active')
+                ->setParameter('active', true);
+        return $qb;
+    }
 }

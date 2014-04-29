@@ -4,6 +4,6 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany:
         id:
             expose: true
             groups: [show]
-        area:
+        plantsDescription:
             expose: true
             groups: [show]

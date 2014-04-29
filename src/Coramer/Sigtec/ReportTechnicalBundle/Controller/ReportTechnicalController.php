@@ -104,7 +104,7 @@ class ReportTechnicalController extends ResourceController
             $resource
                     ->setArchive($sequenceGenerator->getNextTempArchive())
                     ->setProfessionalProfile(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile())
-                    ->setDescriptionAreaCompany($descriptionAreaCompanyManager->build())
+                    ->setDescriptionAreaCompany($descriptionAreaCompanyManager->build($resource->getCompany()))
                     ;
             
             $resource = $this->domainManager->create($resource);
