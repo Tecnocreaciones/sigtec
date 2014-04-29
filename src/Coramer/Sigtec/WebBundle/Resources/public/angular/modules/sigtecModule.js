@@ -71,7 +71,10 @@ angular.module('sigtecModule.controllers', [])
       };
       
       $scope.save = function(){
-          sendAjaxForm('form_company_report_technical');
+          var valid = jQuery('#form_company_report_technical').validationEngine('validate');
+          if(valid){
+              sendAjaxForm('form_company_report_technical');
+          }
       };
       
       function sendAjaxForm(idForm){

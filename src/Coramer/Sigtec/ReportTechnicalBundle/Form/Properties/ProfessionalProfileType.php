@@ -18,7 +18,7 @@ class ProfessionalProfileType extends AbstractType
             ->add('quantityProfessionals',null,array(
                 'label' => 'sigtec.quantity_professionals',
                 'attr' => array(
-                    'class' => 'input small-margin-right input-mini',
+                    'class' => 'input small-margin-right input-mini validate[required,custom[onlyNumberSp]]',
                     'ng-model' => 'reportTechnical.professional_profile.quantity_professionals',
                     'ng-change' => 'reportTechnicalHelper.professional_profile.calculeTotal()',
                     'min' => '0',
@@ -27,7 +27,7 @@ class ProfessionalProfileType extends AbstractType
             ->add('quantityTechnical',null,array(
                 'label' => 'sigtec.quantity_technical',
                 'attr' => array(
-                    'class' => 'input small-margin-right input-mini',
+                    'class' => 'input small-margin-right input-mini validate[required,custom[onlyNumberSp]]',
                     'ng-model' => 'reportTechnical.professional_profile.quantity_technical',
                     'ng-change' => 'reportTechnicalHelper.professional_profile.calculeTotal()',
                     'min' => '0',
@@ -36,7 +36,7 @@ class ProfessionalProfileType extends AbstractType
             ->add('quantityLaborers',null,array(
                 'label' => 'sigtec.quantity_laborers',
                 'attr' => array(
-                    'class' => 'input small-margin-right input-mini',
+                    'class' => 'input small-margin-right input-mini validate[required,custom[onlyNumberSp]]',
                     'ng-model' => 'reportTechnical.professional_profile.quantity_laborers',
                     'ng-change' => 'reportTechnicalHelper.professional_profile.calculeTotal()',
                     'min' => '0',
@@ -45,7 +45,7 @@ class ProfessionalProfileType extends AbstractType
             ->add('quantityOther',null,array(
                 'label' => 'sigtec.quantity_other',
                 'attr' => array(
-                    'class' => 'input small-margin-right input-mini',
+                    'class' => 'input small-margin-right input-mini validate[required,custom[onlyNumberSp]]',
                     'ng-model' => 'reportTechnical.professional_profile.quantity_other',
                     'ng-change' => 'reportTechnicalHelper.professional_profile.calculeTotal()',
                     'min' => '0',

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PlantDescriptionType extends AbstractType
+class DescriptionAreaType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,15 +15,16 @@ class PlantDescriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('plant',null,array(
-                'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Plant',
-                'property' => 'name',
-                'disabled' => true,
+            ->add('description',null,array(
                 'attr' => array(
                     'class' => 'input-unstyled'
-                )
+                ),
             ))
-            ->add('area',new AreaType())
+            ->add('help',null,array(
+                'attr' => array(
+                    'class' => 'input-unstyled'
+                ),
+            ))
         ;
     }
     
@@ -33,7 +34,7 @@ class PlantDescriptionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription'
+            'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DescriptionArea'
         ));
     }
 
@@ -42,6 +43,6 @@ class PlantDescriptionType extends AbstractType
      */
     public function getName()
     {
-        return 'coramer_sigtec_reporttechnicalbundle_properties_descriptionareacompany_plantdescription';
+        return 'coramer_sigtec_reporttechnicalbundle_properties_descriptionareacompany_descriptionarea';
     }
 }

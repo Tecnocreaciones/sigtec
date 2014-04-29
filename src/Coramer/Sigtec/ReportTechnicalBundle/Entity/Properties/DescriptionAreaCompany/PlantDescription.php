@@ -51,7 +51,7 @@ class PlantDescription
      * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area")
      */
     protected $area;
-
+    
     /**
      * Get id
      *
@@ -129,5 +129,38 @@ class PlantDescription
     public function getArea()
     {
         return $this->area;
+    }
+
+    /**
+     * Add areas
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area $areas
+     * @return PlantDescription
+     */
+    public function addArea(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area $areas)
+    {
+        $this->areas[] = $areas;
+
+        return $this;
+    }
+
+    /**
+     * Remove areas
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area $areas
+     */
+    public function removeArea(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area $areas)
+    {
+        $this->areas->removeElement($areas);
+    }
+
+    /**
+     * Get areas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAreas()
+    {
+        return $this->areas;
     }
 }

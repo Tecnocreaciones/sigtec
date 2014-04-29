@@ -15,20 +15,21 @@ class AreaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('descriptionArea',null,array(
-                'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DescriptionArea',
-                'property' => 'description',
+            ->add('descriptionArea',new DescriptionAreaType(),array(
                 'disabled' => true,
+                'attr' => array(
+                    'class' => 'input-unstyled'
+                ),
             ))
             ->add('totalArea',null,array(
                 'attr' => array(
-                    'class' => 'input small-margin-right input-mini',
+                    'class' => 'input small-margin-right input-mini validate[required,custom[number]]',
                     'min' => '0',
                 ),
             ))
             ->add('coveredArea',null,array(
                 'attr' => array(
-                    'class' => 'input small-margin-right input-mini',
+                    'class' => 'input small-margin-right input-mini validate[required,custom[number]]',
                     'min' => '0',
                 ),
             ))

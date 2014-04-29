@@ -70,7 +70,7 @@ class Area
     
     public function __construct()
     {
-        $this->areas= new \Doctrine\Common\Collections\ArrayCollection();
+        $this->areas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -206,5 +206,38 @@ class Area
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * Add plantsDescription
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription $plantsDescription
+     * @return Area
+     */
+    public function addPlantsDescription(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription $plantsDescription)
+    {
+        $this->plantsDescription[] = $plantsDescription;
+
+        return $this;
+    }
+
+    /**
+     * Remove plantsDescription
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription $plantsDescription
+     */
+    public function removePlantsDescription(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription $plantsDescription)
+    {
+        $this->plantsDescription->removeElement($plantsDescription);
+    }
+
+    /**
+     * Get plantsDescription
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlantsDescription()
+    {
+        return $this->plantsDescription;
     }
 }
