@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Coramer\Sigtec\ReportTechnicalBundle\Admin\Properties\DescriptionAreaCompany;
+namespace Coramer\Sigtec\ReportTechnicalBundle\Admin\Properties\DescriptionAreaCompany\DetailProductStorage;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;

@@ -14,7 +14,9 @@ admin:
     report_technical:
         description_area_company:
             description_area: Areas of the company
-            material: Material
+            detail_product_storage:
+                material: Material
+                storage: Storage
     
 #Table show
 Description: Description
@@ -22,6 +24,7 @@ Created At: Created At
 Updated At: Updated At
 Active: Active
 Required: Required
+Help: Help
 
 Resin: Resin
 Parent: Parent

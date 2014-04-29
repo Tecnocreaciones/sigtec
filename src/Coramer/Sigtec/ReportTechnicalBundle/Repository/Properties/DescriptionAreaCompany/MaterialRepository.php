@@ -12,19 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class MaterialRepository extends EntityRepository
 {
-    function getAllActive() {
-        return $this->getQueryAllActive()->getQuery()->getResult();
-    }
-    
-    function getAllInactive() {
-        return $this->findBy(array('active' => false));
-    }
-    
-    function getQueryAllActive() {
-        $qb = $this->createQueryBuilder('e');
-        $qb
-                ->andWhere('e.active = :active')
-                ->setParameter('active', true);
-        return $qb;
-    }
 }

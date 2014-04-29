@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Coramer\Sigtec\FixturesBundle\DataFixtures\ORM;
+namespace Coramer\Sigtec\FixturesBundle\DataFixtures\ORM\ReportTechnical\Properties\DescriptionAreaCompany\DetailProductStorage;
 
-use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Material;
+use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 

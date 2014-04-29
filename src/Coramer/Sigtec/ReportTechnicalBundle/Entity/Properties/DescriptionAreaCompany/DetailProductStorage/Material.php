@@ -1,6 +1,6 @@
 <?php
 
-namespace Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany;
+namespace Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -181,6 +181,16 @@ class Material
      * @return boolean 
      */
     public function isRequired()
+    {
+        return $this->required;
+    }
+
+    /**
+     * Get required
+     *
+     * @return boolean 
+     */
+    public function getRequired()
     {
         return $this->required;
     }
