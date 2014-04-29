@@ -14,12 +14,14 @@ admin:
     report_technical:
         description_area_company:
             description_area: Áreas de la empresa
+            material: Material
     
 #Table show
 Description: Descripción
 Created At: Creado el
 Updated At: Actualizado el
 Active: Activo
+Required: Requerido
 
 Resin: Resina
 Parent: Padre

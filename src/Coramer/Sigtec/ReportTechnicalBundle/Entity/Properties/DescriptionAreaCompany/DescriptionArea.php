@@ -57,14 +57,14 @@ class DescriptionArea
     /**
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area
      * 
-     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area",mappedBy="descriptionArea")
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area", mappedBy="descriptionArea")
      */
     protected $areas;
     
     /**
      * @var DescriptionArea
      *
-     * @ORM\OneToMany(targetEntity="DescriptionArea", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="DescriptionArea", mappedBy="parent", cascade={"remove"})
      */
     protected $descriptionAreas;
     
@@ -74,7 +74,7 @@ class DescriptionArea
      * @ORM\ManyToOne(targetEntity="DescriptionArea", inversedBy="descriptionAreas")
      */
     protected $parent;
-    
+
     /**
      * @var \DateTime
      *

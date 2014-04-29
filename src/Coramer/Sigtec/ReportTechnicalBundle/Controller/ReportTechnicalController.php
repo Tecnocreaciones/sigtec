@@ -94,7 +94,8 @@ class ReportTechnicalController extends ResourceController
         return $this->handleView($view);
     }
     
-    public function createAction(Request $request) {
+    public function createAction(Request $request)
+    {
         $resource = $this->createNew();
         $formCompany = $this->buildFormCompanyField($resource);
         $sequenceGenerator = $this->get('sigtec.sequence_generator');
@@ -134,8 +135,14 @@ class ReportTechnicalController extends ResourceController
         return $this->handleView($view);
     }
     
-    public function updateAction(Request $request) {
+    public function updateAction(Request $request)
+    {
         $resource = $this->findOr404($request);
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($resource->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
                 
         $form = $this->getForm($resource);
         $data = array();
@@ -182,6 +189,12 @@ class ReportTechnicalController extends ResourceController
     function getProfessionalProfileAction(Request $request)
     {
         $resource = $this->findOr404($request);
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($resource->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
+        
         $view = $this
             ->view()
             ->setTemplate($this->config->getTemplate('show.html'))
