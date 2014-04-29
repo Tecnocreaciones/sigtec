@@ -5,4 +5,7 @@ sigtec:
     quantity_laborers: Laborers
     quantity_other: Others
     total_employees: Total employees
-    description_of_the_business_areas: Description of the business areas
+    description_of_the_business_areas:
+        description_of_the_business_areas: Description of the business areas
+        general_production_and_storage: General, production and storage
+        storage_product_detail: Storage Product Detail

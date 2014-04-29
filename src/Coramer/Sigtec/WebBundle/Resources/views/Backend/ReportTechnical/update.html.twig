@@ -15,7 +15,7 @@
 	<form method="POST" id="form_company_report_technical" action="{{ path('coramer_sigtec_backend_company_report_technical_update',{ id:company_report_technical.id }) }}" class="block wizard same-height">
             <input ng-init="loadReportTechnical({{ company_report_technical.id }});" type="hidden" name="_method" value="PUT" />
 		<h3 class="block-title breadcrumb">
-                    <a href="{{ path('coramer_sigtec_backend_company_report_technical_index') }}">{{ 'sigtec.company.report_technical'|trans }}</a>
+                    <a href="{{ path('coramer_sigtec_backend_company_report_technical_index') }}">{{ 'sigtec.company.report_technical'|trans({},'messages') }}</a>
                     <span class="icon-forward"></span>
                     <span class="thin"><a href="{{ path('coramer_sigtec_backend_company_show',{id:company_report_technical.company.id}) }}">{{ company_report_technical.company.rif }}</a></span>
                     <span class="icon-forward"></span>
@@ -27,7 +27,7 @@
                         <legend class="legend">{{ 'sigtec.professional_profile'|trans }}</legend>
 
 			<div class="field-block">
-				<h4>1) {{ 'sigtec.professional_profile'|trans }}</h4>
+				<h3>1) {{ 'sigtec.professional_profile'|trans }}</h3>
 				<p>{{ 'sigtec.help.professional_profile.professional_profile'|trans({},'help') }}:</p>
 			</div>
 			<div class="field-block button-height">
@@ -81,12 +81,12 @@
                             
                         {# Seccion 2 #}
                         <div class="field-block">
-                            <h4>2) {{ 'sigtec.description_of_the_business_areas'|trans }}</h4>
-                            <p>{{ 'sigtec.help.description_of_the_business_areas.description_of_the_business_areas'|trans({},'help') }}:</p>
+                            <h3>2) {{ 'sigtec.description_of_the_business_areas.description_of_the_business_areas'|trans }}</h3>
+                            <p>{{ 'sigtec.help.description_of_the_business_areas.description_of_the_business_areas'|trans({},'help') }}.</p>
 			</div>
                         <div class="field-block">
-                            <h4>2.1) {{ 'sigtec.description_of_the_business_areas'|trans }}</h4>
-                            <p>{{ 'sigtec.help.description_of_the_business_areas.description_of_the_business_areas'|trans({},'help') }}:</p>
+                            <h5>2.1) {{ 'sigtec.description_of_the_business_areas.general_production_and_storage'|trans }}</h5>
+                            <p>{{ 'sigtec.help.description_of_the_business_areas.general_production_and_storage'|trans({},'help') }}:</p>
 			</div>
                         <div class="field-block">
                             <table class="simple-table">
@@ -154,7 +154,11 @@
                                     </tr>
                                 {% endfor %}
                             </table>
+			</div>
                                 
+                        <div class="field-block">
+                            <h5>2.2) {{ 'sigtec.description_of_the_business_areas.storage_product_detail'|trans }}</h5>
+                            <p>{{ 'sigtec.help.description_of_the_business_areas.storage_product_detail'|trans({},'help') }}:</p>
 			</div>
                         <div class="field-block button-height wizard-controls align-right">
 

@@ -5,4 +5,7 @@ sigtec:
     quantity_laborers: Obreros
     quantity_other: Otros
     total_employees: Total de empleados
-    description_of_the_business_areas: Descripción de áreas de la empresa
+    description_of_the_business_areas:
+        description_of_the_business_areas: Descripción de áreas de la empresa
+        general_production_and_storage: General, producción y almacenaje
+        storage_product_detail: Detalle de almacenaje del producto
