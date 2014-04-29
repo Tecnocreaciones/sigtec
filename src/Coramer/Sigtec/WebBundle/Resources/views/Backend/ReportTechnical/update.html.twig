@@ -1,5 +1,7 @@
 {% extends 'TecnocreacionesVzlaGovernmentBundle:Template:Developer/Common/formLayout.html.twig' %}
 
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/table3860.css?v=1') }}">
@@ -25,7 +27,7 @@
                         <legend class="legend">{{ 'sigtec.professional_profile'|trans }}</legend>
 
 			<div class="field-block">
-				<h4>{{ 'sigtec.professional_profile'|trans }}</h4>
+				<h4>1) {{ 'sigtec.professional_profile'|trans }}</h4>
 				<p>{{ 'sigtec.help.professional_profile.professional_profile'|trans({},'help') }}:</p>
 			</div>
 			<div class="field-block button-height">
@@ -76,8 +78,14 @@
                             <label class="label"><b>{{ 'sigtec.total_employees'|trans }}</b></label>
                             <label><b>[[ reportTechnical.professional_profile.total ]]</b></label>
                         </div>
+                            
+                        {# Seccion 2 #}
                         <div class="field-block">
-                            <h4>{{ 'sigtec.description_of_the_business_areas'|trans }}</h4>
+                            <h4>2) {{ 'sigtec.description_of_the_business_areas'|trans }}</h4>
+                            <p>{{ 'sigtec.help.description_of_the_business_areas.description_of_the_business_areas'|trans({},'help') }}:</p>
+			</div>
+                        <div class="field-block">
+                            <h4>2.1) {{ 'sigtec.description_of_the_business_areas'|trans }}</h4>
                             <p>{{ 'sigtec.help.description_of_the_business_areas.description_of_the_business_areas'|trans({},'help') }}:</p>
 			</div>
                         <div class="field-block">
@@ -152,11 +160,11 @@
 
 				<a href ng-click="save()" class="button glossy mid-margin-right">
                                     <span class="button-icon green-gradient"><span class="icon-tick"></span></span>
-                                        {{ 'tecnocreaciones_vzla_government.save'|trans }}
+                                        {{ 'tecnocreaciones_vzla_government.save'|trans({},'messages') }}
 				</a>
 				<button type="submit" class="button glossy mid-margin-right">
 					<span class="button-icon red-gradient glossy"><span class="icon-cross-round"></span></span>
-                                        {{ 'tecnocreaciones_vzla_government.save_and_close'|trans }}
+                                        {{ 'tecnocreaciones_vzla_government.save_and_close'|trans({},'messages') }}
 				</button>
                             {{ form_rest(form) }}
 			</div>
@@ -317,7 +325,7 @@
 		 * Default title for fieldsets without legend (use % as a placeholder for step's number)
 		 * @var string
 		 */
-		defaultTitle: '{{ 'tecnocreaciones_vzla_government.step'|trans }} %',
+		defaultTitle: '{{ 'tecnocreaciones_vzla_government.step'|trans({},'messages') }} %',
 
 		/**
 		 * Structure for navigation buttons. Will be ignored for steps with a .wizard-controls block.
@@ -329,13 +337,13 @@
 		 * Previous button markup - must use class 'wizard-prev'
 		 * @var string
 		 */
-		controlPrev: '<button type="button" class="button glossy mid-margin-right wizard-prev float-left"><span class="button-icon anthracite-gradient"><span class="icon-backward"></span></span>{{ 'tecnocreaciones_vzla_government.back'|trans }}</button>',
+		controlPrev: '<button type="button" class="button glossy mid-margin-right wizard-prev float-left"><span class="button-icon anthracite-gradient"><span class="icon-backward"></span></span>{{ 'tecnocreaciones_vzla_government.back'|trans({},'messages') }}</button>',
 
 		/**
 		 * Next button markup - must use class 'wizard-next'
 		 * @var string
 		 */
-		controlNext: '<button type="button" class="button glossy mid-margin-right wizard-next float-right">{{ 'tecnocreaciones_vzla_government.next'|trans }}<span class="button-icon right-side"><span class="icon-forward"></span></span></button>'
+		controlNext: '<button type="button" class="button glossy mid-margin-right wizard-next float-right">{{ 'tecnocreaciones_vzla_government.next'|trans({},'messages') }}<span class="button-icon right-side"><span class="icon-forward"></span></span></button>'
 	};
     </script>
 {% endblock javascript %}

@@ -1,9 +1,8 @@
 sigtec:
+    archive: Archive
+    status:
+        in_progress: In progress
+        canceled: Canceled
+        approved: Approved
+        rejected: Rejected
     the_changes_have_been_successfully_saved: The changes have been successfully saved
-    professional_profile: Professional profile
-    quantity_professionals: Professionals
-    quantity_technical: Technical
-    quantity_laborers: Laborers
-    quantity_other: Others
-    total_employees: Total employees
-    description_of_the_business_areas: Description of the business areas

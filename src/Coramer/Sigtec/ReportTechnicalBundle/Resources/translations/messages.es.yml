@@ -1,9 +1,8 @@
 sigtec:
+    archive: Archivo
+    status:
+        in_progress: En progreso
+        canceled: Anulado
+        approved: Aprobado
+        rejected: Rechazado
     the_changes_have_been_successfully_saved: Los cambios se han guardado con éxito
-    professional_profile: Perfil profesional
-    quantity_professionals: Professionales
-    quantity_technical: Técnicos
-    quantity_laborers: Obreros
-    quantity_other: Otros
-    total_employees: Total de empleados
-    description_of_the_business_areas: Descripción de áreas de la empresa
