@@ -64,7 +64,7 @@ class DescriptionArea
     /**
      * @var DescriptionArea
      *
-     * @ORM\OneToMany(targetEntity="DescriptionArea", mappedBy="parent", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="DescriptionArea", mappedBy="parent")
      */
     protected $descriptionAreas;
     
