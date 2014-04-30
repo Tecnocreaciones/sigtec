@@ -1,12 +1,23 @@
 sigtec:
     help:
         professional_profile: 
-            professional_profile: Detalle el nivel de formación de los trabajadores de la empresa
-            quantity_professionals: Número de graduados universitarios que laboran en la empresa (ingenieros, economistas, licenciados, etc)
-            quantity_technical: Número de graduados de escuelas técnicas (superiores o medias)
-            quantity_laborers: Número de trabajadores no graduados de universidades o institutos técnicos
-            quantity_other: Número de trabajadores que no califiquen en las clasificaciones anteriores
+            professional_profile: Detalle el nivel de formación de los trabajadores de la empresa.
+            quantity_professionals: Número de graduados universitarios que laboran en la empresa (ingenieros, economistas, licenciados, etc).
+            quantity_technical: Número de graduados de escuelas técnicas (superiores o medias).
+            quantity_laborers: Número de trabajadores no graduados de universidades o institutos técnicos.
+            quantity_other: Número de trabajadores que no califiquen en las clasificaciones anteriores.
         description_of_the_business_areas:
-            description_of_the_business_areas: Se recopila la informacón de las áreas generales, de producción y almacenaje que conforman la empresa y se detallan las condiciones de conservación de los productos
-            general_production_and_storage: Se describen cuantitativamente las diferentes áreas que conforman la empresa
-            storage_product_detail: Es de interés conocer las condiciones de almacenaje de los productos que puedan encontrarse en una empresa transformadora de plástico
+            description_of_the_business_areas: Se recopila la informacón de las áreas generales, de producción y almacenaje que conforman la empresa y se detallan las condiciones de conservación de los productos.
+            general_production_and_storage: Se describen cuantitativamente las diferentes áreas que conforman la empresa.
+            storage_product_detail: Es de interés conocer las condiciones de almacenaje de los productos que puedan encontrarse en una empresa transformadora de plástico.
+        detail_product_storage:
+            material: Tipo de material al que hace referencia.
+            storage: Indicar si el material se referenciado se encuentra a la intemperie o confinado en las instalaciones de la empresa.
+            separated_resin: >
+                            Permite conocer la posibilidad de contaminación de la resina con otros materiales del almacén dada la separación entre estos 
+                            <b>Si</b> o <b>No</b> de acuerdo a las siguientes condiciones: 
+                            <b>Si</b>: Cuando el material (aditivos, producto terminado, material recuperado, etc) 
+                            esté ubicado en un almacén distinto al de las resinas plásticas. 
+                            <b>No</b>: Cuando el material esté ubicado en el mismo almacén de las resinas plásticas.
+            total_area: Área techada total en metros cuadrados (m<sup>2</sup>) donde se encuentra el material.
+            covered_area: Área total en metros cuadrados (m<sup>2</sup>) que ocupa el material en el almacén de la empresa. Cuando el material se encuentre "confinado" el área techada deberá coincidir con el área total.

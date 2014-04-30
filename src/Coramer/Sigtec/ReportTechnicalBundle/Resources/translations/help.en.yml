@@ -1,12 +1,23 @@
 sigtec:
     help:
         professional_profile:
-            professional_profile: Describe the level of training of workers in the company
-            quantity_professionals: Number of university graduates working in the company (engineers, economists, lawyers, etc.)
-            quantity_technical: Number of graduates (average or higher) technical schools
-            quantity_laborers: Numbers of workers undergraduate universities or technical institutes
-            quantity_other: Numbers of workers who do not qualify in the above classifications
+            professional_profile: Describe the level of training of workers in the company.
+            quantity_professionals: Number of university graduates working in the company (engineers, economists, lawyers, etc.).
+            quantity_technical: Number of graduates (average or higher) technical schools.
+            quantity_laborers: Numbers of workers undergraduate universities or technical institutes.
+            quantity_other: Numbers of workers who do not qualify in the above classifications.
         description_of_the_business_areas:
-            description_of_the_business_areas: Info of the general areas, production and storage that make up the company and the storage conditions of the products listed is collected
-            general_production_and_storage: Different areas that make up the company are described quantitatively
-            storage_product_detail: It is of interest to know the conditions of storage of the products that can be found in a plastic processing company
+            description_of_the_business_areas: Info of the general areas, production and storage that make up the company and the storage conditions of the products listed is collected.
+            general_production_and_storage: Different areas that make up the company are described quantitatively.
+            storage_product_detail: It is of interest to know the conditions of storage of the products that can be found in a plastic processing company.
+        detail_product_storage:
+            material: Type of material to which it refers.
+            storage: Indicate whether the referenced material is located in the open or confined on the premises of the company.
+            separated_resin: >
+                            Studies the possibility of contamination of the resin with other materials in the warehouse given the separation between 
+                            these <b>Yes</ b> or <b>No</ b> according to the following conditions: 
+                            <b>Yes</ b >: When the material (additives, finished product, recovered material, etc.) is located in a different 
+                            plastic resins store. 
+                            <b>No</ b>: When the material is located in the same store plastic resins.
+            total_area: Total covered area in square meters (m<sup>2</ sup>) where the material is located.
+            covered_area: Gross floor area in square meters (m<sup>2</ sup>) occupying the material in the warehouse of the company. When I find the material "contained" the area covered must match the total area.

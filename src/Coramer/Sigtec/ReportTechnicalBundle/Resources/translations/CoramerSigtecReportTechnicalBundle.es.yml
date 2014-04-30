@@ -5,7 +5,23 @@ sigtec:
     quantity_laborers: Obreros
     quantity_other: Otros
     total_employees: Total de empleados
+    total: Total
+    covered: Techada
+    table:
+        header:
+            total: Total m<sup>2</sup>
+            covered: Techada m<sup>2</sup>
+            material: Material
+            storage: Almacenaje
+            separated_resin: ¿Separado de resinas?
+        content:
+            empty:
+                storage: No existen detalles de almacenaje de los productos.
+    button:
+        add_detail: Añadir detalle
     description_of_the_business_areas:
         description_of_the_business_areas: Descripción de áreas de la empresa
         general_production_and_storage: General, producción y almacenaje
         storage_product_detail: Detalle de almacenaje del producto
+    detail_product_storage:
+        detail_product_storage: Almacenaje de producto

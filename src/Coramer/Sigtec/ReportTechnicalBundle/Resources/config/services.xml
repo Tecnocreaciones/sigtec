@@ -20,6 +20,8 @@
     
     <parameters>
         <parameter key="coramer_sigtec_report_technical.report_technical.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical</parameter>
+        <parameter key="coramer_sigtec_report_technical.report_technical.properties.description_area_company.detail_product_storage.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage</parameter>
+        <parameter key="coramer_sigtec_report_technical.form.type.report_technical.properties.description_area_company.detail_product_storage.class">Coramer\Sigtec\ReportTechnicalBundle\Form\Properties\DescriptionAreaCompany\DetailProductStorageType</parameter>
         <parameter key="coramer_sigtec_report_technical.repository.report_technical.class">Coramer\Sigtec\ReportTechnicalBundle\Repository\ReportTechnicalRepository</parameter>
         <parameter key="coramer_sigtec_report_technical.form.type.report_technical.class">Coramer\Sigtec\ReportTechnicalBundle\Form\ReportTechnicalType</parameter>
     </parameters>
@@ -34,6 +36,10 @@
         <service id="coramer_sigtec_report_technical.form.type.report_technical" class="%coramer_sigtec_report_technical.form.type.report_technical.class%">
             <argument>%coramer_sigtec_company.company.class%</argument>
             <tag name="form.type" alias="coramer_sigtec_reporttechnicalbundle_reporttechnical" />
+        </service>
+        <service id="coramer_sigtec_report_technical.form.type.report_technical.properties.description_area_company.detail_product_storage" class="%coramer_sigtec_report_technical.form.type.report_technical.properties.description_area_company.detail_product_storage.class%">
+            <argument>%coramer_sigtec_report_technical.report_technical.properties.description_area_company.detail_product_storage.class%</argument>
+            <tag name="form.type" alias="coramer_sigtec_reporttechnicalbundle_properties_descriptionareacompany_detailproductstorage" />
         </service>
         <service id="coramer_sigtec_report_technical.properties.description_area_company_manager" class="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompanyManager">
             <argument type="service" id="doctrine.orm.entity_manager"  />

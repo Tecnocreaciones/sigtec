@@ -5,7 +5,23 @@ sigtec:
     quantity_laborers: Laborers
     quantity_other: Others
     total_employees: Total employees
+    total: Total
+    covered: Covered
+    table:
+        header:
+            total: Total m<sup>2</sup>
+            covered: Covered m<sup>2</sup>
+            material: Material
+            storage: Storage
+            separated_resin: ¿Separated resin?
+        content:
+            empty:
+                storage: There are no details of storage products.
+    button:
+        add_detail: Add detail
     description_of_the_business_areas:
         description_of_the_business_areas: Description of the business areas
         general_production_and_storage: General, production and storage
         storage_product_detail: Storage Product Detail
+    detail_product_storage:
+        detail_product_storage: Detail product storage

@@ -1,0 +1,61 @@
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+
+<fieldset class="fieldset fields-list">
+    <legend class="legend">{{ 'sigtec.detail_product_storage.detail_product_storage'|trans }}</legend>
+    <div class="field-block button-height">
+        {{ form_label(form.material) }}
+        {{ form_widget(form.material) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.detail_product_storage.material'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.material) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.storage) }}
+        {{ form_widget(form.storage) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.detail_product_storage.storage'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.storage) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.separatedResin) }}
+        {{ form_widget(form.separatedResin) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.detail_product_storage.separated_resin'|trans({},'help')|raw }}
+            </span>
+        </span>
+        {{ form_errors(form.separatedResin) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.totalArea) }}
+        {{ form_widget(form.totalArea) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.detail_product_storage.total_area'|trans({},'help')|raw }}
+            </span>
+        </span>
+        {{ form_errors(form.totalArea) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.coveredArea) }}
+        {{ form_widget(form.coveredArea) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.detail_product_storage.covered_area'|trans({},'help')|raw }}
+            </span>
+        </span>
+        {{ form_errors(form.coveredArea) }}
+    </div>
+</fieldset>
+{{ form_rest(form) }}

@@ -1,0 +1,10 @@
+coramer_sigtec_backend_company_report_technical_detail_product_storage_form:
+    pattern: /get-form
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_detail_product_storage:getFormAction
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_descriptionareacompany_detailproductstorage
+    options:
+        expose: true
+    requirements:
+        _method: GET

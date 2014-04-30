@@ -39,9 +39,17 @@ class DescriptionAreaCompany
      */
     protected $plantsDescription;
     
+    /**
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage", mappedBy="descriptionAreaCompany")
+     */
+    protected $detailProductStorages;
+    
     public function __construct() {
         $this->plantsDescription = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->detailProductStorages = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    
 
     /**
      * Get id
@@ -84,5 +92,38 @@ class DescriptionAreaCompany
     public function getPlantsDescription()
     {
         return $this->plantsDescription;
+    }
+
+    /**
+     * Add detailProductStorages
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage $detailProductStorages
+     * @return DescriptionAreaCompany
+     */
+    public function addDetailProductStorage(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage $detailProductStorages)
+    {
+        $this->detailProductStorages[] = $detailProductStorages;
+
+        return $this;
+    }
+
+    /**
+     * Remove detailProductStorages
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage $detailProductStorages
+     */
+    public function removeDetailProductStorage(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage $detailProductStorages)
+    {
+        $this->detailProductStorages->removeElement($detailProductStorages);
+    }
+
+    /**
+     * Get detailProductStorages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDetailProductStorages()
+    {
+        return $this->detailProductStorages;
     }
 }

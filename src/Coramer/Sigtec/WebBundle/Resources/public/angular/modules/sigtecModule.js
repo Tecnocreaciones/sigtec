@@ -42,6 +42,7 @@ angular.module('sigtecModule.controllers', [])
   })
   .controller('ReportTechnicalController',function($scope,$http,reportTechnicalManager,notificationBarService,notifyService){
       var reportTechnical = {
+              id: 0,
               professional_profile: {
                   quantity_professionals: 0,
                     quantity_technical: 0,
@@ -75,6 +76,10 @@ angular.module('sigtecModule.controllers', [])
           if(valid){
               sendAjaxForm('form_company_report_technical');
           }
+      };
+      
+      $scope.addDetailsStorage = function(id){
+            console.log(id);
       };
       
       function sendAjaxForm(idForm){

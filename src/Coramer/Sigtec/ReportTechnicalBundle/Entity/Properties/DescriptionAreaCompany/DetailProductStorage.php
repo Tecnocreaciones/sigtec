@@ -23,6 +23,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class DetailProductStorage
 {
+    const SEPARATED_RESIN_NOT_APPLY = 0;
+    
+    const SEPARATED_RESIN_YES = 1;
+    
+    const SEPARATED_RESIN_NO = 2;
+    
     /**
      * @var integer
      *
@@ -38,6 +44,42 @@ class DetailProductStorage
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material")
      */
     protected $material;
+    
+    /**
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Storage
+     * 
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Storage")
+     */
+    protected $storage;
+
+    /**
+     * @var integer
+     *  
+     * @ORM\Column(name="separatedResin", type="integer")
+     */
+    protected $separatedResin;
+
+    /**
+     * @var double
+     * 
+     * @ORM\Column(name="totalArea", type="float")
+     * 
+     */
+    protected $totalArea = self::SEPARATED_RESIN_NOT_APPLY;
+    
+    /**
+     * @var double
+     * 
+     * @ORM\Column(name="coveredArea", type="float")
+     */
+    protected $coveredArea = 0;
+    
+    /**
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany
+     * 
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany", inversedBy="detailProductStorages")
+     */
+    protected $descriptionAreaCompany;
 
     /**
      * Get id
@@ -70,5 +112,120 @@ class DetailProductStorage
     public function getMaterial()
     {
         return $this->material;
+    }
+
+    /**
+     * Set separatedResin
+     *
+     * @param boolean $separatedResin
+     * @return DetailProductStorage
+     */
+    public function setSeparatedResin($separatedResin)
+    {
+        $this->separatedResin = $separatedResin;
+
+        return $this;
+    }
+
+    /**
+     * Get separatedResin
+     *
+     * @return boolean 
+     */
+    public function getSeparatedResin()
+    {
+        return $this->separatedResin;
+    }
+
+    /**
+     * Set totalArea
+     *
+     * @param float $totalArea
+     * @return DetailProductStorage
+     */
+    public function setTotalArea($totalArea)
+    {
+        $this->totalArea = $totalArea;
+
+        return $this;
+    }
+
+    /**
+     * Get totalArea
+     *
+     * @return float 
+     */
+    public function getTotalArea()
+    {
+        return $this->totalArea;
+    }
+
+    /**
+     * Set coveredArea
+     *
+     * @param float $coveredArea
+     * @return DetailProductStorage
+     */
+    public function setCoveredArea($coveredArea)
+    {
+        $this->coveredArea = $coveredArea;
+
+        return $this;
+    }
+
+    /**
+     * Get coveredArea
+     *
+     * @return float 
+     */
+    public function getCoveredArea()
+    {
+        return $this->coveredArea;
+    }
+
+    /**
+     * Set descriptionAreaCompany
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany $descriptionAreaCompany
+     * @return DetailProductStorage
+     */
+    public function setDescriptionAreaCompany(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany $descriptionAreaCompany = null)
+    {
+        $this->descriptionAreaCompany = $descriptionAreaCompany;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionAreaCompany
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany 
+     */
+    public function getDescriptionAreaCompany()
+    {
+        return $this->descriptionAreaCompany;
+    }
+
+    /**
+     * Set storage
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Storage $storage
+     * @return DetailProductStorage
+     */
+    public function setStorage(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Storage $storage = null)
+    {
+        $this->storage = $storage;
+
+        return $this;
+    }
+
+    /**
+     * Get storage
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Storage 
+     */
+    public function getStorage()
+    {
+        return $this->storage;
     }
 }

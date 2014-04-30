@@ -274,6 +274,12 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\ReportTechnicalController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical
+         coramer_sigtec_backend.company_report_technical_properties_detail_product_storage:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/ReportTechnical/Properties/DescriptionAreaCompany
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\DescriptionAreaCompany\DetailProductStorageController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage
          api_tecnocreaciones_vzla_entity.country:
             driver: doctrine/orm
             classes:

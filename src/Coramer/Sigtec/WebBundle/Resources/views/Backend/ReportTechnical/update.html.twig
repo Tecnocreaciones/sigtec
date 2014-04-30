@@ -92,8 +92,8 @@
                             <table class="simple-table">
                                 <tr>
                                     <th></th> 
-                                    <th>Total m<sup>2</sup></th> 
-                                    <th>Techada m<sup>2</sup></th>
+                                    <th>{{ 'sigtec.table.header.total'|trans|raw }}</th> 
+                                    <th>{{ 'sigtec.table.header.covered'|trans|raw }}</th>
                                 </tr>
                                 {% for plantDescription in form.descriptionAreaCompany.plantsDescription %}
                                     <tr>
@@ -159,6 +159,33 @@
                         <div class="field-block">
                             <h5>2.2) {{ 'sigtec.description_of_the_business_areas.storage_product_detail'|trans }}</h5>
                             <p>{{ 'sigtec.help.description_of_the_business_areas.storage_product_detail'|trans({},'help') }}:</p>
+			</div>
+                        <div class="field-block">
+                            <table class="simple-table">
+                                <tr>
+                                    <th>{{ 'sigtec.table.header.material'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.storage'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.separated_resin'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.total'|trans|raw }}</th> 
+                                    <th>{{ 'sigtec.table.header.covered'|trans|raw }}</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.storage'|trans }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                            </table>
+                            <br/>    
+                            <p class="button-height align-right">
+                                <a href ng-click="addDetailsStorage(reportTechnical.id)" class="button glossy mid-margin-right">
+                                    <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                                    {{ 'sigtec.button.add_detail'|trans }}
+                                </a>
+                            </p>
 			</div>
                         <div class="field-block button-height wizard-controls align-right">
 
