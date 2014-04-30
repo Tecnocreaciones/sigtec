@@ -3,5 +3,8 @@ sigtec:
     total: Total
     company:
         report_technical: Report technical
+    form:
+        errors:
+            please_check_the_form_fields: Please check the form fields.
         
 "Validation Failed": Validation Failed

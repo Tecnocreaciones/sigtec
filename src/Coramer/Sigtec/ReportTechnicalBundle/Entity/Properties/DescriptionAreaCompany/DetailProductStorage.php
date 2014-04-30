@@ -28,6 +28,15 @@ class DetailProductStorage
     const SEPARATED_RESIN_YES = 1;
     
     const SEPARATED_RESIN_NO = 2;
+    /**
+     * Almacenamiento intemperie
+     */
+    const STORAGE_OUTDOOR = 0;
+    
+    /**
+     * Almacenamiento confinado
+     */
+    const STORAGE_CONFINED = 1;
     
     /**
      * @var integer
@@ -46,9 +55,9 @@ class DetailProductStorage
     protected $material;
     
     /**
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Storage
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Storage
      * 
-     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Storage")
+     * @ORM\Column(name="storage", type="integer")
      */
     protected $storage;
 
@@ -209,10 +218,10 @@ class DetailProductStorage
     /**
      * Set storage
      *
-     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Storage $storage
+     * @param integer $storage
      * @return DetailProductStorage
      */
-    public function setStorage(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Storage $storage = null)
+    public function setStorage($storage)
     {
         $this->storage = $storage;
 
@@ -222,7 +231,7 @@ class DetailProductStorage
     /**
      * Get storage
      *
-     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Storage 
+     * @return integer 
      */
     public function getStorage()
     {

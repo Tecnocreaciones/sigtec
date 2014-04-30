@@ -3,5 +3,7 @@ sigtec:
     total: Total
     company:
         report_technical: Reporte técnico
-        
+    form:
+        errors:
+            please_check_the_form_fields: Por favor verifique los campos del formulario.
 "Validation Failed": Fallo la validación del formulario

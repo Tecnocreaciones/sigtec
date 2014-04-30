@@ -199,6 +199,9 @@
 				</button>
                             {{ form_rest(form) }}
 			</div>
+                        <div class="hide" style="display: none">
+                            <div id="div-template" ng-include="template.url" onload="templateLoad(template)" ></div>
+                        </div>
 		</fieldset>
 
 		<fieldset class="wizard-fieldset fields-list">
@@ -376,6 +379,9 @@
 		 */
 		controlNext: '<button type="button" class="button glossy mid-margin-right wizard-next float-right">{{ 'tecnocreaciones_vzla_government.next'|trans({},'messages') }}<span class="button-icon right-side"><span class="icon-forward"></span></span></button>'
 	};
+        
+        $.modal.defaults.showFormOptions.textCancel = '{{ 'sigtec.cancel'|trans({},'messages') }}';
+        $.modal.defaults.showFormOptions.textConfirm = '{{ 'sigtec.save'|trans({},'messages') }}';
     </script>
 {% endblock javascript %}
 

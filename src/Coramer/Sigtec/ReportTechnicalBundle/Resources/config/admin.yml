@@ -119,13 +119,3 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [admin]]
-    sonata.admin.report_technical.description_area_company.detail_product_storage.storage:
-        class: Coramer\Sigtec\ReportTechnicalBundle\Admin\Properties\DescriptionAreaCompany\DetailProductStorage\StorageAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "admin.group.report_technical",label_catalogue: "admin", label: "admin.report_technical.description_area_company.detail_product_storage.storage" }
-        arguments:
-            - ~
-            - Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Storage
-            - ~
-        calls:
-            - [ setTranslationDomain, [admin]]

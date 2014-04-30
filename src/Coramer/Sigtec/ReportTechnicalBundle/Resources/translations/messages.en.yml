@@ -1,4 +1,6 @@
 sigtec:
+    save: Save
+    cancel: Cancel
     archive: Archive
     status:
         in_progress: In progress

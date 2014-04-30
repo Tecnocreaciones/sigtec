@@ -1,4 +1,7 @@
 sigtec:
+    select: Select
+    yes: Yes
+    no: No
     professional_profile: Professional profile
     quantity_professionals: Professionals
     quantity_technical: Technical
@@ -7,6 +10,9 @@ sigtec:
     total_employees: Total employees
     total: Total
     covered: Covered
+    storage:
+        outdoor: Outdoor
+        confined: Confined
     table:
         header:
             total: Total m<sup>2</sup>

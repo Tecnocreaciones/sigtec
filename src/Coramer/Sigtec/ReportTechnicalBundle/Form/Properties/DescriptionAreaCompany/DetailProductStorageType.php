@@ -20,29 +20,51 @@ class DetailProductStorageType extends AbstractType
                 'label' => 'sigtec.table.header.material',
                 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material',
                 'property' => 'description',
+                'attr' => array(
+                    'class' => 'select small-margin-right validate[required]',
+                    'ng-model' => 'detail_product_storage.material'
+                ),
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
-            ->add('storage',null,array(
+            ->add('storage','choice',array(
                 'label' => 'sigtec.table.header.storage',
-                'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Storage',
-                'property' => 'description',
+                'choices' => array(
+                    DetailProductStorage::STORAGE_OUTDOOR => 'sigtec.storage.outdoor',
+                    DetailProductStorage::STORAGE_CONFINED => 'sigtec.storage.confined',
+                ),
+                'attr' => array(
+                    'class' => 'select small-margin-right validate[required]',
+                ),
+                'empty_value' => 'sigtec.select',
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
             ->add('separatedResin','choice',array(
                 'label' => 'sigtec.table.header.separated_resin',
                 'choices' => array(
                     DetailProductStorage::SEPARATED_RESIN_NOT_APPLY => 'N/A' ,
-                    DetailProductStorage::SEPARATED_RESIN_YES => 'yes' ,
-                    DetailProductStorage::SEPARATED_RESIN_NO => 'no' ,
+                    DetailProductStorage::SEPARATED_RESIN_YES => 'sigtec.yes' ,
+                    DetailProductStorage::SEPARATED_RESIN_NO => 'sigtec.no' ,
+                ),
+                'attr' => array(
+                    'class' => 'select small-margin-right ',
                 ),
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
             ->add('totalArea',null,array(
                 'label' => 'sigtec.total',
+                'attr' => array(
+                    'class' => 'input small-margin-right input-mini validate[required,custom[onlyNumberSp]]',
+                    'min' => '0',
+                    'ng-model' => 'model.detail_product_storage.total_area'
+                ),
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
             ->add('coveredArea',null,array(
                 'label' => 'sigtec.covered',
+                'attr' => array(
+                    'class' => 'input small-margin-right input-mini validate[required,custom[onlyNumberSp]]',
+                    'min' => '0',
+                ),
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
         ;

@@ -1,4 +1,7 @@
 sigtec:
+    select: Seleccione
+    yes: Si
+    no: No
     professional_profile: Perfil profesional
     quantity_professionals: Professionales
     quantity_technical: Técnicos
@@ -7,6 +10,9 @@ sigtec:
     total_employees: Total de empleados
     total: Total
     covered: Techada
+    storage:
+        outdoor: Intemperie
+        confined: Confinado
     table:
         header:
             total: Total m<sup>2</sup>
