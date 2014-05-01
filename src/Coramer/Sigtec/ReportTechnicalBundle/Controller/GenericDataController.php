@@ -24,7 +24,7 @@ class GenericDataController extends FOSRestController
     function getStoragesAction()
     {
         $data = array(
-            DetailProductStorage::STORAGE_OUTDOOR => 'sigtec.storage.outdoor' ,
+            DetailProductStorage::STORAGE_OUTDOOR => $this->trans('sigtec.storage.outdoor'),
             DetailProductStorage::STORAGE_CONFINED => $this->trans('sigtec.storage.confined') ,
         );
         

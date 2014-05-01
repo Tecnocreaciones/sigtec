@@ -48,8 +48,9 @@ class DetailProductStorageType extends AbstractType
                     DetailProductStorage::SEPARATED_RESIN_NO => 'sigtec.no' ,
                 ),
                 'attr' => array(
-                    'class' => 'select small-margin-right validate[required]',
+                    'class' => 'select input-small small-margin-right validate[required]',
                     'ng-model' => 'model.detail_product_storage.separated_resin',
+                    'ng-options' => 'value as value for (key,value) in data.separated_resin',
                 ),
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))

@@ -87,15 +87,14 @@ angular.module('sigtecModule.controllers', [])
           }
       };
       
-      
       $scope.model = {
           detail_product_storage:{
-              id: 0,
+              id: null,
               material: { id: 0, description: '' },
-              storage: 0,
-              separated_resin: 0,
+              storage: null,
+              separated_resin: null,
               total_area: 0,
-              covered_area: 0
+              covered_area: 0,
           }
       };
       
@@ -109,12 +108,12 @@ angular.module('sigtecModule.controllers', [])
       
       $scope.templateLoad = function(template){
           template.load = true;
-          openFormModal();
+          openFormModal(template.loadCallback);
       }
       
       $scope.addDetailsStorage = function(detailProductStorage){
           notificationBarService.getLoadStatus().loading();
-          console.log($scope.data.materials);
+          
           if($scope.data.materials == null){
               reportTechnicalManager.getData().getMaterials();
           }
@@ -127,13 +126,19 @@ angular.module('sigtecModule.controllers', [])
           if(detailProductStorage != undefined){
               $scope.model.detail_product_storage = detailProductStorage;
           }
-          
           $scope.template = $scope.templates[0];
           
           if($scope.template.load == true){
-              openFormModal();
+              openFormModal($scope.template.loadCallback);
           }
       };
+      
+    function setDataDetailsStorage(){
+          if($scope.model.detail_product_storage.storage != null){
+              console.log($scope.model.detail_product_storage.storage);
+              $scope.model.detail_product_storage.storage = $scope.data.storages[$scope.model.detail_product_storage.storage];
+          }
+    }
       
       
       
@@ -152,9 +157,12 @@ angular.module('sigtecModule.controllers', [])
             return false;
       }
       
-      function openFormModal(){
+      function openFormModal(callBack){
           var area = $("#div-template");
           $.modal.showForm(area,confirmFormModal,cancelFormModal);
+          if(callBack){
+              callBack.call(this);
+          }
           notificationBarService.getLoadStatus().done();
       }
       
@@ -259,7 +267,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 data = d;
                 $scope.reportTechnical = d;
                 $scope.templates =
-                [ { name: 'formDetailProductStorage.html', url: self.getUrlFormDetailProductStorage(), load: false}
+                [ { name: 'formDetailProductStorage.html', url: self.getUrlFormDetailProductStorage(),loadCallback:'setDataDetailsStorage', load: false}
                    ];
                 $scope.template = '';
                 notificationBarService.getLoadStatus().done();
