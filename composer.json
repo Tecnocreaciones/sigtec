@@ -30,7 +30,7 @@
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "liip/imagine-bundle": "dev-master",
         "liip/doctrine-cache-bundle": "1.0.*@dev",
-	"lunetics/locale-bundle": "2.2.*",
+	"lunetics/locale-bundle": "v2.2.2",
         "willdurand/js-translation-bundle": "@stable",
         
         "jms/translation-bundle": "~1.1@dev",
