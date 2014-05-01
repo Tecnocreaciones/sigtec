@@ -1,5 +1,5 @@
 {% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
-<form id="form_pop_up" method="POST" action="ss">
+<form id="form_pop_up" method="POST" action="{{ path('coramer_sigtec_backend_company_report_technical_detail_product_storage_create',{id: reportTechnical.id}) }}">
 <fieldset class="fieldset fields-list">
     <legend class="legend">{{ 'sigtec.detail_product_storage.detail_product_storage'|trans }}</legend>
     <div class="field-block button-height">
@@ -61,5 +61,5 @@
 {{ form_rest(form) }}
 </form>
 <script>
-    jQuery('#form_pop_up').validationEngine();
+    jQuery('#form_pop_up').validationEngine({showOneMessage:true});
 </script>

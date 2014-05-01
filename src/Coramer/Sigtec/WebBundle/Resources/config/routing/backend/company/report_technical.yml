@@ -52,6 +52,14 @@ coramer_sigtec_backend_company_report_technical_professional_profile:
         _method: GET
         _format: json|xml
         
+coramer_sigtec_company_report_technical_data:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/generic_data.yml"
+    prefix:   /data
+    
 coramer_sigtec_company_report_technical_properties:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/description_area_company/detail_product_storage.yml"
-    prefix:   /{id}/detail_product_storage
+    prefix:   /{id}/detail-product-storage
+    
+coramer_sigtec_company_report_technical_properties_materials:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/description_area_company/detail_product_storage/material.yml"
+    prefix:   /detail-product-storage

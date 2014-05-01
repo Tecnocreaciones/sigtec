@@ -41,6 +41,7 @@ class SerializeEventListerner implements EventSubscriberInterface
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeCompany', 'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Company','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializePlant', 'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Plant','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeReportTechnical', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical','format' => 'json'),
+            //array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeReportTechnical', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage','format' => 'json'),
         );
     }
     

@@ -169,19 +169,26 @@
                                     <th>{{ 'sigtec.table.header.total'|trans|raw }}</th> 
                                     <th>{{ 'sigtec.table.header.covered'|trans|raw }}</th>
                                 </tr>
-                                <tr>
+                                <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
                                     <td colspan="5" class="bold text-center">&nbsp;</td>
                                 </tr>
-                                <tr>
+                                <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
                                     <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.storage'|trans }}</td>
                                 </tr>
-                                <tr>
+                                <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
                                     <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr ng-repeat="detail_product_storage in reportTechnical.description_area_company.detail_product_storages">
+                                    <td><a href ng-click="addDetailsStorage(detail_product_storage)" >[[ detail_product_storage.material.description ]]</a></td>
+                                    <td>[[ detail_product_storage.storage]]</td>
+                                    <td>[[ detail_product_storage.separated_resin]]</td>
+                                    <td>[[ detail_product_storage.total_area]]</td>
+                                    <td>[[ detail_product_storage.covered_area]]</td>
                                 </tr>
                             </table>
                             <br/>    
                             <p class="button-height align-right">
-                                <a href ng-click="addDetailsStorage(reportTechnical.id)" class="button glossy mid-margin-right">
+                                <a href ng-click="addDetailsStorage()" class="button glossy mid-margin-right">
                                     <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
                                     {{ 'sigtec.button.add_detail'|trans }}
                                 </a>
@@ -381,7 +388,7 @@
 	};
         
         $.modal.defaults.showFormOptions.textCancel = '{{ 'sigtec.cancel'|trans({},'messages') }}';
-        $.modal.defaults.showFormOptions.textConfirm = '{{ 'sigtec.save'|trans({},'messages') }}';
+        $.modal.defaults.showFormOptions.textSubmit = '{{ 'sigtec.save'|trans({},'messages') }}';
     </script>
 {% endblock javascript %}
 

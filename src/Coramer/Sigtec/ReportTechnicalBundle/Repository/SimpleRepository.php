@@ -20,15 +20,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class SimpleRepository extends EntityRepository
 {
-    function getAllActive() {
+    public function getAllActive() 
+    {
         return $this->getQueryAllActive()->getQuery()->getResult();
     }
     
-    function getAllInactive() {
+    public function getAllInactive() 
+    {
         return $this->findBy(array('active' => false));
     }
     
-    function getQueryAllActive() {
+    public function getQueryAllActive()
+    {
         $qb = $this->createQueryBuilder('e');
         $qb
                 ->andWhere('e.active = :active')

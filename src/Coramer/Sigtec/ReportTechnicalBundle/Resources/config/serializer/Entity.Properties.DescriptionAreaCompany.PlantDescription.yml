@@ -1,12 +1,12 @@
-Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany:
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription:
     exclusion_policy: ALL
     properties:
         id:
             expose: true
             groups: [show]
-        plantsDescription:
+        plant:
             expose: true
             groups: [show]
-        detailProductStorages:
+        area:
             expose: true
             groups: [show]

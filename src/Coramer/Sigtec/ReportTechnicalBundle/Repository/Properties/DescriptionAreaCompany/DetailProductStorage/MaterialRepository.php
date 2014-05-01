@@ -1,6 +1,6 @@
 <?php
 
-namespace Coramer\Sigtec\ReportTechnicalBundle\Repository\Properties\DetailProductStorage\DescriptionAreaCompany;
+namespace Coramer\Sigtec\ReportTechnicalBundle\Repository\Properties\DescriptionAreaCompany\DetailProductStorage;
 
 /**
  * MaterialRepository

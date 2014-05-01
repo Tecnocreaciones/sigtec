@@ -41,6 +41,7 @@ class DescriptionAreaCompany
     
     /**
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage
+     * 
      * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage", mappedBy="descriptionAreaCompany")
      */
     protected $detailProductStorages;

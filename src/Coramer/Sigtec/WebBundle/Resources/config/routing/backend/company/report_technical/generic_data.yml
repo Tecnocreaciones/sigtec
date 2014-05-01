@@ -1,0 +1,21 @@
+coramer_sigtec_backend_company_report_technical_data_storages:
+    pattern:  /storages.{_format}
+    defaults:
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getStoragesAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_data_separated_resin:
+    pattern:  /separated-resin.{_format}
+    defaults:
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getSeparatedResinAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml

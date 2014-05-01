@@ -21,8 +21,9 @@ class DetailProductStorageType extends AbstractType
                 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material',
                 'property' => 'description',
                 'attr' => array(
-                    'class' => 'select small-margin-right validate[required]',
-                    'ng-model' => 'detail_product_storage.material'
+                    'class' => 'select input-large expandable-list small-margin-right validate[required]',
+                    'ng-model' => 'model.detail_product_storage.material.id',
+                    'ng-options' => 'value as value for (key,value) in data.materials',
                 ),
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
@@ -33,9 +34,10 @@ class DetailProductStorageType extends AbstractType
                     DetailProductStorage::STORAGE_CONFINED => 'sigtec.storage.confined',
                 ),
                 'attr' => array(
-                    'class' => 'select small-margin-right validate[required]',
+                    'class' => 'select input-small small-margin-right validate[required]',
+                    'ng-model' => 'model.detail_product_storage.storage',
+                    'ng-options' => 'value as value for (key,value) in data.storages',
                 ),
-                'empty_value' => 'sigtec.select',
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
             ->add('separatedResin','choice',array(
@@ -46,7 +48,8 @@ class DetailProductStorageType extends AbstractType
                     DetailProductStorage::SEPARATED_RESIN_NO => 'sigtec.no' ,
                 ),
                 'attr' => array(
-                    'class' => 'select small-margin-right ',
+                    'class' => 'select small-margin-right validate[required]',
+                    'ng-model' => 'model.detail_product_storage.separated_resin',
                 ),
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
@@ -55,7 +58,7 @@ class DetailProductStorageType extends AbstractType
                 'attr' => array(
                     'class' => 'input small-margin-right input-mini validate[required,custom[onlyNumberSp]]',
                     'min' => '0',
-                    'ng-model' => 'model.detail_product_storage.total_area'
+                    'ng-model' => 'model.detail_product_storage.total_area',
                 ),
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
@@ -64,6 +67,7 @@ class DetailProductStorageType extends AbstractType
                 'attr' => array(
                     'class' => 'input small-margin-right input-mini validate[required,custom[onlyNumberSp]]',
                     'min' => '0',
+                    'ng-model' => 'model.detail_product_storage.covered_area',
                 ),
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))

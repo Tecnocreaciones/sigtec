@@ -1,0 +1,21 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,id]
+        material:
+            expose: true
+            groups: [show]
+        storage:
+            expose: true
+            groups: [show]
+        separatedResin:
+            expose: true
+            groups: [show]
+        totalArea:
+            expose: true
+            groups: [show]
+        coveredArea:
+            expose: true
+            groups: [show]

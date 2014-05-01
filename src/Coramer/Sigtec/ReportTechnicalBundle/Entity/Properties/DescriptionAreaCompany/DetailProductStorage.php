@@ -23,10 +23,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class DetailProductStorage
 {
+    /**
+     * No aplica ya que el material es resina
+     */
     const SEPARATED_RESIN_NOT_APPLY = 0;
-    
+    /**
+     * El material si se encuentra separado
+     */
     const SEPARATED_RESIN_YES = 1;
-    
+    /**
+     * El material no se encuentra separado
+     */
     const SEPARATED_RESIN_NO = 2;
     /**
      * Almacenamiento intemperie
@@ -48,7 +55,7 @@ class DetailProductStorage
     private $id;
     
     /**
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Material
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material
      * 
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material")
      */
@@ -66,7 +73,7 @@ class DetailProductStorage
      *  
      * @ORM\Column(name="separatedResin", type="integer")
      */
-    protected $separatedResin;
+    protected $separatedResin = self::SEPARATED_RESIN_NOT_APPLY;
 
     /**
      * @var double
@@ -74,7 +81,7 @@ class DetailProductStorage
      * @ORM\Column(name="totalArea", type="float")
      * 
      */
-    protected $totalArea = self::SEPARATED_RESIN_NOT_APPLY;
+    protected $totalArea = 0;
     
     /**
      * @var double
@@ -106,7 +113,7 @@ class DetailProductStorage
      * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Material $material
      * @return DetailProductStorage
      */
-    public function setMaterial(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Material $material = null)
+    public function setMaterial(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material $material = null)
     {
         $this->material = $material;
 
@@ -116,7 +123,7 @@ class DetailProductStorage
     /**
      * Get material
      *
-     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Material 
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material 
      */
     public function getMaterial()
     {
@@ -193,29 +200,6 @@ class DetailProductStorage
     }
 
     /**
-     * Set descriptionAreaCompany
-     *
-     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany $descriptionAreaCompany
-     * @return DetailProductStorage
-     */
-    public function setDescriptionAreaCompany(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany $descriptionAreaCompany = null)
-    {
-        $this->descriptionAreaCompany = $descriptionAreaCompany;
-
-        return $this;
-    }
-
-    /**
-     * Get descriptionAreaCompany
-     *
-     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany 
-     */
-    public function getDescriptionAreaCompany()
-    {
-        return $this->descriptionAreaCompany;
-    }
-
-    /**
      * Set storage
      *
      * @param integer $storage
@@ -236,5 +220,28 @@ class DetailProductStorage
     public function getStorage()
     {
         return $this->storage;
+    }
+
+    /**
+     * Set descriptionAreaCompany
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany $descriptionAreaCompany
+     * @return DetailProductStorage
+     */
+    public function setDescriptionAreaCompany(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany $descriptionAreaCompany = null)
+    {
+        $this->descriptionAreaCompany = $descriptionAreaCompany;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionAreaCompany
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany 
+     */
+    public function getDescriptionAreaCompany()
+    {
+        return $this->descriptionAreaCompany;
     }
 }

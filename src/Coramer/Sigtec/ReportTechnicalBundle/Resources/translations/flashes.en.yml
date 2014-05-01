@@ -3,3 +3,5 @@ coramer_sigtec_backend:
         create: The technical report has been created
         update: The technical report has been updated
         delete: The technical report has been removed
+    company_report_technical_properties_detail_product_storage:
+        create: Detail Product added storage
