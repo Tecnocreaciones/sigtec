@@ -47,6 +47,7 @@
         "tecnocreaciones/install-bundle": "dev-master",
         "tecnocreaciones/tools-bundle": "dev-master",
         "tecnocreaciones/resource-bundle": "dev-master",
+        "tecnocreaciones/vzla-government-bundle": "dev-master",
         
         "sonata-project/admin-bundle": "~2.3@dev",
         "sonata-project/core-bundle": "~2.2@dev",
