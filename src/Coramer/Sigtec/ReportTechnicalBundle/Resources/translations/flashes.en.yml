@@ -4,4 +4,6 @@ coramer_sigtec_backend:
         update: The technical report has been updated
         delete: The technical report has been removed
     company_report_technical_properties_detail_product_storage:
-        create: Detail Product added storage
+        create: Detail product added storage
+        update: Detail product storage updated
+        delete: Detail product storage deleted

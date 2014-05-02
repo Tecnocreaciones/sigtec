@@ -84,7 +84,11 @@ class PlantType extends AbstractType
 //                    return $er->getQueryByState($data->getState());
 //                },
             ))
-            ->add('active')
+            ->add('status',null,array(
+                'label' => 'sigtec.status',
+                'attr' => array('class' => 'switch medium wider mid-margin-right'),
+                'required' => false,
+            ))
         ;
     }
     

@@ -6,4 +6,6 @@ sigtec:
     form:
         errors:
             please_check_the_form_fields: Por favor verifique los campos del formulario.
+            
 "Validation Failed": Fallo la validación del formulario
+"Permission Denied!": Permiso denegado!

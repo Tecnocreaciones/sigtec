@@ -18,6 +18,16 @@ namespace Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\Description
  */
 class DetailProductStorageController extends \Coramer\Sigtec\ReportTechnicalBundle\Controller\BaseController
 {
+    public function listAction(\Symfony\Component\HttpFoundation\Request $request) {
+        $reportTechnical = $this->findReportTechnicalOr404($request);
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('index.html'))
+            ->setTemplateVar($this->config->getPluralResourceName())
+        ;
+        $view->setData($reportTechnical->getDescriptionAreaCompany()->getDetailProductStorages());
+        return $this->handleView($view);
+    }
     public function createAction(\Symfony\Component\HttpFoundation\Request $request)
     {    
         $reportTechnical = $this->findReportTechnicalOr404($request);
@@ -49,6 +59,38 @@ class DetailProductStorageController extends \Coramer\Sigtec\ReportTechnicalBund
         $data['form'] = $form;
         $view->setData($data);
         return $this->handleView($view);
+    }
+    public function updateAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $reportTechnical = $this->findReportTechnicalOr404($request);
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
+        return parent::updateAction($request);
+    }
+    public function deleteAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $reportTechnical = $this->findReportTechnicalOr404($request);
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
+        if($request->isXmlHttpRequest()){
+            $resource = $this->getRepository()->find($request->get('slug'));
+            if(!$resource){
+                throw $this->createNotFoundException();
+            }
+            $this->domainManager->delete($resource);
+            /** @var FlashBag $flashBag */
+            $flashBag = $this->get('session')->getBag('flashes');
+            $data = array(
+                'message' => $flashBag->get('success'),
+            );
+            return new \Symfony\Component\HttpFoundation\JsonResponse($data);
+        }
     }
     
     function getFormAction(\Symfony\Component\HttpFoundation\Request $request)

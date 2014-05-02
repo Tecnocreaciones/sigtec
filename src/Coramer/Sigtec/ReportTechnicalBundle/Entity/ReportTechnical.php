@@ -77,9 +77,10 @@ class ReportTechnical implements ReportTechnicalInterface
     /**
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany
      * 
-     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany")
+     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany",inversedBy="reportTechnical")
      */
     private $descriptionAreaCompany;
+    
     /**
      * Get id
      *
