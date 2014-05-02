@@ -1,0 +1,3 @@
+sigtec:
+    validators:
+        the_covered_area_must_be_less_than_or_equal_to_the_total_area: El areá techada debe ser menor o igual al areá total.

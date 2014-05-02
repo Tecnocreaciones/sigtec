@@ -244,4 +244,9 @@ class DetailProductStorage
     {
         return $this->descriptionAreaCompany;
     }
+    
+    public function isCoveredAreaValid()
+    {
+        return ($this->coveredArea <= $this->totalArea);
+    }
 }

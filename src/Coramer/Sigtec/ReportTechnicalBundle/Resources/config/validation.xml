@@ -8,4 +8,11 @@
             <constraint name="NotNull" />
         </property>
     </class>
+    <class name="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage">
+        <getter property="coveredAreaValid">
+            <constraint name="True">
+                <option name="message">sigtec.validators.the_covered_area_must_be_less_than_or_equal_to_the_total_area</option>
+            </constraint>
+        </getter>
+    </class>
 </constraint-mapping>

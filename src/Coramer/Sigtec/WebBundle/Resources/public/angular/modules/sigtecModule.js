@@ -173,16 +173,53 @@ angular.module('sigtecModule.controllers', [])
       function cancelFormModal(){
           console.log('cancelFormModal');
       }
-      function confirmFormModal(value){
+      function confirmFormModal(modal){
             var idForm = 'form_pop_up';
             var form = jQuery('#'+idForm);
             var valid = form.validationEngine('validate');
+            var result = false;
             if(valid){
-                sendAjaxForm(idForm,$scope.template.reload);
-                return true;
+                var successCallback = $scope.template.reload;
+                notificationBarService.getLoadStatus().loading();
+            
+                var url = $('#'+idForm).attr('action');
+                var formData = $('#'+idForm).serialize();
+                $http({
+                        method  : 'POST',
+                        url     : url,
+                        data    : formData,
+                        headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With':'XMLHttpRequest' }  // set the headers so angular passing info as form data (not request payload)
+                    }).success(function(data){
+                        $scope.form.errors = {};
+                        notifyService.success(data.message);
+                        if(successCallback){
+                           successCallback.call(this);
+                        }
+                        notificationBarService.getLoadStatus().done();
+                        modal.closeModal();
+                    }).error(function(data){
+                        if(data.message != undefined){
+                            notifyService.error(Translator.trans(data.message));
+                        }
+                        if(data[0] != undefined && data[0].message != undefined){
+                            notifyService.error(Translator.trans(data[0].message));
+                        }
+                        $scope.form.errors = {};
+                        if(data.errors){
+                            if(data.errors.errors){
+                                $.each(data.errors.errors,function(index,value){
+                                    notifyService.error(Translator.trans(value));
+                                });
+                            }
+                            $scope.form.errors = data.errors.children;
+                        }
+                        
+                        notificationBarService.getLoadStatus().done();
+                    });
+                    return false;
             }
             $(this).getModalContentBlock().message(sfTranslator.trans('sigtec.form.errors.please_check_the_form_fields'), { append: false, classes: ['red-gradient'] });
-            return false;
+            return result;
       }
       
       function openFormModal(openCallback){
@@ -200,7 +237,8 @@ angular.module('sigtecModule.controllers', [])
             
             var url = $('#'+idForm).attr('action');
             var formData = $('#'+idForm).serialize();
-            $http({
+            var result = null;
+            return $http({
                 method  : 'POST',
                 url     : url,
                 data    : formData,
@@ -212,11 +250,12 @@ angular.module('sigtecModule.controllers', [])
                    successCallback.call(this);
                 }
                 notificationBarService.getLoadStatus().done();
+                return true;
             }).error(function(data){
                 if(data.message != undefined){
                     notifyService.error(Translator.trans(data.message));
                 }
-                if(data[0].message != undefined){
+                if(data[0] != undefined && data[0].message != undefined){
                     notifyService.error(Translator.trans(data[0].message));
                 }
                 $scope.form.errors = {};
@@ -232,6 +271,7 @@ angular.module('sigtecModule.controllers', [])
                    successCallback.call(this); 
                 }
                 notificationBarService.getLoadStatus().done();
+                return false;
             });
         }
       
