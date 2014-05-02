@@ -59,8 +59,8 @@ class PlantRepository extends EntityRepository
     function getQueryAllActive() {
         $qb = $this->createQueryBuilder('p');
         $qb
-                ->andWhere('p.active = :active')
-                ->setParameter('active', true);
+                ->andWhere('p.status = :status')
+                ->setParameter('status', true);
         return $qb;
     }
 }
