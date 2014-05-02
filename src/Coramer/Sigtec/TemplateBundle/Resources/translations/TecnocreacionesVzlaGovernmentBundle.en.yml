@@ -1,3 +1,8 @@
-tecnocreaciones_vzla_government.message_header_center: Ministry of Popular Power <br /> for <b class="vzla-bold">Oil and Mining</b>
-tecnocreaciones_vzla_government.message_app_title: Information System for Technical Customer Management Coramer
-tecnocreaciones_vzla_government.message_footer: All Rights Reserved © 2014 CORAMER C.A
+tecnocreaciones_vzla_government:
+    message_header_center: Ministry of Popular Power <br /> for <b class="vzla-bold">Oil and Mining</b>
+    message_app_title: Information System for Technical Customer Management Coramer
+    message_footer: All Rights Reserved © 2014 CORAMER C.A
+    
+sigtec:
+    quantity_companies: Quantity companies
+    companies: Companies

@@ -21,8 +21,8 @@ class DetailProductStorageType extends AbstractType
                 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material',
                 'property' => 'description',
                 'attr' => array(
-                    'class' => 'select input-large expandable-list small-margin-right validate[required]',
-                    'ng-model' => 'model.detail_product_storage.material.id',
+                    'class' => 'select input-large auto-refesh expandable-list small-margin-right validate[required]',
+                    'ng-model' => 'model.detail_product_storage.material',
                     'ng-options' => 'value as value for (key,value) in data.materials',
                 ),
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
@@ -34,7 +34,7 @@ class DetailProductStorageType extends AbstractType
                     DetailProductStorage::STORAGE_CONFINED => 'sigtec.storage.confined',
                 ),
                 'attr' => array(
-                    'class' => 'select input-small small-margin-right validate[required]',
+                    'class' => 'select auto-refesh input-small small-margin-right validate[required]',
                     'ng-model' => 'model.detail_product_storage.storage',
                     'ng-options' => 'value as value for (key,value) in data.storages',
                 ),
@@ -48,9 +48,9 @@ class DetailProductStorageType extends AbstractType
                     DetailProductStorage::SEPARATED_RESIN_NO => 'sigtec.no' ,
                 ),
                 'attr' => array(
-                    'class' => 'select input-small small-margin-right validate[required]',
+                    'class' => 'select auto-refesh replacement input-small small-margin-right validate[required]',
                     'ng-model' => 'model.detail_product_storage.separated_resin',
-                    'ng-options' => 'value as value for (key,value) in data.separated_resin',
+                    'ng-options' => 'value as value for (key,value) in data.separated_resins',
                 ),
                 'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))

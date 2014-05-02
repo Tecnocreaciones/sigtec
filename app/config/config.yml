@@ -99,6 +99,9 @@ fos_user:
     registration:
         form:
             type: sigtec_user_registration
+    profile:
+        form:
+            type: tecnocreaciones_vzla_government_user_registration
     group:
         group_class:   Application\Sonata\UserBundle\Entity\Group
         group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)

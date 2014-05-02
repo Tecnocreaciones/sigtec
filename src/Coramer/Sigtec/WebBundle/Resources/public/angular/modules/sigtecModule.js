@@ -108,39 +108,34 @@ angular.module('sigtecModule.controllers', [])
       
       $scope.templateLoad = function(template){
           template.load = true;
-          openFormModal(template.loadCallback);
+          return openFormModal();
+      }
+      
+      function openModalForm(){
+          if($scope.template.load == true){
+              openFormModal();
+          }
       }
       
       $scope.addDetailsStorage = function(detailProductStorage){
           notificationBarService.getLoadStatus().loading();
-          
-          if($scope.data.materials == null){
-              reportTechnicalManager.getData().getMaterials();
-          }
-          if($scope.data.storages == null){
-              reportTechnicalManager.getData().getStorages();
-          }
-          if($scope.data.separated_resins == null){
-              reportTechnicalManager.getData().getSeparatedResin();
-          }
-          if(detailProductStorage != undefined){
-              $scope.model.detail_product_storage = detailProductStorage;
-          }
+          $scope.templates[0].parameterCallback = detailProductStorage;
           $scope.template = $scope.templates[0];
-          
-          if($scope.template.load == true){
-              openFormModal($scope.template.loadCallback);
-          }
+          openModalForm();
       };
       
-    function setDataDetailsStorage(){
-          if($scope.model.detail_product_storage.storage != null){
-              console.log($scope.model.detail_product_storage.storage);
-              $scope.model.detail_product_storage.storage = $scope.data.storages[$scope.model.detail_product_storage.storage];
+    $scope.setDataDetailsStorage = function(detailProductStorage){
+        if(detailProductStorage != undefined){
+              //$scope.model.detail_product_storage = detailProductStorage;
+              $scope.model.detail_product_storage.material = $scope.data.materials[detailProductStorage.material.id];
+              $scope.model.detail_product_storage.storage = $scope.data.storages[detailProductStorage.storage];
+              $scope.model.detail_product_storage.separated_resin = $scope.data.separated_resins[detailProductStorage.separated_resin];
+              $scope.model.detail_product_storage.total_area = detailProductStorage.total_area;
+              $scope.model.detail_product_storage.covered_area = detailProductStorage.covered_area;
+          }else{
+              $scope.model.detail_product_storage = {};
           }
     }
-      
-      
       
       function cancelFormModal(){
           console.log('cancelFormModal');
@@ -157,11 +152,12 @@ angular.module('sigtecModule.controllers', [])
             return false;
       }
       
-      function openFormModal(callBack){
+      function openFormModal(openCallback){
           var area = $("#div-template");
           $.modal.showForm(area,confirmFormModal,cancelFormModal);
-          if(callBack){
-              callBack.call(this);
+          $.modal.preBuildShowForm(area);
+          if($scope.template.loadCallback){
+              $scope.template.loadCallback($scope.template.parameterCallback);
           }
           notificationBarService.getLoadStatus().done();
       }
@@ -204,6 +200,15 @@ angular.module('sigtecModule.controllers', [])
       $scope.loadReportTechnical = function(id){
           reportTechnicalManager.setId(id);
           reportTechnicalManager.init($scope);
+          if($scope.data.materials == null){
+              reportTechnicalManager.getData().getMaterials();
+          }
+          if($scope.data.storages == null){
+              reportTechnicalManager.getData().getStorages();
+          }
+          if($scope.data.separated_resins == null){
+              reportTechnicalManager.getData().getSeparatedResin();
+          }
       };
       
       $scope.reportTechnicalHelper.professional_profile.calculeTotal();
@@ -262,12 +267,13 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
         init: function($scope){
             scope = $scope;
             notificationBarService.getLoadStatus().loading();
+            
             var self = this;
             return $http.get(this.generateRoute(config.routes.show)).success(function(d){
                 data = d;
                 $scope.reportTechnical = d;
                 $scope.templates =
-                [ { name: 'formDetailProductStorage.html', url: self.getUrlFormDetailProductStorage(),loadCallback:'setDataDetailsStorage', load: false}
+                [ { name: 'formDetailProductStorage.html', url: self.getUrlFormDetailProductStorage(),loadCallback:$scope.setDataDetailsStorage,parameterCallback: null, load: false}
                    ];
                 $scope.template = '';
                 notificationBarService.getLoadStatus().done();
@@ -300,7 +306,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                           jQuery.each(d,function(i,val){
                               dataArray[i] = val;
                           });
-                        scope.data.separated_resin = dataArray;
+                        scope.data.separated_resins = dataArray;
                     });
                 }
             }
