@@ -68,7 +68,11 @@ class FeatureContext extends RawMinkContext implements KernelAwareInterface
     public function purgeDatabase()
     {
         $entityManager = $this->kernel->getContainer()->get('doctrine.orm.entity_manager');
-
+        
+        $purgerPre = new \Tecnocreaciones\Bundle\ToolsBundle\Purger\ORMPurger($entityManager);
+        $purgerPre->setContainer($this->kernel->getContainer());
+        $purgerPre->purge();
+        
         $purger = new ORMPurger($entityManager);
         $purger->purge();
     }

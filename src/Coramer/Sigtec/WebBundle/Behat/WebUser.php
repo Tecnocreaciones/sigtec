@@ -168,6 +168,14 @@ class WebUser extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @Given /^I should on my account profile page$/
+     */
+    public function iShouldOnMyProfilePage()
+    {
+        $this->getSession()->visit($this->generatePageUrl('fos_user_profile_show'));
+    }
+
+    /**
      * @Given /^I should be on my account profile page$/
      */
     public function iShouldBeOnMyProfilePage()
