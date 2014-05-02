@@ -22,3 +22,6 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
         descriptionAreaCompany:
             expose: true
             groups: [show]
+        company:
+            expose: true
+            groups: [show]
