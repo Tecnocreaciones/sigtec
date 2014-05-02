@@ -117,6 +117,14 @@ class WebUser extends MinkContext implements KernelAwareInterface
     {
         $this->getSession()->visit($this->generatePageUrl('fos_user_change_password'));
     }
+
+    /**
+     * @Given /^I am on logout page$/
+     */
+    public function iAmOnLogoutPage()
+    {
+        $this->getSession()->visit($this->generatePageUrl('fos_user_security_logout'));
+    }
     
     /**
      * @Given /^I am on login page$/
