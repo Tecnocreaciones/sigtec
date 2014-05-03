@@ -5,4 +5,6 @@ coramer_sigtec_backend:
         delete: El reporte técnico se ha eliminado
     company_report_technical_properties_detail_product_storage:
         create: Detalle de almacenaje de producto agregado
+        update: Detalle de almacenaje de producto actualizado
+        delete: Detalle de almacenaje de producto eliminado
         

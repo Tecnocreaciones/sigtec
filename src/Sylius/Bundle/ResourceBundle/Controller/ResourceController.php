@@ -261,7 +261,7 @@ class ResourceController extends FOSRestController
         } else {
             $default = array();
         }
-
+        
         $criteria = array_merge($default, $criteria);
 
         if (!$resource = $this->resourceResolver->getResource(

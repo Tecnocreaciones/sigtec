@@ -46,6 +46,13 @@ class DescriptionAreaCompany
      */
     protected $detailProductStorages;
     
+    /**
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical
+     * 
+     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical",mappedBy="descriptionAreaCompany")
+     */
+    private $reportTechnical;
+    
     public function __construct() {
         $this->plantsDescription = new \Doctrine\Common\Collections\ArrayCollection();
         $this->detailProductStorages = new \Doctrine\Common\Collections\ArrayCollection();
@@ -126,5 +133,28 @@ class DescriptionAreaCompany
     public function getDetailProductStorages()
     {
         return $this->detailProductStorages;
+    }
+
+    /**
+     * Set reportTechnical
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnical
+     * @return DescriptionAreaCompany
+     */
+    public function setReportTechnical(\Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnical = null)
+    {
+        $this->reportTechnical = $reportTechnical;
+
+        return $this;
+    }
+
+    /**
+     * Get reportTechnical
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical 
+     */
+    public function getReportTechnical()
+    {
+        return $this->reportTechnical;
     }
 }

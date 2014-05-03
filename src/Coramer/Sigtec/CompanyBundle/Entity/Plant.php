@@ -96,9 +96,9 @@ class Plant
     /**
      * @var boolean
      *
-     * @ORM\Column(name="active", type="boolean", nullable=true)
+     * @ORM\Column(name="status", type="boolean", nullable=true)
      */
-    private $active = true;
+    private $status = true;
 
     public function __construct() {
         $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
@@ -367,25 +367,25 @@ class Plant
     }
 
     /**
-     * Set active
+     * Set status
      *
-     * @param boolean $active
+     * @param boolean $status
      * @return Plant
      */
-    public function setActive($active)
+    public function setStatus($status)
     {
-        $this->active = $active;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get active
+     * Get status
      *
      * @return boolean 
      */
-    public function getActive()
+    public function getStatus()
     {
-        return $this->active;
+        return $this->status;
     }
 }

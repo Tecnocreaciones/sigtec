@@ -153,7 +153,7 @@ class ReportTechnicalController extends ResourceController
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($resource);
                 $em->flush();
-                $data['message'] = 'sigtec.the_changes_have_been_successfully_saved';
+                $data['message'] = $this->get('translator')->trans('sigtec.the_changes_have_been_successfully_saved');
             }else{
                 $this->domainManager->update($resource);
                 return $this->redirectHandler->redirectTo($resource);

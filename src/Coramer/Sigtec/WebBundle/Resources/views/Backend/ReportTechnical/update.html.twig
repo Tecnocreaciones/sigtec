@@ -2,6 +2,8 @@
 
 {% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
 
+{% import 'TecnocreacionesVzlaGovernmentBundle:Template:Developer/Macros/buttons.html.twig' as buttons %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/table3860.css?v=1') }}">
@@ -168,22 +170,28 @@
                                     <th>{{ 'sigtec.table.header.separated_resin'|trans }}</th>
                                     <th>{{ 'sigtec.table.header.total'|trans|raw }}</th> 
                                     <th>{{ 'sigtec.table.header.covered'|trans|raw }}</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                                 <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
-                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                    <td colspan="6" class="bold text-center">&nbsp;</td>
                                 </tr>
                                 <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
-                                    <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.storage'|trans }}</td>
+                                    <td colspan="6" class="bold text-center">{{ 'sigtec.table.content.empty.storage'|trans }}</td>
                                 </tr>
                                 <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
-                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                    <td colspan="6" class="bold text-center">&nbsp;</td>
                                 </tr>
                                 <tr ng-repeat="detail_product_storage in reportTechnical.description_area_company.detail_product_storages">
                                     <td><a href ng-click="addDetailsStorage(detail_product_storage)" >[[ detail_product_storage.material.description ]]</a></td>
-                                    <td>[[ detail_product_storage.storage]]</td>
-                                    <td>[[ detail_product_storage.separated_resin]]</td>
+                                    <td>[[ detail_product_storage.labels.storage]]</td>
+                                    <td>[[ detail_product_storage.labels.separated_resin]]</td>
                                     <td>[[ detail_product_storage.total_area]]</td>
                                     <td>[[ detail_product_storage.covered_area]]</td>
+                                    <td>
+                                        <span class="button-group compact">
+                                            <a href ng-click="itemDelete(detail_product_storage._links.delete.href,reportTechnicalManager.reload().detailProductStorage)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                        </span>
+                                    </td>
                                 </tr>
                             </table>
                             <br/>    

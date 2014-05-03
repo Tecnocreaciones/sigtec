@@ -26,6 +26,9 @@
         <service id="sigtec.listener.registration" class="Coramer\Sigtec\CoreBundle\EventListener\RegistrationListerner">
             <tag name="kernel.event_subscriber" />
         </service>
+        <service id="sigtec.listener.purger" class="Coramer\Sigtec\CoreBundle\EventListener\PurgeListerner">
+            <tag name="kernel.event_subscriber" />
+        </service>
         <service id="sigtec.sequence_generator" class="Coramer\Sigtec\CoreBundle\Service\SequenceGenerator">
             <call method="setSequenceGenerator">
                 <argument type="service" id="tecnocreaciones_tools.sequence_generator"  />

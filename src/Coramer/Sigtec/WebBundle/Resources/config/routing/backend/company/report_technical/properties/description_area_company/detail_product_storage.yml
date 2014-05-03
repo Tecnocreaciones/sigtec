@@ -1,3 +1,14 @@
+coramer_sigtec_backend_company_report_technical_detail_product_storage:
+    pattern: /.{_format}
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_detail_product_storage:listAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
 coramer_sigtec_backend_company_report_technical_detail_product_storage_form:
     pattern: /get-form
     defaults:
@@ -21,3 +32,25 @@ coramer_sigtec_backend_company_report_technical_detail_product_storage_create:
     requirements:
         _method: POST
         _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_detail_product_storage_update:
+    pattern: /update
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_detail_product_storage:updateAction
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_descriptionareacompany_detailproductstorage
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_detail_product_storage_delete:
+    pattern: /{slug}/delete
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_detail_product_storage:deleteAction
+    options:
+        expose: false
+    requirements:
+        _method: POST|DELETE

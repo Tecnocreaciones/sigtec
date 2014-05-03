@@ -117,6 +117,14 @@ class WebUser extends MinkContext implements KernelAwareInterface
     {
         $this->getSession()->visit($this->generatePageUrl('fos_user_change_password'));
     }
+
+    /**
+     * @Given /^I am on logout page$/
+     */
+    public function iAmOnLogoutPage()
+    {
+        $this->getSession()->visit($this->generatePageUrl('fos_user_security_logout'));
+    }
     
     /**
      * @Given /^I am on login page$/
@@ -165,6 +173,14 @@ class WebUser extends MinkContext implements KernelAwareInterface
     public function iShouldStillBeOnMyProfileEditionPage()
     {
         $this->assertSession()->addressEquals($this->generateUrl('fos_user_profile_edit'));
+    }
+
+    /**
+     * @Given /^I should on my account profile page$/
+     */
+    public function iShouldOnMyProfilePage()
+    {
+        $this->getSession()->visit($this->generatePageUrl('fos_user_profile_show'));
     }
 
     /**

@@ -41,7 +41,7 @@ angular.module('sigtecModule.controllers', [])
           }
   })
   .controller('ReportTechnicalController',function($scope,$http,reportTechnicalManager,notificationBarService,notifyService,sfTranslator){
-      var reportTechnical = {
+      $scope.reportTechnical = {
               id: 0,
               professional_profile: {
                   quantity_professionals: 0,
@@ -60,7 +60,6 @@ angular.module('sigtecModule.controllers', [])
                   }
               }
           };
-      $scope.reportTechnical = reportTechnical;
       $scope.data = {
           materials: null,
           storages: null,
@@ -69,7 +68,12 @@ angular.module('sigtecModule.controllers', [])
       $scope.form = {};
       
       $scope.reportTechnicalHelper = {
-          professional_profile: {}
+          professional_profile: {},
+          form: {
+              action: {
+                  url: null
+              }
+          }
       };
       //Calcula el total de los empleados de la empresa
       $scope.reportTechnicalHelper.professional_profile.calculeTotal = function(){
@@ -87,7 +91,33 @@ angular.module('sigtecModule.controllers', [])
           }
       };
       
-      $scope.model = {
+      $scope.itemDelete = function(url,callback){
+        $.modal.confirm('¿'+ sfTranslator.trans('tecnocreaciones_vzla_government.question.delete') +'?', function()
+        {
+            $http.post(url,{_method:'DELETE'},{headers:{'X-Requested-With':'XMLHttpRequest'}}).success(function(data){
+                $.each(data.message,function(index, value){
+                    notify(value,'', {
+                        system:		false,   
+                        autoClose:		4000,
+                        icon:               ConfApp.assetPath + 'bundles/tecnocreacionesvzlagovernment/template/developer/img/icons/icon-success.png',
+                        iconOutside:        false,
+                        closeButton:        true,
+                        showCloseOnHover:	false,
+                        groupSimilar:	true
+                    });
+                });
+                if(callback){
+                    callback.call(this);
+                }
+            });
+        }, function(){},
+        {
+            textConfirm: sfTranslator.trans('tecnocreaciones_vzla_government.yes'),
+            textCancel: sfTranslator.trans('tecnocreaciones_vzla_government.no')
+        });
+    }
+      
+      var defaultModel = {
           detail_product_storage:{
               id: null,
               material: { id: 0, description: '' },
@@ -98,13 +128,7 @@ angular.module('sigtecModule.controllers', [])
           }
       };
       
-      
-      
-      $scope.refresh = {
-          reloadDetailsStorage: function(){
-              console.log('reloadDetailsStorage');
-          }
-      };
+      $scope.model = defaultModel;
       
       $scope.templateLoad = function(template){
           template.load = true;
@@ -126,6 +150,7 @@ angular.module('sigtecModule.controllers', [])
       
     $scope.setDataDetailsStorage = function(detailProductStorage){
         if(detailProductStorage != undefined){
+              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: detailProductStorage.id});
               //$scope.model.detail_product_storage = detailProductStorage;
               $scope.model.detail_product_storage.material = $scope.data.materials[detailProductStorage.material.id];
               $scope.model.detail_product_storage.storage = $scope.data.storages[detailProductStorage.storage];
@@ -133,23 +158,68 @@ angular.module('sigtecModule.controllers', [])
               $scope.model.detail_product_storage.total_area = detailProductStorage.total_area;
               $scope.model.detail_product_storage.covered_area = detailProductStorage.covered_area;
           }else{
-              $scope.model.detail_product_storage = {};
+              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
+              $scope.model.detail_product_storage = {
+                        id: null,
+                        material: { id: 0, description: '' },
+                        storage: null,
+                        separated_resin: null,
+                        total_area: 0,
+                        covered_area: 0,
+                    };
           }
     }
       
       function cancelFormModal(){
           console.log('cancelFormModal');
       }
-      function confirmFormModal(value){
+      function confirmFormModal(modal){
             var idForm = 'form_pop_up';
             var form = jQuery('#'+idForm);
             var valid = form.validationEngine('validate');
+            var result = false;
             if(valid){
-                sendAjaxForm(idForm,$scope.refresh.reloadDetailsStorage);
-                return true;
+                var successCallback = $scope.template.reload;
+                notificationBarService.getLoadStatus().loading();
+            
+                var url = $('#'+idForm).attr('action');
+                var formData = $('#'+idForm).serialize();
+                $http({
+                        method  : 'POST',
+                        url     : url,
+                        data    : formData,
+                        headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With':'XMLHttpRequest' }  // set the headers so angular passing info as form data (not request payload)
+                    }).success(function(data){
+                        $scope.form.errors = {};
+                        notifyService.success(data.message);
+                        if(successCallback){
+                           successCallback.call(this);
+                        }
+                        notificationBarService.getLoadStatus().done();
+                        modal.closeModal();
+                    }).error(function(data){
+                        if(data.message != undefined){
+                            notifyService.error(Translator.trans(data.message));
+                        }
+                        if(data[0] != undefined && data[0].message != undefined){
+                            notifyService.error(Translator.trans(data[0].message));
+                        }
+                        $scope.form.errors = {};
+                        if(data.errors){
+                            if(data.errors.errors){
+                                $.each(data.errors.errors,function(index,value){
+                                    notifyService.error(Translator.trans(value));
+                                });
+                            }
+                            $scope.form.errors = data.errors.children;
+                        }
+                        
+                        notificationBarService.getLoadStatus().done();
+                    });
+                    return false;
             }
             $(this).getModalContentBlock().message(sfTranslator.trans('sigtec.form.errors.please_check_the_form_fields'), { append: false, classes: ['red-gradient'] });
-            return false;
+            return result;
       }
       
       function openFormModal(openCallback){
@@ -164,10 +234,11 @@ angular.module('sigtecModule.controllers', [])
       
       function sendAjaxForm(idForm,successCallback,errorCallback){
             notificationBarService.getLoadStatus().loading();
-            successCallback.call(this);
+            
             var url = $('#'+idForm).attr('action');
             var formData = $('#'+idForm).serialize();
-            $http({
+            var result = null;
+            return $http({
                 method  : 'POST',
                 url     : url,
                 data    : formData,
@@ -179,8 +250,14 @@ angular.module('sigtecModule.controllers', [])
                    successCallback.call(this);
                 }
                 notificationBarService.getLoadStatus().done();
+                return true;
             }).error(function(data){
-                notifyService.error(Translator.trans(data.message));
+                if(data.message != undefined){
+                    notifyService.error(Translator.trans(data.message));
+                }
+                if(data[0] != undefined && data[0].message != undefined){
+                    notifyService.error(Translator.trans(data[0].message));
+                }
                 $scope.form.errors = {};
                 if(data.errors){
                     if(data.errors.errors){
@@ -194,6 +271,7 @@ angular.module('sigtecModule.controllers', [])
                    successCallback.call(this); 
                 }
                 notificationBarService.getLoadStatus().done();
+                return false;
             });
         }
       
@@ -212,6 +290,7 @@ angular.module('sigtecModule.controllers', [])
       };
       
       $scope.reportTechnicalHelper.professional_profile.calculeTotal();
+      $scope.reportTechnicalManager = reportTechnicalManager;
   })
   .controller('VzlaEntityController',function($scope,$http,notificationBarService){
       $scope.model = {};
@@ -250,6 +329,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
             update: 'coramer_sigtec_backend_company_report_technical_update',
             delete: 'coramer_sigtec_backend_company_report_technical_delete',
             professional_profile: 'coramer_sigtec_backend_company_report_technical_professional_profile',
+            description_area_company: {
+                detail_product_storage: 'coramer_sigtec_backend_company_report_technical_detail_product_storage',
+            },
             data:{
                 material: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_material',
                 storages: 'coramer_sigtec_backend_company_report_technical_data_storages',
@@ -273,7 +355,18 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 data = d;
                 $scope.reportTechnical = d;
                 $scope.templates =
-                [ { name: 'formDetailProductStorage.html', url: self.getUrlFormDetailProductStorage(),loadCallback:$scope.setDataDetailsStorage,parameterCallback: null, load: false}
+                [ { 
+                        name: 'formDetailProductStorage.html', 
+                        url: self.getUrlFormDetailProductStorage(),
+                        loadCallback:$scope.setDataDetailsStorage,
+                        parameterCallback: null, 
+                        load: false,
+                        routes: {
+                            create: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_create',
+                            update: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_update'
+                        },
+                        reload: self.reload().detailProductStorage
+                    }
                    ];
                 $scope.template = '';
                 notificationBarService.getLoadStatus().done();
@@ -316,6 +409,16 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
         },
         getId: function(){
             return idReportTechnical;
+        },
+        reload: function(){
+          var self = this;
+          return {
+              detailProductStorage: function(){
+                  return $http.get(self.generateRoute(config.routes.description_area_company.detail_product_storage)).success(function(d){
+                        scope.reportTechnical.description_area_company.detail_product_storages = d;
+                    });
+              }
+          }  
         },
         generateRoute: function(route,format){
             if(format == undefined){

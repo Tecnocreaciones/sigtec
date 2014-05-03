@@ -11,11 +11,12 @@
 
 namespace Coramer\Sigtec\RestBundle\EventListener;
 
+use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage;
 use JMS\Serializer\EventDispatcher\Events;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
+use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Routing\Router;
-use JMS\Serializer\EventDispatcher\ObjectEvent;
 
 /**
  * Description of SerializeEventListerner
@@ -41,13 +42,13 @@ class SerializeEventListerner implements EventSubscriberInterface
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeCompany', 'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Company','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializePlant', 'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Plant','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeReportTechnical', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical','format' => 'json'),
-            //array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeReportTechnical', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeDetailProductStorage', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage','format' => 'json'),
         );
     }
     
     /**
      * Captura el evento luego que se serealia una compañia
-     * @param \JMS\Serializer\EventDispatcher\ObjectEvent $event
+     * @param ObjectEvent $event
      */
     function onPostSerializeCompany(ObjectEvent $event) {
         $object = $event->getObject();
@@ -69,7 +70,7 @@ class SerializeEventListerner implements EventSubscriberInterface
     
     /**
      * Captura el evento luego que se serealia una planta
-     * @param \JMS\Serializer\EventDispatcher\ObjectEvent $event
+     * @param ObjectEvent $event
      */
     function onPostSerializePlant(ObjectEvent $event) {
         $object = $event->getObject();
@@ -87,7 +88,7 @@ class SerializeEventListerner implements EventSubscriberInterface
     }
     /**
      * Captura el evento luego que se serealia un reporte tecnico
-     * @param \JMS\Serializer\EventDispatcher\ObjectEvent $event
+     * @param ObjectEvent $event
      */
     function onPostSerializeReportTechnical(ObjectEvent $event) {
         $object = $event->getObject();
@@ -104,13 +105,42 @@ class SerializeEventListerner implements EventSubscriberInterface
         ));
     }
     
+    /**
+     * Captura el evento luego que se serealia un detalle de almacenaje del producto del reporte tecnico
+     * @param ObjectEvent $event
+     */
+    function onPostSerializeDetailProductStorage(ObjectEvent $event) {
+        $object = $event->getObject();
+        $storages = array(
+            DetailProductStorage::STORAGE_OUTDOOR => $this->trans('sigtec.storage.outdoor',array(),'CoramerSigtecReportTechnicalBundle'),
+            DetailProductStorage::STORAGE_CONFINED => $this->trans('sigtec.storage.confined',array(),'CoramerSigtecReportTechnicalBundle'),
+        );
+        $separated_resins = array(
+                    DetailProductStorage::SEPARATED_RESIN_NOT_APPLY => $this->trans('N/A',array(),'CoramerSigtecReportTechnicalBundle') ,
+                    DetailProductStorage::SEPARATED_RESIN_YES => $this->trans('sigtec.yes',array(),'CoramerSigtecReportTechnicalBundle') ,
+                    DetailProductStorage::SEPARATED_RESIN_NO => $this->trans('sigtec.no',array(),'CoramerSigtecReportTechnicalBundle') ,
+                );
+        $event->getVisitor()->addData('labels', array(
+            'storage' => $storages[$object->getStorage()],
+            'separated_resin' => $separated_resins[$object->getSeparatedResin()],
+        ));
+        $event->getVisitor()->addData('_links', array(
+            'delete' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_detail_product_storage_delete',array('id' => $object->getDescriptionAreaCompany()->getReportTechnical()->getId(),'slug'=> $object->getId()))
+                ),
+        ));
+    }
+    
     protected function generateUrl($route,array $parameters){
         return $this->router->generate($route, $parameters, Router::ABSOLUTE_URL);
     }
     public function setRouter(Router $router) {
         $this->router = $router;
     }
-    
+    function trans($id, $parameters = array(), $domain = 'messages')
+    {
+        return $this->getTranslator()->trans($id, $parameters, $domain);
+    }
     public function getTranslator() {
         return $this->translator;
     }
