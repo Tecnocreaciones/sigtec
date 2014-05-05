@@ -16,7 +16,7 @@ use Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
- * Description of ReportTechnicalController
+ * Controlador del reporte tecnico
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
@@ -26,7 +26,7 @@ class ReportTechnicalController extends ResourceController
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_SUPER_USER')")
      */
     public function indexAction(Request $request) {
         return parent::indexAction($request);
@@ -37,7 +37,7 @@ class ReportTechnicalController extends ResourceController
         
         //Security Check
         $user = $this->getUser();
-        if(!$user->getCompanies()->contains($resource->getCompany())){
+        if(!$this->getSecurityContext()->isGranted('ROLE_SUPER_USER') && !$user->getCompanies()->contains($resource->getCompany())){
             throw $this->createAccessDeniedHttpException();
         }
         

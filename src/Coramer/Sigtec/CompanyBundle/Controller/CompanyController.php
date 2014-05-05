@@ -96,7 +96,7 @@ class CompanyController extends ResourceController
             $view->setData($resources);
         }else{
             $formatData = $request->get('_formatData','default');
-            $view->setData($resources->toArray($this->config->getRedirectRoute('index'),array(),$formatData));
+            $view->setData($resources->toArray($this->config->getRedirectRoute('client_index'),array(),$formatData));
         }
         return $this->handleView($view);
     }
