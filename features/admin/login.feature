@@ -1,5 +1,5 @@
-Feature: Admin dashboard
-  In order to manager my master entites
+Feature: Login Admin dashboard
+  In order to enter on admin area
   As a website admin
   I admin credentials to login a admin dashboard
 
@@ -37,4 +37,3 @@ Feature: Admin dashboard
         And I press "Entrar"
         And I go to admin dashboard
         Then I should see "Administración"
-    
