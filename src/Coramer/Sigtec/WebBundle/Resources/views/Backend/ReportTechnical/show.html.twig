@@ -42,6 +42,10 @@
         </p>
     </fieldset>
     <p class="button-height align-right">
+        {% if is_granted('ROLE_SUPER_USER') %}
+            {{ buttons.generic(null,'sigtec.report_technical.approve','icon-tick',{'translation_domain':'CoramerSigtecReportTechnicalBundle'}) }}
+            {{ buttons.generic(null,'sigtec.report_technical.reject','icon-cross',{'translation_domain':'CoramerSigtecReportTechnicalBundle','gradient':'red-gradient'}) }}
+        {% endif %}
         {{ buttons.edit(path('coramer_sigtec_backend_company_report_technical_update', { 'id': company_report_technical.id })) }}
         {{ buttons.delete(path('coramer_sigtec_backend_company_report_technical_delete', { 'id': company_report_technical.id })) }}
     </p>
