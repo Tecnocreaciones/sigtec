@@ -1,0 +1,8 @@
+admin:
+    group:
+        company: Compañia
+        
+    company:
+        dedication: Uso de planta
+        
+"Dedication List": Lista de usos de plantas

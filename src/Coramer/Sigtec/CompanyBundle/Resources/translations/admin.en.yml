@@ -1,0 +1,8 @@
+admin:
+    group:
+        company: Company
+        
+    company:
+        dedication: Plant use
+        
+"Dedication List": List of uses of plants

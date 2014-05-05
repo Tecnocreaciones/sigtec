@@ -2,9 +2,11 @@
 
 namespace Coramer\Sigtec\CoreBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Tecnocreaciones\Bundle\ToolsBundle\Service\UnitConverter\Type\LengthUnitType;
+use Tecnocreaciones\Bundle\ToolsBundle\Service\UnitConverter\Type\TextileYarnsUnitType;
 
 class DefaultController extends Controller
 {
@@ -14,18 +16,20 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $generatorSecuence = $this->get('tecnocreaciones_tools.sequence_generator');
-        $qb = $generatorSecuence->createQueryBuilder();
-        $qb->from('Tecnocreaciones\Vzla\EntityBundle\Entity\Country', 'c');
-        $mask = '{dd}-{000}';
-        $mask = '{mm}-{000}';
-        $mask = '{yyyy}-{000}';
-        $mask = '{yy}-{000}';
-        $mask = '{mask1}-{000}';
-        $mask = 'Test-{mask1}-{mask2}-{dd}-{mm}-{yyyy}-{yy}-{000}';
-        $mask = '{mask2}-{000}';
-        
-        $secuence = $this->get('tecnocreaciones_tools.sequence_generator')->generateNext($qb,$mask,'description',array('mask1' => 'ZONAS','mask2' => 'CATEGORIA'));
-        return array('secuence' => $secuence);
+        $converter= $this->get('tecnocreaciones_tools.unit_converter');
+        //$r = $converter->convert('storage', 22, 'Mb', 'Mb');
+        $result = array();
+        $num = 1;
+        $result[] = array(
+            $num,
+            $converter->convert(LengthUnitType::getType(), $num, LengthUnitType::UNIT_INCH, LengthUnitType::UNIT_KILOMETER)
+        );
+        $result[] = array(
+            $num,
+            $converter->convert(TextileYarnsUnitType::getType(), $num, TextileYarnsUnitType::UNIT_DECITEX, TextileYarnsUnitType::UNIT_TEX)
+        );
+        return array(
+            'result' => $result
+        );
     }
 }
