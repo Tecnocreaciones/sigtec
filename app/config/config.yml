@@ -235,7 +235,7 @@ sonata_block:
 
 sonata_admin:
     title:      SIGTEC
-    title_logo: bundles/coramersigtectemplate/template/developer/img/favicons/logo.png
+    title_logo: bundles/coramersigtectemplate/template/developer/img/favicons/admin_logo.png
     dashboard:
         groups:
             sonata.admin.group.administration:
