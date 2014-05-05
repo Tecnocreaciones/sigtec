@@ -1,0 +1,11 @@
+services:
+    sonata.admin.company.dedication:
+        class: Coramer\Sigtec\CompanyBundle\Admin\DedicationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "admin.group.company",label_catalogue: "admin", label: "admin.company.dedication" }
+        arguments:
+            - ~
+            - Coramer\Sigtec\CompanyBundle\Entity\Dedication
+            - ~
+        calls:
+            - [ setTranslationDomain, [admin]]

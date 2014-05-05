@@ -246,9 +246,12 @@ sonata_admin:
             admin.group.report_technical:
                 label_catalogue: admin
                 icon:            '<i class="fa fa-pencil-square-o"></i>'
+            admin.group.company:
+                label_catalogue: admin
+                icon:            '<i class="fa fa-suitcase"></i>'
             admin.group.vzla_entity:
                 label_catalogue: admin
-                icon:            '<i class="fa fa fa-play-circle"></i>'
+                icon:            '<i class="fa fa-play-circle"></i>'
 sylius_resource:
     resources:
          coramer_sigtec_backend.user:
