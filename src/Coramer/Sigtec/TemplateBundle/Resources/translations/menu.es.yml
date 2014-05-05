@@ -2,6 +2,10 @@ sigtec:
     backend:
         menu:
             sidebar:
-                user: Usuario
+                user:
+                    user: Usuario
+                    company: Empresa
+                    technical_reports: Reporte técnico
+                    report: Reporte
                 admin: Administración
                 report: Reporte

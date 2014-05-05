@@ -1,3 +1,7 @@
-coramer_sigtec_web_client_company:
+coramer_sigtec_web_user_company:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/user/company.yml"
     prefix:   /
+    
+coramer_sigtec_company_user_report_technical:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/user/report_technical.yml"
+    prefix:   /report-technical

@@ -217,7 +217,8 @@ class CompanyController extends ResourceController
         return $this->handleView($view);
     }
     
-    public function deleteAction(Request $request) {
+    public function deleteAction(Request $request)
+    {
         $resource = $this->findOr404($request);
         //Security Check
         $user = $this->getUser();
@@ -234,7 +235,7 @@ class CompanyController extends ResourceController
             );
             return new \Symfony\Component\HttpFoundation\JsonResponse($data);
         }else{
-            return $this->redirectHandler->redirectToIndex();
+            return $this->redirectHandler->redirectToRoute($this->config->getRedirectRoute('client_index'));
         }
     }
 }

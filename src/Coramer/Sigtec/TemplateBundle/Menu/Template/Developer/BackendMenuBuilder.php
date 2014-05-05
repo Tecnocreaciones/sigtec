@@ -79,7 +79,7 @@ class BackendMenuBuilder extends BaseBackendMenuBuilder
                 ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.company', $section)));
         $child
                 ->addChild('client.technical_reports', array(
-                    'route' => 'coramer_sigtec_backend_company_report_technical_index',
+                    'route' => 'coramer_sigtec_backend_company_report_technical_client_index',
                     ))
                 ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.technical_reports', $section)));
         
@@ -120,17 +120,17 @@ class BackendMenuBuilder extends BaseBackendMenuBuilder
                     'labelAttributes' => array('icon' => 'icon-book',),
                     ))
                 )
-                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.user', $section)));
+                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.user.user', $section)));
         $child
-                ->addChild('client.company', array(
+                ->addChild('user.company', array(
                     'route' => 'coramer_sigtec_backend_company_index',
                     ))
-                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.company', $section)));
+                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.user.company', $section)));
         $child
-                ->addChild('client.technical_reports', array(
+                ->addChild('user.technical_reports', array(
                     'route' => 'coramer_sigtec_backend_company_report_technical_index',
                     ))
-                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.technical_reports', $section)));
+                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.user.technical_reports', $section)));
         
         
             $subchild = $this->factory->createItem('user.report',
@@ -144,7 +144,7 @@ class BackendMenuBuilder extends BaseBackendMenuBuilder
                     ->addChild('subclient.manager', array(
                         'route' => self::ROUTE_DEFAULT,
                         ))
-                    ->setLabel($this->translate(sprintf('%s.client.manager', $section)));
+                    ->setLabel($this->translate(sprintf('%s.user.manager', $section)));
 
             $subchild->addChild('subclient.group', array(
                         'route' => self::ROUTE_DEFAULT,
