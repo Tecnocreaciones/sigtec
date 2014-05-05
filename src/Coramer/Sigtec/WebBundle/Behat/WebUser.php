@@ -133,7 +133,30 @@ class WebUser extends MinkContext implements KernelAwareInterface
     {
         $this->getSession()->visit($this->generatePageUrl('fos_user_security_login'));
     }
-
+    
+    /**
+     * @Given /^I am on admin login page$/
+     */
+    public function iAmOnAdminLoginPage()
+    {
+        $this->getSession()->visit($this->generatePageUrl('sonata_user_admin_security_login'));
+    }
+    
+    /**
+     * @Given /^I go to admin dashboard$/
+     */
+    public function iGoToAdminDashboard()
+    {
+        $this->getSession()->visit($this->generatePageUrl('sonata_admin_dashboard'));
+    }
+    
+    /**
+     * @Given /^I should be denied access to the request$/
+     */
+    public function iShouldBeDeniedAccessToTheRequest()
+    {
+        $this->assertStatusCodeEquals(403);
+    }
 
     /**
      * @Given /^I should be on my account password page$/
