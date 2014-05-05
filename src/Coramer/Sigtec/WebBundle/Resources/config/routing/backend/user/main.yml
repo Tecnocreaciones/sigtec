@@ -1,0 +1,3 @@
+coramer_sigtec_web_client_company:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/user/company.yml"
+    prefix:   /

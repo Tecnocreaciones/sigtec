@@ -36,9 +36,13 @@ class Rif
      */
     const STATUS_ERROR_INVALID_CHECK_DIGIT = 3;
     /**
+     * No se pudo conectar con el servidor(Error comun a usar un proxy)
+     */
+    const STATUS_ERROR_COULD_NOT_CONNECT_TO_SERVER = 4;
+    /**
      * El rif se recupero exisotamente
      */
-    const STATUS_OK = 4;
+    const STATUS_OK = 5;
     
     private $rif;
     

@@ -3,9 +3,12 @@
 {% block title %}- {{ 'sigtec.company'|trans }}{% endblock %}
 
 {% block body %}
+    {% if route_index is not defined %}
+        {% set route_index = 'coramer_sigtec_backend_company_index' %}
+    {% endif %}
     <hgroup id="main-title" class="thin breadcrumb">
         <h1>
-            <a href="{{ path('coramer_sigtec_backend_company_index') }}">{{ 'sigtec.company'|trans }}</a>
+            <a href="{{ path(route_index) }}">{{ 'sigtec.company'|trans }}</a>
             <span class="icon-forward"></span>
             <span class="thin">{{ 'sigtec.list'|trans }}</span>
             <p class="button-height align-right">
@@ -19,7 +22,7 @@
     <div ng-controller="TableFormatController">
         <div ng-controller="CompanyIndexController">
                 <div loading-container="tableParams.settings().$loading">
-                    <table ng-table="tableParams" template-pagination="custom/pager"  template-header="custom/header" api-data-url="{{ path('coramer_sigtec_backend_company_index',{_format:'json'}) }}" class="table table-responsive table-extra-info">
+                    <table ng-table="tableParams" template-pagination="custom/pager"  template-header="custom/header" api-data-url="{{ path(route_index,{_format:'json'}) }}" class="table table-responsive table-extra-info">
                         <tr ng-repeat="result in $data | filter:tableParams.search" data="[[ result|json ]]">
                             <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
                                 <input type="checkbox" ng-model="checkboxes.items[result.id]" />
@@ -61,17 +64,7 @@
     <script type="text/javascript">
         function getTableExtraInfo(data)
             {
-                return  '<div class="float-right">' +
-                        '<button type="submit" class="button glossy mid-margin-right">' +
-                        '<span class="button-icon"><span class="icon-mail"></span></span>' +
-                        'Send mail' +
-                        '</button>' +
-                        '<button type="submit" class="button glossy">' +
-                        '<span class="button-icon red-gradient"><span class="icon-cross"></span></span>' +
-                        'Remove' +
-                        '</button>' +
-                        '</div>' +
-                        '<strong>{{ 'sigtec.name'|trans }}:</strong> ' + data.name + '<br>' +
+                return  '<strong>{{ 'sigtec.name'|trans }}:</strong> ' + data.name + '<br>' +
                         '<strong>{{ 'sigtec.created_at' |trans }}:</strong> ' + data.created_at + '<br>' +
                         '<strong>{{ 'sigtec.updated_at' | trans }}:</strong> ' + data.updated_at + '<br>'
                         ;

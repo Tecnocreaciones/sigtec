@@ -1,0 +1,7 @@
+sigtec:
+    backend:
+        menu:
+            sidebar:
+                user: Usuario
+                admin: Administración
+                report: Reporte

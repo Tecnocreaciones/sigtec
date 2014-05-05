@@ -44,6 +44,13 @@ class BackendMenuBuilder extends BaseBackendMenuBuilder
         
         $this->addClientMenu($menu, $section);
         
+        $this->addUserMenu($menu, $section);
+        
+        $menu->addChild('admin', array(
+            'route' => 'sonata_admin_dashboard',
+            'labelAttributes' => array('icon' => 'icon-card'),
+        ))->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.admin', 'sidebar')));
+        
         $menu->addChild('support', array(
             'route' => self::ROUTE_DEFAULT,
             'labelAttributes' => array('icon' => 'icon-info'),
@@ -67,6 +74,55 @@ class BackendMenuBuilder extends BaseBackendMenuBuilder
                 ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client', $section)));
         $child
                 ->addChild('client.company', array(
+                    'route' => 'coramer_sigtec_backend_company_client_index',
+                    ))
+                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.company', $section)));
+        $child
+                ->addChild('client.technical_reports', array(
+                    'route' => 'coramer_sigtec_backend_company_report_technical_index',
+                    ))
+                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.technical_reports', $section)));
+        
+        
+//            $subchild = $this->factory->createItem('subclient',
+//                        $this->getSecondLevelOptions(array(
+//                        'uri' => null,
+//                        'labelAttributes' => array('icon' => 'icon-book',),
+//                        ))
+//                    )
+//                    ->setLabel($this->translate(sprintf('menu.%s.clients', $section)));
+//            $subchild
+//                    ->addChild('subclient.manager', array(
+//                        'route' => self::ROUTE_DEFAULT,
+//                        ))
+//                    ->setLabel($this->translate(sprintf('%s.client.manager', $section)));
+//
+//            $subchild->addChild('subclient.group', array(
+//                        'route' => self::ROUTE_DEFAULT,
+//                    ))
+//                    ->setLabel($this->translate(sprintf('%s.generic.group', $section)));
+//        
+//        $child->addChild($subchild);
+               
+        $menu->addChild($child);
+    }
+    
+    /**
+     * Construye el menu de usuarios
+     * 
+     * @param \Knp\Menu\ItemInterface $menu
+     * @param type $section
+     */
+    function addUserMenu(ItemInterface $menu, $section) {
+        $child = $this->factory->createItem('user',
+                    $this->getSecondLevelOptions(array(
+                    'uri' => null,
+                    'labelAttributes' => array('icon' => 'icon-book',),
+                    ))
+                )
+                ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.user', $section)));
+        $child
+                ->addChild('client.company', array(
                     'route' => 'coramer_sigtec_backend_company_index',
                     ))
                 ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.company', $section)));
@@ -77,13 +133,13 @@ class BackendMenuBuilder extends BaseBackendMenuBuilder
                 ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.client.technical_reports', $section)));
         
         
-            $subchild = $this->factory->createItem('subclient',
+            $subchild = $this->factory->createItem('user.report',
                         $this->getSecondLevelOptions(array(
                         'uri' => null,
                         'labelAttributes' => array('icon' => 'icon-book',),
                         ))
                     )
-                    ->setLabel($this->translate(sprintf('menu.%s.clients', $section)));
+                    ->setLabel($this->translate(sprintf('sigtec.backend.menu.%s.report', $section)));
             $subchild
                     ->addChild('subclient.manager', array(
                         'route' => self::ROUTE_DEFAULT,

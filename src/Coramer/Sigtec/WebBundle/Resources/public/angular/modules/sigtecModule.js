@@ -21,13 +21,14 @@ angular.module('sigtecModule.controllers', [])
           $scope.data = {};
           $scope.limit = '40';
           
-          var url = Routing.generate('coramer_sigtec_backend_company_index',{_format:'json'});
-          return $http.get(url).success(function(data) {
-            $scope.data = data;
-            
-        }).error(function(data){
-            notificationBarService.getLoadStatus().error();
-        });
+//          var url = Routing.generate('coramer_sigtec_backend_company_client_index',{_format:'json'});
+//          return $http.get(url).success(function(data) {
+//              console.log(data);
+//            $scope.data = data;
+//            
+//        }).error(function(data){
+//            notificationBarService.getLoadStatus().error();
+//        });
           
   }])
   .controller('CompanyIndexController', function($scope,$http,notifyService) {

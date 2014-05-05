@@ -26,7 +26,7 @@ class CompanyController extends ResourceController
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_SUPER_USER')")
      */
     public function indexAction(Request $request) {
         return parent::indexAction($request);
@@ -37,7 +37,7 @@ class CompanyController extends ResourceController
         
         //Security Check
         $user = $this->getUser();
-        if(!$user->getCompanies()->contains($resource)){
+        if(!$this->getSecurityContext()->isGranted('ROLE_SUPER_USER') && !$user->getCompanies()->contains($resource)){
             throw $this->createAccessDeniedHttpException();
         }
         
@@ -89,7 +89,7 @@ class CompanyController extends ResourceController
 
         $view = $this
             ->view()
-            ->setTemplate($this->config->getTemplate('index.html'))
+            ->setTemplate($this->config->getTemplate('clientIndex.html'))
             ->setTemplateVar($this->config->getPluralResourceName())
         ;
         if($request->get('_format') == 'html'){

@@ -205,6 +205,8 @@ tecnocreaciones_vzla_government:
                 panel_right: 'bundles/coramersigtectemplate/template/developer/img/favicons/logo.png'
                 icon_png: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.png'
                 icon_ico: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.ico'
+    config:
+        main_route: 'coramer_sigtec_web_dashboard_index'
 
 tecnocreaciones_vzla_entity:
     backend_admin: true
