@@ -55,7 +55,7 @@ class ReportTechnicalController extends ResourceController
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
-     * @Security("is_granted('ROLE_CLIENT')")
+     * @Security("is_granted('ROLE_USER')")
      */
     function indexClientAction(Request $request)
     {

@@ -6,6 +6,11 @@ sigtec:
     form:
         errors:
             please_check_the_form_fields: Please check the form fields.
-        
+app:
+    http:
+        error:
+            404: The requested resource was not found.
+            403: You do not have permission to<br/>access the requested resource.
+            
 "Validation Failed": Validation Failed
 "Permission Denied!": Permission Denied!

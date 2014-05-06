@@ -212,8 +212,10 @@
 					<span class="button-icon red-gradient glossy"><span class="icon-cross-round"></span></span>
                                         {{ 'tecnocreaciones_vzla_government.save_and_close'|trans({},'messages') }}
 				</button>
-                            {{ form_rest(form) }}
 			</div>
+                        <div class="hide" style="display: none">
+                            {{ form_rest(form) }}
+                        </div>
                         <div class="hide" style="display: none">
                             <div id="div-template" ng-include="template.url" onload="templateLoad(template)" ></div>
                         </div>

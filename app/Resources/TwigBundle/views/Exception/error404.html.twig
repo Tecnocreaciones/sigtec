@@ -1,14 +1,13 @@
 {% extends "::base.html.twig" %}
 {% block body %}
-    <p class="wrapped relative" style="min-height: 200px; font-size: 30px;padding: 2em">
+    <p class="wrapped relative" style="min-height: 130px; font-size: 30px;padding: 2em">
         <span>
             <span class="ribbon"><span class="ribbon-inner red-gradient glossy">404</span></span>
-            
-            <span class="tag red-bg"><span class="icon-warning"></span> ERROR 404</span>
             <br />
             <br />
             <br />
-            {{ 'sigtec.errors.error404'|trans }}.
+            <span class="icon-info-round red icon-size2 "></span>
+            {{ 'app.http.error.404'|trans|raw }}
         </span>
     </p>
 {% endblock body %}

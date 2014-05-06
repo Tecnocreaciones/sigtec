@@ -55,7 +55,7 @@ class CompanyController extends ResourceController
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
-     * @Security("is_granted('ROLE_CLIENT')")
+     * @Security("is_granted('ROLE_USER')")
      */
     function clientIndexAction(Request $request) {
         $user = $this->getUser();

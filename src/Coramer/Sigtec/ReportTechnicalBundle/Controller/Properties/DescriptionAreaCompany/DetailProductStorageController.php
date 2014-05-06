@@ -62,7 +62,8 @@ class DetailProductStorageController extends \Coramer\Sigtec\ReportTechnicalBund
     }
     public function updateAction(\Symfony\Component\HttpFoundation\Request $request)
     {
-        $reportTechnical = $this->findReportTechnicalOr404($request);
+        $resource = $this->findOr404($request);
+        $reportTechnical = $resource->getDescriptionAreaCompany()->getReportTechnical();
         //Security Check
         $user = $this->getUser();
         if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
