@@ -297,6 +297,20 @@ class WebUser extends MinkContext implements KernelAwareInterface
 
         $this->getSession()->visit($this->generatePageUrl(sprintf('admin_%s_list', $route)));
     }
+    
+     /**
+     * @Given /^I am (delete|viewing|editing) ([^""]*) on admin page "([^""]*)" with ([^""]*) "([^""]*)"$/
+     */
+    public function iAmDeleteAdminWithResource($action,$typeRepo ,$type, $property, $value)
+    {
+        $type = str_replace(' ', '_', $type);
+
+        $action = str_replace(array_keys($this->actions), array_values($this->actions), $action);
+        $resource = $this->getDataContext()->findOneBy($typeRepo, array($property => $value));
+
+        $this->getSession()->visit($this->generatePageUrl(sprintf('admin_%s_%s', $type, $action), array('id' => $resource->getId())));
+    }
+
 
     /**
      * @Given /^I am (building|viewing|editing) ([^""(w)]*) "([^""]*)"$/

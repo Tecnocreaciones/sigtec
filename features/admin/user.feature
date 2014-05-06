@@ -22,3 +22,10 @@ Feature: Client mdmin manager
             | Contraseña                      | t2c123d                     |
         And I press "Actualizar"
         Then I should see "Elemento actualizado satisfactoriamente"
+
+    @javascript
+    Scenario: Delete user
+        Given I am delete user on admin page "sonata user user" with username "test"
+        Then I should see "Está seguro que quiere borrar el elemento seleccionado"
+        And I press "Sí, borrar"
+        Then I should see "Elemento eliminado satisfactoriamente"

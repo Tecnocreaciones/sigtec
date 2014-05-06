@@ -259,7 +259,7 @@ sylius_resource:
          coramer_sigtec_backend.user:
             driver: doctrine/orm
             classes:
-                model: Coramer\Sigtec\CoreBundle\Entity\User
+                model: Application\Sonata\UserBundle\Entity\User
          coramer_sigtec_backend.company:
             driver: doctrine/orm
             templates: CoramerSigtecWebBundle:Backend/Company
