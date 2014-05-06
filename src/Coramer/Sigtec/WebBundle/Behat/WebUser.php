@@ -43,7 +43,6 @@ class WebUser extends MinkContext implements KernelAwareInterface
         'viewing'  => 'show',
         'creation' => 'create',
         'editing'  => 'update',
-        'building' => 'build',
     );
 
     /**
@@ -287,6 +286,16 @@ class WebUser extends MinkContext implements KernelAwareInterface
         $resource = $this->getDataContext()->findOneBy($type, array($property => $value));
 
         $this->getSession()->visit($this->generatePageUrl(sprintf('backend_%s_%s', $type, $action), array('id' => $resource->getId())));
+    }
+
+    /**
+     * @Given /^I am list admin "([^""]*)"$/
+     */
+    public function iAmDoingSomethingAdminResource($route)
+    {
+        $route = str_replace(' ', '_', $route);
+
+        $this->getSession()->visit($this->generatePageUrl(sprintf('admin_%s_list', $route)));
     }
 
     /**
