@@ -43,7 +43,6 @@ class WebUser extends MinkContext implements KernelAwareInterface
         'viewing'  => 'show',
         'creation' => 'create',
         'editing'  => 'update',
-        'building' => 'build',
     );
 
     /**
@@ -133,7 +132,30 @@ class WebUser extends MinkContext implements KernelAwareInterface
     {
         $this->getSession()->visit($this->generatePageUrl('fos_user_security_login'));
     }
-
+    
+    /**
+     * @Given /^I am on admin login page$/
+     */
+    public function iAmOnAdminLoginPage()
+    {
+        $this->getSession()->visit($this->generatePageUrl('sonata_user_admin_security_login'));
+    }
+    
+    /**
+     * @Given /^I go to admin dashboard$/
+     */
+    public function iGoToAdminDashboard()
+    {
+        $this->getSession()->visit($this->generatePageUrl('sonata_admin_dashboard'));
+    }
+    
+    /**
+     * @Given /^I should be denied access to the request$/
+     */
+    public function iShouldBeDeniedAccessToTheRequest()
+    {
+        $this->assertStatusCodeEquals(403);
+    }
 
     /**
      * @Given /^I should be on my account password page$/
@@ -265,6 +287,30 @@ class WebUser extends MinkContext implements KernelAwareInterface
 
         $this->getSession()->visit($this->generatePageUrl(sprintf('backend_%s_%s', $type, $action), array('id' => $resource->getId())));
     }
+
+    /**
+     * @Given /^I am list admin "([^""]*)"$/
+     */
+    public function iAmDoingSomethingAdminResource($route)
+    {
+        $route = str_replace(' ', '_', $route);
+
+        $this->getSession()->visit($this->generatePageUrl(sprintf('admin_%s_list', $route)));
+    }
+    
+     /**
+     * @Given /^I am (delete|viewing|editing) ([^""]*) on admin page "([^""]*)" with ([^""]*) "([^""]*)"$/
+     */
+    public function iAmDeleteAdminWithResource($action,$typeRepo ,$type, $property, $value)
+    {
+        $type = str_replace(' ', '_', $type);
+
+        $action = str_replace(array_keys($this->actions), array_values($this->actions), $action);
+        $resource = $this->getDataContext()->findOneBy($typeRepo, array($property => $value));
+
+        $this->getSession()->visit($this->generatePageUrl(sprintf('admin_%s_%s', $type, $action), array('id' => $resource->getId())));
+    }
+
 
     /**
      * @Given /^I am (building|viewing|editing) ([^""(w)]*) "([^""]*)"$/

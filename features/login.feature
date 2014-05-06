@@ -6,8 +6,8 @@ Feature: Login
     Background:
       And there are following users:
       | email | password | enabled | 
-      | demo  | 12345abg | yes    |
-      | test| testabg  | no    |
+      | demo  | 12345abg | yes     |
+      | test  | testabg  | no      |
       
     @javascript
     Scenario: Login in form by user unregistered

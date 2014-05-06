@@ -97,9 +97,15 @@ class RifTool implements \Symfony\Component\DependencyInjection\ContainerAwareIn
                             $rif->setCodeResponse(Rif::STATUS_OK);
                         }
                     } catch(\Exception $e) {
-                        $rif
-                            ->setCodeResponse(Rif::STATUS_ERROR_RIF_DOES_NOT_EXIST)
-                            ->setMessage($this->buildMessage('tecnocreaciones.vzlatools.the_rif_does_not_exist'));
+                        if($response == ''){
+                            $rif
+                                ->setCodeResponse(Rif::STATUS_ERROR_COULD_NOT_CONNECT_TO_SERVER)
+                                ->setMessage($this->buildMessage('tecnocreaciones.vzlatools.could_not_connect_to_server'));
+                        }else{
+                            $rif
+                                ->setCodeResponse(Rif::STATUS_ERROR_RIF_DOES_NOT_EXIST)
+                                ->setMessage($this->buildMessage('tecnocreaciones.vzlatools.the_rif_does_not_exist'));
+                        }
                     }
                 }
             }else{

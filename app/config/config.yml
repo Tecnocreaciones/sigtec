@@ -205,6 +205,8 @@ tecnocreaciones_vzla_government:
                 panel_right: 'bundles/coramersigtectemplate/template/developer/img/favicons/logo.png'
                 icon_png: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.png'
                 icon_ico: 'bundles/coramersigtectemplate/template/developer/img/favicons/favicon.ico'
+    config:
+        main_route: 'coramer_sigtec_web_dashboard_index'
 
 tecnocreaciones_vzla_entity:
     backend_admin: true
@@ -233,7 +235,7 @@ sonata_block:
 
 sonata_admin:
     title:      SIGTEC
-    title_logo: bundles/coramersigtectemplate/template/developer/img/favicons/logo.png
+    title_logo: bundles/coramersigtectemplate/template/developer/img/favicons/admin_logo.png
     dashboard:
         groups:
             sonata.admin.group.administration:
@@ -257,7 +259,7 @@ sylius_resource:
          coramer_sigtec_backend.user:
             driver: doctrine/orm
             classes:
-                model: Coramer\Sigtec\CoreBundle\Entity\User
+                model: Application\Sonata\UserBundle\Entity\User
          coramer_sigtec_backend.company:
             driver: doctrine/orm
             templates: CoramerSigtecWebBundle:Backend/Company

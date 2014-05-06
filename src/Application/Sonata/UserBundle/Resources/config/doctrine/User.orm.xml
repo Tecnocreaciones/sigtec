@@ -2,7 +2,8 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
-                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
 
     <entity name="Application\Sonata\UserBundle\Entity\User" table="fos_user_user">
 
@@ -10,6 +11,10 @@
             <generator strategy="AUTO" />
         </id>
         <one-to-many field="companies" target-entity="Coramer\Sigtec\CompanyBundle\Entity\Company" mapped-by="user" />
+        
+        <field name="deletedAt" column="deletedAt" type="datetime" nullable="true" />
+        
+        <gedmo:soft-deleteable field-name="deletedAt" time-aware="false" />
     </entity>
 
 </doctrine-mapping>

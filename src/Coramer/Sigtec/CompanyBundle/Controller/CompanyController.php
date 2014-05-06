@@ -26,7 +26,7 @@ class CompanyController extends ResourceController
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_SUPER_USER')")
      */
     public function indexAction(Request $request) {
         return parent::indexAction($request);
@@ -37,7 +37,7 @@ class CompanyController extends ResourceController
         
         //Security Check
         $user = $this->getUser();
-        if(!$user->getCompanies()->contains($resource)){
+        if(!$this->getSecurityContext()->isGranted('ROLE_SUPER_USER') && !$user->getCompanies()->contains($resource)){
             throw $this->createAccessDeniedHttpException();
         }
         
@@ -89,14 +89,14 @@ class CompanyController extends ResourceController
 
         $view = $this
             ->view()
-            ->setTemplate($this->config->getTemplate('index.html'))
+            ->setTemplate($this->config->getTemplate('clientIndex.html'))
             ->setTemplateVar($this->config->getPluralResourceName())
         ;
         if($request->get('_format') == 'html'){
             $view->setData($resources);
         }else{
             $formatData = $request->get('_formatData','default');
-            $view->setData($resources->toArray($this->config->getRedirectRoute('index'),array(),$formatData));
+            $view->setData($resources->toArray($this->config->getRedirectRoute('client_index'),array(),$formatData));
         }
         return $this->handleView($view);
     }
@@ -217,7 +217,8 @@ class CompanyController extends ResourceController
         return $this->handleView($view);
     }
     
-    public function deleteAction(Request $request) {
+    public function deleteAction(Request $request)
+    {
         $resource = $this->findOr404($request);
         //Security Check
         $user = $this->getUser();
@@ -234,7 +235,7 @@ class CompanyController extends ResourceController
             );
             return new \Symfony\Component\HttpFoundation\JsonResponse($data);
         }else{
-            return $this->redirectHandler->redirectToIndex();
+            return $this->redirectHandler->redirectToRoute($this->config->getRedirectRoute('client_index'));
         }
     }
 }

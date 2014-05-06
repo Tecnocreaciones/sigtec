@@ -1,0 +1,11 @@
+sigtec:
+    backend:
+        menu:
+            sidebar:
+                user:
+                    user: User
+                    company: Company
+                    technical_reports: Technical report
+                    report: Reporte
+                admin: Administrator
+                report: Report

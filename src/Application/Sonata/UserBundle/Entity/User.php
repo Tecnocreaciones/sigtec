@@ -31,6 +31,8 @@ class User extends BaseUser
     
     protected $companies;
     
+    private $deletedAt;
+    
     public function __construct() {
         $this->companies = new \Doctrine\Common\Collections\ArrayCollection();
         parent::__construct();
@@ -77,5 +79,13 @@ class User extends BaseUser
     public function getCompanies()
     {
         return $this->companies;
+    }
+    
+    public function getDeletedAt() {
+        return $this->deletedAt;
+    }
+
+    public function setDeletedAt($deletedAt) {
+        $this->deletedAt = $deletedAt;
     }
 }

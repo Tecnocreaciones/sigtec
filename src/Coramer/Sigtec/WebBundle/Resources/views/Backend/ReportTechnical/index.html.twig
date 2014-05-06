@@ -1,23 +1,33 @@
 {% extends 'TecnocreacionesVzlaGovernmentBundle:Template:Developer/Common/tableFormat1.html.twig' %}
 {% block title %}- {{ 'sigtec.company.report_technical'|trans }}{% endblock %}
+
+{% if route_index is not defined %}
+    {% set route_index = 'coramer_sigtec_backend_company_report_technical_index' %}
+{% endif %}
+{% if allow_create is not defined %}
+    {% set allow_create = false %}
+{% endif %}
+
 {% block body %}
     <hgroup id="main-title" class="thin breadcrumb">
         <h1>
-            <a href="{{ path('coramer_sigtec_backend_company_report_technical_index') }}">{{ 'sigtec.company.report_technical'|trans }}</a>
+            <a href="{{ path(route_index) }}">{{ 'sigtec.company.report_technical'|trans }}</a>
             <span class="icon-forward"></span>
             <span class="thin">{{ 'sigtec.list'|trans }}</span>
-            <p class="button-height align-right">
-                <button type="button" class="button" onclick="openComplexModal()">
-                    <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
-                    {{ 'sigtec.create'|trans }}
-                </button>
-            </p>
+            {% if allow_create %}
+                <p class="button-height align-right">
+                    <button type="button" class="button" onclick="openComplexModal()">
+                        <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                        {{ 'sigtec.create'|trans }}
+                    </button>
+                </p>
+            {% endif %}
         </h1>
     </hgroup>
     <div ng-controller="TableFormatController">
         <div ng-controller="CompanyIndexController">
                 <div loading-container="tableParams.settings().$loading">
-                    <table ng-table="tableParams" show-filter="true" template-pagination="custom/pager"  template-header="custom/header" api-data-url="{{ path('coramer_sigtec_backend_company_report_technical_index',{_format:'json'}) }}" class="table table-responsive table-extra-info">
+                    <table ng-table="tableParams" show-filter="true" template-pagination="custom/pager"  template-header="custom/header" api-data-url="{{ path(route_index,{_format:'json'}) }}" class="table table-responsive table-extra-info">
                         <tr ng-repeat="result in $data | filter:tableParams.search" data="[[ result|json ]]">
                             <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
                                 <input type="checkbox" ng-model="checkboxes.items[result.id]" />
@@ -56,57 +66,49 @@
     <script type="text/javascript">
         function getTableExtraInfo(data)
             {
-                return  '<div class="float-right">' +
-                        '<button type="submit" class="button glossy mid-margin-right">' +
-                        '<span class="button-icon"><span class="icon-mail"></span></span>' +
-                        'Send mail' +
-                        '</button>' +
-                        '<button type="submit" class="button glossy">' +
-                        '<span class="button-icon red-gradient"><span class="icon-cross"></span></span>' +
-                        'Remove' +
-                        '</button>' +
-                        '</div>' +
-                        '<strong>{{ 'sigtec.company'|trans }}:</strong> ' + data.company.name + '<br>' +
+                return  '<strong>{{ 'sigtec.company'|trans }}:</strong> ' + data.company.name + '<br>' +
                         '<strong>{{ 'sigtec.created_at' |trans }}:</strong> ' + data.created_at + '<br>' +
                         '<strong>{{ 'sigtec.updated_at' | trans }}:</strong> ' + data.updated_at + '<br>'
                         ;
             }
-        function openComplexModal()
-        {
-            var content = '<fieldset class="fieldset fields-list">\n\
-                            <legend class="legend">{{ 'sigtec.company'|trans }}</legend>\n\
-                            <form id="form_company" action="{{ path('coramer_sigtec_backend_company_report_technical_create') }}" method="POST">\n\
-                            <div class="field-block button-height">\n\
-                            {{ form_label(form_company.company) }}{{ form_widget(form_company.company) }}'+
-                            '{{ form_errors(form_company.company) }}{{ form_rest(form_company) }}</div></form>\n\
-                          </fieldset>';
-                $.modal({
-                        content: content,
-                        //title: 'Complex modal window',
-                        
-                        scrolling: false,
-                        actions: {
-                                'Close' : {
-                                        color: 'red',
-                                        click: function(win) { win.closeModal(); }
-                                },
-                                'Center' : {
-                                        color: 'green',
-                                        click: function(win) { win.centerModal(true); }
-                                }
-                        },
-                        buttons: {
-                                '{{ 'sigtec.cancel'|trans }}': {
-                                        classes:	'button glossy',
-                                        click:		function(win) { win.closeModal(); }
-                                },
-                                '{{ 'sigtec.create'|trans }}': {
-                                        classes:	'button blue-gradient glossy mid-margin-left',
-                                        click:		function(win) { $("#form_company").submit(); }
-                                }
-                        },
-                        buttonsLowPadding: true
-                });
-        };
+        {% if allow_create %}
+            function openComplexModal()
+            {
+                var content = '<fieldset class="fieldset fields-list">\n\
+                                <legend class="legend">{{ 'sigtec.company'|trans }}</legend>\n\
+                                <form id="form_company" action="{{ path('coramer_sigtec_backend_company_report_technical_create') }}" method="POST">\n\
+                                <div class="field-block button-height">\n\
+                                {{ form_label(form_company.company) }}{{ form_widget(form_company.company) }}'+
+                                '{{ form_errors(form_company.company) }}{{ form_rest(form_company) }}</div></form>\n\
+                              </fieldset>';
+                    $.modal({
+                            content: content,
+                            //title: 'Complex modal window',
+
+                            scrolling: false,
+                            actions: {
+                                    'Close' : {
+                                            color: 'red',
+                                            click: function(win) { win.closeModal(); }
+                                    },
+                                    'Center' : {
+                                            color: 'green',
+                                            click: function(win) { win.centerModal(true); }
+                                    }
+                            },
+                            buttons: {
+                                    '{{ 'sigtec.cancel'|trans }}': {
+                                            classes:	'button glossy',
+                                            click:		function(win) { win.closeModal(); }
+                                    },
+                                    '{{ 'sigtec.create'|trans }}': {
+                                            classes:	'button blue-gradient glossy mid-margin-left',
+                                            click:		function(win) { $("#form_company").submit(); }
+                                    }
+                            },
+                            buttonsLowPadding: true
+                    });
+            };
+        {% endif %}
     </script>
 {% endblock %}

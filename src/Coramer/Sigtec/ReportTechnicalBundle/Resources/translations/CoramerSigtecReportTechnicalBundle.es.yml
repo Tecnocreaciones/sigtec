@@ -31,3 +31,6 @@ sigtec:
         storage_product_detail: Detalle de almacenaje del producto
     detail_product_storage:
         detail_product_storage: Almacenaje de producto
+    report_technical:
+        approve: Aprobar
+        reject: Rechazar

@@ -1,4 +1,4 @@
-coramer_sigtec_backend_company_index:
+coramer_sigtec_backend_company_client_index:
     pattern:  /.{_format}
     defaults:
         _controller:  coramer_sigtec_backend.controller.company:clientIndexAction

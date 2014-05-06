@@ -27,7 +27,7 @@ Feature: Company
 
     @javascript
     Scenario: Updating a company
-        Given I am on the company index page
+        Given I am on the company client index page
         Then I should see "Lista"
         And I wait a few seconds
         Then I should see "V-19000001-0"
@@ -47,7 +47,7 @@ Feature: Company
 
     @javascript
     Scenario: Delete a company
-        Given I am on the company index page
+        Given I am on the company client index page
         Then I should see "Lista"
         And I wait a few seconds
         Then I should see "V-17816302-3"

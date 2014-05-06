@@ -16,7 +16,7 @@ use Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
- * Description of ReportTechnicalController
+ * Controlador del reporte tecnico
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
@@ -26,7 +26,7 @@ class ReportTechnicalController extends ResourceController
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_SUPER_USER')")
      */
     public function indexAction(Request $request) {
         return parent::indexAction($request);
@@ -37,7 +37,7 @@ class ReportTechnicalController extends ResourceController
         
         //Security Check
         $user = $this->getUser();
-        if(!$user->getCompanies()->contains($resource->getCompany())){
+        if(!$this->getSecurityContext()->isGranted('ROLE_SUPER_USER') && !$user->getCompanies()->contains($resource->getCompany())){
             throw $this->createAccessDeniedHttpException();
         }
         
@@ -80,16 +80,16 @@ class ReportTechnicalController extends ResourceController
                 
         $view = $this
             ->view()
-            ->setTemplate($this->config->getTemplate('index.html'))
+            ->setTemplate($this->config->getTemplate('clientIndex.html'))
             ->setTemplateVar($this->config->getPluralResourceName())
         ;
         if($request->get('_format') == 'html'){
-        $view->setData(array(
-            'form_company' => $formCompany->createView(),'company_report_technicals' => $resources
-        ));
+            $view->setData(array(
+                'form_company' => $formCompany->createView(),'company_report_technicals' => $resources
+            ));
         }else{
             $formatData = $request->get('_formatData','default');
-            $view->setData($resources->toArray($this->config->getRedirectRoute('index'),array(),$formatData));
+            $view->setData($resources->toArray($this->config->getRedirectRoute('client_index'),array(),$formatData));
         }
         return $this->handleView($view);
     }
@@ -184,6 +184,28 @@ class ReportTechnicalController extends ResourceController
         }
 
         return $this->handleView($view);
+    }
+    
+    public function deleteAction(Request $request)
+    {
+        $resource = $this->findOr404($request);
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($resource->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
+        
+        $this->domainManager->delete($resource);
+        if($request->isXmlHttpRequest()){
+            /** @var FlashBag $flashBag */
+            $flashBag = $this->get('session')->getBag('flashes');
+            $data = array(
+                'message' => $flashBag->get('success'),
+            );
+            return new \Symfony\Component\HttpFoundation\JsonResponse($data);
+        }else{
+            return $this->redirectHandler->redirectToRoute($this->config->getRedirectRoute('client_index'));
+        }
     }
     
     function getProfessionalProfileAction(Request $request)
