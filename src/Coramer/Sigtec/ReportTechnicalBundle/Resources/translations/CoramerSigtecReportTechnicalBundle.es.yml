@@ -20,6 +20,17 @@ sigtec:
             material: Material
             storage: Almacenaje
             separated_resin: ¿Separado de resinas?
+            production_capacity: Capacidad de producción
+            capacity: Capacidad (t/mes)
+            process: Proceso
+            shifts: Turnos
+            hours: Horas
+            days_month: días/mes
+            theoretical: Teórica
+            installed: Instalada
+            busy: Ocupada
+            idle: Ociosa
+            percentage: %
         content:
             empty:
                 storage: No existen detalles de almacenaje de los productos.
@@ -31,6 +42,8 @@ sigtec:
         storage_product_detail: Detalle de almacenaje del producto
     detail_product_storage:
         detail_product_storage: Almacenaje de producto
+    level_of_production:
+        level_of_production: Nivel de producción
     report_technical:
         approve: Aprobar
         reject: Rechazar

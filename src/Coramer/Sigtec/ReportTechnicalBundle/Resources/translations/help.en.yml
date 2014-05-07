@@ -21,3 +21,5 @@ sigtec:
                             <b>No</ b>: When the material is located in the same store plastic resins.
             total_area: Total covered area in square meters (m<sup>2</ sup>) where the material is located.
             covered_area: Gross floor area in square meters (m<sup>2</ sup>) occupying the material in the warehouse of the company. When I find the material "contained" the area covered must match the total area.
+        level_of_production:
+            level_of_production: Production processes of the company, characteristics of the processing machines and capabilities are recorded.

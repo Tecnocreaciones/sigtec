@@ -202,6 +202,49 @@
                                 </a>
                             </p>
 			</div>
+                        {# Seccion 3 #}
+                        <div class="field-block">
+                            <h3>3) {{ 'sigtec.level_of_production.level_of_production'|trans }}</h3>
+                            <p>{{ 'sigtec.help.level_of_production.level_of_production'|trans({},'help') }}</p>
+			</div>
+                        <div class="field-block">
+                            <table class="simple-table">
+                                <tr>
+                                    <th>{{ 'sigtec.table.header.process'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.shifts'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.hours'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.days_month'|trans|raw }}</th> 
+                                    <th>&nbsp;</th>
+                                </tr>
+                                <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
+                                    <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.storage'|trans }}</td>
+                                </tr>
+                                <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr ng-repeat="detail_product_storage in reportTechnical.description_area_company.detail_product_storages">
+                                    <td><a href ng-click="addDetailsStorage(detail_product_storage)" >[[ detail_product_storage.material.description ]]</a></td>
+                                    <td>[[ detail_product_storage.labels.storage]]</td>
+                                    <td>[[ detail_product_storage.labels.separated_resin]]</td>
+                                    <td>[[ detail_product_storage.total_area]]</td>
+                                    <td>
+                                        <span class="button-group compact">
+                                            <a href ng-click="itemDelete(detail_product_storage._links.delete.href,reportTechnicalManager.reload().detailProductStorage)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>    
+                            <p class="button-height align-right">
+                                <a href ng-click="addDetailsStorage()" class="button glossy mid-margin-right">
+                                    <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                                    {{ 'sigtec.button.add_detail'|trans }}
+                                </a>
+                            </p>
+			</div>
                         <div class="field-block button-height wizard-controls align-right">
 
 				<a href ng-click="save()" class="button glossy mid-margin-right">

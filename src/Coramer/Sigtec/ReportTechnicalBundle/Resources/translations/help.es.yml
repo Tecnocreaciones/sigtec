@@ -21,3 +21,5 @@ sigtec:
                             <b>No</b>: Cuando el material esté ubicado en el mismo almacén de las resinas plásticas.
             total_area: Área techada total en metros cuadrados (m<sup>2</sup>) donde se encuentra el material.
             covered_area: Área total en metros cuadrados (m<sup>2</sup>) que ocupa el material en el almacén de la empresa. Cuando el material se encuentre "confinado" el área techada deberá coincidir con el área total.
+        level_of_production:
+            level_of_production: Se registran los procesos de producción de la empresa, características de las máquinas transformadoras y capacidades.

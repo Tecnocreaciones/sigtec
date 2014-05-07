@@ -20,6 +20,17 @@ sigtec:
             material: Material
             storage: Storage
             separated_resin: ¿Separated resin?
+            production_capacity: Production capacity
+            capacity: Capacity (t/month)
+            process: Process
+            shifts: Shifts
+            hours: Hours
+            days_month: days/month
+            theoretical: Theoretical
+            installed: Installed
+            busy: Busy 
+            idle: Idle
+            percentage: %
         content:
             empty:
                 storage: There are no details of storage products.
@@ -31,6 +42,8 @@ sigtec:
         storage_product_detail: Storage Product Detail
     detail_product_storage:
         detail_product_storage: Detail product storage
+    level_of_production:
+        level_of_production: Level of production
     report_technical:
         approve: Approve
         reject: Reject
