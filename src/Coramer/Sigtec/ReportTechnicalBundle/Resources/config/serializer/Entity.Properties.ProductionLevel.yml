@@ -1,30 +1,33 @@
-Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel:
     exclusion_policy: ALL
     properties:
         id:
             expose: true
             groups: [show]
-        archive:
+        process:
             expose: true
             groups: [show]
-        createdAt:
+        shifts:
             expose: true
             groups: [show]
-        updatedAt:
+        hours:
             expose: true
             groups: [show]
-        status:
+        daysMonth:
             expose: true
             groups: [show]
-        professionalProfile:
+        theoretical:
             expose: true
             groups: [show]
-        descriptionAreaCompany:
+        installed:
             expose: true
             groups: [show]
-        productionLevels:
+        busy:
             expose: true
             groups: [show]
-        company:
+        idle:
+            expose: true
+            groups: [show]
+        percentage:
             expose: true
             groups: [show]

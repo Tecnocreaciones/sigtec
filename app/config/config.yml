@@ -290,11 +290,27 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\DescriptionAreaCompany\DetailProductStorageController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage
+         coramer_sigtec_backend.company_report_technical_properties_production_level:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/ReportTechnical/Properties/ProductionLevel
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\ProductionLevelController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel
          coramer_sigtec_backend.company_report_technical_properties_material:
             driver: doctrine/orm
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\DescriptionAreaCompany\DetailProductStorage\MaterialController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material
+         coramer_sigtec_backend.company_report_technical_type_process:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\TypeProcess
+         coramer_sigtec_backend.company_report_technical_process:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process
          api_tecnocreaciones_vzla_entity.country:
             driver: doctrine/orm
             classes:

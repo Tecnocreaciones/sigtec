@@ -7,3 +7,7 @@ coramer_sigtec_backend:
         create: Detail product added storage
         update: Detail product storage updated
         delete: Detail product storage deleted
+    company_report_technical_properties_production_level: 
+        create: Added production level
+        update: Updated production level
+        delete: Production level removed

@@ -43,6 +43,7 @@ class SerializeEventListerner implements EventSubscriberInterface
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializePlant', 'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Plant','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeReportTechnical', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeDetailProductStorage', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeProductionLevel', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel','format' => 'json'),
         );
     }
     
@@ -101,6 +102,22 @@ class SerializeEventListerner implements EventSubscriberInterface
                 ),
             'delete' => array(
                 'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_delete',array('id' => $object->getId()))
+                ),
+        ));
+    }
+    
+    /**
+     * Captura el evento luego que se serealia un nivel de produccion del reporte tecnico
+     * @param ObjectEvent $event
+     */
+    function onPostSerializeProductionLevel(ObjectEvent $event) {
+        $object = $event->getObject();
+        $event->getVisitor()->addData('_links', array(
+            'edit' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_production_level_update',array('id' => $object->getReportTechnical()->getId(),'slug' =>$object->getId()))
+                ),
+            'delete' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_production_level_delete',array('id' => $object->getReportTechnical()->getId(),'slug' =>$object->getId()))
                 ),
         ));
     }

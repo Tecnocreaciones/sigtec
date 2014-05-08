@@ -102,6 +102,14 @@ class ProductionLevel
      * @ORM\Column(name="percentage", type="integer")
      */
     private $percentage = 0;
+    
+    /**
+     * Reporte tecnico
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical 
+     * 
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical",inversedBy="productionLevels")
+     */
+    private $reportTechnical;
 
     /**
      * Get id
@@ -318,5 +326,28 @@ class ProductionLevel
     public function getProcess()
     {
         return $this->process;
+    }
+
+    /**
+     * Set reportTechnical
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnical
+     * @return ProductionLevel
+     */
+    public function setReportTechnical(\Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnical = null)
+    {
+        $this->reportTechnical = $reportTechnical;
+
+        return $this;
+    }
+
+    /**
+     * Get reportTechnical
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical 
+     */
+    public function getReportTechnical()
+    {
+        return $this->reportTechnical;
     }
 }

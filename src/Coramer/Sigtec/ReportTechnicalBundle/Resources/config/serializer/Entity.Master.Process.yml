@@ -1,0 +1,12 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,list]
+        description:
+            expose: true
+            groups: [show,list]
+        typeProcess:
+            expose: true
+            groups: [show,list]
