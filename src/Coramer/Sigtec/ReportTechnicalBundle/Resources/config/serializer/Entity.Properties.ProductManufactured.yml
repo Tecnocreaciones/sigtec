@@ -1,0 +1,18 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show]
+        process:
+            expose: true
+            groups: [show]
+        product:
+            expose: true
+            groups: [show]
+        grade:
+            expose: true
+            groups: [show]
+        requirement:
+            expose: true
+            groups: [show]

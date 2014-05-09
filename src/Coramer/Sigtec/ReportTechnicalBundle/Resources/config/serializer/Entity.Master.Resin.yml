@@ -1,0 +1,12 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Resin:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,list,grade]
+        description:
+            expose: true
+            groups: [show,list,grade]
+        grades:
+            expose: true
+            groups: [show,list]

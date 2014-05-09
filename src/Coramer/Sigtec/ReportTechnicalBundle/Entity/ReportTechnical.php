@@ -89,8 +89,17 @@ class ReportTechnical implements ReportTechnicalInterface
      */
     private $productionLevels;
     
+    /**
+     * Productos fabricados
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured
+     * 
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured",mappedBy="reportTechnical")
+     */
+    private $productsManufactured;
+    
     public function __construct() {
         $this->productionLevels = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->productsManufactured = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -318,5 +327,38 @@ class ReportTechnical implements ReportTechnicalInterface
     public function getProductionLevels()
     {
         return $this->productionLevels;
+    }
+
+    /**
+     * Add productsManufactured
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured
+     * @return ReportTechnical
+     */
+    public function addProductsManufactured(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured)
+    {
+        $this->productsManufactured[] = $productsManufactured;
+
+        return $this;
+    }
+
+    /**
+     * Remove productsManufactured
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured
+     */
+    public function removeProductsManufactured(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured)
+    {
+        $this->productsManufactured->removeElement($productsManufactured);
+    }
+
+    /**
+     * Get productsManufactured
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProductsManufactured()
+    {
+        return $this->productsManufactured;
     }
 }

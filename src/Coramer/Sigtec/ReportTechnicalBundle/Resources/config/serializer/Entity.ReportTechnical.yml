@@ -28,3 +28,6 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
         company:
             expose: true
             groups: [show]
+        productsManufactured:
+            expose: true
+            groups: [show]

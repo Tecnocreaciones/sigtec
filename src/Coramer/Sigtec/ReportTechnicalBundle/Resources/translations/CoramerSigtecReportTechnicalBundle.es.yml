@@ -32,10 +32,15 @@ sigtec:
             busy: Ocupada
             idle: Ociosa
             percentage: %
+            product: Producto
+            grade: Grado
+            resin: Resina
+            requirement: Requerimiento
         content:
             empty:
                 storage: No existen detalles de almacenaje de los productos.
                 production_level: No existen detalles del nivel de producción.
+                product_manufactured: No existen detalles de los productos fabricados.
     button:
         add_detail: Añadir detalle
     description_of_the_business_areas:
@@ -47,6 +52,9 @@ sigtec:
     production_level:
         production_level: Nivel de producción
         percentage: Porcentaje
+    description_of_products_manufactured:
+        description_of_products_manufactured: Descripción de los productos fabricados
+        product_manufactured: Producto fabricado
     report_technical:
         approve: Aprobar
         reject: Rechazar

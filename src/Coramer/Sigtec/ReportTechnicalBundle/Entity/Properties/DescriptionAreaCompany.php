@@ -14,7 +14,7 @@ namespace Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Description of DescriptionAreaCompany
+ * Descripcion de las areas de la compañia
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  * @ORM\Table()

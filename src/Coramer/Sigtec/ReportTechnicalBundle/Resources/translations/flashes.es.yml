@@ -11,4 +11,7 @@ coramer_sigtec_backend:
         create: Nivel de producción agregado
         update: Nivel de producción actualizado
         delete: Nivel de producción eliminado
-        
+    company_report_technical_properties_product_manufactured:
+        create: Descripción de producto agregado
+        update: Descripción de producto actualizado
+        delete: Descripción de producto eliminado

@@ -248,6 +248,49 @@
                                 </a>
                             </p>
 			</div>
+                        {# Seccion 4 #}
+                        <div class="field-block">
+                            <h3>4) {{ 'sigtec.description_of_products_manufactured.description_of_products_manufactured'|trans }}</h3>
+                            <p>{{ 'sigtec.help.description_of_products_manufactured.description_of_products_manufactured'|trans({},'help') }}</p>
+			</div>
+                        <div class="field-block">
+                            <table class="simple-table table-responsive table-extra-info">
+                                <tr>
+                                    <th>{{ 'sigtec.table.header.process'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.resin'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.grade'|trans|raw }}</th> 
+                                    <th>&nbsp;</th>
+                                </tr>
+                                <tr ng-hide="reportTechnical.products_manufactured">
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr ng-hide="reportTechnical.products_manufactured">
+                                    <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.product_manufactured'|trans }}</td>
+                                </tr>
+                                <tr ng-hide="reportTechnical.products_manufactured">
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr ng-repeat="product_manufactured in reportTechnical.products_manufactured" data="[[ product_manufactured|json ]]">
+                                    <td><a href ng-click="addProductManufactured(product_manufactured)" >[[ product_manufactured.process.description ]]</a></td>
+                                    <td>[[ product_manufactured.product.description ]]</td>
+                                    <td>[[ product_manufactured.grade.resin.description ]]</td>
+                                    <td>[[ product_manufactured.grade.description ]]</td>
+                                    <td>
+                                        <span class="button-group compact">
+                                            <a href ng-click="itemDelete(product_manufactured._links.delete.href,reportTechnicalManager.reload().productManufactured)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>    
+                            <p class="button-height align-right">
+                                <a href ng-click="addProductManufactured()" class="button glossy mid-margin-right">
+                                    <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                                    {{ 'sigtec.button.add_detail'|trans }}
+                                </a>
+                            </p>
+			</div>
                         <div class="field-block button-height wizard-controls align-right">
 
 				<a href ng-click="save()" class="button glossy mid-margin-right">
@@ -259,7 +302,7 @@
                                         {{ 'tecnocreaciones_vzla_government.save_and_close'|trans({},'messages') }}
 				</button>
 			</div>
-                        <div class="hide" style="display: none">
+                        <div style="display: none">
                             {{ form_rest(form) }}
                         </div>
                         <div class="hide" style="display: none">

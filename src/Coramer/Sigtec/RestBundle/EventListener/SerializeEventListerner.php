@@ -44,6 +44,7 @@ class SerializeEventListerner implements EventSubscriberInterface
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeReportTechnical', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeDetailProductStorage', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeProductionLevel', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeProductManufactured', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured','format' => 'json'),
         );
     }
     
@@ -118,6 +119,22 @@ class SerializeEventListerner implements EventSubscriberInterface
                 ),
             'delete' => array(
                 'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_production_level_delete',array('id' => $object->getReportTechnical()->getId(),'slug' =>$object->getId()))
+                ),
+        ));
+    }
+    
+    /**
+     * Captura el evento luego que se serealia un producto fabricado del reporte tecnico
+     * @param ObjectEvent $event
+     */
+    function onPostSerializeProductManufactured(ObjectEvent $event) {
+        $object = $event->getObject();
+        $event->getVisitor()->addData('_links', array(
+            'edit' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_product_manufactured_update',array('id' => $object->getReportTechnical()->getId(),'slug' =>$object->getId()))
+                ),
+            'delete' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_product_manufactured_delete',array('id' => $object->getReportTechnical()->getId(),'slug' =>$object->getId()))
                 ),
         ));
     }

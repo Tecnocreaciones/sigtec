@@ -23,3 +23,9 @@ sigtec:
             covered_area: Gross floor area in square meters (m<sup>2</ sup>) occupying the material in the warehouse of the company. When I find the material "contained" the area covered must match the total area.
         production_level:
             production_level: Production processes of the company, characteristics of the processing machines and capabilities are recorded.
+        description_of_products_manufactured:
+            description_of_products_manufactured: >
+                                                Products manufactured by the company from the processes outlined in the previous section 
+                                                (production level) are recorded. Considered only those products made with Venelene, 
+                                                Propilven, vinylene and imported resins, both purchased from Coramer, and distributors 
+                                                and consortia.
