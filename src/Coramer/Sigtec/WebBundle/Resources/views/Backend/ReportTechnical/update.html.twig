@@ -202,6 +202,95 @@
                                 </a>
                             </p>
 			</div>
+                        {# Seccion 3 #}
+                        <div class="field-block">
+                            <h3>3) {{ 'sigtec.production_level.production_level'|trans }}</h3>
+                            <p>{{ 'sigtec.help.production_level.production_level'|trans({},'help') }}</p>
+			</div>
+                        <div class="field-block">
+                            <table class="simple-table table-responsive table-extra-info">
+                                <tr>
+                                    <td colspan="5" class="align-center"><b>{{ 'sigtec.table.header.production_capacity'|trans }}</b></td>
+                                </tr>
+                                <tr>
+                                    <th>{{ 'sigtec.table.header.process'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.shifts'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.hours'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.days_month'|trans|raw }}</th> 
+                                    <th>&nbsp;</th>
+                                </tr>
+                                <tr ng-hide="reportTechnical.production_levels">
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr ng-hide="reportTechnical.production_levels">
+                                    <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.production_level'|trans }}</td>
+                                </tr>
+                                <tr ng-hide="reportTechnical.production_levels">
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr ng-repeat="production_level in reportTechnical.production_levels" data="[[ production_level|json ]]">
+                                    <td><a href ng-click="addLevelProduction(production_level)" >[[ production_level.process.description ]]</a></td>
+                                    <td>[[ production_level.shifts ]]</td>
+                                    <td>[[ production_level.hours ]]</td>
+                                    <td>[[ production_level.days_month]]</td>
+                                    <td>
+                                        <span class="button-group compact">
+                                            <a href ng-click="itemDelete(production_level._links.delete.href,reportTechnicalManager.reload().productionLevel)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>    
+                            <p class="button-height align-right">
+                                <a href ng-click="addLevelProduction()" class="button glossy mid-margin-right">
+                                    <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                                    {{ 'sigtec.button.add_detail'|trans }}
+                                </a>
+                            </p>
+			</div>
+                        {# Seccion 4 #}
+                        <div class="field-block">
+                            <h3>4) {{ 'sigtec.description_of_products_manufactured.description_of_products_manufactured'|trans }}</h3>
+                            <p>{{ 'sigtec.help.description_of_products_manufactured.description_of_products_manufactured'|trans({},'help') }}</p>
+			</div>
+                        <div class="field-block">
+                            <table class="simple-table table-responsive table-extra-info">
+                                <tr>
+                                    <th>{{ 'sigtec.table.header.process'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.resin'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.grade'|trans|raw }}</th> 
+                                    <th>&nbsp;</th>
+                                </tr>
+                                <tr ng-hide="reportTechnical.products_manufactured">
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr ng-hide="reportTechnical.products_manufactured">
+                                    <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.product_manufactured'|trans }}</td>
+                                </tr>
+                                <tr ng-hide="reportTechnical.products_manufactured">
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr ng-repeat="product_manufactured in reportTechnical.products_manufactured" data="[[ product_manufactured|json ]]">
+                                    <td><a href ng-click="addProductManufactured(product_manufactured)" >[[ product_manufactured.process.description ]]</a></td>
+                                    <td>[[ product_manufactured.product.description ]]</td>
+                                    <td>[[ product_manufactured.grade.resin.description ]]</td>
+                                    <td>[[ product_manufactured.grade.description ]]</td>
+                                    <td>
+                                        <span class="button-group compact">
+                                            <a href ng-click="itemDelete(product_manufactured._links.delete.href,reportTechnicalManager.reload().productManufactured)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>    
+                            <p class="button-height align-right">
+                                <a href ng-click="addProductManufactured()" class="button glossy mid-margin-right">
+                                    <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                                    {{ 'sigtec.button.add_detail'|trans }}
+                                </a>
+                            </p>
+			</div>
                         <div class="field-block button-height wizard-controls align-right">
 
 				<a href ng-click="save()" class="button glossy mid-margin-right">
@@ -213,7 +302,7 @@
                                         {{ 'tecnocreaciones_vzla_government.save_and_close'|trans({},'messages') }}
 				</button>
 			</div>
-                        <div class="hide" style="display: none">
+                        <div style="display: none">
                             {{ form_rest(form) }}
                         </div>
                         <div class="hide" style="display: none">
@@ -399,6 +488,96 @@
         
         $.modal.defaults.showFormOptions.textCancel = '{{ 'sigtec.cancel'|trans({},'messages') }}';
         $.modal.defaults.showFormOptions.textSubmit = '{{ 'sigtec.save'|trans({},'messages') }}';
+    </script>
+    <script type="text/javascript">
+        function getTableExtraInfo(data)
+            {
+                return  '<strong>{{ 'sigtec.table.header.capacity'|trans }}</strong><br/><br/>' +
+                        '<strong>{{ 'sigtec.table.header.theoretical'|trans }}:</strong> ' + data.theoretical + '<br>' +
+                        '<strong>{{ 'sigtec.table.header.installed' |trans }}:</strong> ' + data.installed + '<br>' +
+                        '<strong>{{ 'sigtec.table.header.busy' | trans }}:</strong> ' + data.busy + '<br>' +
+                        '<strong>{{ 'sigtec.table.header.idle' | trans }}:</strong> ' + data.idle + '<br>' +
+                        '<strong>{{ 'sigtec.production_level.percentage' | trans }}:</strong> ' + data.percentage + '<br>'
+                        ;
+            }
+             $(document).ready(function() {
+            //Example for table extra info methos to override
+            /**
+            function getTableExtraInfo(data)
+            {
+                return  '<div class="float-right">' +
+                        '<button type="submit" class="button glossy mid-margin-right">' +
+                        '<span class="button-icon"><span class="icon-mail"></span></span>' +
+                        'Send mail' +
+                        '</button>' +
+                        '<button type="submit" class="button glossy">' +
+                        '<span class="button-icon red-gradient"><span class="icon-cross"></span></span>' +
+                        'Remove' +
+                        '</button>' +
+                        '</div>' +
+                        '<strong>Name:</strong> ' + data.name + '<br>' +
+                        '<strong>Created at:</strong> ' + data.created_at + '<br>' +
+                        '<strong>Updated at:</strong> ' + data.updated_at + '<br>'
+                        ;
+            }
+            **/
+           // Table extra info - styled
+            $('.table-extra-info').on('click', 'tbody td', function(event)
+            {
+                // Do not process if something else has been clicked
+                if (event.target !== this)
+                {
+                    return;
+                }
+
+                var tr = $(this).parent(),
+                        row = tr.next('.row-drop'),
+                        rows;
+
+                // If click on a special row
+                if (tr.hasClass('row-drop'))
+                {
+                    return;
+                }
+
+                // If there is already a special row
+                if (row.length > 0)
+                {
+                    // Un-style row
+                    tr.children().removeClass('anthracite-gradient glossy');
+
+                    // Remove row
+                    row.remove();
+
+                    return;
+                }
+
+                // Remove existing special rows
+                rows = tr.siblings('.row-drop');
+                if (rows.length > 0)
+                {
+                    // Un-style previous rows
+                    rows.prev().children().removeClass('anthracite-gradient glossy');
+
+                    // Remove rows
+                    rows.remove();
+                }
+
+                // Style row
+                tr.children().addClass('anthracite-gradient glossy');
+                var data = $.parseJSON(tr.attr('data'));
+                // Add fake row
+                var tableExtraInfo = getTableExtraInfo(data);
+                $('<tr class="row-drop">' +
+                        '<td colspan="' + tr.children().length + '">' +
+                        tableExtraInfo +
+                        '</td>' +
+                        '</tr>').insertAfter(tr);
+
+            });
+            
+        });
+            
     </script>
 {% endblock javascript %}
 

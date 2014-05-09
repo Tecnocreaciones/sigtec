@@ -7,4 +7,11 @@ coramer_sigtec_backend:
         create: Detalle de almacenaje de producto agregado
         update: Detalle de almacenaje de producto actualizado
         delete: Detalle de almacenaje de producto eliminado
-        
+    company_report_technical_properties_production_level: 
+        create: Nivel de producción agregado
+        update: Nivel de producción actualizado
+        delete: Nivel de producción eliminado
+    company_report_technical_properties_product_manufactured:
+        create: Descripción de producto agregado
+        update: Descripción de producto actualizado
+        delete: Descripción de producto eliminado

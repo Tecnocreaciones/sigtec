@@ -290,11 +290,48 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\DescriptionAreaCompany\DetailProductStorageController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage
+         coramer_sigtec_backend.company_report_technical_properties_production_level:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/ReportTechnical/Properties/ProductionLevel
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\ProductionLevelController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel
+         coramer_sigtec_backend.company_report_technical_properties_product_manufactured:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/ReportTechnical/Properties/ProductManufactured
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\ProductManufacturedController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured
          coramer_sigtec_backend.company_report_technical_properties_material:
             driver: doctrine/orm
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\DescriptionAreaCompany\DetailProductStorage\MaterialController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material
+         coramer_sigtec_backend.company_report_technical_type_process:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\TypeProcess
+         coramer_sigtec_backend.company_report_technical_process:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process
+         coramer_sigtec_backend.company_report_technical_resin:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Resin
+         coramer_sigtec_backend.company_report_technical_grade:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Grade
+         coramer_sigtec_backend.company_report_technical_product:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product
          api_tecnocreaciones_vzla_entity.country:
             driver: doctrine/orm
             classes:

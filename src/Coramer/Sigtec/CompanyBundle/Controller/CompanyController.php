@@ -119,7 +119,7 @@ class CompanyController extends ResourceController
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($resource);
                 $em->flush();
-                $data['message'] = $this->get('translator')->trans('sigtec.the_rif_has_already_been_validated');
+                $data['message'] = $this->get('translator')->trans('sigtec.the_rif_was_validated_correctly');
             }else{
                 $response->setStatusCode(400);
                 $data = $rifResponse->getArrayResponse();

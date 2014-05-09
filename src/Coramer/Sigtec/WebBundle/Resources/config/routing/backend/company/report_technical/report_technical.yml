@@ -63,3 +63,11 @@ coramer_sigtec_company_report_technical_properties:
 coramer_sigtec_company_report_technical_properties_materials:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/description_area_company/detail_product_storage/material.yml"
     prefix:   /detail-product-storage
+    
+coramer_sigtec_company_report_technical_properties_production_level:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/production_level.yml"
+    prefix:   /{id}/production-level
+    
+coramer_sigtec_company_report_technical_properties_product_manufactured:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/product_manufactured.yml"
+    prefix:   /{id}/product-manufactured

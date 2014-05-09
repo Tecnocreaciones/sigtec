@@ -1,17 +1,27 @@
 <?php
 
+/*
+ * This file is part of the TecnoCreaciones package.
+ * 
+ * (c) www.tecnocreaciones.com
+ * 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Coramer\Sigtec\ReportTechnicalBundle\Entity\Master;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Tipo de proceso
+ * Maquinaria
  *
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\TypeProcessRepository")
+ * @ORM\Entity(repositoryClass="Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\MachineryRepository")
  */
-class TypeProcess
+class Machinery
 {
     /**
      * @var integer
@@ -28,7 +38,7 @@ class TypeProcess
      * @ORM\Column(name="description", type="string", length=100)
      */
     private $description;
-    
+
     /**
      * @var boolean
      *
@@ -53,15 +63,20 @@ class TypeProcess
     private $updatedAt;
     
     /**
-     *
-     * @var Process
-     * @ORM\OneToMany(targetEntity="Process",mappedBy="typeProcess")
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery
+     * 
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery",mappedBy="machinery")
      */
-    private $processes;
+    private $featuresMachinery;
     
-    public function __construct() {
-        $this->processes = new \Doctrine\Common\Collections\ArrayCollection();
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->featuresMachinery = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    
     /**
      * Get id
      *
@@ -76,7 +91,7 @@ class TypeProcess
      * Set description
      *
      * @param string $description
-     * @return TypeProcess
+     * @return Machinery
      */
     public function setDescription($description)
     {
@@ -99,7 +114,7 @@ class TypeProcess
      * Set active
      *
      * @param boolean $active
-     * @return TypeProcess
+     * @return Machinery
      */
     public function setActive($active)
     {
@@ -122,7 +137,7 @@ class TypeProcess
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return TypeProcess
+     * @return Machinery
      */
     public function setCreatedAt($createdAt)
     {
@@ -145,7 +160,7 @@ class TypeProcess
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return TypeProcess
+     * @return Machinery
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -165,35 +180,35 @@ class TypeProcess
     }
 
     /**
-     * Add processes
+     * Add featuresMachinery
      *
-     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process $processes
-     * @return TypeProcess
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery $featuresMachinery
+     * @return Machinery
      */
-    public function addProcess(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process $processes)
+    public function addFeaturesMachinery(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery $featuresMachinery)
     {
-        $this->processes[] = $processes;
+        $this->featuresMachinery[] = $featuresMachinery;
 
         return $this;
     }
 
     /**
-     * Remove processes
+     * Remove featuresMachinery
      *
-     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process $processes
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery $featuresMachinery
      */
-    public function removeProcess(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process $processes)
+    public function removeFeaturesMachinery(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery $featuresMachinery)
     {
-        $this->processes->removeElement($processes);
+        $this->featuresMachinery->removeElement($featuresMachinery);
     }
 
     /**
-     * Get processes
+     * Get featuresMachinery
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getProcesses()
+    public function getFeaturesMachinery()
     {
-        return $this->processes;
+        return $this->featuresMachinery;
     }
 }

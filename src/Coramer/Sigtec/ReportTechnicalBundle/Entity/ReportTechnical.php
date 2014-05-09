@@ -82,6 +82,27 @@ class ReportTechnical implements ReportTechnicalInterface
     private $descriptionAreaCompany;
     
     /**
+     * Niveles de produccion
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel
+     * 
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel",mappedBy="reportTechnical")
+     */
+    private $productionLevels;
+    
+    /**
+     * Productos fabricados
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured
+     * 
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured",mappedBy="reportTechnical")
+     */
+    private $productsManufactured;
+    
+    public function __construct() {
+        $this->productionLevels = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->productsManufactured = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -273,5 +294,71 @@ class ReportTechnical implements ReportTechnicalInterface
     public function getDescriptionAreaCompany()
     {
         return $this->descriptionAreaCompany;
+    }
+
+    /**
+     * Add productionLevels
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel $productionLevels
+     * @return ReportTechnical
+     */
+    public function addProductionLevel(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel $productionLevels)
+    {
+        $this->productionLevels[] = $productionLevels;
+
+        return $this;
+    }
+
+    /**
+     * Remove productionLevels
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel $productionLevels
+     */
+    public function removeProductionLevel(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel $productionLevels)
+    {
+        $this->productionLevels->removeElement($productionLevels);
+    }
+
+    /**
+     * Get productionLevels
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProductionLevels()
+    {
+        return $this->productionLevels;
+    }
+
+    /**
+     * Add productsManufactured
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured
+     * @return ReportTechnical
+     */
+    public function addProductsManufactured(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured)
+    {
+        $this->productsManufactured[] = $productsManufactured;
+
+        return $this;
+    }
+
+    /**
+     * Remove productsManufactured
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured
+     */
+    public function removeProductsManufactured(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured)
+    {
+        $this->productsManufactured->removeElement($productsManufactured);
+    }
+
+    /**
+     * Get productsManufactured
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProductsManufactured()
+    {
+        return $this->productsManufactured;
     }
 }

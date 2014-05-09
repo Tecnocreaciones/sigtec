@@ -1,0 +1,120 @@
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+<form id="form_pop_up" method="POST" action="[[ reportTechnicalHelper.form.action.url ]]">
+<fieldset class="fieldset fields-list">
+    <legend class="legend">{{ 'sigtec.production_level.production_level'|trans }}</legend>
+    <div class="field-block button-height">
+        {{ form_label(form.typeProcess) }}
+        {{ form_widget(form.typeProcess) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.production_level.type_process'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.typeProcess) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.process) }}
+        {{ form_widget(form.process) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.production_level.process'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.process) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.shifts) }}
+        {{ form_widget(form.shifts) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.production_level.shifts'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.shifts) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.hours) }}
+        {{ form_widget(form.hours) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.production_level.hours'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.hours) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.daysMonth) }}
+        {{ form_widget(form.daysMonth) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.production_level.days_month'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.daysMonth) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.theoretical) }}
+        {{ form_widget(form.theoretical) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.production_level.theoretical'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.theoretical) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.installed) }}
+        {{ form_widget(form.installed) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.production_level.installed'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.installed) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.busy) }}
+        {{ form_widget(form.busy) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.production_level.busy'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.busy) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.idle) }}
+        {{ form_widget(form.idle) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.production_level.idle'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.idle) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.percentage) }}
+        {{ form_widget(form.percentage) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.production_level.percentage'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.percentage) }}
+    </div>
+</fieldset>
+{{ form_rest(form) }}
+</form>
+<script>
+    jQuery('#form_pop_up').validationEngine({showOneMessage:true});
+</script>

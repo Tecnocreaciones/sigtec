@@ -1,0 +1,57 @@
+coramer_sigtec_backend_company_report_technical_properties_product_manufactured:
+    pattern: /.{_format}
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_product_manufactured:listAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_product_manufactured_form:
+    pattern:  /get-form
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_product_manufactured:getFormAction
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_productmanufactured
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        
+coramer_sigtec_backend_company_report_technical_properties_product_manufactured_create:
+    pattern:  /create
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_product_manufactured:createAction
+        _format: json
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_productmanufactured
+    options:
+        expose: true
+    requirements:
+        _method: POST
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_product_manufactured_update:
+    pattern:  /{slug}/update
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_product_manufactured:updateAction
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_productmanufactured
+    options:
+        expose: true
+    requirements:
+        _method: POST|PUT
+        
+coramer_sigtec_backend_company_report_technical_properties_product_manufactured_delete:
+    pattern:  /{slug}/delete
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_product_manufactured:deleteAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST|DELETE
+        _format: json|xml
+        

@@ -1,0 +1,65 @@
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+<form id="form_pop_up" method="POST" action="[[ reportTechnicalHelper.form.action.url ]]">
+<fieldset class="fieldset fields-list">
+    <legend class="legend">{{ 'sigtec.description_of_products_manufactured.product_manufactured'|trans }}</legend>
+    <div class="field-block button-height">
+        {{ form_label(form.resin) }}
+        {{ form_widget(form.resin) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.product_manufactured.resin'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.resin) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.grade) }}
+        {{ form_widget(form.grade) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.product_manufactured.grade'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.grade) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.process) }}
+        {{ form_widget(form.process) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.product_manufactured.process'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.process) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.product) }}
+        {{ form_widget(form.product) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.product_manufactured.product'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.product) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.requirement) }}
+        {{ form_widget(form.requirement) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.product_manufactured.requirement'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.requirement) }}
+    </div>
+</fieldset>
+{{ form_rest(form) }}
+</form>
+<script>
+    jQuery('#form_pop_up').validationEngine({showOneMessage:true});
+</script>

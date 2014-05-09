@@ -30,7 +30,10 @@ class GenericDataController extends FOSRestController
         
         return $this->handleView($this->view($data));
     }
-    
+    /**
+     * 
+     * @return type
+     */
     function getSeparatedResinAction() 
     {
         $data = array(
@@ -40,6 +43,66 @@ class GenericDataController extends FOSRestController
         );
         
         return $this->handleView($this->view($data));
+    }
+    
+    function getTypeProcessAction()
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_type_process');
+        $view = $this->view($repository->getAllActive());
+        $view->getSerializationContext()->setGroups('list');
+        return $this->handleView($view);
+    }
+    
+    /**
+     * Retorna la lista de procesos activas
+     * @return json|xml
+     */
+    function getProcessAction($idTypeProcess)
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_type_process');
+        $resource = $repository->find($idTypeProcess);
+        if(!$resource){
+            $this->createNotFoundException();
+        }
+        $view = $this->view($resource->getProcesses());
+        $view->getSerializationContext()->setGroups('list');
+        return $this->handleView($view);
+    }
+    
+    /**
+     * Retorna la lista de resinas activas
+     * @return json|xml
+     */
+    function getResinAction()
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_resin');
+        $view = $this->view($repository->getAllActive());
+        $view->getSerializationContext()->setGroups('list');
+        return $this->handleView($view);
+    }
+    
+    /**
+     * Retorna la lista de grados activos
+     * @return json|xml
+     */
+    function getGradeAction()
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_grade');
+        $view = $this->view($repository->getAllActive());
+        $view->getSerializationContext()->setGroups(array('grade'));
+        return $this->handleView($view);
+    }
+    
+    /**
+     * Retorna la lista de productos activos
+     * @return json|xml
+     */
+    function getProductsAction()
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_product');
+        $view = $this->view($repository->getAllActive());
+        $view->getSerializationContext()->setGroups('list');
+        return $this->handleView($view);
     }
     
     protected function trans($id, $parameters = array(), $domain = 'CoramerSigtecReportTechnicalBundle')
