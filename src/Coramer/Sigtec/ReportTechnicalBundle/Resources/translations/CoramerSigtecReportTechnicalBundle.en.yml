@@ -1,4 +1,5 @@
 sigtec:
+    date_of_previous_technical_report_created: Date of previous technical report created
     select: Select
     yes: Yes
     no: No

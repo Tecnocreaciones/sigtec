@@ -20,6 +20,8 @@ Coramer\Sigtec\CompanyBundle\Entity\Company:
         email: <email()>
         status: <boolean()>
         user: @user0
+        lastTechnicalReportDateCreated: <datetime()>
+        activeBusiness: <boolean()>
     company{11..100}:
         name: <name()>
         rif: <randomElement(['V','J','E','P','G'])>-<randomNumber(8)>-<randomDigit()>
@@ -27,6 +29,8 @@ Coramer\Sigtec\CompanyBundle\Entity\Company:
         email: <email()>
         status: <boolean()>
         user: @user*
+        lastTechnicalReportDateCreated: <datetime()>
+        activeBusiness: <boolean()>
 Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
     report_technical{1..50}:
         archive: <numerify()>-<date('Y')>

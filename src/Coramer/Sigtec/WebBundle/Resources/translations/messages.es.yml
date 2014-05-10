@@ -1,8 +1,12 @@
 sigtec:
+    active_business: Empresa activa
     register: Registrar
     total: Total
+    none: Ninguno
     company:
         report_technical: Reporte técnico
+        inactivate: Inactivar
+        activate: Activar
     form:
         errors:
             please_check_the_form_fields: Por favor verifique los campos del formulario.

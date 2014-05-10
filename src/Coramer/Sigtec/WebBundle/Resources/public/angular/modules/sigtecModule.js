@@ -32,7 +32,8 @@ angular.module('sigtecModule.controllers', [])
           
   }])
   .controller('CompanyIndexController', function($scope,$http,notifyService) {
-          $scope.itemValidateRif = function(url){
+          //Realiza una llamada de una url mediante ajax
+          $scope.itemCallAjaxUrl = function(url){
               $http.get(url).success(function(data){
                   notifyService.success(data.message);
                   $scope.tableParams.reload();

@@ -42,7 +42,7 @@
         </p>
     </fieldset>
     <p class="button-height align-right">
-        {% if is_granted('ROLE_SUPER_USER') %}
+        {% if is_granted('ROLE_REVISER') %}
             {{ buttons.generic(null,'sigtec.report_technical.approve','icon-tick',{'translation_domain':'CoramerSigtecReportTechnicalBundle'}) }}
             {{ buttons.generic(null,'sigtec.report_technical.reject','icon-cross',{'translation_domain':'CoramerSigtecReportTechnicalBundle','gradient':'red-gradient'}) }}
         {% endif %}

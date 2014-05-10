@@ -1,0 +1,5 @@
+sigtec:
+    company:
+        message:
+            activate: The status of the company "%s%" was changed to active.
+            inactivate: The status of the company "%s%" was changed to inactive.

@@ -21,3 +21,9 @@ Coramer\Sigtec\CompanyBundle\Entity\Company:
         updatedAt:
             expose: true
             groups: [list]
+        activeBusiness:
+            expose: true
+            groups: [list]
+        lastTechnicalReportDateCreated:
+            expose: true
+            groups: [list]
