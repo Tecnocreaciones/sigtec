@@ -78,12 +78,12 @@ class Company
     private $status = true;
     
     /**
-     * Email
+     * Website Address
      * 
-     * @var boolean
-     * @ORM\Column(name="email", type="string", length=100)
+     * @var string
+     * @ORM\Column(name="websiteAddress", type="string", length=100,nullable=true)
      */
-    private $email;
+    private $websiteAddress;
     
     /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Plant
@@ -298,29 +298,6 @@ class Company
     public function getRifValidated()
     {
         return $this->rifValidated;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return Company
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**
@@ -545,5 +522,28 @@ class Company
     public function getActiveBusiness()
     {
         return $this->activeBusiness;
+    }
+
+    /**
+     * Set websiteAddress
+     *
+     * @param string $websiteAddress
+     * @return Company
+     */
+    public function setWebsiteAddress($websiteAddress)
+    {
+        $this->websiteAddress = $websiteAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get websiteAddress
+     *
+     * @return string 
+     */
+    public function getWebsiteAddress()
+    {
+        return $this->websiteAddress;
     }
 }

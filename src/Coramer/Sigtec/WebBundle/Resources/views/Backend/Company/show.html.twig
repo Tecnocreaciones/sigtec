@@ -26,8 +26,12 @@
             {{ company.rif }}
         </p>
         <p class="inline-label">
-            <label class="label">{{ 'sigtec.email'|trans }}</label>
-            {{ company.email }}
+            <label class="label">{{ 'sigtec.website_address'|trans }}</label>
+            {% if company.websiteAddress %}
+                {{ company.websiteAddress }}
+            {% else %}
+                {{ 'sigtec.none'|trans }}
+            {% endif %}
         </p>
         <p class="inline-label">
             <label class="label">{{ 'sigtec.rif_validated'|trans }}</label>

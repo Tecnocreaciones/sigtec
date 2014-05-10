@@ -1,5 +1,8 @@
 sigtec:
     help:
+        company:
+            rif: Ingrese un rif con el siguiente formato (X-12345678-9).
+            website_address: Ingrese la dirección de la página web de su sitio por ejemplo http://miempresa.com (opcional).
         add_a_phone: Agrega el telefono con los siguientes formatos +58-412-555-5555, 0800-555-5555, +58-212-111-1111.
         plant:
             dedications: Indique el uso de la planta. Si tiene una sola planta por favor seleccione todas las opciones.

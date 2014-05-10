@@ -33,9 +33,10 @@ class CompanyType extends AbstractType
                 'attr' => array('class' => 'input small-margin-right'),
                 'disabled' => $disabled,
             ))
-            ->add('email',null,array(
-                'label' => 'sigtec.email',
+            ->add('websiteAddress','url',array(
+                'label' => 'sigtec.website_address',
                 'attr' => array('class' => 'input small-margin-right'),
+                'required' => false,
             ))
             ->add('status',null,array(
                 'label' => 'sigtec.status',

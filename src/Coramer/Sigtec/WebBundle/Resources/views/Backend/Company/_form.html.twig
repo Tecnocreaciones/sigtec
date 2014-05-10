@@ -10,7 +10,7 @@
         <span class="info-spot">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
-                {{ 'sigtec.help.company.rif' | trans }}
+                {{ 'sigtec.help.company.rif' | trans({},'help') }}
             </span>
         </span>
         {{ form_errors(form.rif) }}
@@ -21,9 +21,15 @@
         {{ form_errors(form.name) }}
     </div>
     <div class="field-block button-height">
-        {{ form_label(form.email) }}
-        {{ form_widget(form.email) }}
-        {{ form_errors(form.email) }}
+        {{ form_label(form.websiteAddress) }}
+        {{ form_widget(form.websiteAddress) }}
+         <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.company.website_address' | trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.websiteAddress) }}
     </div>
     <div class="field-drop button-height black-inputs">
         {{ form_label(form.status) }}
