@@ -27,6 +27,19 @@ class ContactType extends AbstractType
                     'class' => 'input'
                 ),
             ))
+            ->add('email','email',array(
+                'label' => 'sigtec.email',
+                'attr' => array(
+                    'class' => 'input'
+                ),
+            ))
+            ->add('phones','collection',array(
+                'label' => 'sigtec.phone',
+                'type' => new PhoneType(),
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ))
             ->add('charge',null,array(
                 'label' => 'sigtec.charge',
                 'attr' => array(

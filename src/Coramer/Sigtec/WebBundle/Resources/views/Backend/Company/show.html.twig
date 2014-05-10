@@ -121,9 +121,11 @@
             <table class="simple-table responsive-table" id="table-plants">
                 <thead>
                     <tr>
-                        <th scope="col">{{ 'sigtec.first_name'|trans }}</th>
+                        <th scope="col" width="20%">{{ 'sigtec.first_name'|trans }}</th>
+                        <th scope="col" width="15%" class="hide-on-mobile">{{ 'sigtec.email'|trans }}</th>
+                        <th scope="col" width="15%" class="hide-on-mobile-portrait">{{ 'sigtec.phones'|trans }}</th>
                         <th scope="col" width="30%" class="hide-on-tablet">{{ 'sigtec.charge'|trans }}</th>
-                        <th scope="col" width="120" class="align-right">{{ 'sigtec.actions'|trans }}</th>
+                        <th scope="col" width="20%" class="align-right">{{ 'sigtec.actions'|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -132,6 +134,12 @@
                         <th scope="row">
                             <a href="{{ path('coramer_sigtec_backend_company_contact_show',{id:contact.id}) }}">{{ contact.firstName }} {{ contact.lastName }}</a>
                         </th>
+                        <td>{{ contact.email }}</td>
+                        <td>
+                            {% for phone in contact.phones %}
+                                {{ phone.number }}<b>; </b>
+                            {% endfor %}
+                        </td>
                         <td>
                             {{ contact.charge }}
                         </td>

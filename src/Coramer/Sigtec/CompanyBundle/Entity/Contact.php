@@ -29,11 +29,29 @@ class Contact extends \Coramer\Sigtec\CoreBundle\Entity\Person
     private $charge;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=80)
+     */
+    private $email;
+    
+    /**
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Phone
+     *
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Phone", mappedBy="contact", cascade={"persist","remove"})
+     */
+    private $phones;
+    
+    /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Company
      * 
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Company", inversedBy="contacts")
      */
     private $company;
+    
+    public function __construct() {
+        $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     
     /**
      * Get id
@@ -89,5 +107,62 @@ class Contact extends \Coramer\Sigtec\CoreBundle\Entity\Person
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Contact
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Add phones
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Phone $phones
+     * @return Contact
+     */
+    public function addPhone(\Coramer\Sigtec\CompanyBundle\Entity\Phone $phones)
+    {
+        $phones->setContact($this);
+        $this->phones->add($phones);
+
+        return $this;
+    }
+
+    /**
+     * Remove phones
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Phone $phones
+     */
+    public function removePhone(\Coramer\Sigtec\CompanyBundle\Entity\Phone $phones)
+    {
+        $this->phones->removeElement($phones);
+    }
+
+    /**
+     * Get phones
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPhones()
+    {
+        return $this->phones;
     }
 }

@@ -536,4 +536,14 @@ class Company
     {
         return $this->lastTechnicalReportDateCreated;
     }
+
+    /**
+     * Get activeBusiness
+     *
+     * @return boolean 
+     */
+    public function getActiveBusiness()
+    {
+        return $this->activeBusiness;
+    }
 }
