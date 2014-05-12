@@ -3,12 +3,16 @@ Application\Sonata\UserBundle\Entity\User:
         username: cliente
         email: cliente@example.com.ve
         plainPassword: cliente
+        firstname: <firstName()>
+        lastname: <lastName()>
         enabled: true
         roles: [ROLE_CLIENT]
     user{1..100}:
         username: <username()>
         email: <email()>
         plainPassword: admin
+        firstname: <firstName()>
+        lastname: <lastName()>
         enabled: true
         roles: [ROLE_CLIENT]
 #Base fixtures
