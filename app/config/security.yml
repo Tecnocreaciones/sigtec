@@ -5,8 +5,7 @@ security:
         connection: default
     role_hierarchy:
         ROLE_TECHNICAL_MANAGER: [ROLE_CLIENT,ROLE_REVISER]
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN,ROLE_ALLOWED_TO_SWITCH,ROLE_TECHNICAL_MANAGER]
-        SONATA: ROLE_SONATA_ADMIN
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN,ROLE_ALLOWED_TO_SWITCH,ROLE_SONATA_ADMIN,ROLE_TECHNICAL_MANAGER]
 #            - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are using acl then this line must be commented
     providers:
         fos_userbundle:
