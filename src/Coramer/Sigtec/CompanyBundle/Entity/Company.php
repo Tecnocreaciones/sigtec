@@ -78,6 +78,14 @@ class Company
     private $status = true;
     
     /**
+     * ¿Empresa Valida?
+     * 
+     * @var boolean
+     * @ORM\Column(name="valid", type="boolean")
+     */
+    private $valid = false;
+    
+    /**
      * Website Address
      * 
      * @var string
@@ -364,7 +372,7 @@ class Company
      */
     public function addContact(\Coramer\Sigtec\CompanyBundle\Entity\Contact $contacts)
     {
-        $this->contacts[] = $contacts;
+        $this->contacts->add($contacts);
 
         return $this;
     }
@@ -545,5 +553,28 @@ class Company
     public function getWebsiteAddress()
     {
         return $this->websiteAddress;
+    }
+
+    /**
+     * Set valid
+     *
+     * @param boolean $valid
+     * @return Company
+     */
+    public function setValid($valid)
+    {
+        $this->valid = $valid;
+
+        return $this;
+    }
+
+    /**
+     * Get valid
+     *
+     * @return boolean 
+     */
+    public function isValid()
+    {
+        return $this->valid;
     }
 }

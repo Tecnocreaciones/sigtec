@@ -77,7 +77,11 @@ class ContactController extends ResourceController
         $form = $this->getForm($resource);
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $resource->setCompany($company);
+            
             $resource = $this->domainManager->create($resource);
+            
+            $event = new \Coramer\Sigtec\CompanyBundle\Event\CompanyEvent($company);
+            $this->get('event_dispatcher')->dispatch(\Coramer\Sigtec\CompanyBundle\EventListener\Events::CONTACT_ADD,$event);
 
             return $this->redirect($this->generateUrl('coramer_sigtec_backend_company_show',array('id' => $company->getId())));
         }
@@ -103,11 +107,18 @@ class ContactController extends ResourceController
         $resource = $this->findOr404($request);
         //Security Check
         $user = $this->getUser();
-        if(!$user->getCompanies()->contains($resource->getCompany())){
+        $company = $resource->getCompany();
+        if(!$user->getCompanies()->contains($company)){
             throw $this->createAccessDeniedHttpException();
         }
         
         $this->domainManager->delete($resource);
+        
+        $company->removeContact($resource);
+        
+        $event = new \Coramer\Sigtec\CompanyBundle\Event\CompanyEvent($company);
+        $this->get('event_dispatcher')->dispatch(\Coramer\Sigtec\CompanyBundle\EventListener\Events::CONTACT_ADD,$event);
+        
         if($request->isXmlHttpRequest()){
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');

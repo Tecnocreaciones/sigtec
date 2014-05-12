@@ -54,6 +54,10 @@ class PlantController extends ResourceController
                     $em->remove($phone);
                 }
             }
+            
+            $event = new \Coramer\Sigtec\CompanyBundle\Event\CompanyEvent($resource->getCompany());
+            $this->get('event_dispatcher')->dispatch(\Coramer\Sigtec\CompanyBundle\EventListener\Events::PLANT_UPDATE,$event);
+            
             $this->domainManager->update($resource);
             return $this->redirect($this->generateUrl('coramer_sigtec_backend_company_show',array('id' => $resource->getCompany()->getId())));
         }
@@ -98,8 +102,12 @@ class PlantController extends ResourceController
         $form = $this->getForm($resource);
         $resource->setCompany($company);
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
+            
             $resource = $this->domainManager->create($resource);
-
+            
+            $event = new \Coramer\Sigtec\CompanyBundle\Event\CompanyEvent($company);
+            $this->get('event_dispatcher')->dispatch(\Coramer\Sigtec\CompanyBundle\EventListener\Events::PLANT_ADD,$event);
+            
             return $this->redirect($this->generateUrl('coramer_sigtec_backend_company_show',array('id' => $company->getId())));
         }
         
@@ -128,7 +136,12 @@ class PlantController extends ResourceController
             throw $this->createAccessDeniedHttpException();
         }
         
+        
         $this->domainManager->delete($resource);
+        
+        $event = new \Coramer\Sigtec\CompanyBundle\Event\CompanyEvent($resource->getCompany());
+        $this->get('event_dispatcher')->dispatch(\Coramer\Sigtec\CompanyBundle\EventListener\Events::PLANT_REMOVE,$event);
+        
         if($request->isXmlHttpRequest()){
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');

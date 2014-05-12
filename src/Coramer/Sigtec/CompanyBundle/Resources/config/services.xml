@@ -19,6 +19,7 @@
     -->
     <parameters>
         <parameter key="coramer_sigtec_company.company.class">Coramer\Sigtec\CompanyBundle\Entity\Company</parameter>
+        <parameter key="coramer_sigtec_company.company_manager.class">Coramer\Sigtec\CompanyBundle\Manager\CompanyManager</parameter>
         <parameter key="coramer_sigtec_company.plant.class">Coramer\Sigtec\CompanyBundle\Entity\Plant</parameter>
         <parameter key="coramer_sigtec_company.contact.class">Coramer\Sigtec\CompanyBundle\Entity\Contact</parameter>
         <parameter key="coramer_sigtec_company.repository.company.class">Coramer\Sigtec\CompanyBundle\Repository\CompanyRepository</parameter>
@@ -26,6 +27,7 @@
         <parameter key="coramer_sigtec_company.form.type.company.class">Coramer\Sigtec\CompanyBundle\Form\CompanyType</parameter>
         <parameter key="coramer_sigtec_company.form.type.plant.class">Coramer\Sigtec\CompanyBundle\Form\PlantType</parameter>
         <parameter key="coramer_sigtec_company.form.type.contact.class">Coramer\Sigtec\CompanyBundle\Form\ContactType</parameter>
+        <parameter key="coramer_sigtec_company.event.company_subscriber.class">Coramer\Sigtec\CompanyBundle\EventListener\CompanyListerner</parameter>
     </parameters>
 
     <services>
@@ -33,6 +35,12 @@
             factory-service="tecnocreaciones_resource.manager_entity_repository"
             factory-method="getRepository"
         >
+            <argument>%coramer_sigtec_company.company.class%</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="coramer_sigtec_company.company_manager" class="%coramer_sigtec_company.company_manager.class%">
             <argument>%coramer_sigtec_company.company.class%</argument>
             <call method="setContainer">
                 <argument type="service" id="service_container" />
@@ -58,6 +66,12 @@
         <service id="coramer_sigtec_company.form.type.contact" class="%coramer_sigtec_company.form.type.contact.class%">
             <argument>%coramer_sigtec_company.contact.class%</argument>
             <tag name="form.type" alias="coramer_sigtec_companybundle_contact" />
+        </service>
+        <service id="coramer_sigtec_company.event.company_subscriber" class="%coramer_sigtec_company.event.company_subscriber.class%">
+            <tag name="kernel.event_subscriber" />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
         </service>
     </services>
 </container>

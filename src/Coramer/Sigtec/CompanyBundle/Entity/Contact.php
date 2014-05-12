@@ -94,6 +94,7 @@ class Contact extends \Coramer\Sigtec\CoreBundle\Entity\Person
      */
     public function setCompany(\Coramer\Sigtec\CompanyBundle\Entity\Company $company = null)
     {
+        $company->addContact($this);
         $this->company = $company;
 
         return $this;

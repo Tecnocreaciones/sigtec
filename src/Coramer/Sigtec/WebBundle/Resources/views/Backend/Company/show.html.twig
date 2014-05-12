@@ -4,6 +4,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/table3860.css?v=1') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/progress-slider3860.css?v=1') }}">
 {% endblock %}
 
 {% block body -%}
@@ -39,6 +40,42 @@
                 <small class="tag green-bg">{{ 'sigtec.yes'|trans }}</small> 
             {% else %}
                 <small class="tag red-bg">{{ 'sigtec.no'|trans }}</small>
+            {% endif %}
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.company.your_business_is_at'|trans({},'CoramerSigtecCompanyBundle') }}</label>
+            {% if company.isValid %}
+                {% set registrationPercentage = 100 %}
+            {% else %}
+                {% set registrationPercentageWitErrors = company_manager.getRegistrationPercentage(company,true) %}
+                {% set registrationPercentage = registrationPercentageWitErrors['percentage'] %}
+            {% endif %}
+            <span class="progress small-margin-right" data-progress-options='{"size":130,"barClasses":["green-gradient","glossy"]}'>
+                {{ registrationPercentage }}%
+            </span>
+            {% if company.isValid == false %}
+                <span class="info-spot">
+                    <span class="icon-info-round"></span>
+                    <span class="info-bubble">
+                        {% for key,value in registrationPercentageWitErrors['errors'] %}
+                            {{ value }}<br />
+                        {% endfor  %}
+                    </span>
+                </span>
+            {% endif %}
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.company.valid'|trans({},'CoramerSigtecCompanyBundle') }}</label>
+            {% if company.valid %}
+                <small class="tag green-bg">{{ 'sigtec.yes'|trans }}</small> 
+            {% else %}
+                <small class="tag red-bg small-margin-right">{{ 'sigtec.no'|trans }}</small>
+                <span class="info-spot">
+                    <span class="icon-info-round"></span>
+                    <span class="info-bubble">
+                        {{ 'sigtec.help.company.not_valid'|trans({},'help') }}
+                    </span>
+                </span>
             {% endif %}
         </p>
         <p class="inline-label">
@@ -175,6 +212,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{  asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/libs/jquery.tablesorter.min.js') }}"></script>
+    <script src="{{  asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.progress-slider.js') }}"></script>
 {% endblock %}
 
 {% block javascript %} 
@@ -185,5 +223,7 @@
                 4: {sorter: false}
             }
         });
+        // Progress
+        $('.progress').progress();
     </script>
 {% endblock %}

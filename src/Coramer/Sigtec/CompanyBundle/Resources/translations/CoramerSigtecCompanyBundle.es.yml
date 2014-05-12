@@ -1,5 +1,7 @@
 sigtec:
     company:
+        valid: ¿Empresa válida?
+        your_business_is_at: Tu empresa esta al
         message:
             activate: El estatus de la empresa "%s%" se cambio a activa.
             inactivate: El estatus de la empresa "%s%" se cambio a inactiva.

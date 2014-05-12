@@ -294,6 +294,8 @@ class Plant
      */
     public function setCompany(\Coramer\Sigtec\CompanyBundle\Entity\Company $company = null)
     {
+        $company->addPlant($this);
+        
         $this->company = $company;
 
         return $this;
@@ -385,6 +387,16 @@ class Plant
      * @return boolean 
      */
     public function getStatus()
+    {
+        return $this->status;
+    }
+    
+    /**
+     * Get status
+     *
+     * @return boolean 
+     */
+    public function isStatus()
     {
         return $this->status;
     }

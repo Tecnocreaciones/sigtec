@@ -45,7 +45,10 @@ class CompanyController extends ResourceController
             ->view()
             ->setTemplate($this->config->getTemplate('show.html'))
             ->setTemplateVar($this->config->getResourceName())
-            ->setData($resource)
+            ->setData(array(
+                'company' => $resource,
+                'company_manager' => $this->get('coramer_sigtec_company.company_manager')
+            ))
         ;
         $view->getSerializationContext()->setGroups('show');
         return $this->handleView($view);
