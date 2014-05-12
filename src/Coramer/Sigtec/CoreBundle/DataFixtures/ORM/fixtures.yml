@@ -33,10 +33,10 @@ Coramer\Sigtec\CompanyBundle\Entity\Company:
         activeBusiness: <boolean()>
 Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
     report_technical{1..50}:
-        archive: <numerify()>-<date('Y')>
+        archive: <date('Y')>-<numerify()>
         company: @company<numberBetween(1, 10)>
         status: <numberBetween(0, 3)>
     report_technical{51..100}:
-        archive: <numerify()>-<date('Y')>
+        archive: <date('Y')>-<numerify()>
         company: @company*
         status: <numberBetween(0, 3)>
