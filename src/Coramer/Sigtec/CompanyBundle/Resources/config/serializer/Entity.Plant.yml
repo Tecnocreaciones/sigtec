@@ -3,7 +3,10 @@ Coramer\Sigtec\CompanyBundle\Entity\Plant:
     properties:
         id:
             expose: true
-            groups: [list,companies]
+            groups: [id,list,companies]
+        name:
+            expose: true
+            groups: [list,companies,report_technical]
         email:
             expose: true
             groups: [list,companies]
@@ -12,7 +15,7 @@ Coramer\Sigtec\CompanyBundle\Entity\Plant:
             groups: [companies]
         dedications:
             expose: true
-            groups: [companies]
+            groups: [companies,report_technical]
         address:
             expose: true
             groups: [list,companies]

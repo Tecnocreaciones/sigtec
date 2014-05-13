@@ -61,9 +61,24 @@ class DetailProductStorageType extends AbstractType
                 'attr' => array(
                     'class' => 'select auto-refesh replacement input-small small-margin-right validate[required]',
                     'ng-model' => 'model.detail_product_storage.plant',
+                    'ng-options' => 'value as value.name for (key,value) in data.plants',
+                    'ng-change' => 'reportTechnicalManager.getData().getDedications(model.detail_product_storage.plant)',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CompanyBundle\Repository\PlantRepository $er) use ($company){
                     return $er->getQueryBuilderAllActiveByCompany($company);
+                },
+            ))
+            ->add('dedication',null,array(
+                'label' => 'sigtec.table.header.dedication',
+                'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Dedication',
+                'property' => 'description',
+                'attr' => array(
+                    'class' => 'select auto-refesh replacement expandable-list input-large small-margin-right validate[required]',
+                    'ng-model' => 'model.detail_product_storage.dedication',
+                    'ng-options' => 'value as value.description for (key,value) in data.dedications',
+                ),
+                'query_builder' => function(\Coramer\Sigtec\CompanyBundle\Repository\DedicationRepository $er){
+                    return $er->getQueryAllActive();
                 },
             ))
             ->add('totalArea',null,array(

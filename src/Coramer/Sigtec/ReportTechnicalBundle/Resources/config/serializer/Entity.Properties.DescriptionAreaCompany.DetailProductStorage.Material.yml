@@ -3,7 +3,7 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\De
     properties:
         id:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         description:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]

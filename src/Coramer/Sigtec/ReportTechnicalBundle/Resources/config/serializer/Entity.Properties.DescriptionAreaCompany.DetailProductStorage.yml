@@ -3,19 +3,25 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\De
     properties:
         id:
             expose: true
-            groups: [show,id]
+            groups: [show,id,list]
         material:
             expose: true
-            groups: [show]
+            groups: [show,list,report_technical]
         storage:
             expose: true
-            groups: [show]
+            groups: [show,list,report_technical]
         separatedResin:
             expose: true
-            groups: [show]
+            groups: [show,list,report_technical]
         totalArea:
             expose: true
-            groups: [show]
+            groups: [show,list,report_technical]
         coveredArea:
             expose: true
-            groups: [show]
+            groups: [show,list,report_technical]
+        plant:
+            expose: true
+            groups: [show,report_technical]
+        dedication:
+            expose: true
+            groups: [show,report_technical]

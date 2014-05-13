@@ -153,4 +153,27 @@ class PlantController extends ResourceController
             return $this->redirect($this->generateUrl('coramer_sigtec_backend_company_show',array('id' => $resource->getCompany()->getId())));
         }
     }
+    
+    function getPlantsOfCompanyAction(Request $request)
+    {
+        $company = $this->get('coramer_sigtec_backend.repository.company')->find($request->get('company_id'));
+        
+        if(!$company){
+            throw $this->createNotFoundException();
+        }
+        
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($company)){
+            throw $this->createAccessDeniedHttpException();
+        }
+        
+        $repository = $this->getRepository();
+        $resources = $repository->findBy(array('company' => $company));
+        
+        $view = $this->view();
+        $view->setData($resources);
+        $view->getSerializationContext()->setGroups(array('report_technical','id'));
+        return $this->handleView($view);
+    }
 }

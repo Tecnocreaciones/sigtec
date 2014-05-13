@@ -3,12 +3,13 @@ Coramer\Sigtec\CompanyBundle\Entity\Company:
     properties:
         id:
             expose: true
-            groups: [list]
+            groups: [list,id]
         name:
             expose: true
-            groups: [list]
+            groups: [list,report_technical]
         rif:
             expose: true
+            groups: [list,report_technical]
         rifValidated:
             expose: true
             groups: [list]

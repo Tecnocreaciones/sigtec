@@ -3,31 +3,31 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
     properties:
         id:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         archive:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         createdAt:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         updatedAt:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         status:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         professionalProfile:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         descriptionAreaCompany:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         productionLevels:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         company:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         productsManufactured:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]

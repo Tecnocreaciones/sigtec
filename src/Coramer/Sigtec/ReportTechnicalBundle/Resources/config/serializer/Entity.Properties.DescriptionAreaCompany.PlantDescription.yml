@@ -3,10 +3,10 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Pl
     properties:
         id:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         plant:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         area:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]

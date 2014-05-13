@@ -106,6 +106,14 @@ class DetailProductStorage
     private $plant;
     
     /**
+     * Dedicacion
+     * 
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Dedication
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Dedication")
+     */
+    private $dedication;
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -279,5 +287,28 @@ class DetailProductStorage
     public function getPlant()
     {
         return $this->plant;
+    }
+
+    /**
+     * Set dedication
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedication
+     * @return DetailProductStorage
+     */
+    public function setDedication(\Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedication = null)
+    {
+        $this->dedication = $dedication;
+
+        return $this;
+    }
+
+    /**
+     * Get dedication
+     *
+     * @return \Coramer\Sigtec\CompanyBundle\Entity\Dedication 
+     */
+    public function getDedication()
+    {
+        return $this->dedication;
     }
 }

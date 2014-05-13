@@ -98,6 +98,7 @@ angular.module('sigtecModule.controllers', [])
       $scope.model = defaultModel;
       $scope.data = {
           materials: null,
+          plants: null,
           storages: null,
           separated_resins: null,
           type_process: null,
@@ -192,15 +193,18 @@ angular.module('sigtecModule.controllers', [])
           $scope.template = $scope.templates.formProductManufactured;
           $scope.openModalForm();
       };
-      
+    //Setea el formulario detalle de almacenaje del producto
     $scope.setDataDetailsStorage = function(detailProductStorage){
         if(detailProductStorage != undefined){
               $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: detailProductStorage.id});
               $scope.model.detail_product_storage.material = $scope.data.materials[detailProductStorage.material.id];
+              $scope.model.detail_product_storage.plant = $scope.data.plants[detailProductStorage.plant.id];
               $scope.model.detail_product_storage.storage = $scope.data.storages[detailProductStorage.storage];
               $scope.model.detail_product_storage.separated_resin = $scope.data.separated_resins[detailProductStorage.separated_resin];
               $scope.model.detail_product_storage.total_area = detailProductStorage.total_area;
               $scope.model.detail_product_storage.covered_area = detailProductStorage.covered_area;
+              
+              reportTechnicalManager.getData().getDedications(detailProductStorage.plant,detailProductStorage.dedication.id);
           }else{
               $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
               $scope.model.detail_product_storage = {
@@ -210,6 +214,8 @@ angular.module('sigtecModule.controllers', [])
                         separated_resin: null,
                         total_area: 0,
                         covered_area: 0,
+                        plant: null,
+                        dedication: null,
                     };
           }
     }
@@ -463,6 +469,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 resin: 'coramer_sigtec_backend_company_report_technical_data_resin',
                 grade: 'coramer_sigtec_backend_company_report_technical_data_grade',
                 product: 'coramer_sigtec_backend_company_report_technical_data_product',
+                plants: 'coramer_sigtec_backend_company_plant_company',
             },                    
             form: {
                 detail_product_storage: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_form',
@@ -524,6 +531,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     }
                 };
                 $scope.template = '';
+                self.getData().getPlants($scope.reportTechnical.company.id);
                 notificationBarService.getLoadStatus().done();
             });
         },
@@ -634,7 +642,29 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         }
                         notificationBarService.getLoadStatus().done();
                     });
-                }
+                },
+                getPlants: function(companyId){
+                    return $http.get(self.generateRoute(config.routes.data.plants,{company_id: companyId})).success(function(d){
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[val.id] = val;
+                          });
+                        scope.data.plants = dataArray;
+                    });
+                },
+                getDedications: function(plant,selected){
+                        var dataArray = [];
+                        jQuery.each(plant.dedications,function(i,vals){
+                            if(vals != undefined){
+                                dataArray[vals.id] = vals;
+                            }
+                        });
+                        
+                        scope.data.dedications = dataArray;
+                        if(selected != undefined){
+                            scope.model.detail_product_storage.dedication = dataArray[selected];
+                        }
+                },
             }
         },
         setId: function(i){

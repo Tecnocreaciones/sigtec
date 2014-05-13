@@ -3,10 +3,10 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Grade:
     properties:
         id:
             expose: true
-            groups: [show,list,grade]
+            groups: [id,show,list,grade]
         description:
             expose: true
-            groups: [show,list,grade]
+            groups: [show,list,grade,report_technical]
         resin:
             expose: true
-            groups: [show,grade]
+            groups: [show,grade,report_technical]

@@ -38,6 +38,7 @@ sigtec:
             resin: Resina
             requirement: Requerimiento
             plant: Planta
+            dedication: Uso
         content:
             empty:
                 storage: No existen detalles de almacenaje de los productos.

@@ -38,6 +38,7 @@ sigtec:
             resin: Resin
             requirement: Requirement
             plant: Plant
+            dedication: Dedication
         content:
             empty:
                 storage: There are no details of storage products.

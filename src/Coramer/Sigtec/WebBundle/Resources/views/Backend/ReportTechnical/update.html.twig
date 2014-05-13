@@ -117,7 +117,7 @@
                                             {{ form_errors(plantDescription.area.coveredArea) }}
                                         </td>
                                         <td>
-                                            <span class="info-spot">
+                                            <span class="info-spot on-left">
                                                 <span class="icon-info-round"></span>
                                                 <span class="info-bubble">
                                                     {{ plantDescription.area.descriptionArea.help.vars['value']|trans({},'help')|raw }}
@@ -141,7 +141,7 @@
                                                 {{ form_errors(area.coveredArea) }}
                                             </td>
                                             <td>
-                                                <span class="info-spot">
+                                                <span class="info-spot on-left">
                                                     <span class="icon-info-round"></span>
                                                     <span class="info-bubble">
                                                         {{ area.descriptionArea.help.vars['value']|trans({},'help')|raw }}
@@ -163,30 +163,28 @@
                             <p>{{ 'sigtec.help.description_of_the_business_areas.storage_product_detail'|trans({},'help') }}:</p>
 			</div>
                         <div class="field-block">
-                            <table class="simple-table">
+                            <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection2">
                                 <tr>
                                     <th>{{ 'sigtec.table.header.material'|trans }}</th>
                                     <th>{{ 'sigtec.table.header.storage'|trans }}</th>
-                                    <th>{{ 'sigtec.table.header.separated_resin'|trans }}</th>
-                                    <th>{{ 'sigtec.table.header.total'|trans|raw }}</th> 
-                                    <th>{{ 'sigtec.table.header.covered'|trans|raw }}</th>
+                                    <th>{{ 'sigtec.table.header.plant'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.dedication'|trans|raw }}</th> 
                                     <th>&nbsp;</th>
                                 </tr>
                                 <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
-                                    <td colspan="6" class="bold text-center">&nbsp;</td>
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
                                 </tr>
                                 <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
-                                    <td colspan="6" class="bold text-center">{{ 'sigtec.table.content.empty.storage'|trans }}</td>
+                                    <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.storage'|trans }}</td>
                                 </tr>
                                 <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
-                                    <td colspan="6" class="bold text-center">&nbsp;</td>
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
                                 </tr>
-                                <tr ng-repeat="detail_product_storage in reportTechnical.description_area_company.detail_product_storages">
+                                <tr ng-repeat="detail_product_storage in reportTechnical.description_area_company.detail_product_storages" data="[[ detail_product_storage|json ]]">
                                     <td><a href ng-click="addDetailsStorage(detail_product_storage)" >[[ detail_product_storage.material.description ]]</a></td>
-                                    <td>[[ detail_product_storage.labels.storage]]</td>
-                                    <td>[[ detail_product_storage.labels.separated_resin]]</td>
-                                    <td>[[ detail_product_storage.total_area]]</td>
-                                    <td>[[ detail_product_storage.covered_area]]</td>
+                                    <td>[[ detail_product_storage.labels.storage ]]</td>
+                                    <td>[[ detail_product_storage.plant.name ]]</td>
+                                    <td>[[ detail_product_storage.dedication.description ]]</td>
                                     <td>
                                         <span class="button-group compact">
                                             <a href ng-click="itemDelete(detail_product_storage._links.delete.href,reportTechnicalManager.reload().detailProductStorage)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
@@ -254,7 +252,7 @@
                             <p>{{ 'sigtec.help.description_of_products_manufactured.description_of_products_manufactured'|trans({},'help') }}</p>
 			</div>
                         <div class="field-block">
-                            <table class="simple-table table-responsive table-extra-info">
+                            <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection4" >
                                 <tr>
                                     <th>{{ 'sigtec.table.header.process'|trans }}</th>
                                     <th>{{ 'sigtec.table.header.product'|trans }}</th>
@@ -302,9 +300,7 @@
                                         {{ 'tecnocreaciones_vzla_government.save_and_close'|trans({},'messages') }}
 				</button>
 			</div>
-                        <div style="display: none">
                             {{ form_rest(form) }}
-                        </div>
                         <div class="hide" style="display: none">
                             <div id="div-template" ng-include="template.url" onload="templateLoad(template)" ></div>
                         </div>
@@ -491,15 +487,31 @@
     </script>
     <script type="text/javascript">
         function getTableExtraInfo(data)
-            {
-                return  '<strong>{{ 'sigtec.table.header.capacity'|trans }}</strong><br/><br/>' +
-                        '<strong>{{ 'sigtec.table.header.theoretical'|trans }}:</strong> ' + data.theoretical + '<br>' +
-                        '<strong>{{ 'sigtec.table.header.installed' |trans }}:</strong> ' + data.installed + '<br>' +
-                        '<strong>{{ 'sigtec.table.header.busy' | trans }}:</strong> ' + data.busy + '<br>' +
-                        '<strong>{{ 'sigtec.table.header.idle' | trans }}:</strong> ' + data.idle + '<br>' +
-                        '<strong>{{ 'sigtec.production_level.percentage' | trans }}:</strong> ' + data.percentage + '<br>'
-                        ;
-            }
+        {
+            return  '<strong>{{ 'sigtec.table.header.capacity'|trans }}</strong><br/><br/>' +
+                    '<strong>{{ 'sigtec.table.header.theoretical'|trans }}:</strong> ' + data.theoretical + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.installed' |trans }}:</strong> ' + data.installed + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.busy' | trans }}:</strong> ' + data.busy + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.idle' | trans }}:</strong> ' + data.idle + '<br>' +
+                    '<strong>{{ 'sigtec.production_level.percentage' | trans }}:</strong> ' + data.percentage + '<br>'
+                    ;
+        }
+        function getTableExtraInfoSection2(data)
+        {
+            return  '<strong>{{ 'sigtec.table.header.separated_resin'|trans }}:</strong> ' + data.labels.separated_resin + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.total'|trans|raw }}:</strong> ' + data.total_area + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.covered'|trans|raw }}:</strong> ' + data.covered_area + '<br>';
+        }
+        function getTableExtraInfoSection4(data)
+        {
+            return  '<strong>{{ 'sigtec.table.header.capacity'|trans }}</strong><br/><br/>' +
+                    '<strong>{{ 'sigtec.table.header.theoretical'|trans }}:</strong> ' + data.theoretical + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.installed' |trans }}:</strong> ' + data.installed + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.busy' | trans }}:</strong> ' + data.busy + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.idle' | trans }}:</strong> ' + data.idle + '<br>' +
+                    '<strong>{{ 'sigtec.production_level.percentage' | trans }}:</strong> ' + data.percentage + '<br>'
+                    ;
+        }
              $(document).ready(function() {
             //Example for table extra info methos to override
             /**
@@ -529,11 +541,12 @@
                 {
                     return;
                 }
-
                 var tr = $(this).parent(),
                         row = tr.next('.row-drop'),
                         rows;
-
+                        
+                var getTableInfoFunction = tr.parent().parent().attr('get-table-info');
+                
                 // If click on a special row
                 if (tr.hasClass('row-drop'))
                 {
@@ -566,8 +579,13 @@
                 // Style row
                 tr.children().addClass('anthracite-gradient glossy');
                 var data = $.parseJSON(tr.attr('data'));
+                
                 // Add fake row
-                var tableExtraInfo = getTableExtraInfo(data);
+                if(getTableInfoFunction != undefined ){
+                    var tableExtraInfo = eval(getTableInfoFunction)(data);
+                }else{
+                    var tableExtraInfo = getTableExtraInfo(data);
+                }
                 $('<tr class="row-drop">' +
                         '<td colspan="' + tr.children().length + '">' +
                         tableExtraInfo +

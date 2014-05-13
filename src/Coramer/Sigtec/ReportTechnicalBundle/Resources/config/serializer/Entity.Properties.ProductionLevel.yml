@@ -3,31 +3,31 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel:
     properties:
         id:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         process:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         shifts:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         hours:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         daysMonth:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         theoretical:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         installed:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         busy:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         idle:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         percentage:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]

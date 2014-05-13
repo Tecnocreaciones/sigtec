@@ -577,4 +577,14 @@ class Company
     {
         return $this->valid;
     }
+
+    /**
+     * Get valid
+     *
+     * @return boolean 
+     */
+    public function getValid()
+    {
+        return $this->valid;
+    }
 }

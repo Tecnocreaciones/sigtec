@@ -3,16 +3,16 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured:
     properties:
         id:
             expose: true
-            groups: [show]
+            groups: [show,id]
         process:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         product:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         grade:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         requirement:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]

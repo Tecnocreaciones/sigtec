@@ -25,3 +25,14 @@ coramer_sigtec_backend_company_plant_delete:
     defaults:
         _controller: coramer_sigtec_backend.controller.company_plant:deleteAction
     requirements: { _method: POST|DELETE }
+    
+coramer_sigtec_backend_company_plant_company:
+    pattern:  /{company_id}/plants.{_format}
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_plant:getPlantsOfCompanyAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml

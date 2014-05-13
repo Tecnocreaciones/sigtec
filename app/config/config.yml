@@ -278,6 +278,12 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\CompanyBundle\Controller\ContactController
                 model: Coramer\Sigtec\CompanyBundle\Entity\Contact
+         coramer_sigtec_backend.company_dedication:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/Dedication
+            classes:
+                controller: Coramer\Sigtec\CompanyBundle\Controller\DedicationController
+                model: Coramer\Sigtec\CompanyBundle\Entity\Dedication
          coramer_sigtec_backend.company_report_technical:
             driver: doctrine/orm
             templates: CoramerSigtecWebBundle:Backend/ReportTechnical

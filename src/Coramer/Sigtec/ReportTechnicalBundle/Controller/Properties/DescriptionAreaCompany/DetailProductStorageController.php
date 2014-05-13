@@ -31,6 +31,7 @@ class DetailProductStorageController extends BaseController
             ->setTemplateVar($this->config->getPluralResourceName())
         ;
         $view->setData($reportTechnical->getDescriptionAreaCompany()->getDetailProductStorages());
+        $view->getSerializationContext()->setGroups(array('report_technical','id'));
         return $this->handleView($view);
     }
     
@@ -43,6 +44,7 @@ class DetailProductStorageController extends BaseController
             throw $this->createAccessDeniedHttpException();
         }
         $resource = $this->createNew();
+        $resource->setDescriptionAreaCompany($reportTechnical->getDescriptionAreaCompany());
         
         $form = $this->getForm($resource);
         $data = array();
