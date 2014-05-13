@@ -504,13 +504,7 @@
         }
         function getTableExtraInfoSection4(data)
         {
-            return  '<strong>{{ 'sigtec.table.header.capacity'|trans }}</strong><br/><br/>' +
-                    '<strong>{{ 'sigtec.table.header.theoretical'|trans }}:</strong> ' + data.theoretical + '<br>' +
-                    '<strong>{{ 'sigtec.table.header.installed' |trans }}:</strong> ' + data.installed + '<br>' +
-                    '<strong>{{ 'sigtec.table.header.busy' | trans }}:</strong> ' + data.busy + '<br>' +
-                    '<strong>{{ 'sigtec.table.header.idle' | trans }}:</strong> ' + data.idle + '<br>' +
-                    '<strong>{{ 'sigtec.production_level.percentage' | trans }}:</strong> ' + data.percentage + '<br>'
-                    ;
+            return  '<strong>{{ 'sigtec.table.header.requirement'|trans }}:</strong> ' + data.requirement + '<br>';
         }
              $(document).ready(function() {
             //Example for table extra info methos to override
