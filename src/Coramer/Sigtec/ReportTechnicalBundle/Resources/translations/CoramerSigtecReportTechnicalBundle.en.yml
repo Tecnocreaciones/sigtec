@@ -37,6 +37,7 @@ sigtec:
             grade: Grade
             resin: Resin
             requirement: Requirement
+            plant: Plant
         content:
             empty:
                 storage: There are no details of storage products.

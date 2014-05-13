@@ -15,6 +15,9 @@ class DetailProductStorageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $data = $builder->getData();
+        $company = $data->getDescriptionAreaCompany()->getReportTechnical()->getCompany();
+        
         $builder
             ->add('material',null,array(
                 'label' => 'sigtec.table.header.material',
@@ -25,7 +28,6 @@ class DetailProductStorageType extends AbstractType
                     'ng-model' => 'model.detail_product_storage.material',
                     'ng-options' => 'value as value for (key,value) in data.materials',
                 ),
-                'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
             ->add('storage','choice',array(
                 'label' => 'sigtec.table.header.storage',
@@ -38,7 +40,6 @@ class DetailProductStorageType extends AbstractType
                     'ng-model' => 'model.detail_product_storage.storage',
                     'ng-options' => 'value as value for (key,value) in data.storages',
                 ),
-                'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
             ->add('separatedResin','choice',array(
                 'label' => 'sigtec.table.header.separated_resin',
@@ -52,7 +53,18 @@ class DetailProductStorageType extends AbstractType
                     'ng-model' => 'model.detail_product_storage.separated_resin',
                     'ng-options' => 'value as value for (key,value) in data.separated_resins',
                 ),
-                'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
+            ))
+            ->add('plant',null,array(
+                'label' => 'sigtec.table.header.plant',
+                'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Plant',
+                'property' => 'name',
+                'attr' => array(
+                    'class' => 'select auto-refesh replacement input-small small-margin-right validate[required]',
+                    'ng-model' => 'model.detail_product_storage.plant',
+                ),
+                'query_builder' => function(\Coramer\Sigtec\CompanyBundle\Repository\PlantRepository $er) use ($company){
+                    return $er->getQueryBuilderAllActiveByCompany($company);
+                },
             ))
             ->add('totalArea',null,array(
                 'label' => 'sigtec.total',
@@ -61,7 +73,6 @@ class DetailProductStorageType extends AbstractType
                     'min' => '0',
                     'ng-model' => 'model.detail_product_storage.total_area',
                 ),
-                'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
             ->add('coveredArea',null,array(
                 'label' => 'sigtec.covered',
@@ -70,7 +81,6 @@ class DetailProductStorageType extends AbstractType
                     'min' => '0',
                     'ng-model' => 'model.detail_product_storage.covered_area',
                 ),
-                'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
             ))
         ;
     }
@@ -81,7 +91,8 @@ class DetailProductStorageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage'
+            'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage',
+            'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
         ));
     }
 

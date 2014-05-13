@@ -36,6 +36,17 @@
         {{ form_errors(form.separatedResin) }}
     </div>
     <div class="field-block button-height">
+        {{ form_label(form.plant) }}
+        {{ form_widget(form.plant) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.detail_product_storage.plant'|trans({},'help')|raw }}
+            </span>
+        </span>
+        {{ form_errors(form.totalArea) }}
+    </div>
+    <div class="field-block button-height">
         {{ form_label(form.totalArea) }}
         {{ form_widget(form.totalArea) }}
         <span class="info-spot">

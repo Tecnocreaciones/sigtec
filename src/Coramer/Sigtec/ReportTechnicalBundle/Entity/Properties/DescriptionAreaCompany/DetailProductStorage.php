@@ -14,7 +14,7 @@ namespace Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionArea
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Description of DetailProductStorage
+ * Detalle de almacenaje de producto
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  * 
@@ -96,7 +96,15 @@ class DetailProductStorage
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany", inversedBy="detailProductStorages")
      */
     protected $descriptionAreaCompany;
-
+    
+    /**
+     * Planta
+     * 
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Plant
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Plant")
+     */
+    private $plant;
+    
     /**
      * Get id
      *
@@ -248,5 +256,28 @@ class DetailProductStorage
     public function isCoveredAreaValid()
     {
         return ($this->coveredArea <= $this->totalArea);
+    }
+
+    /**
+     * Set plant
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Plant $plant
+     * @return DetailProductStorage
+     */
+    public function setPlant(\Coramer\Sigtec\CompanyBundle\Entity\Plant $plant = null)
+    {
+        $this->plant = $plant;
+
+        return $this;
+    }
+
+    /**
+     * Get plant
+     *
+     * @return \Coramer\Sigtec\CompanyBundle\Entity\Plant 
+     */
+    public function getPlant()
+    {
+        return $this->plant;
     }
 }

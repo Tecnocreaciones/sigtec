@@ -110,6 +110,7 @@ class DetailProductStorageController extends BaseController
         }
         
         $resource = $this->createNew();
+        $resource->setDescriptionAreaCompany($reportTechnical->getDescriptionAreaCompany());
         $form = $this->getForm($resource);
         return $this->render('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/DescriptionAreaCompany/DetailProductStorage/form.html.twig',array(
             'form' => $form->createView(),

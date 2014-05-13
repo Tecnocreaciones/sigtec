@@ -37,6 +37,7 @@ sigtec:
             grade: Grado
             resin: Resina
             requirement: Requerimiento
+            plant: Planta
         content:
             empty:
                 storage: No existen detalles de almacenaje de los productos.
