@@ -58,6 +58,8 @@ sigtec:
     description_of_products_manufactured:
         description_of_products_manufactured: Descripción de los productos fabricados
         product_manufactured: Producto fabricado
+    additives_used_in_the_process:
+        additives_used_in_the_process: Aditivos que emplea en el proceso
     report_technical:
         approve: Aprobar
         reject: Rechazar

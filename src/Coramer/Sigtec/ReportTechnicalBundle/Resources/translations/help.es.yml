@@ -29,3 +29,5 @@ sigtec:
                                                 sección anterior (Nivel de producción). Sólo se considerarán aquellos productos elaborados 
                                                 con las resinas Venelene, Propilven, Vinilen e importadas, tanto compradas a Coramer, 
                                                 como a distribuidores y consorcios.
+        additives_used_in_the_process:
+            additives_used_in_the_process: Se detallan los aditivos empleados en la fabricación de los productos terminados.
