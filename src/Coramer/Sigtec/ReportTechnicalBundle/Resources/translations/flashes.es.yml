@@ -15,3 +15,7 @@ coramer_sigtec_backend:
         create: Descripción de producto agregado
         update: Descripción de producto actualizado
         delete: Descripción de producto eliminado
+    company_report_technical_properties_additive_used:
+        create: Descripción del aditivo usado agregado
+        update: Descripción del aditivo usado actualizado
+        delete: Descripción del aditivo usado eliminado

@@ -71,3 +71,7 @@ coramer_sigtec_company_report_technical_properties_production_level:
 coramer_sigtec_company_report_technical_properties_product_manufactured:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/product_manufactured.yml"
     prefix:   /{id}/product-manufactured
+    
+coramer_sigtec_company_report_technical_properties_additive_used:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/additive_used.yml"
+    prefix:   /{id}/additive-used

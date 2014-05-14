@@ -294,6 +294,44 @@
                             <h3>5) {{ 'sigtec.additives_used_in_the_process.additives_used_in_the_process'|trans }}</h3>
                             <p>{{ 'sigtec.help.additives_used_in_the_process.additives_used_in_the_process'|trans({},'help') }}</p>
 			</div>
+                        <div class="field-block">
+                            <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection5" >
+                                <tr>
+                                    <th>{{ 'sigtec.table.header.additive'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.base_polymer'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.mark'|trans }}</th> 
+                                    <th>&nbsp;</th>
+                                </tr>
+                                <tr ng-hide="reportTechnical.additives_used">
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr ng-hide="reportTechnical.additives_used">
+                                    <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.additive_used'|trans }}</td>
+                                </tr>
+                                <tr ng-hide="reportTechnical.additives_used">
+                                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr ng-repeat="additive_used in reportTechnical.additives_used" data="[[ additive_used|json ]]">
+                                    <td><a href ng-click="addAdditiveUsed(additive_used)" >[[ additive_used.description ]]</a></td>
+                                    <td>[[ additive_useddescription ]]</td>
+                                    <td>[[ additive_used.description ]]</td>
+                                    <td>[[ additive_used.description ]]</td>
+                                    <td>
+                                        <span class="button-group compact">
+                                            <a href ng-click="itemDelete(additive_used._links.delete.href,reportTechnicalManager.reload().additiveUsed)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>    
+                            <p class="button-height align-right">
+                                <a href ng-click="addAdditiveUsed()" class="button glossy mid-margin-right">
+                                    <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                                    {{ 'sigtec.button.add_detail'|trans }}
+                                </a>
+                            </p>
+			</div>
                         <div class="field-block button-height wizard-controls align-right">
 
 				<a href ng-click="save()" class="button glossy mid-margin-right">
@@ -510,6 +548,11 @@
         function getTableExtraInfoSection4(data)
         {
             return  '<strong>{{ 'sigtec.table.header.requirement'|trans }}:</strong> ' + data.requirement + '<br>';
+        }
+        function getTableExtraInfoSection5(data)
+        {
+            return  '<strong>{{ 'sigtec.table.header.additive_supplier'|trans }}:</strong> ' + data.additive_supplier.name + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.concentration'|trans }}:</strong> ' + data.concentration + ' ' + data.type_concentration + '<br>';
         }
              $(document).ready(function() {
             //Example for table extra info methos to override

@@ -14,6 +14,14 @@ sigtec:
     storage:
         outdoor: Outdoor
         confined: Confined
+    additive_used:
+        additive: Additive
+        product: Product
+        base_polymer: Base polymer
+        additive_supplier: Supplier
+        mark: Marca
+        concentration: Concentration
+        type_concentration: Type concentration
     table:
         header:
             total: Total m<sup>2</sup>
@@ -39,11 +47,15 @@ sigtec:
             requirement: Requirement
             plant: Plant
             dedication: Dedication
+            additive: Additive
+            base_polymer: Base polymer
+            mark: Mark
         content:
             empty:
                 storage: There are no details of storage products.
                 production_level: No details of the production level.
                 product_manufactured: No details of the products manufactured.
+                additive_used: No details of the additives use.
     button:
         add_detail: Add detail
     description_of_the_business_areas:
@@ -58,6 +70,7 @@ sigtec:
     description_of_products_manufactured:
         description_of_products_manufactured: Description of products manufactured
         product_manufactured: Product manufactured
+        additive_used: Additive used
     additives_used_in_the_process:
         additives_used_in_the_process: Additives used in the process
     report_technical:

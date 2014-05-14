@@ -15,3 +15,7 @@ coramer_sigtec_backend:
         create: Product description added
         update: Product description updated
         delete: Product description removed
+    company_report_technical_properties_additive_used:
+        create: Description added additive used
+        update: Description additive used updated
+        delete: Description removed additive used

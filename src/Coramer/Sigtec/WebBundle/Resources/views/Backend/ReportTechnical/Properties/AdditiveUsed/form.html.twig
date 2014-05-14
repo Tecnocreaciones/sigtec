@@ -1,0 +1,76 @@
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+<form id="form_pop_up" method="POST" action="[[ reportTechnicalHelper.form.action.url ]]">
+<fieldset class="fieldset fields-list">
+    <legend class="legend">{{ 'sigtec.additives_used_in_the_process.additive_used'|trans }}</legend>
+    <div class="field-block button-height">
+        {{ form_label(form.additive) }}
+        {{ form_widget(form.additive) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.additive_used.additive'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.additive) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.product) }}
+        {{ form_widget(form.product) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.additive_used.product'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.product) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.basePolymer) }}
+        {{ form_widget(form.basePolymer) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.additive_used.basePolymer'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.basePolymer) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.mark) }}
+        {{ form_widget(form.mark) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.additive_used.mark'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.mark) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.additiveSupplier) }}
+        {{ form_widget(form.additiveSupplier) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.additive_used.additive_supplier'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.additiveSupplier) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.concentration) }}
+        {{ form_widget(form.concentration) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.additive_used.concentration'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.concentration) }}
+    </div>
+</fieldset>
+{{ form_rest(form) }}
+</form>
+<script>
+    jQuery('#form_pop_up').validationEngine({showOneMessage:true});
+</script>

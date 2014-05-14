@@ -308,6 +308,12 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\ProductManufacturedController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured
+         coramer_sigtec_backend.company_report_technical_properties_additive_used:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/ReportTechnical/Properties/AdditiveUsed
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\AdditiveUsedController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed
          coramer_sigtec_backend.company_report_technical_properties_material:
             driver: doctrine/orm
             classes:
