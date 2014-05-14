@@ -83,7 +83,7 @@ class GenericDataController extends FOSRestController
     {
         $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_type_process');
         $view = $this->view($repository->getAllActive());
-        $view->getSerializationContext()->setGroups('list');
+        $view->getSerializationContext()->setGroups(array('id','list'));
         return $this->handleView($view);
     }
     
@@ -100,7 +100,7 @@ class GenericDataController extends FOSRestController
             $this->createNotFoundException();
         }
         $view = $this->view($resource->getProcesses());
-        $view->getSerializationContext()->setGroups('list');
+        $view->getSerializationContext()->setGroups(array('id','list'));
         return $this->handleView($view);
     }
     
@@ -113,7 +113,7 @@ class GenericDataController extends FOSRestController
     {
         $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_resin');
         $view = $this->view($repository->getAllActive());
-        $view->getSerializationContext()->setGroups('list');
+        $view->getSerializationContext()->setGroups(array('id','list'));
         return $this->handleView($view);
     }
     
@@ -126,7 +126,7 @@ class GenericDataController extends FOSRestController
     {
         $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_grade');
         $view = $this->view($repository->getAllActive());
-        $view->getSerializationContext()->setGroups(array('grade'));
+        $view->getSerializationContext()->setGroups(array('id','grade'));
         return $this->handleView($view);
     }
     
@@ -139,7 +139,47 @@ class GenericDataController extends FOSRestController
     {
         $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_product');
         $view = $this->view($repository->getAllActive());
-        $view->getSerializationContext()->setGroups('list');
+        $view->getSerializationContext()->setGroups(array('id','list'));
+        return $this->handleView($view);
+    }
+    
+    /**
+     * Retorna la lista de aditivos activos
+     * 
+     * @return json|xml
+     */
+    function getAdditivesAction()
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_additive');
+        $view = $this->view($repository->getAllActive());
+        $view->getSerializationContext()->setGroups(array('id','list'));
+        return $this->handleView($view);
+    }
+    
+    /**
+     * Retorna la lista de aditivos activos
+     * 
+     * @return json|xml
+     */
+    function getAdditiveProductsAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $reportTechnical = $this->findReportTechnicalOr404($request);
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_product');
+        $view = $this->view($repository->getQueryBuilderByReportTechnical($reportTechnical));
+        $view->getSerializationContext()->setGroups(array('id','list'));
+        return $this->handleView($view);
+    }
+    
+    /**
+     * Retorna la lista de proveedores de aditivos activos
+     * 
+     * @return json|xml
+     */
+    function getAdditiveSuppliersAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_supplier');
+        $view = $this->view($repository->getAllActive());
+        $view->getSerializationContext()->setGroups(array('id','list'));
         return $this->handleView($view);
     }
     
@@ -155,5 +195,27 @@ class GenericDataController extends FOSRestController
     protected function getTranslator()
     {
         return $this->get('translator');
+    }
+    
+    /**
+     * 
+     * @param Request $request
+     * @return ReportTechnical
+     * @throws NotFoundHttpException
+     */
+    protected function findReportTechnicalOr404(Request $request)
+    {
+        $resource = $this->getReportTechnicalRepository()->find($request->get('id'));
+        if(!$resource){
+            throw $this->createNotFoundException();
+        }
+        return $resource;
+    }
+    
+    /**
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Repository\ReportTechnicalRepository
+     */
+    protected function getReportTechnicalRepository(){
+        return $this->get('coramer_sigtec_backend.repository.company_report_technical');
     }
 }

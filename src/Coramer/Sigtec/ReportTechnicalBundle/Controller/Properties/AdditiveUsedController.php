@@ -39,7 +39,7 @@ class AdditiveUsedController extends BaseController
             throw $this->createAccessDeniedHttpException();
         }
         $resource = $this->createNew();
-        
+        $resource->setReportTechnical($reportTechnical);
         $form = $this->getForm($resource);
         $data = array();
         $view = $this->view();
@@ -93,6 +93,7 @@ class AdditiveUsedController extends BaseController
             throw $this->createAccessDeniedHttpException();
         }
         $resource = $this->getRepository()->find($request->get('slug'));
+        $resource->setReportTechnical($reportTechnical);
         $form = $this->getForm($resource);
         
         if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {

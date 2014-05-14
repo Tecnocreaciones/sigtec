@@ -85,3 +85,36 @@ coramer_sigtec_backend_company_report_technical_data_additive_type_concentration
     requirements:
         _method: GET
         _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_data_additive:
+    pattern:  /additives.{_format}
+    defaults:
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getAdditivesAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_data_additive_products:
+    pattern:  /additives.{_format}
+    defaults:
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getAdditiveProductsAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_data_additive_suppliers:
+    pattern:  /additives-suppliers.{_format}
+    defaults:
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getAdditiveSuppliersAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml

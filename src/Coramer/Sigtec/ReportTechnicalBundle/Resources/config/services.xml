@@ -75,6 +75,18 @@
         >
             <argument>Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product</argument>
         </service>
+        <service id="coramer_sigtec_backend.repository.company_report_technical_additive" class="Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\AdditiveRepository" 
+            factory-service="tecnocreaciones_resource.manager_entity_repository"
+            factory-method="getRepository"
+        >
+            <argument>Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Additive</argument>
+        </service>
+        <service id="coramer_sigtec_backend.repository.company_report_technical_supplier" class="Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\SupplierRepository" 
+            factory-service="tecnocreaciones_resource.manager_entity_repository"
+            factory-method="getRepository"
+        >
+            <argument>Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Supplier</argument>
+        </service>
         <service id="coramer_sigtec_report_technical.form.type.report_technical" class="%coramer_sigtec_report_technical.form.type.report_technical.class%">
             <argument>%coramer_sigtec_company.company.class%</argument>
             <tag name="form.type" alias="coramer_sigtec_reporttechnicalbundle_reporttechnical" />

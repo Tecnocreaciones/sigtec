@@ -344,6 +344,16 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product
+         coramer_sigtec_backend.company_report_technical_additive:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Additive
+         coramer_sigtec_backend.company_report_technical_supplier:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Supplier
          api_tecnocreaciones_vzla_entity.country:
             driver: doctrine/orm
             classes:

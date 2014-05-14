@@ -24,6 +24,7 @@ class AdditiveUsedType extends AbstractType
                 'attr' => array(
                     'class' => 'select small-margin-right validate[required]',
                     'ng-model' => 'model.additive_used.additive',
+                    'ng-options' => 'value as value.description for (key,value) in data.additive.additives',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
                     return $er->getQueryAllActive();
@@ -36,6 +37,7 @@ class AdditiveUsedType extends AbstractType
                 'attr' => array(
                     'class' => 'select small-margin-right validate[required]',
                     'ng-model' => 'model.additive_used.product',
+                    'ng-options' => 'value as value.description for (key,value) in data.additive.products',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\ProductRepository $er) use ($reportTechnical){
                     return $er->getQueryBuilderByReportTechnical($reportTechnical);
@@ -62,6 +64,7 @@ class AdditiveUsedType extends AbstractType
                 'attr' => array(
                     'class' => 'select small-margin-right validate[required]',
                     'ng-model' => 'model.additive_used.additive_supplier',
+                    'ng-options' => 'value as value.description for (key,value) in data.additive.suppliers',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
                     return $er->getQueryAllActive();

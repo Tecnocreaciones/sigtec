@@ -121,7 +121,10 @@ angular.module('sigtecModule.controllers', [])
           },
           products: null,
           additive: {
-              type_concentration: null
+              type_concentration: null,
+              additives: null,
+              products: null,
+              suppliers: null
           }
       };
       $scope.form = {};
@@ -186,14 +189,14 @@ angular.module('sigtecModule.controllers', [])
               openFormModal();
           }
       }
-      
+      //Abre la ventana modal para añadir o actualizar los detalles de almacenamiento del producto
       $scope.addDetailsStorage = function(detailProductStorage){
           notificationBarService.getLoadStatus().loading();
           $scope.templates.formDetailProductStorage.parameterCallback = detailProductStorage;
           $scope.template = $scope.templates.formDetailProductStorage;
           $scope.openModalForm();
       };
-      
+      //Abre la ventana modal para añadir o actualizar un nivel de produccion
       $scope.addLevelProduction = function(levelProduction){
           notificationBarService.getLoadStatus().loading();
           $scope.templates.formProductionLevel.parameterCallback = levelProduction;
@@ -240,7 +243,7 @@ angular.module('sigtecModule.controllers', [])
                     };
           }
     }
-    
+    //Establece la data del formulario de nivel de produccion
     $scope.setDataProductionLevel = function(productionLevel){
         if(productionLevel != undefined){
               $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:productionLevel.id});
@@ -298,10 +301,9 @@ angular.module('sigtecModule.controllers', [])
     $scope.setDataAdditiveUsed = function(additiveUsed){
         if(additiveUsed != undefined){
              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:additiveUsed.id});
-             
-             $scope.model.additive_used.additive = additiveUsed.additive;
-             $scope.model.additive_used.product = additiveUsed.product;
-             $scope.model.additive_used.additive_supplier = additiveUsed.additive_supplier;
+             $scope.model.additive_used.additive = $scope.data.additive.additives[additiveUsed.additive.id];
+             $scope.model.additive_used.product = $scope.data.additive.products[additiveUsed.product.id];
+             $scope.model.additive_used.additive_supplier = $scope.data.additive.suppliers[additiveUsed.additive_supplier.id];
              $scope.model.additive_used.base_polymer = additiveUsed.base_polymer;
              $scope.model.additive_used.mark = additiveUsed.mark;
              $scope.model.additive_used.concentration = additiveUsed.concentration;
@@ -458,6 +460,12 @@ angular.module('sigtecModule.controllers', [])
           if($scope.data.additive.type_concentration == null){
               reportTechnicalManager.getData().getAdditiveTypeConcentration();
           }
+          if($scope.data.additive.additives == null){
+              reportTechnicalManager.getData().getAdditives();
+          }
+          if($scope.data.additive.suppliers == null){
+              reportTechnicalManager.getData().getSuppliers();
+          }
           
       };
       
@@ -518,6 +526,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 product: 'coramer_sigtec_backend_company_report_technical_data_product',
                 plants: 'coramer_sigtec_backend_company_plant_company',
                 additive_type_concentration: 'coramer_sigtec_backend_company_report_technical_data_additive_type_concentration',
+                additive: 'coramer_sigtec_backend_company_report_technical_data_additive',
+                additive_products: 'coramer_sigtec_backend_company_report_technical_data_additive_products',
+                additive_suppliers: 'coramer_sigtec_backend_company_report_technical_data_additive_suppliers',
             },                    
             form: {
                 detail_product_storage: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_form',
@@ -593,6 +604,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 };
                 $scope.template = '';
                 self.getData().getPlants($scope.reportTechnical.company.id);
+                scope.reportTechnicalManager.getData().getAdditivesProducts();
                 notificationBarService.getLoadStatus().done();
             });
         },
@@ -733,6 +745,36 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                               dataArray[i] = val;
                           });
                         scope.data.additive.type_concentration = dataArray;
+                    });
+                },
+                getAdditives: function(){
+                    return $http.get(self.generateRoute(config.routes.data.additive)).success(function(d){
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[val.id] = val;
+                          });
+                        scope.data.additive.additives = dataArray;
+                    });
+                },
+                getAdditivesProducts: function(selected){
+                        var dataArray = [];
+                        jQuery.each(scope.reportTechnical.products_manufactured,function(i,vals){
+                            if(vals != undefined){
+                                dataArray[vals.product.id] = vals.product;
+                            }
+                        });
+                        scope.data.additive.products = dataArray;
+                        if(selected != undefined){
+                            scope.model.additive_used.product = dataArray[selected];
+                        }
+                },
+                getSuppliers: function(){
+                    return $http.get(self.generateRoute(config.routes.data.additive_suppliers)).success(function(d){
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[val.id] = val;
+                          });
+                        scope.data.additive.suppliers = dataArray;
                     });
                 },
             }
