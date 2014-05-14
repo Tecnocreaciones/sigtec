@@ -305,7 +305,7 @@ angular.module('sigtecModule.controllers', [])
              $scope.model.additive_used.base_polymer = additiveUsed.base_polymer;
              $scope.model.additive_used.mark = additiveUsed.mark;
              $scope.model.additive_used.concentration = additiveUsed.concentration;
-             $scope.model.additive_used.type_concentration = additiveUsed.type_concentration;
+             $scope.model.additive_used.type_concentration = $scope.data.additive.type_concentration[additiveUsed.type_concentration];
           }else{
               $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
               $scope.model.additive_used = {

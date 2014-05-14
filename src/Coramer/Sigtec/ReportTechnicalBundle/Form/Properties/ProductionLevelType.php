@@ -26,8 +26,11 @@ class ProductionLevelType extends AbstractType
                     'ng-model' => 'model.production_level.type_process',
                     'ng-change' => 'reportTechnicalManager.getData().getProcess(model.production_level.type_process)',
                 ),
+                'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
+                    return $er->getQueryAllActive();
+                }
             ))
-            ->add('process',null,array(
+            ->add('process','entity',array(
                 'label' => 'sigtec.table.header.process',
                 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process',
                 'property' => 'description',
@@ -36,6 +39,9 @@ class ProductionLevelType extends AbstractType
                     'ng-options' => 'value as value for (key,value) in data.process',
                     'ng-model' => 'model.production_level.process',
                 ),
+                'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
+                    return $er->getQueryAllActive();
+                }
             ))
             ->add('shifts',null,array(
                 'label' => 'sigtec.table.header.shifts',

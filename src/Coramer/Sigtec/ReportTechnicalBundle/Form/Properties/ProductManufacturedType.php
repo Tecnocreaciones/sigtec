@@ -26,6 +26,9 @@ class ProductManufacturedType extends AbstractType
                     'ng-model' => 'model.product_manufactured.resin',
                     'ng-change' => 'reportTechnicalManager.getData().getGrade(model.product_manufactured.resin)',
                 ),
+                'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
+                    return $er->getQueryAllActive();
+                }
             ))
             ->add('grade','entity',array(
                 'label' => 'sigtec.table.header.grade',
@@ -37,6 +40,9 @@ class ProductManufacturedType extends AbstractType
                     'ng-model' => 'model.product_manufactured.grade',
                     //'ng-change' => 'reportTechnicalManager.getData().getProcess(model.product_manufactured.type_process)',
                 ),
+                'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
+                    return $er->getQueryAllActive();
+                }
             ))
             ->add('process','entity',array(
                 'label' => 'sigtec.table.header.process',
@@ -48,6 +54,9 @@ class ProductManufacturedType extends AbstractType
                     'ng-model' => 'model.product_manufactured.process',
                     //'ng-change' => 'reportTechnicalManager.getData().getProcess(model.product_manufactured.type_process)',
                 ),
+                'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
+                    return $er->getQueryAllActive();
+                }
             ))
             ->add('product','entity',array(
                 'label' => 'sigtec.table.header.product',

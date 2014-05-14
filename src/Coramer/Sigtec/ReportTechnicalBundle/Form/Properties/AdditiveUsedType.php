@@ -25,6 +25,9 @@ class AdditiveUsedType extends AbstractType
                     'class' => 'select small-margin-right validate[required]',
                     'ng-model' => 'model.additive_used.additive',
                 ),
+                'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
+                    return $er->getQueryAllActive();
+                }
             ))
             ->add('product','entity',array(
                 'label' => 'sigtec.additive_used.product',
@@ -60,6 +63,9 @@ class AdditiveUsedType extends AbstractType
                     'class' => 'select small-margin-right validate[required]',
                     'ng-model' => 'model.additive_used.additive_supplier',
                 ),
+                'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
+                    return $er->getQueryAllActive();
+                }
             ))
             ->add('concentration',null,array(
                 'label' => 'sigtec.additive_used.concentration',

@@ -22,6 +22,10 @@ use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed;
  */
 class GenericDataController extends FOSRestController
 {
+    /**
+     * Retorna la informacion de almacenamiento
+     * @return json|xml
+     */
     function getStoragesAction()
     {
         $data = array(
@@ -31,9 +35,10 @@ class GenericDataController extends FOSRestController
         
         return $this->handleView($this->view($data));
     }
+    
     /**
      * Retorna si aplica resina
-     * @return type
+     * @return json|xml
      */
     function getSeparatedResinAction() 
     {
@@ -47,7 +52,8 @@ class GenericDataController extends FOSRestController
     }
     /**
      * Retorna los tipos de concentracion de los aditivos
-     * @return type
+     * 
+     * @return json|xml
      */
     function getAdditiveUsedTypeConcentrationAction() 
     {
@@ -68,7 +74,11 @@ class GenericDataController extends FOSRestController
         
         return $this->handleView($this->view($data));
     }
-    
+    /**
+     * Retorna los tipos de procesos
+     * 
+     * @return json|xml
+     */
     function getTypeProcessAction()
     {
         $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_type_process');
@@ -78,7 +88,8 @@ class GenericDataController extends FOSRestController
     }
     
     /**
-     * Retorna la lista de procesos activas
+     * Retorna la lista de procesos activos
+     * 
      * @return json|xml
      */
     function getProcessAction($idTypeProcess)
@@ -95,6 +106,7 @@ class GenericDataController extends FOSRestController
     
     /**
      * Retorna la lista de resinas activas
+     * 
      * @return json|xml
      */
     function getResinAction()
@@ -107,6 +119,7 @@ class GenericDataController extends FOSRestController
     
     /**
      * Retorna la lista de grados activos
+     * 
      * @return json|xml
      */
     function getGradeAction()
@@ -119,6 +132,7 @@ class GenericDataController extends FOSRestController
     
     /**
      * Retorna la lista de productos activos
+     * 
      * @return json|xml
      */
     function getProductsAction()
