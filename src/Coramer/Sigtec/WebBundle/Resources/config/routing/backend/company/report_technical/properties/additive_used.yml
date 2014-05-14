@@ -39,6 +39,7 @@ coramer_sigtec_backend_company_report_technical_properties_additive_used_update:
         _controller: coramer_sigtec_backend.controller.company_report_technical_properties_additive_used:updateAction
         _sylius:
             form: coramer_sigtec_reporttechnicalbundle_properties_additiveused
+        _format: json
     options:
         expose: true
     requirements:

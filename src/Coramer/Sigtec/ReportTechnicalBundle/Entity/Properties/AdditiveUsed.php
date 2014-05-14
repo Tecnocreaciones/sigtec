@@ -295,4 +295,18 @@ class AdditiveUsed
     {
         return $this->reportTechnical;
     }
+    
+    /**
+     * Valida que el valor de la concentracion sea valido de acuerdo al tipo de concentracion
+     */
+    function isValidConcentration()
+    {
+        if(($this->typeConcentration == self::TYPE_CONCENTRATION_PERCENTAGE) && ($this->concentration > 0 && $this->concentration <= 100)){
+            return true;
+        }elseif(($this->typeConcentration == self::TYPE_CONCENTRATION_PPC) && ($this->concentration > 0)){
+            return true;
+        }
+        
+        return false;
+    }
 }

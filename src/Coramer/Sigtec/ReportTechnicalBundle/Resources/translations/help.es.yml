@@ -31,3 +31,12 @@ sigtec:
                                                 como a distribuidores y consorcios.
         additives_used_in_the_process:
             additives_used_in_the_process: Se detallan los aditivos empleados en la fabricación de los productos terminados.
+            additive: Clase de aditivo que se agrega en el proceso a la resina plástica para la fabricación de los productos.
+            product: Producto fabricado con el aditivo específico.
+            mark: Nombre de la marca del aditivo que se utiliza.
+            additive_supplier: Nombre del proveedor del aditivo.
+            concentration: Indicar la concentración en la que se adiciona el aditivo a la resina o al compuesto.
+            type_concentration:
+                percentage: Cuando es porcentaje los valores permitidos son 0-100.
+                ppc: Cuando es PPC (partes por cien) los valores permitidos son 0-n.
+                

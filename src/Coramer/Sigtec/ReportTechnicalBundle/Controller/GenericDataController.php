@@ -62,13 +62,13 @@ class GenericDataController extends FOSRestController
                 'description' => '%',
                 'min' => 0,
                 'max' => 100,
-                'help' => $this->trans('sigtec.help.additive_used.type_concentration.percentage',array(),'help')
+                'help' => $this->trans('sigtec.help.additives_used_in_the_process.type_concentration.percentage',array(),'help')
             ),
             AdditiveUsed::TYPE_CONCENTRATION_PPC => array(
                 'description' => 'PPC',
                 'min' => 0,
                 'max' => null,
-                'help' => $this->trans('sigtec.help.additive_used.type_concentration.ppc',array(),'help')
+                'help' => $this->trans('sigtec.help.additives_used_in_the_process.type_concentration.ppc',array(),'help')
             ),
         );
         

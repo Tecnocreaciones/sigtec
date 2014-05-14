@@ -5,7 +5,7 @@
     <div class="field-block button-height">
         {{ form_label(form.additive) }}
         {{ form_widget(form.additive) }}
-        <span class="info-spot">
+        <span class="info-spot on-left">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
                 {{ 'sigtec.help.additives_used_in_the_process.additive'|trans({},'help') }}
@@ -30,7 +30,7 @@
         <span class="info-spot">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
-                {{ 'sigtec.help.additives_used_in_the_process.basePolymer'|trans({},'help') }}
+                {{ 'sigtec.help.additives_used_in_the_process.base_polymer'|trans({},'help') }}
             </span>
         </span>
         {{ form_errors(form.basePolymer) }}
@@ -49,7 +49,7 @@
     <div class="field-block button-height">
         {{ form_label(form.additiveSupplier) }}
         {{ form_widget(form.additiveSupplier) }}
-        <span class="info-spot">
+        <span class="info-spot on-left">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
                 {{ 'sigtec.help.additives_used_in_the_process.additive_supplier'|trans({},'help') }}

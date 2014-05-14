@@ -30,4 +30,12 @@ sigtec:
                                                 Propilven, vinylene and imported resins, both purchased from Coramer, and distributors 
                                                 and consortia.
         additives_used_in_the_process:
-            additives_used_in_the_process: The additives used are described in the manufacture of finished products
+            additives_used_in_the_process: The additives used are described in the manufacture of finished products.
+            additive: Kind of additive added in the process to the plastic resin for the manufacture of products.
+            product: Product manufactured with the specific additive.
+            mark: Name brand additive used.
+            additive_supplier: Supplier name of the additive.
+            concentration: Indicate the concentration in which the additive to the resin or the compound is added.
+            type_concentration:
+                percentage: When percentage allowed values are 0-100. 
+                ppc: When PPC (parts per hundred) allowed values are 0-n.

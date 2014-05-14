@@ -22,4 +22,11 @@
             <option name="message">pland ss already exists.</option>
         </constraint>
     </class>
+    <class name="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed">
+        <getter property="validConcentration">
+            <constraint name="True">
+                <option name="message">sigtec.validators.the_concentration_value_is_incorrect</option>
+            </constraint>
+        </getter>
+    </class>
 </constraint-mapping>

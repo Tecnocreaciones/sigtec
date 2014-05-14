@@ -43,6 +43,7 @@ coramer_sigtec_backend_company_report_technical_properties_product_manufactured_
         expose: true
     requirements:
         _method: POST|PUT
+        _format: json|xml
         
 coramer_sigtec_backend_company_report_technical_properties_product_manufactured_delete:
     pattern:  /{slug}/delete

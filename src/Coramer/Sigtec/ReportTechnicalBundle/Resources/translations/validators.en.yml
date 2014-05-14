@@ -1,3 +1,4 @@
 sigtec:
     validators:
         the_covered_area_must_be_less_than_or_equal_to_the_total_area: The covered area must be less than or equal to the total area.
+        the_concentration_value_is_incorrect: The concentration value is incorrect.
