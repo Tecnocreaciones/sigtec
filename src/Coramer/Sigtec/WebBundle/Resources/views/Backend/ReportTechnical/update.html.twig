@@ -313,10 +313,10 @@
                                     <td colspan="5" class="bold text-center">&nbsp;</td>
                                 </tr>
                                 <tr ng-repeat="additive_used in reportTechnical.additives_used" data="[[ additive_used|json ]]">
-                                    <td><a href ng-click="addAdditiveUsed(additive_used)" >[[ additive_used.description ]]</a></td>
-                                    <td>[[ additive_useddescription ]]</td>
-                                    <td>[[ additive_used.description ]]</td>
-                                    <td>[[ additive_used.description ]]</td>
+                                    <td><a href ng-click="addAdditiveUsed(additive_used)" >[[ additive_used.additive.description ]]</a></td>
+                                    <td>[[ additive_used.product.description ]]</td>
+                                    <td>[[ additive_used.base_polymer ]]</td>
+                                    <td>[[ additive_used.mark ]]</td>
                                     <td>
                                         <span class="button-group compact">
                                             <a href ng-click="itemDelete(additive_used._links.delete.href,reportTechnicalManager.reload().additiveUsed)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
@@ -551,8 +551,8 @@
         }
         function getTableExtraInfoSection5(data)
         {
-            return  '<strong>{{ 'sigtec.table.header.additive_supplier'|trans }}:</strong> ' + data.additive_supplier.name + '<br>' +
-                    '<strong>{{ 'sigtec.table.header.concentration'|trans }}:</strong> ' + data.concentration + ' ' + data.type_concentration + '<br>';
+            return  '<strong>{{ 'sigtec.table.header.additive_supplier'|trans }}:</strong> ' + data.additive_supplier.description + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.concentration'|trans }}:</strong> ' + data.concentration + ' ' + data._labels.type_concentration + '<br>';
         }
              $(document).ready(function() {
             //Example for table extra info methos to override

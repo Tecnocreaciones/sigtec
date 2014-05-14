@@ -153,8 +153,6 @@ class ReportTechnicalController extends ResourceController
         $form = $this->getForm($resource);
         $data = array();
         if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
-
-
             if($request->isXmlHttpRequest()){
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($resource);

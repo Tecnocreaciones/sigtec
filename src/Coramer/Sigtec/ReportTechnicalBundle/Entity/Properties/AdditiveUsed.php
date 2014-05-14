@@ -23,6 +23,15 @@ use Doctrine\ORM\Mapping as ORM;
 class AdditiveUsed
 {
     /**
+     * Tipo de concentracion por porcentaje
+     */
+    const TYPE_CONCENTRATION_PERCENTAGE = 0;
+    /**
+     * Tipo de concentracion partes por cien
+     */
+    const TYPE_CONCENTRATION_PPC = 1;
+    
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")

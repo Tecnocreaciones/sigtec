@@ -74,3 +74,14 @@ coramer_sigtec_backend_company_report_technical_data_product:
     requirements:
         _method: GET
         _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_data_additive_type_concentration:
+    pattern:  /additive-used-type-concentration.{_format}
+    defaults:
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getAdditiveUsedTypeConcentrationAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml

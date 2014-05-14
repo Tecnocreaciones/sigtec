@@ -29,7 +29,7 @@ class AdditiveUsedController extends BaseController
             ->setTemplate($this->config->getTemplate('index.html'))
             ->setTemplateVar($this->config->getPluralResourceName())
         ;
-        $view->setData($reportTechnical->getProductsManufactured());
+        $view->setData($reportTechnical->getAdditivesUsed());
         return $this->handleView($view);
     }
     

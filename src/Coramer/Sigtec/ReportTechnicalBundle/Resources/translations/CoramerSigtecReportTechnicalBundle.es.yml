@@ -50,6 +50,8 @@ sigtec:
             additive: Aditivo
             base_polymer: Base polimérica
             mark: Marca
+            additive_supplier: Proveedor
+            concentration: Concentración
         content:
             empty:
                 storage: No existen detalles de almacenaje de los productos.

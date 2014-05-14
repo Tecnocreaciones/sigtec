@@ -50,6 +50,8 @@ sigtec:
             additive: Additive
             base_polymer: Base polymer
             mark: Mark
+            additive_supplier: Supplier
+            concentration: Concentration
         content:
             empty:
                 storage: There are no details of storage products.

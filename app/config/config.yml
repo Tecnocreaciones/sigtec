@@ -113,8 +113,8 @@ stof_doctrine_extensions:
     orm:
         default:
             tree: true
-            sluggable: true
             timestampable: true
+            sluggable: true
             softdeleteable: true
             loggable: true
             

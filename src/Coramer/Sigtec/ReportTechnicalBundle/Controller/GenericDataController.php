@@ -13,6 +13,7 @@ namespace Coramer\Sigtec\ReportTechnicalBundle\Controller;
 
 use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage;
 use FOS\RestBundle\Controller\FOSRestController;
+use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed;
 
 /**
  * Description of GenericDataController
@@ -31,7 +32,7 @@ class GenericDataController extends FOSRestController
         return $this->handleView($this->view($data));
     }
     /**
-     * 
+     * Retorna si aplica resina
      * @return type
      */
     function getSeparatedResinAction() 
@@ -40,6 +41,29 @@ class GenericDataController extends FOSRestController
             DetailProductStorage::SEPARATED_RESIN_NOT_APPLY => 'N/A' ,
             DetailProductStorage::SEPARATED_RESIN_YES => $this->trans('sigtec.yes') ,
             DetailProductStorage::SEPARATED_RESIN_NO => $this->trans('sigtec.no') ,
+        );
+        
+        return $this->handleView($this->view($data));
+    }
+    /**
+     * Retorna los tipos de concentracion de los aditivos
+     * @return type
+     */
+    function getAdditiveUsedTypeConcentrationAction() 
+    {
+        $data = array(
+            AdditiveUsed::TYPE_CONCENTRATION_PERCENTAGE => array(
+                'description' => '%',
+                'min' => 0,
+                'max' => 100,
+                'help' => $this->trans('sigtec.help.additive_used.type_concentration.percentage',array(),'help')
+            ),
+            AdditiveUsed::TYPE_CONCENTRATION_PPC => array(
+                'description' => 'PPC',
+                'min' => 0,
+                'max' => null,
+                'help' => $this->trans('sigtec.help.additive_used.type_concentration.ppc',array(),'help')
+            ),
         );
         
         return $this->handleView($this->view($data));

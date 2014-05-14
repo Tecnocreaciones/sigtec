@@ -11,6 +11,7 @@
 
 namespace Coramer\Sigtec\RestBundle\EventListener;
 
+use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed;
 use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage;
 use JMS\Serializer\EventDispatcher\Events;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
@@ -45,6 +46,7 @@ class SerializeEventListerner implements EventSubscriberInterface
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeDetailProductStorage', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeProductionLevel', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeProductManufactured', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeAdditiveUsed', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed','format' => 'json'),
         );
     }
     
@@ -142,6 +144,30 @@ class SerializeEventListerner implements EventSubscriberInterface
             'delete' => array(
                 'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_product_manufactured_delete',array('id' => $object->getReportTechnical()->getId(),'slug' =>$object->getId()))
                 ),
+        ));
+    }
+    
+    /**
+     * Captura el evento luego que se serealia un uso de aditivo del reporte tecnico
+     * @param ObjectEvent $event
+     */
+    function onPostSerializeAdditiveUsed(ObjectEvent $event) {
+        $object = $event->getObject();
+        
+        $typeConcentration = array(
+            AdditiveUsed::TYPE_CONCENTRATION_PERCENTAGE => '%',
+            AdditiveUsed::TYPE_CONCENTRATION_PPC => 'PPC',
+        );
+        $event->getVisitor()->addData('_links', array(
+            'edit' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_additive_used_update',array('id' => $object->getReportTechnical()->getId(),'slug' =>$object->getId()))
+                ),
+            'delete' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_additive_used_delete',array('id' => $object->getReportTechnical()->getId(),'slug' =>$object->getId()))
+                ),
+        ));
+        $event->getVisitor()->addData('_labels', array(
+            'type_concentration' => $typeConcentration[$object->getTypeConcentration()],
         ));
     }
     

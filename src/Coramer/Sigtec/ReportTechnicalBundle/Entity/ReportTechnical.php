@@ -42,7 +42,7 @@ class ReportTechnical implements ReportTechnicalInterface
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
+     * @ORM\Column(name="updatedAt", type="datetime")
      */
     private $updatedAt;
 

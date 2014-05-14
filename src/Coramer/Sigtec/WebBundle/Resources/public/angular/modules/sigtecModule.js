@@ -62,7 +62,8 @@ angular.module('sigtecModule.controllers', [])
                   }
               },
               production_levels: { },
-              products_manufactured: { }
+              products_manufactured: { },
+              additives_used: {}
           };
           
       var defaultModel = {
@@ -118,7 +119,10 @@ angular.module('sigtecModule.controllers', [])
           product_manufactured: {
               process: null
           },
-          products: null
+          products: null,
+          additive: {
+              type_concentration: null
+          }
       };
       $scope.form = {};
       
@@ -451,8 +455,8 @@ angular.module('sigtecModule.controllers', [])
           if($scope.data.products == null){
               reportTechnicalManager.getData().getProduct();
           }
-          if($scope.data.cache_grades == null){
-              reportTechnicalManager.getData().getGrade();
+          if($scope.data.additive.type_concentration == null){
+              reportTechnicalManager.getData().getAdditiveTypeConcentration();
           }
           
       };
@@ -502,6 +506,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
             },
             production_level: 'coramer_sigtec_backend_company_report_technical_properties_production_level',
             product_manufactured: 'coramer_sigtec_backend_company_report_technical_properties_product_manufactured',
+            additive_used: 'coramer_sigtec_backend_company_report_technical_properties_additive_used',
             data:{
                 material: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_material',
                 storages: 'coramer_sigtec_backend_company_report_technical_data_storages',
@@ -512,6 +517,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 grade: 'coramer_sigtec_backend_company_report_technical_data_grade',
                 product: 'coramer_sigtec_backend_company_report_technical_data_product',
                 plants: 'coramer_sigtec_backend_company_plant_company',
+                additive_type_concentration: 'coramer_sigtec_backend_company_report_technical_data_additive_type_concentration',
             },                    
             form: {
                 detail_product_storage: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_form',
@@ -720,6 +726,15 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             scope.model.detail_product_storage.dedication = dataArray[selected];
                         }
                 },
+                getAdditiveTypeConcentration: function(){
+                    return $http.get(self.generateRoute(config.routes.data.additive_type_concentration)).success(function(d){
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[i] = val;
+                          });
+                        scope.data.additive.type_concentration = dataArray;
+                    });
+                },
             }
         },
         setId: function(i){
@@ -749,6 +764,11 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
               productManufactured: function(){
                   return $http.get(self.generateRoute(config.routes.product_manufactured)).success(function(d){
                         scope.reportTechnical.products_manufactured = d;
+                    });
+              },
+              additiveUsed: function(){
+                  return $http.get(self.generateRoute(config.routes.additive_used)).success(function(d){
+                        scope.reportTechnical.additives_used = d;
                     });
               }
           }  

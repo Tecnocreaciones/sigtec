@@ -5,6 +5,7 @@ namespace Coramer\Sigtec\ReportTechnicalBundle\Form\Properties;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed;
 
 class AdditiveUsedType extends AbstractType
 {
@@ -63,11 +64,16 @@ class AdditiveUsedType extends AbstractType
                     'ng-model' => 'model.additive_used.concentration',
                 ),
             ))
-            ->add('typeConcentration',null,array(
+            ->add('typeConcentration','choice',array(
                 'label' => 'sigtec.additive_used.type_concentration',
+                'choices' => array(
+                    AdditiveUsed::TYPE_CONCENTRATION_PERCENTAGE => '%',
+                    AdditiveUsed::TYPE_CONCENTRATION_PPC => 'PPC',
+                ),
                 'attr' => array(
-                    'class' => 'input small-margin-right input-mini validate[required]',
+                    'class' => 'select auto-refesh small-margin-right input-mini validate[required]',
                     'ng-model' => 'model.additive_used.type_concentration',
+                    'ng-options' => 'value as value.description for (key,value) in data.additive.type_concentration',
                 ),
             ))
         ;

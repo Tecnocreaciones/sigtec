@@ -8,7 +8,7 @@
         <span class="info-spot">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
-                {{ 'sigtec.help.additive_used.additive'|trans({},'help') }}
+                {{ 'sigtec.help.additives_used_in_the_process.additive'|trans({},'help') }}
             </span>
         </span>
         {{ form_errors(form.additive) }}
@@ -19,7 +19,7 @@
         <span class="info-spot">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
-                {{ 'sigtec.help.additive_used.product'|trans({},'help') }}
+                {{ 'sigtec.help.additives_used_in_the_process.product'|trans({},'help') }}
             </span>
         </span>
         {{ form_errors(form.product) }}
@@ -30,7 +30,7 @@
         <span class="info-spot">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
-                {{ 'sigtec.help.additive_used.basePolymer'|trans({},'help') }}
+                {{ 'sigtec.help.additives_used_in_the_process.basePolymer'|trans({},'help') }}
             </span>
         </span>
         {{ form_errors(form.basePolymer) }}
@@ -41,7 +41,7 @@
         <span class="info-spot">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
-                {{ 'sigtec.help.additive_used.mark'|trans({},'help') }}
+                {{ 'sigtec.help.additives_used_in_the_process.mark'|trans({},'help') }}
             </span>
         </span>
         {{ form_errors(form.mark) }}
@@ -52,7 +52,7 @@
         <span class="info-spot">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
-                {{ 'sigtec.help.additive_used.additive_supplier'|trans({},'help') }}
+                {{ 'sigtec.help.additives_used_in_the_process.additive_supplier'|trans({},'help') }}
             </span>
         </span>
         {{ form_errors(form.additiveSupplier) }}
@@ -60,10 +60,12 @@
     <div class="field-block button-height">
         {{ form_label(form.concentration) }}
         {{ form_widget(form.concentration) }}
+        {{ form_widget(form.typeConcentration) }}
         <span class="info-spot">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
-                {{ 'sigtec.help.additive_used.concentration'|trans({},'help') }}
+                {{ 'sigtec.help.additives_used_in_the_process.concentration'|trans({},'help') }}
+                [[ model.additive_used.type_concentration.help ]]
             </span>
         </span>
         {{ form_errors(form.concentration) }}
