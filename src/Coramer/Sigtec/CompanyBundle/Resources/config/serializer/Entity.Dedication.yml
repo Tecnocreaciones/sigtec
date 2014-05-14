@@ -3,10 +3,10 @@ Coramer\Sigtec\CompanyBundle\Entity\Dedication:
     properties:
         id:
             expose: true
-            groups: [list,companies]
+            groups: [id,list,companies]
         description:
             expose: true
-            groups: [list,companies]
+            groups: [list,companies,report_technical]
         active:
             expose: true
             groups: [list]

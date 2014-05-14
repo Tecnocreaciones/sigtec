@@ -14,10 +14,9 @@
                 <option name="message">sigtec.validation.must_enter_a_valid_rif</option>
             </constraint>
         </property>
-        <property name="email">
-            <constraint name="Email">
-                <option name="message">sigtec.validators.The_email_x_is_not_a_valid_email</option>
-                <option name="checkMX">false</option>
+        <property name="websiteAddress">
+            <constraint name="Url">
+                <option name="message">sigtec.validators.the_url_x_is_not_a_valid</option>
             </constraint>
         </property>
     </class>

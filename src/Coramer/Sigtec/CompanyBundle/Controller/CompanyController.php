@@ -26,7 +26,7 @@ class CompanyController extends ResourceController
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
-     * @Security("is_granted('ROLE_SUPER_USER')")
+     * @Security("is_granted('ROLE_REVISER')")
      */
     public function indexAction(Request $request) {
         return parent::indexAction($request);
@@ -37,7 +37,7 @@ class CompanyController extends ResourceController
         
         //Security Check
         $user = $this->getUser();
-        if(!$this->getSecurityContext()->isGranted('ROLE_SUPER_USER') && !$user->getCompanies()->contains($resource)){
+        if(!$this->getSecurityContext()->isGranted('ROLE_REVISER') && !$user->getCompanies()->contains($resource)){
             throw $this->createAccessDeniedHttpException();
         }
         
@@ -45,7 +45,10 @@ class CompanyController extends ResourceController
             ->view()
             ->setTemplate($this->config->getTemplate('show.html'))
             ->setTemplateVar($this->config->getResourceName())
-            ->setData($resource)
+            ->setData(array(
+                'company' => $resource,
+                'company_manager' => $this->get('coramer_sigtec_company.company_manager')
+            ))
         ;
         $view->getSerializationContext()->setGroups('show');
         return $this->handleView($view);
@@ -183,6 +186,8 @@ class CompanyController extends ResourceController
         $form = $this->getForm($resource);
 
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
+            /** @var FlashBag $flashBag */
+            $flashBag = $this->get('session')->getBag('flashes');
             /** \Tecnocreaciones\Vzla\ToolsBundle\Tools\RifTool **/
             $rifService = $this->get('tecnocreaciones_vzla_tools.rif');
             
@@ -191,7 +196,12 @@ class CompanyController extends ResourceController
                 $resource
                         ->setName($rifResponse->getName())
                         ->setRifValidated(true);
+                $flashBag->add('success',$this->get('translator')->trans('sigtec.the_rif_was_validated_correctly'));
+            }else{
+                $flashBag->add('error',$this->get('translator')->trans($rifResponse->getMessage()));
             }
+            
+            
             $resource = $this->domainManager->create($resource);
 
             if (null === $resource) {
@@ -237,5 +247,57 @@ class CompanyController extends ResourceController
         }else{
             return $this->redirectHandler->redirectToRoute($this->config->getRedirectRoute('client_index'));
         }
+    }
+    
+    /**
+     * Activa una empresa
+     * 
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return type
+     * @Security("is_granted('ROLE_REVISER')")
+     */
+    function activateAction(Request $request)
+    {
+        $resource = $this->findOr404($request);
+        $resource->setActiveBusiness(true);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($resource);
+        $em->flush();
+        $data = array(
+            'message' => $this->get('translator')->trans('sigtec.company.message.activate',array('%s%' => $resource->getRif()),'CoramerSigtecCompanyBundle'),
+        );
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('update.html'))
+            ->setData($data)
+        ;
+
+        return $this->handleView($view);
+    }
+    
+    /**
+     * Inactiva una empresa
+     * 
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return type
+     * @Security("is_granted('ROLE_REVISER')")
+     */
+    function inactivateAction(Request $request)
+    {
+        $resource = $this->findOr404($request);
+        $resource->setActiveBusiness(false);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($resource);
+        $em->flush();
+        $data = array(
+            'message' => $this->get('translator')->trans('sigtec.company.message.inactivate',array('%s%' => $resource->getRif()),'CoramerSigtecCompanyBundle'),
+        );
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('update.html'))
+            ->setData($data)
+        ;
+
+        return $this->handleView($view);
     }
 }

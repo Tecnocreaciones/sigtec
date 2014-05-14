@@ -3,19 +3,19 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile:
     properties:
         id:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         quantityProfessionals:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         quantityTechnical:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         quantityLaborers:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         quantityOther:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]
         total:
             expose: true
-            groups: [show]
+            groups: [show,report_technical]

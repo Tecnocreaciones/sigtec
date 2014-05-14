@@ -41,6 +41,24 @@ coramer_sigtec_backend_company_validaterif:
         _controller: coramer_sigtec_backend.controller.company:validateRifAction
     requirements: { _method: GET }
 
+coramer_sigtec_backend_company_activate:
+    pattern:  /{id}/activate.{_format}
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company:activateAction
+        _format: json
+    requirements:
+        _method: GET
+        _format: json|xml
+
+coramer_sigtec_backend_company_inactivate:
+    pattern:  /{id}/inactivate.{_format}
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company:inactivateAction
+        _format: json
+    requirements:
+        _method: GET
+        _format: json|xml
+
 coramer_sigtec_backend_company_plants:
     pattern:  /{id}/plants.{_format}
     defaults:

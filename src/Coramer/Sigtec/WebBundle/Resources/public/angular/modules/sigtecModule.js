@@ -32,7 +32,8 @@ angular.module('sigtecModule.controllers', [])
           
   }])
   .controller('CompanyIndexController', function($scope,$http,notifyService) {
-          $scope.itemValidateRif = function(url){
+          //Realiza una llamada de una url mediante ajax
+          $scope.itemCallAjaxUrl = function(url){
               $http.get(url).success(function(data){
                   notifyService.success(data.message);
                   $scope.tableParams.reload();
@@ -91,12 +92,22 @@ angular.module('sigtecModule.controllers', [])
               process: null,
               product: null,
               requirement: 0
+          },
+          additive_used: {
+              base_polymer: null,
+              mark: null,
+              concentration: null,
+              type_concentration: null,
+              additive: null,
+              product: null,
+              additive_supplier: null
           }
       };
       
       $scope.model = defaultModel;
       $scope.data = {
           materials: null,
+          plants: null,
           storages: null,
           separated_resins: null,
           type_process: null,
@@ -185,21 +196,32 @@ angular.module('sigtecModule.controllers', [])
           $scope.template = $scope.templates.formProductionLevel;
           $scope.openModalForm();
       };
+      //Añade o actualiza un producto fabricado
       $scope.addProductManufactured = function(productManufactured){
           notificationBarService.getLoadStatus().loading();
           $scope.templates.formProductManufactured.parameterCallback = productManufactured;
           $scope.template = $scope.templates.formProductManufactured;
           $scope.openModalForm();
       };
-      
+      //Añade o actualiza un aditivo usado en el proceso
+      $scope.addAdditiveUsed = function(additiveUsed){
+          notificationBarService.getLoadStatus().loading();
+          $scope.templates.formAdditiveUsed.parameterCallback = additiveUsed;
+          $scope.template = $scope.templates.formAdditiveUsed;
+          $scope.openModalForm();
+      };
+    //Setea el formulario detalle de almacenaje del producto
     $scope.setDataDetailsStorage = function(detailProductStorage){
         if(detailProductStorage != undefined){
               $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: detailProductStorage.id});
               $scope.model.detail_product_storage.material = $scope.data.materials[detailProductStorage.material.id];
+              $scope.model.detail_product_storage.plant = $scope.data.plants[detailProductStorage.plant.id];
               $scope.model.detail_product_storage.storage = $scope.data.storages[detailProductStorage.storage];
               $scope.model.detail_product_storage.separated_resin = $scope.data.separated_resins[detailProductStorage.separated_resin];
               $scope.model.detail_product_storage.total_area = detailProductStorage.total_area;
               $scope.model.detail_product_storage.covered_area = detailProductStorage.covered_area;
+              
+              reportTechnicalManager.getData().getDedications(detailProductStorage.plant,detailProductStorage.dedication.id);
           }else{
               $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
               $scope.model.detail_product_storage = {
@@ -209,6 +231,8 @@ angular.module('sigtecModule.controllers', [])
                         separated_resin: null,
                         total_area: 0,
                         covered_area: 0,
+                        plant: null,
+                        dedication: null,
                     };
           }
     }
@@ -244,7 +268,7 @@ angular.module('sigtecModule.controllers', [])
               };
           }
     }
-    
+    //Establece la data del formulario de los productos fabricados
     $scope.setDataProductManufactured = function(productManufactured){
         if(productManufactured != undefined){
              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:productManufactured.id});
@@ -264,6 +288,31 @@ angular.module('sigtecModule.controllers', [])
                   product: null,
                   requirement: 0
               };
+          }
+    }
+    //Establece la data de aditivos que se emplean en el proceso
+    $scope.setDataAdditiveUsed = function(additiveUsed){
+        if(additiveUsed != undefined){
+             $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:additiveUsed.id});
+             
+             $scope.model.additive_used.additive = additiveUsed.additive;
+             $scope.model.additive_used.product = additiveUsed.product;
+             $scope.model.additive_used.additive_supplier = additiveUsed.additive_supplier;
+             $scope.model.additive_used.base_polymer = additiveUsed.base_polymer;
+             $scope.model.additive_used.mark = additiveUsed.mark;
+             $scope.model.additive_used.concentration = additiveUsed.concentration;
+             $scope.model.additive_used.type_concentration = additiveUsed.type_concentration;
+          }else{
+              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
+              $scope.model.additive_used = {
+                  additive: null,
+                  product: null,
+                  additive_supplier: null,
+                  base_polymer: null,
+                  mark: null,
+                  concentration: null,
+                  type_concentration: null,
+              }
           }
     }
       
@@ -462,11 +511,13 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 resin: 'coramer_sigtec_backend_company_report_technical_data_resin',
                 grade: 'coramer_sigtec_backend_company_report_technical_data_grade',
                 product: 'coramer_sigtec_backend_company_report_technical_data_product',
+                plants: 'coramer_sigtec_backend_company_plant_company',
             },                    
             form: {
                 detail_product_storage: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_form',
                 production_level: 'coramer_sigtec_backend_company_report_technical_properties_production_level_form',
                 product_manufactured: 'coramer_sigtec_backend_company_report_technical_properties_product_manufactured_form',
+                additive_used: 'coramer_sigtec_backend_company_report_technical_properties_additive_used_form',
             }
         }
     };
@@ -520,9 +571,22 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             update: 'coramer_sigtec_backend_company_report_technical_properties_product_manufactured_update'
                         },
                         reload: self.reload().productManufactured
+                    },
+                    formAdditiveUsed: { 
+                        name: 'formAdditiveUsed.html', 
+                        url: self.getUrlFormAdditiveUsed(),
+                        loadCallback:$scope.setDataAdditiveUsed,
+                        parameterCallback: null, 
+                        load: false,
+                        routes: {
+                            create: 'coramer_sigtec_backend_company_report_technical_properties_additive_used_create',
+                            update: 'coramer_sigtec_backend_company_report_technical_properties_additive_used_update'
+                        },
+                        reload: self.reload().additiveUsed
                     }
                 };
                 $scope.template = '';
+                self.getData().getPlants($scope.reportTechnical.company.id);
                 notificationBarService.getLoadStatus().done();
             });
         },
@@ -633,7 +697,29 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         }
                         notificationBarService.getLoadStatus().done();
                     });
-                }
+                },
+                getPlants: function(companyId){
+                    return $http.get(self.generateRoute(config.routes.data.plants,{company_id: companyId})).success(function(d){
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[val.id] = val;
+                          });
+                        scope.data.plants = dataArray;
+                    });
+                },
+                getDedications: function(plant,selected){
+                        var dataArray = [];
+                        jQuery.each(plant.dedications,function(i,vals){
+                            if(vals != undefined){
+                                dataArray[vals.id] = vals;
+                            }
+                        });
+                        
+                        scope.data.dedications = dataArray;
+                        if(selected != undefined){
+                            scope.model.detail_product_storage.dedication = dataArray[selected];
+                        }
+                },
             }
         },
         setId: function(i){
@@ -684,6 +770,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
         },
         getUrlFormProductManufactured: function() {
             return this.generateRoute(config.routes.form.product_manufactured,{_format:'html'});
+        },
+        getUrlFormAdditiveUsed: function() {
+            return this.generateRoute(config.routes.form.additive_used,{_format:'html'});
         },
     }
 });

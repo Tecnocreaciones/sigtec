@@ -26,7 +26,7 @@ class ReportTechnicalController extends ResourceController
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
-     * @Security("is_granted('ROLE_SUPER_USER')")
+     * @Security("is_granted('ROLE_REVISER')")
      */
     public function indexAction(Request $request) {
         return parent::indexAction($request);
@@ -37,7 +37,7 @@ class ReportTechnicalController extends ResourceController
         
         //Security Check
         $user = $this->getUser();
-        if(!$this->getSecurityContext()->isGranted('ROLE_SUPER_USER') && !$user->getCompanies()->contains($resource->getCompany())){
+        if(!$this->getSecurityContext()->isGranted('ROLE_REVISER') && !$user->getCompanies()->contains($resource->getCompany())){
             throw $this->createAccessDeniedHttpException();
         }
         
@@ -47,7 +47,7 @@ class ReportTechnicalController extends ResourceController
             ->setTemplateVar($this->config->getResourceName())
             ->setData($resource)
         ;
-        $view->getSerializationContext()->setGroups('show');
+        $view->getSerializationContext()->setGroups(array('report_technical','id'));
         return $this->handleView($view);
     }
     
@@ -101,14 +101,20 @@ class ReportTechnicalController extends ResourceController
         $sequenceGenerator = $this->get('sigtec.sequence_generator');
                 
         if ($request->isMethod('POST') && $formCompany->submit($request)->isValid()) {
+            $company = $resource->getCompany();
             $descriptionAreaCompanyManager = $this->get('coramer_sigtec_report_technical.properties.description_area_company_manager');
             $resource
                     ->setArchive($sequenceGenerator->getNextTempArchive())
                     ->setProfessionalProfile(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile())
-                    ->setDescriptionAreaCompany($descriptionAreaCompanyManager->build($resource->getCompany()))
+                    ->setDescriptionAreaCompany($descriptionAreaCompanyManager->build($company))
                     ;
             
             $resource = $this->domainManager->create($resource);
+            //Actualizar la fecha del ultimo reporte tecnico creado
+            $company->setLastTechnicalReportDateCreated(new \DateTime());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($company);
+            $em->flush();
 
             if (null === $resource) {
                 return $this->redirectHandler->redirectToIndex();

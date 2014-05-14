@@ -3,12 +3,16 @@ Application\Sonata\UserBundle\Entity\User:
         username: cliente
         email: cliente@example.com.ve
         plainPassword: cliente
+        firstname: <firstName()>
+        lastname: <lastName()>
         enabled: true
         roles: [ROLE_CLIENT]
     user{1..100}:
         username: <username()>
         email: <email()>
         plainPassword: admin
+        firstname: <firstName()>
+        lastname: <lastName()>
         enabled: true
         roles: [ROLE_CLIENT]
 #Base fixtures
@@ -20,6 +24,8 @@ Coramer\Sigtec\CompanyBundle\Entity\Company:
         email: <email()>
         status: <boolean()>
         user: @user0
+        lastTechnicalReportDateCreated: <datetime()>
+        activeBusiness: <boolean()>
     company{11..100}:
         name: <name()>
         rif: <randomElement(['V','J','E','P','G'])>-<randomNumber(8)>-<randomDigit()>
@@ -27,12 +33,14 @@ Coramer\Sigtec\CompanyBundle\Entity\Company:
         email: <email()>
         status: <boolean()>
         user: @user*
+        lastTechnicalReportDateCreated: <datetime()>
+        activeBusiness: <boolean()>
 Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
     report_technical{1..50}:
-        archive: <numerify()>-<date('Y')>
+        archive: <date('Y')>-<numerify()>
         company: @company<numberBetween(1, 10)>
         status: <numberBetween(0, 3)>
     report_technical{51..100}:
-        archive: <numerify()>-<date('Y')>
+        archive: <date('Y')>-<numerify()>
         company: @company*
         status: <numberBetween(0, 3)>

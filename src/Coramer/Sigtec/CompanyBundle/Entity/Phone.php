@@ -60,6 +60,13 @@ class Phone
     private $plant;
     
     /**
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Contact
+     *
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Contact", inversedBy="phones")
+     */
+    private $contact;
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -223,5 +230,28 @@ class Phone
     public function getPlant()
     {
         return $this->plant;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Contact $contact
+     * @return Phone
+     */
+    public function setContact(\Coramer\Sigtec\CompanyBundle\Entity\Contact $contact = null)
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Get contact
+     *
+     * @return \Coramer\Sigtec\CompanyBundle\Entity\Contact 
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }

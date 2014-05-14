@@ -1,0 +1,27 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,id]
+        additive:
+            expose: true
+            groups: [show,report_technical]
+        product:
+            expose: true
+            groups: [show,report_technical]
+        basePolymer:
+            expose: true
+            groups: [show,report_technical]
+        mark:
+            expose: true
+            groups: [show,report_technical]
+        additiveSupplier:
+            expose: true
+            groups: [show,report_technical]
+        concentration:
+            expose: true
+            groups: [show,report_technical]
+        typeConcentration:
+            expose: true
+            groups: [show,report_technical]

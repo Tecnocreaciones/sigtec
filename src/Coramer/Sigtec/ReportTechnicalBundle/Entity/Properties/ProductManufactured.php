@@ -65,8 +65,8 @@ class ProductManufactured
     
     /**
      * Reporte tecnico
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical 
      * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical 
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical",inversedBy="productionLevels")
      */
     private $reportTechnical;

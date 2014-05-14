@@ -43,10 +43,17 @@
                                 <small ng-if="result.rif_validated" class="tag green-bg">{{ 'sigtec.yes'|trans }}</small> 
                                 <small ng-if="!result.rif_validated" class="tag red-bg">{{ 'sigtec.no'|trans }}</small>
                             </td>
-                            <td data-title="'{{ 'sigtec.status'|trans }}'" sortable="'status'">
-                                <small ng-if="result.status" class="tag green-bg">{{ 'sigtec.yes'|trans }}</small> 
-                                <small ng-if="!result.status" class="tag red-bg">{{ 'sigtec.no'|trans }}</small>
-                            </td>
+                            {% if is_granted('ROLE_REVISER') %}
+                                <td data-title="'¿{{ 'sigtec.active_business'|trans }}?'" sortable="'activeBusiness'">
+                                    <small ng-if="result.active_business" class="tag green-bg">{{ 'sigtec.yes'|trans }}</small> 
+                                    <small ng-if="!result.active_business" class="tag red-bg">{{ 'sigtec.no'|trans }}</small>
+                                </td>
+                            {% else %}
+                                <td data-title="'{{ 'sigtec.status'|trans }}'" sortable="'status'">
+                                    <small ng-if="result.status" class="tag green-bg">{{ 'sigtec.yes'|trans }}</small> 
+                                    <small ng-if="!result.status" class="tag red-bg">{{ 'sigtec.no'|trans }}</small>
+                                </td>
+                            {% endif %}
                             <td class="low-padding">
                                 <span class="select compact full-width" tabindex="0">
                                     <a href class="select-value form-edit">{{ 'sigtec.actions'|trans }}</a>
@@ -54,7 +61,11 @@
                                     <span class="drop-down">
                                         <a href ng-click="itemEdit(result._links.edit.href)" >{{ 'sigtec.edit'|trans }}</a>
                                         <a href ng-click="itemDelete(result._links.delete.href)" >{{ 'sigtec.delete'|trans }}</a>
-                                        <a ng-if="!result.rif_validated" href ng-click="itemValidateRif(result._links.validate_rif.href)" >{{ 'sigtec.validate_rif'|trans }}</a>
+                                        <a ng-if="!result.rif_validated" href ng-click="itemCallAjaxUrl(result._links.validate_rif.href)" >{{ 'sigtec.validate_rif'|trans }}</a>
+                                        {% if is_granted('ROLE_REVISER') %}
+                                            <a ng-if="result.active_business" href ng-click="itemCallAjaxUrl(result._links.inactivate.href)" >{{ 'sigtec.company.inactivate'|trans }}</a>
+                                            <a ng-if="!result.active_business" href ng-click="itemCallAjaxUrl(result._links.activate.href)" >{{ 'sigtec.company.activate'|trans }}</a>
+                                        {% endif %}
                                     </span>
                                 </span>
                             </td>
@@ -71,6 +82,7 @@
         function getTableExtraInfo(data)
             {
                 return  '<strong>{{ 'sigtec.name'|trans }}:</strong> ' + data.name + '<br>' +
+                        '<strong>{{ 'sigtec.date_of_previous_technical_report_created'|trans({},'CoramerSigtecReportTechnicalBundle') }}:</strong> ' + (data.last_technical_report_date_created ? data.last_technical_report_date_created: '{{ 'sigtec.none'|trans }}') + '<br>' +
                         '<strong>{{ 'sigtec.created_at' |trans }}:</strong> ' + data.created_at + '<br>' +
                         '<strong>{{ 'sigtec.updated_at' | trans }}:</strong> ' + data.updated_at + '<br>'
                         ;

@@ -97,9 +97,18 @@ class ReportTechnical implements ReportTechnicalInterface
      */
     private $productsManufactured;
     
+    /**
+     * Aditivos usados
+     * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed",mappedBy="reportTechnical")
+     */
+    private $additivesUsed;
+    
     public function __construct() {
         $this->productionLevels = new \Doctrine\Common\Collections\ArrayCollection();
         $this->productsManufactured = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->additivesUsed = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -360,5 +369,38 @@ class ReportTechnical implements ReportTechnicalInterface
     public function getProductsManufactured()
     {
         return $this->productsManufactured;
+    }
+
+    /**
+     * Add additivesUsed
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed $additivesUsed
+     * @return ReportTechnical
+     */
+    public function addAdditivesUsed(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed $additivesUsed)
+    {
+        $this->additivesUsed[] = $additivesUsed;
+
+        return $this;
+    }
+
+    /**
+     * Remove additivesUsed
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed $additivesUsed
+     */
+    public function removeAdditivesUsed(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed $additivesUsed)
+    {
+        $this->additivesUsed->removeElement($additivesUsed);
+    }
+
+    /**
+     * Get additivesUsed
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAdditivesUsed()
+    {
+        return $this->additivesUsed;
     }
 }

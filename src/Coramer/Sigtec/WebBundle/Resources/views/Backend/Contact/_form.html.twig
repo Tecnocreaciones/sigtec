@@ -13,6 +13,20 @@
         {{ form_errors(form.lastName) }}
     </div>
     <div class="field-block button-height">
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.phones) }}
+        <ul class="phones list-style-none no-margin-left" data-prototype="{{ form_widget(form.phones.vars.prototype)|e }}">
+            {% for phone in form.phones %}
+                <li class="input" style="display:block;width:197px;margin-bottom:7px;margin-top:7px">{{ form_widget(phone.number) }}{{ form_errors(phone) }}</li>
+            {% endfor %}
+        </ul>
+        {{ form_errors(form.phones) }}
+    </div>
+    <div class="field-block button-height">
         {{ form_label(form.charge) }}
         {{ form_widget(form.charge) }}
         {{ form_errors(form.charge) }}
@@ -24,3 +38,71 @@
     {% endif %}
 </fieldset>
 {{ form_rest(form) }}
+
+<script type="text/javascript">
+    var $collectionHolder;
+    
+    // setup an "add a phone" link
+    var help = '<span class="info-spot"><span class="icon-info-round"></span><span class="info-bubble">{{ 'sigtec.help.add_a_phone'|trans({},'help') }}</span></span>';
+    var $addPhoneLink = $('<a href="#" class="add_phone_link small-margin-right">{{ 'sigtec.add_a_phone'|trans }}</a>'+help);
+    var $newLinkLi = $('<li></li>').append($addPhoneLink);
+
+    jQuery(document).ready(function() {
+        // Get the ul that holds the collection of phones
+        $collectionHolder = $('ul.phones');
+
+        // add the "add a phone" anchor and li to the phones ul
+        $collectionHolder.append($newLinkLi);
+
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+        $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+        $addPhoneLink.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // add a new phone form (see next code block)
+            addPhoneForm($collectionHolder, $newLinkLi);
+        });
+
+        $collectionHolder.find('li').each(function() {
+            if($(this).attr('class') == 'input'){
+                addPhoneFormDeleteLink($(this));
+            }
+        });
+
+        function addPhoneForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+            var $form = $(newForm);
+            var input = $form.find('input');
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+            // Display the form in the page in an li, before the "Add a phone" link li
+            var $newFormLi = $('<li class="input" style="display:block;width:197px;margin-bottom:7px;margin-top:7px"></li>').append(input[0]);
+            $newLinkLi.before($newFormLi);
+            // add a delete link to the new form
+            addPhoneFormDeleteLink($newFormLi);
+        }
+        function addPhoneFormDeleteLink($phoneFormLi) {
+            var $removeFormA = $('<a href="#" class="icon-trash"></a>');
+            $phoneFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the phone form
+                $phoneFormLi.remove();
+            });
+        }
+    });
+</script>

@@ -18,21 +18,33 @@ namespace Coramer\Sigtec\ReportTechnicalBundle\Entity;
 interface ReportTechnicalInterface
 {
     /**
-     * Status In progress.
+     * En progreso.(Cliente)
      */
     const STATUS_IN_PROGRESS = 0;
     /**
-     * Status canceled.
+     * Anulado.(Cliente|Revisor)
      */
     const STATUS_CANCELED = 1;
     /**
-     * Status approved
+     * En espera de correción por el cliente.(Cliente)
      */
-    const STATUS_APPROVED = 2;
+    const STATUS_PENDING_CORRECTION = 2;
     /**
-     * Status rejected
+     * En revisión. Enviado al revisor. (Revisor)
      */
-    const STATUS_REJECTED = 3;
+    const STATUS_IN_REVIEW = 3;
+    /**
+     * Revisado.(Revisor)
+     */
+    const STATUS_REVISED = 4;
+    /**
+     * Aprobado.(Gerente tecnico)
+     */
+    const STATUS_APPROVED = 5;
+    /**
+     * Rechazado.(Gerente Tecnico)
+     */
+    const STATUS_REJECTED = 6;
     
     /**
      * Set createdAt

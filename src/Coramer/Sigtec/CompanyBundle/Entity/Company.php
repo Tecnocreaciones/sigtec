@@ -78,12 +78,20 @@ class Company
     private $status = true;
     
     /**
-     * Email
+     * ¿Empresa Valida?
      * 
      * @var boolean
-     * @ORM\Column(name="email", type="string", length=100)
+     * @ORM\Column(name="valid", type="boolean")
      */
-    private $email;
+    private $valid = false;
+    
+    /**
+     * Website Address
+     * 
+     * @var string
+     * @ORM\Column(name="websiteAddress", type="string", length=100,nullable=true)
+     */
+    private $websiteAddress;
     
     /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Plant
@@ -112,6 +120,29 @@ class Company
      * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical", mappedBy="company")
      */
     private $reportTechnicals;
+    
+    /**
+     * Proveedor
+     * 
+     * @var integer
+     * @ORM\Column(name="supplier", type="integer", nullable=true)
+     */
+    private $supplier;
+    /**
+     * Empresa activa
+     * 
+     * @var boolean
+     * @ORM\Column(name="activeBusiness", type="boolean")
+     */
+    private $activeBusiness = true;
+    
+    /**
+     * Fecha del último reporte técnico creado
+     * 
+     * @var \DateTime
+     * @ORM\Column(name="lastTechnicalReportDateCreated",type="datetime",nullable=true)
+     */
+    private $lastTechnicalReportDateCreated;
 
     public function __construct() {
         $this->plants = new \Doctrine\Common\Collections\ArrayCollection();
@@ -278,29 +309,6 @@ class Company
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
-     * @return Company
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
      * Add plants
      *
      * @param \Coramer\Sigtec\CompanyBundle\Entity\Plant $plants
@@ -364,7 +372,7 @@ class Company
      */
     public function addContact(\Coramer\Sigtec\CompanyBundle\Entity\Contact $contacts)
     {
-        $this->contacts[] = $contacts;
+        $this->contacts->add($contacts);
 
         return $this;
     }
@@ -443,5 +451,140 @@ class Company
     public function getReportTechnicals()
     {
         return $this->reportTechnicals;
+    }
+
+    /**
+     * Set supplier
+     *
+     * @param integer $supplier
+     * @return Company
+     */
+    public function setSupplier($supplier)
+    {
+        $this->supplier = $supplier;
+
+        return $this;
+    }
+
+    /**
+     * Get supplier
+     *
+     * @return integer 
+     */
+    public function getSupplier()
+    {
+        return $this->supplier;
+    }
+
+    /**
+     * Set activeBusiness
+     *
+     * @param boolean $activeBusiness
+     * @return Company
+     */
+    public function setActiveBusiness($activeBusiness)
+    {
+        $this->activeBusiness = $activeBusiness;
+
+        return $this;
+    }
+
+    /**
+     * Get activeBusiness
+     *
+     * @return boolean 
+     */
+    public function isActiveBusiness()
+    {
+        return $this->activeBusiness;
+    }
+
+    /**
+     * Set lastTechnicalReportDateCreated
+     *
+     * @param \DateTime $lastTechnicalReportDateCreated
+     * @return Company
+     */
+    public function setLastTechnicalReportDateCreated($lastTechnicalReportDateCreated)
+    {
+        $this->lastTechnicalReportDateCreated = $lastTechnicalReportDateCreated;
+
+        return $this;
+    }
+
+    /**
+     * Get lastTechnicalReportDateCreated
+     *
+     * @return \DateTime 
+     */
+    public function getLastTechnicalReportDateCreated()
+    {
+        return $this->lastTechnicalReportDateCreated;
+    }
+
+    /**
+     * Get activeBusiness
+     *
+     * @return boolean 
+     */
+    public function getActiveBusiness()
+    {
+        return $this->activeBusiness;
+    }
+
+    /**
+     * Set websiteAddress
+     *
+     * @param string $websiteAddress
+     * @return Company
+     */
+    public function setWebsiteAddress($websiteAddress)
+    {
+        $this->websiteAddress = $websiteAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get websiteAddress
+     *
+     * @return string 
+     */
+    public function getWebsiteAddress()
+    {
+        return $this->websiteAddress;
+    }
+
+    /**
+     * Set valid
+     *
+     * @param boolean $valid
+     * @return Company
+     */
+    public function setValid($valid)
+    {
+        $this->valid = $valid;
+
+        return $this;
+    }
+
+    /**
+     * Get valid
+     *
+     * @return boolean 
+     */
+    public function isValid()
+    {
+        return $this->valid;
+    }
+
+    /**
+     * Get valid
+     *
+     * @return boolean 
+     */
+    public function getValid()
+    {
+        return $this->valid;
     }
 }

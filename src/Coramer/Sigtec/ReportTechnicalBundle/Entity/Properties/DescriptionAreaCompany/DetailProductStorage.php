@@ -14,7 +14,7 @@ namespace Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionArea
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Description of DetailProductStorage
+ * Detalle de almacenaje de producto
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  * 
@@ -96,7 +96,23 @@ class DetailProductStorage
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany", inversedBy="detailProductStorages")
      */
     protected $descriptionAreaCompany;
-
+    
+    /**
+     * Planta
+     * 
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Plant
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Plant")
+     */
+    private $plant;
+    
+    /**
+     * Dedicacion
+     * 
+     * @var \Coramer\Sigtec\CompanyBundle\Entity\Dedication
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\CompanyBundle\Entity\Dedication")
+     */
+    private $dedication;
+    
     /**
      * Get id
      *
@@ -248,5 +264,51 @@ class DetailProductStorage
     public function isCoveredAreaValid()
     {
         return ($this->coveredArea <= $this->totalArea);
+    }
+
+    /**
+     * Set plant
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Plant $plant
+     * @return DetailProductStorage
+     */
+    public function setPlant(\Coramer\Sigtec\CompanyBundle\Entity\Plant $plant = null)
+    {
+        $this->plant = $plant;
+
+        return $this;
+    }
+
+    /**
+     * Get plant
+     *
+     * @return \Coramer\Sigtec\CompanyBundle\Entity\Plant 
+     */
+    public function getPlant()
+    {
+        return $this->plant;
+    }
+
+    /**
+     * Set dedication
+     *
+     * @param \Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedication
+     * @return DetailProductStorage
+     */
+    public function setDedication(\Coramer\Sigtec\CompanyBundle\Entity\Dedication $dedication = null)
+    {
+        $this->dedication = $dedication;
+
+        return $this;
+    }
+
+    /**
+     * Get dedication
+     *
+     * @return \Coramer\Sigtec\CompanyBundle\Entity\Dedication 
+     */
+    public function getDedication()
+    {
+        return $this->dedication;
     }
 }

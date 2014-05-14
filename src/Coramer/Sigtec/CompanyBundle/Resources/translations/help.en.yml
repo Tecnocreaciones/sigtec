@@ -1,5 +1,12 @@
 sigtec:
     help:
+        company:
+            rif: Enter a rif in the following format (X-12345678-9).
+            website_address: Enter the address of the web page of your site http://mycompany.com (optional).
+            you_must_add_at_least_x_plants: You must add at least %x% plant(s).
+            you_must_add_at_least_x_contacts: You must add at least %x% contact(s).
+            at_least_one_plan_must_be_active: At least %x% plan must be active.
+            not_valid: The company should be able to create valid tpecnicos reports. To make the company must complete the data validates 100%.
         add_a_phone: Make the phone with one of the following formats +58-412-555-5555, 0800-555-5555, +58-212-111-1111.
         plant:
             dedications: Indicate the use of the plant. If you have one level Please select all options.

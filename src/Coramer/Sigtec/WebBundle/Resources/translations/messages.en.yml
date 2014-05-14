@@ -1,8 +1,13 @@
 sigtec:
+    website_address: Website address
+    active_business: Active business
     register: Register
     total: Total
+    none: None
     company:
         report_technical: Report technical
+        inactivate: Inactivate
+        activate: Activate
     form:
         errors:
             please_check_the_form_fields: Please check the form fields.

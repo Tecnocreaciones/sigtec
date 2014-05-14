@@ -3,7 +3,7 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product:
     properties:
         id:
             expose: true
-            groups: [show,list]
+            groups: [id,show,list]
         description:
             expose: true
-            groups: [show,list]
+            groups: [show,list,report_technical]
