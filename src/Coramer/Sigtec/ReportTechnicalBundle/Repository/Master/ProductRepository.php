@@ -12,4 +12,14 @@ use Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository;
  */
 class ProductRepository extends MasterEntityRepository
 {
+    function getQueryBuilderByReportTechnical(\Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnical) 
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->select('p')
+           ->innerJoin('p.productsManufactured', 'pm')
+           ->andWhere('pm.reportTechnical = :reportTechnical')
+           ->setParameter('reportTechnical', $reportTechnical)
+        ;
+        return $qb;
+    }
 }

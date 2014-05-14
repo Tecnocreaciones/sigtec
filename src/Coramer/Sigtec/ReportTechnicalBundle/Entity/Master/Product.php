@@ -53,6 +53,14 @@ class Product
     private $updatedAt;
     
     /**
+     * Descripcion de los productos fabricados
+     * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured
+     * @ORM\OneToMany(targetEntity="\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured", mappedBy="product")
+     */
+    private $productsManufactured;
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -152,5 +160,45 @@ class Product
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->productsManufactured = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add productsManufactured
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured
+     * @return Product
+     */
+    public function addProductsManufactured(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured)
+    {
+        $this->productsManufactured[] = $productsManufactured;
+
+        return $this;
+    }
+
+    /**
+     * Remove productsManufactured
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured
+     */
+    public function removeProductsManufactured(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured)
+    {
+        $this->productsManufactured->removeElement($productsManufactured);
+    }
+
+    /**
+     * Get productsManufactured
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProductsManufactured()
+    {
+        return $this->productsManufactured;
     }
 }

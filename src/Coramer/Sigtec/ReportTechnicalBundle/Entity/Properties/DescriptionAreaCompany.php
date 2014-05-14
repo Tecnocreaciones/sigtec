@@ -33,15 +33,17 @@ class DescriptionAreaCompany
     private $id;
     
     /**
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription
+     * Descripcion de las plantas
      * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription
      * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription", mappedBy="descriptionAreaCompany")
      */
     protected $plantsDescription;
     
     /**
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage
+     * Detalles de almacenaje del producto
      * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage
      * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage", mappedBy="descriptionAreaCompany")
      */
     protected $detailProductStorages;

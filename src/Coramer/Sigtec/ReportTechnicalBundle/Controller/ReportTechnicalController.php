@@ -249,7 +249,9 @@ class ReportTechnicalController extends ResourceController
                         ->select('c')
                         ->innerJoin('c.user','u')
                         ->andWhere('c.status = :status')
+                        ->andWhere('c.valid = :valid')
                         ->andWhere('u.id = :user')
+                        ->setParameter('valid', true)
                         ->setParameter('user', $user)
                         ->setParameter('status', true)
                             ;

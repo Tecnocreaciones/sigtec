@@ -26,8 +26,6 @@ class AdditiveUsedController extends BaseController
         $reportTechnical = $this->findReportTechnicalOr404($request);
         $view = $this
             ->view()
-            ->setTemplate($this->config->getTemplate('index.html'))
-            ->setTemplateVar($this->config->getPluralResourceName())
         ;
         $view->setData($reportTechnical->getAdditivesUsed());
         return $this->handleView($view);
@@ -137,6 +135,7 @@ class AdditiveUsedController extends BaseController
         }
         
         $resource = $this->createNew();
+        $resource->setReportTechnical($reportTechnical);
         $form = $this->getForm($resource);
         return $this->render('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/AdditiveUsed/form.html.twig',array(
             'form' => $form->createView(),

@@ -15,6 +15,7 @@ class AdditiveUsedType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $reportTechnical = $builder->getData()->getReportTechnical();
         $builder
             ->add('additive','entity',array(
                 'label' => 'sigtec.additive_used.additive',
@@ -33,6 +34,9 @@ class AdditiveUsedType extends AbstractType
                     'class' => 'select small-margin-right validate[required]',
                     'ng-model' => 'model.additive_used.product',
                 ),
+                'query_builder' => function(\Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\ProductRepository $er) use ($reportTechnical){
+                    return $er->getQueryBuilderByReportTechnical($reportTechnical);
+                }
             ))
             ->add('basePolymer',null,array(
                 'label' => 'sigtec.additive_used.base_polymer',

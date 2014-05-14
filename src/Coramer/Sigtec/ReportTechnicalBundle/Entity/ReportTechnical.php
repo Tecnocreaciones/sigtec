@@ -75,24 +75,25 @@ class ReportTechnical implements ReportTechnicalInterface
     private $professionalProfile;
     
     /**
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany
+     * Descripción de areas de la empresa
      * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany
      * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany",inversedBy="reportTechnical")
      */
     private $descriptionAreaCompany;
     
     /**
      * Niveles de produccion
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel
      * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel
      * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel",mappedBy="reportTechnical")
      */
     private $productionLevels;
     
     /**
      * Productos fabricados
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured
      * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured
      * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured",mappedBy="reportTechnical")
      */
     private $productsManufactured;

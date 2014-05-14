@@ -78,7 +78,7 @@ class Company
     private $status = true;
     
     /**
-     * ¿Empresa Valida?
+     * ¿Empresa Valida? (Datos completo)
      * 
      * @var boolean
      * @ORM\Column(name="valid", type="boolean")
@@ -129,7 +129,7 @@ class Company
      */
     private $supplier;
     /**
-     * Empresa activa
+     * Empresa activa (Role Supervisor)
      * 
      * @var boolean
      * @ORM\Column(name="activeBusiness", type="boolean")
