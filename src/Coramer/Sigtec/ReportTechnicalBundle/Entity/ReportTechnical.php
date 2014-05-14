@@ -106,6 +106,14 @@ class ReportTechnical implements ReportTechnicalInterface
      */
     private $additivesUsed;
     
+    /**
+     * Otras resinas plasticas
+     * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin
+     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin",inversedBy="reportTechnical")
+     */
+    private $otherPlasticResin;
+    
     public function __construct() {
         $this->productionLevels = new \Doctrine\Common\Collections\ArrayCollection();
         $this->productsManufactured = new \Doctrine\Common\Collections\ArrayCollection();
@@ -403,5 +411,28 @@ class ReportTechnical implements ReportTechnicalInterface
     public function getAdditivesUsed()
     {
         return $this->additivesUsed;
+    }
+
+    /**
+     * Set otherPlasticResin
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin $otherPlasticResin
+     * @return ReportTechnical
+     */
+    public function setOtherPlasticResin(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin $otherPlasticResin = null)
+    {
+        $this->otherPlasticResin = $otherPlasticResin;
+
+        return $this;
+    }
+
+    /**
+     * Get otherPlasticResin
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin 
+     */
+    public function getOtherPlasticResin()
+    {
+        return $this->otherPlasticResin;
     }
 }

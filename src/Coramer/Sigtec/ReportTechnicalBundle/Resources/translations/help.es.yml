@@ -39,4 +39,8 @@ sigtec:
             type_concentration:
                 percentage: Cuando es porcentaje los valores permitidos son 0-100.
                 ppc: Cuando es PPC (partes por cien) los valores permitidos son 0-n.
+        other_plastic_resins:
+            other_plastic_resins: >
+                                Se registran los productos que fábrica la empresa con resinas diferentes a las 
+                                que comercializa Coramer, así como su consumo mensual y sus proveedores.
                 

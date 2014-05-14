@@ -48,7 +48,8 @@ class AdditiveUsed
     private $additive;
     
     /**
-     *
+     * Producto
+     * 
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product")
      */

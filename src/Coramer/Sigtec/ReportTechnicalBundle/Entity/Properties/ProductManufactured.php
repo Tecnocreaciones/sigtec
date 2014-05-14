@@ -34,16 +34,16 @@ class ProductManufactured
     
     /**
      * Proceso
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process
      *
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process")
      */
     private $process;
     
     /**
      * Producto
+     * 
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product
-     *
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product", inversedBy="productsManufactured")
      */
     private $product;
@@ -56,9 +56,9 @@ class ProductManufactured
     private $grade;
     
     /**
-     * Turnos
+     * Requerimiento
+     * 
      * @var integer
-     *
      * @ORM\Column(name="requirement", type="integer")
      */
     private $requirement = 0;
