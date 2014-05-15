@@ -1,0 +1,15 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [id,show,list]
+        description:
+            expose: true
+            groups: [show,list,report_technical]
+        note:
+            expose: true
+            groups: [show,list,report_technical]
+        subSegments:
+            expose: true
+            groups: [show,details]

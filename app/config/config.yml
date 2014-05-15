@@ -325,6 +325,12 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\OtherPlasticResin\DetailOtherPlasticResinController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin
+         coramer_sigtec_backend.company_report_technical_properties_description_market:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/ReportTechnical/Properties/DescriptionMarket
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\DescriptionMarketController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket
          coramer_sigtec_backend.company_report_technical_type_process:
             driver: doctrine/orm
             classes:
@@ -360,6 +366,11 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Supplier
+         coramer_sigtec_backend.company_report_technical_segment:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment
          api_tecnocreaciones_vzla_entity.country:
             driver: doctrine/orm
             classes:

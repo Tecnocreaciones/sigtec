@@ -48,6 +48,7 @@ class SerializeEventListerner implements EventSubscriberInterface
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeProductManufactured', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeAdditiveUsed', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeDetailOtherPlasticResin', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeDescriptionMarket', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket','format' => 'json'),
         );
     }
     
@@ -186,6 +187,24 @@ class SerializeEventListerner implements EventSubscriberInterface
                 ),
             'delete' => array(
                 'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_delete',array('id' => $reportTechnical->getId(),'slug' =>$object->getId()))
+                ),
+        ));
+    }
+    
+    /**
+     * Captura el evento luego que se serializa una descripcion de mercado
+     * @param ObjectEvent $event
+     */
+    function onPostSerializeDescriptionMarket(ObjectEvent $event) {
+        $object = $event->getObject();
+        $reportTechnical = $object->getReportTechnical();
+        
+        $event->getVisitor()->addData('_links', array(
+            'edit' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_description_market_update',array('id' => $reportTechnical->getId(),'slug' =>$object->getId()))
+                ),
+            'delete' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_description_market_delete',array('id' => $reportTechnical->getId(),'slug' =>$object->getId()))
                 ),
         ));
     }

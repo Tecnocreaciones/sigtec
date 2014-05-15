@@ -79,3 +79,7 @@ coramer_sigtec_company_report_technical_properties_additive_used:
 coramer_sigtec_company_report_technical_properties_other_plastic_resin:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/other_plastic_resin/detail_other_plastic_resin.yml"
     prefix:   /{id}/detail-other-plastic-resin
+    
+coramer_sigtec_company_report_technical_properties_description_market:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/description_market.yml"
+    prefix:   /{id}/description-market

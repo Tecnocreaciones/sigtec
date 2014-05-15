@@ -381,6 +381,49 @@
                                 </p>
                             </div>
 			</div>
+                        {# Seccion 7 #}
+                        <div class="field-block">
+                            <h3>7) {{ 'sigtec.description_of_the_market.description_of_the_market'|trans }}</h3>
+                            <p>{{ 'sigtec.help.description_of_the_market.description_of_the_market'|trans({},'help') }}</p>
+			</div>
+                        <div class="field-block">
+                                <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection7" >
+                                    <tr>
+                                        <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                                        <th>{{ 'sigtec.table.header.segment'|trans }}</th>
+                                        <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
+                                        <th>{{ 'sigtec.table.header.participation_rate'|trans }}</th> 
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                    <tr ng-hide="reportTechnical.description_markets">
+                                        <td colspan="5" class="bold text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr ng-hide="reportTechnical.description_markets">
+                                        <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.description_market'|trans }}</td>
+                                    </tr>
+                                    <tr ng-hide="reportTechnical.description_markets">
+                                        <td colspan="5" class="bold text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr ng-repeat="description_market in reportTechnical.description_markets" data="[[ description_market|json ]]">
+                                        <td><a href ng-click="addDescriptionMarket(description_market)" >[[ description_market.product.description ]]</a></td>
+                                        <td>[[ description_market.segment.description ]]</td>
+                                        <td>[[ description_market.sub_segment.description ]]</td>
+                                        <td>[[ description_market.participation_rate ]]</td>
+                                        <td>
+                                            <span class="button-group compact">
+                                                <a href ng-click="itemDelete(description_market._links.delete.href,reportTechnicalManager.reload().descriptionMarket)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>    
+                                <p class="button-height align-right">
+                                    <a href ng-click="addDescriptionMarket()" class="button glossy mid-margin-right">
+                                        <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                                        {{ 'sigtec.button.add_detail'|trans }}
+                                    </a>
+                                </p>
+			</div>
                         <div class="field-block button-height wizard-controls align-right">
 
 				<a href ng-click="save()" class="button glossy mid-margin-right">
@@ -607,6 +650,10 @@
         {
             return  '<strong>{{ 'sigtec.table.header.requirement'|trans }}:</strong> ' + data.requirement + '<br>' +
                     '<strong>{{ 'sigtec.table.header.supplier'|trans }}:</strong> ' + data.supplier + '<br>';
+        }
+        function getTableExtraInfoSection7(data)
+        {
+            return '<strong>{{ 'sigtec.table.header.requirement'|trans }}:</strong> ' + data.requirement;
         }
              $(document).ready(function() {
             //Example for table extra info methos to override

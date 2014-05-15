@@ -23,3 +23,7 @@ coramer_sigtec_backend:
         create: Another plastic resin added.
         update: Another plastic resin updated.
         delete: Another plastic resin removed.
+    company_report_technical_properties_description_market:
+        create: Description market added.
+        update: Description market updated.
+        delete: Description market removed.

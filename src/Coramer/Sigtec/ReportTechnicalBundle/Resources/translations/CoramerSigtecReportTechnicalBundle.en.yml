@@ -60,6 +60,9 @@ sigtec:
             additive_supplier: Supplier
             concentration: Concentration
             supplier: Supplier
+            segment: Segment
+            sub_segment: Sub Segment
+            participation_rate: Participation
         content:
             empty:
                 storage: There are no details of storage products.
@@ -67,6 +70,7 @@ sigtec:
                 product_manufactured: No details of the products manufactured.
                 additive_used: No details of the additives use.
                 other_plastic_resin: There are no details of other plastic resins.
+                description_market: No details of the markets.
     button:
         add_detail: Add detail
     description_of_the_business_areas:
@@ -87,6 +91,8 @@ sigtec:
     other_plastic_resins:
         other_plastic_resins: Other plastic resins
         detail_other_plastic_resin: Detail of other resin used
+    description_of_the_market:
+        description_of_the_market: Description of the market
     report_technical:
         approve: Approve
         reject: Reject

@@ -64,7 +64,8 @@ angular.module('sigtecModule.controllers', [])
                   id: null,
                   use_other_plastic_resins: false,
                   detail_others_plastic_resin: { }
-              }
+              },
+              description_markets: { }
           };
           
       var defaultModel = {
@@ -114,6 +115,13 @@ angular.module('sigtecModule.controllers', [])
                   grade: null,
                   supplier: null
               }
+          },
+          description_market: {
+              product: null,
+              segment: null,
+              sub_segment: null,
+              participation_rate: 0,
+              requirement: 0
           }
       };
       
@@ -140,7 +148,9 @@ angular.module('sigtecModule.controllers', [])
               additives: null,
               products: null,
               suppliers: null
-          }
+          },
+          segments: null,
+          sub_segments: null
       };
       $scope.form = {};
       
@@ -239,6 +249,14 @@ angular.module('sigtecModule.controllers', [])
           $scope.template = $scope.templates.formDetailOtherPlasticResin;
           $scope.openModalForm();
       };
+      //Añade o actualiza un detalle de mercados
+      $scope.addDescriptionMarket = function(descriptionMarket){
+          notificationBarService.getLoadStatus().loading();
+          $scope.templates.formDescriptionMarket.parameterCallback = descriptionMarket;
+          $scope.template = $scope.templates.formDescriptionMarket;
+          $scope.openModalForm();
+      };
+      
     //Setea el formulario detalle de almacenaje del producto
     $scope.setDataDetailsStorage = function(detailProductStorage){
         if(detailProductStorage != undefined){
@@ -386,6 +404,29 @@ angular.module('sigtecModule.controllers', [])
                   requirement: 0,
                   grade: null,
                   supplier: null
+              }
+          }
+    }
+    //Establece la data del formulario de los detalles de las otras resinas plasticas
+    $scope.setDataDescriptionMarket = function(descriptionMarket){
+        if(descriptionMarket != undefined){
+             $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:descriptionMarket.id});
+             
+            $scope.model.description_market.product = $scope.data.additive.products[descriptionMarket.product.id];
+            $scope.model.description_market.segment = $scope.data.segments[descriptionMarket.segment.id];
+            
+            $scope.reportTechnicalManager.getData().getSubSegments($scope.data.segments[descriptionMarket.segment.id],descriptionMarket.sub_segment.id);
+            
+            $scope.model.description_market.supplier = descriptionMarket.supplier;
+             
+          }else{
+              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
+              $scope.model.description_market = {
+                  product: null,
+                  segment: null,
+                  sub_segment: null,
+                  participation_rate: 0,
+                  requirement: 0
               }
           }
     }
@@ -537,6 +578,9 @@ angular.module('sigtecModule.controllers', [])
           if($scope.data.additive.suppliers == null){
               reportTechnicalManager.getData().getSuppliers();
           }
+          if($scope.data.additive.segments == null){
+              reportTechnicalManager.getData().getSegments();
+          }
           
       };
       
@@ -587,6 +631,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
             product_manufactured: 'coramer_sigtec_backend_company_report_technical_properties_product_manufactured',
             additive_used: 'coramer_sigtec_backend_company_report_technical_properties_additive_used',
             other_plastic_resin: 'coramer_sigtec_backend_company_report_technical_properties_other_plastic_resin',
+            description_market: 'coramer_sigtec_backend_company_report_technical_properties_description_market',
             data:{
                 material: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_material',
                 storages: 'coramer_sigtec_backend_company_report_technical_data_storages',
@@ -604,6 +649,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 additive: 'coramer_sigtec_backend_company_report_technical_data_additive',
                 additive_products: 'coramer_sigtec_backend_company_report_technical_data_additive_products',
                 additive_suppliers: 'coramer_sigtec_backend_company_report_technical_data_additive_suppliers',
+                segments: 'coramer_sigtec_backend_company_report_technical_data_segments',
             },                    
             form: {
                 detail_product_storage: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_form',
@@ -611,6 +657,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 product_manufactured: 'coramer_sigtec_backend_company_report_technical_properties_product_manufactured_form',
                 additive_used: 'coramer_sigtec_backend_company_report_technical_properties_additive_used_form',
                 detail_other_plastic_resin: 'coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_form',
+                description_market: 'coramer_sigtec_backend_company_report_technical_properties_description_market_form',
             }
         }
     };
@@ -688,6 +735,18 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             update: 'coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_update'
                         },
                         reload: self.reload().detailOtherPlasticResin
+                    },
+                    formDescriptionMarket: { 
+                        name: 'formDescriptionMarket.html', 
+                        url: self.getUrlDescriptionMarket(),
+                        loadCallback:$scope.setDataDescriptionMarket,
+                        parameterCallback: null, 
+                        load: false,
+                        routes: {
+                            create: 'coramer_sigtec_backend_company_report_technical_properties_description_market_create',
+                            update: 'coramer_sigtec_backend_company_report_technical_properties_description_market_update'
+                        },
+                        reload: self.reload().descriptionMarket
                     }
                 };
                 $scope.template = '';
@@ -874,6 +933,25 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         scope.data.additive.suppliers = dataArray;
                     });
                 },
+                getSegments: function(){
+                    return $http.get(self.generateRoute(config.routes.data.segments)).success(function(d){
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[val.id] = val;
+                          });
+                        scope.data.segments = dataArray;
+                    });
+                },
+                getSubSegments: function(segment,selected){
+                   var dataArray = [];
+                    jQuery.each(segment.sub_segments,function(i,val){
+                        dataArray[val.id] = val;
+                    });
+                    scope.data.sub_segments = dataArray;
+                    if(selected != undefined){
+                        scope.model.description_market.sub_segment = dataArray[selected];
+                    }
+                },
             }
         },
         setId: function(i){
@@ -915,6 +993,11 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         scope.reportTechnical.other_plastic_resin = d;
                     });
               },
+              descriptionMarket: function(){
+                  return $http.get(self.generateRoute(config.routes.description_market)).success(function(d){
+                        scope.reportTechnical.description_markets = d;
+                    });
+              },
           }  
         },
         generateRoute: function(route,parameters){
@@ -940,6 +1023,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
         },
         getUrlFormDetailOtherPlasticResin: function() {
             return this.generateRoute(config.routes.form.detail_other_plastic_resin,{_format:'html'});
+        },
+        getUrlDescriptionMarket: function() {
+            return this.generateRoute(config.routes.form.description_market,{_format:'html'});
         },
     }
 });

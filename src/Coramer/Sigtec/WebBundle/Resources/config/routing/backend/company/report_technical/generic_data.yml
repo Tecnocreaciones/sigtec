@@ -129,3 +129,14 @@ coramer_sigtec_backend_company_report_technical_data_additive_suppliers:
     requirements:
         _method: GET
         _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_data_segments:
+    pattern:  /segments.{_format}
+    defaults:
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getSegmentsAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml

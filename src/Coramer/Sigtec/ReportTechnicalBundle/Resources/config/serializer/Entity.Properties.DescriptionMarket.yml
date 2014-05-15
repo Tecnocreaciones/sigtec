@@ -1,0 +1,21 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,id]
+        product:
+            expose: true
+            groups: [show,report_technical]
+        segment:
+            expose: true
+            groups: [show,report_technical]
+        subSegment:
+            expose: true
+            groups: [show,report_technical]
+        participationRate:
+            expose: true
+            groups: [show,report_technical]
+        requirement:
+            expose: true
+            groups: [show,report_technical]

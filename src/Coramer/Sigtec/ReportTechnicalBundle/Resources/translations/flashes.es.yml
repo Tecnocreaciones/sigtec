@@ -23,3 +23,7 @@ coramer_sigtec_backend:
         create: Otra resina plástica agregada.
         update: Otra resina plástica actualizada.
         delete: Otra resina plástica eliminada.
+    company_report_technical_properties_description_market:
+        create: Descripción de mercado agregada.
+        update: Descripción de mercado actualizada.
+        delete: Descripción de mercado eliminada.

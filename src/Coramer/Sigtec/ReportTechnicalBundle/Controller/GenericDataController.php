@@ -196,6 +196,19 @@ class GenericDataController extends FOSRestController
         return $this->handleView($view);
     }
     
+    /**
+     * Retorna la lista de segmentos activos
+     * 
+     * @return json|xml
+     */
+    function getSegmentsAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_segment');
+        $view = $this->view($repository->getAllActive());
+        $view->getSerializationContext()->setGroups(array('id','list','details'));
+        return $this->handleView($view);
+    }
+    
     protected function trans($id, $parameters = array(), $domain = 'CoramerSigtecReportTechnicalBundle')
     {
         return $this->getTranslator()->trans($id, $parameters, $domain);

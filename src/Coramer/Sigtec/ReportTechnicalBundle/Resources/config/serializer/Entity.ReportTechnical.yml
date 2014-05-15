@@ -37,3 +37,6 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
         otherPlasticResin:
             expose: true
             groups: [show,report_technical]
+        descriptionMarkets:
+            expose: true
+            groups: [show,report_technical]

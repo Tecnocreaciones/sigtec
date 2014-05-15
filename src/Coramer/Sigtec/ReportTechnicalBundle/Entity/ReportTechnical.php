@@ -107,20 +107,20 @@ class ReportTechnical implements ReportTechnicalInterface
     private $additivesUsed;
     
     /**
-     * Descripcion de los mercados
-     * 
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket
-     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket",mappedBy="reportTechnical")
-     */
-    private $descriptionMarkets;
-    
-    /**
      * Otras resinas plasticas
      * 
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin
      * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin",inversedBy="reportTechnical",cascade={"persist"})
      */
     private $otherPlasticResin;
+    
+    /**
+     * Descripcion de los mercados
+     * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket",mappedBy="reportTechnical")
+     */
+    private $descriptionMarkets;
     
     public function __construct() {
         $this->productionLevels = new \Doctrine\Common\Collections\ArrayCollection();
@@ -443,5 +443,38 @@ class ReportTechnical implements ReportTechnicalInterface
     public function getOtherPlasticResin()
     {
         return $this->otherPlasticResin;
+    }
+
+    /**
+     * Add descriptionMarkets
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket $descriptionMarkets
+     * @return ReportTechnical
+     */
+    public function addDescriptionMarket(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket $descriptionMarkets)
+    {
+        $this->descriptionMarkets[] = $descriptionMarkets;
+
+        return $this;
+    }
+
+    /**
+     * Remove descriptionMarkets
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket $descriptionMarkets
+     */
+    public function removeDescriptionMarket(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket $descriptionMarkets)
+    {
+        $this->descriptionMarkets->removeElement($descriptionMarkets);
+    }
+
+    /**
+     * Get descriptionMarkets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDescriptionMarkets()
+    {
+        return $this->descriptionMarkets;
     }
 }

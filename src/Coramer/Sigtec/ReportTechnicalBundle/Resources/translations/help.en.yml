@@ -44,3 +44,8 @@ sigtec:
                                 Factory products company with different resins to Coramer marketed as well 
                                 as their monthly consumption and its suppliers are recorded.
             do_you_use_other_different_plastic_resins: Do you use other different plastic resins
+        description_of_the_market:
+            description_of_the_market: >
+                                    This section is devoted to the study of the market for the company, through 
+                                    the classification of the finished products, as set segment and sub-segment 
+                                    market with an estimated percentage of participation.
