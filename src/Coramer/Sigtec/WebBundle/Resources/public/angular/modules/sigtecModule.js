@@ -106,7 +106,15 @@ angular.module('sigtecModule.controllers', [])
           },
           other_plastic_resin:{
               use_other_plastic_resins: false,
-              detail_others_plastic_resin: { }
+              detail_other_plastic_resin: {
+                  process: null,
+                  product: null,
+                  resin: null,
+                  requirement: 0,
+                  grade: null,
+                  supplier: null,
+                  otherPlasticResin: null
+              }
           }
       };
       
@@ -222,6 +230,13 @@ angular.module('sigtecModule.controllers', [])
           $scope.template = $scope.templates.formAdditiveUsed;
           $scope.openModalForm();
       };
+      //Añade o actualiza un detalle de otra resina plastica
+      $scope.addDetailOtherPlasticResin = function(detailOtherPlasticResin){
+          notificationBarService.getLoadStatus().loading();
+          $scope.templates.formDetailOtherPlasticResin.parameterCallback = detailOtherPlasticResin;
+          $scope.template = $scope.templates.formDetailOtherPlasticResin;
+          $scope.openModalForm();
+      };
     //Setea el formulario detalle de almacenaje del producto
     $scope.setDataDetailsStorage = function(detailProductStorage){
         if(detailProductStorage != undefined){
@@ -302,7 +317,29 @@ angular.module('sigtecModule.controllers', [])
               };
           }
     }
-    //Establece la data de aditivos que se emplean en el proceso
+    //Establece la data del formulario de los productos fabricados
+    $scope.setDataProductManufactured = function(productManufactured){
+        if(productManufactured != undefined){
+             $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:productManufactured.id});
+             
+             $scope.reportTechnicalManager.getData().getGrade(productManufactured.grade.resin,productManufactured.grade.id);
+             
+             $scope.model.product_manufactured.resin = $scope.data.resins[productManufactured.grade.resin.id];
+             $scope.model.product_manufactured.process = $scope.data.product_manufactured.process[productManufactured.process.id];
+             $scope.model.product_manufactured.product = $scope.data.products[productManufactured.product.id];
+             $scope.model.product_manufactured.requirement = productManufactured.requirement;
+          }else{
+              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
+              $scope.model.product_manufactured = {
+                  resin: null,
+                  grade: null,
+                  process: null,
+                  product: null,
+                  requirement: 0
+              };
+          }
+    }
+    //Establece la data del formulario de aditivos
     $scope.setDataAdditiveUsed = function(additiveUsed){
         if(additiveUsed != undefined){
              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:additiveUsed.id});
@@ -323,6 +360,23 @@ angular.module('sigtecModule.controllers', [])
                   mark: null,
                   concentration: null,
                   type_concentration: null,
+              }
+          }
+    }
+    //Establece la data del formulario de los detalles de las otras resinas plasticas
+    $scope.setDataDetailOtherPlasticResin = function(detailOtherPlasticResin){
+        if(detailOtherPlasticResin != undefined){
+             $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:detailOtherPlasticResin.id});
+          }else{
+              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
+              $scope.model.other_plastic_resin.detail_other_plastic_resin = {
+                  process: null,
+                  product: null,
+                  resin: null,
+                  requirement: 0,
+                  grade: null,
+                  supplier: null,
+                  otherPlasticResin: null
               }
           }
     }
@@ -540,6 +594,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 production_level: 'coramer_sigtec_backend_company_report_technical_properties_production_level_form',
                 product_manufactured: 'coramer_sigtec_backend_company_report_technical_properties_product_manufactured_form',
                 additive_used: 'coramer_sigtec_backend_company_report_technical_properties_additive_used_form',
+                detail_other_plastic_resin: 'coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_form',
             }
         }
     };
@@ -605,6 +660,18 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             update: 'coramer_sigtec_backend_company_report_technical_properties_additive_used_update'
                         },
                         reload: self.reload().additiveUsed
+                    },
+                    formDetailOtherPlasticResin: { 
+                        name: 'formDetailOtherPlasticResin.html', 
+                        url: self.getUrlFormDetailOtherPlasticResin(),
+                        loadCallback:$scope.setDataDetailOtherPlasticResin,
+                        parameterCallback: null, 
+                        load: false,
+                        routes: {
+                            create: 'coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_create',
+                            update: 'coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_update'
+                        },
+                        reload: self.reload().detailOtherPlasticResin
                     }
                 };
                 $scope.template = '';
@@ -840,6 +907,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
         },
         getUrlFormAdditiveUsed: function() {
             return this.generateRoute(config.routes.form.additive_used,{_format:'html'});
+        },
+        getUrlFormDetailOtherPlasticResin: function() {
+            return this.generateRoute(config.routes.form.detail_other_plastic_resin,{_format:'html'});
         },
     }
 });

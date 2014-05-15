@@ -22,6 +22,13 @@ sigtec:
         mark: Marca
         concentration: Concentration
         type_concentration: Type concentration
+    detail_other_plastic_resin:
+        product: Product
+        resin: Resin
+        grade: Grade
+        process: Process
+        requirement: Requirement
+        supplier: Supplier
     table:
         header:
             total: Total m<sup>2</sup>
@@ -78,6 +85,7 @@ sigtec:
         additives_used_in_the_process: Additives used in the process
     other_plastic_resins:
         other_plastic_resins: Other plastic resins
+        detail_other_plastic_resin: Detail of other resin used
     report_technical:
         approve: Approve
         reject: Reject

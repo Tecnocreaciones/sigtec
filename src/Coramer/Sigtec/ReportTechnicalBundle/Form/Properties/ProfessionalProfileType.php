@@ -61,7 +61,8 @@ class ProfessionalProfileType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile',
-            'translation_domain' => 'CoramerSigtecReportTechnicalBundle'
+            'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
+            'csrf_protection' => false,
         ));
     }
 

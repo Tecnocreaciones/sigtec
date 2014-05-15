@@ -90,6 +90,7 @@ class ProductManufacturedType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured',
             'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
+            'csrf_protection' => false,
         ));
     }
 

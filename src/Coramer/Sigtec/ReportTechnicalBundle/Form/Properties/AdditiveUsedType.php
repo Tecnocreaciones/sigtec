@@ -100,6 +100,7 @@ class AdditiveUsedType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed',
             'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
+            'csrf_protection' => false,
         ));
     }
 

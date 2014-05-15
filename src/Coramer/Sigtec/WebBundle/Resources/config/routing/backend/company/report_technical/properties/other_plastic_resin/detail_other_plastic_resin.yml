@@ -1,7 +1,7 @@
 coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin:
     pattern: /.{_format}
     defaults:
-        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_other_plastic_resin:listAction
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_detail_other_plastic_resin:listAction
         _format: json
     options:
         expose: true
@@ -12,9 +12,9 @@ coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_
 coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_form:
     pattern:  /get-form
     defaults:
-        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_other_plastic_resin:getFormAction
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_detail_other_plastic_resin:getFormAction
         _sylius:
-            form: coramer_sigtec_reporttechnicalbundle_properties_additiveused
+            form: coramer_sigtec_reporttechnicalbundle_properties_otherplasticresin_detailotherplasticresin
     options:
         expose: true
     requirements:
@@ -23,10 +23,10 @@ coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_
 coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_create:
     pattern:  /create
     defaults:
-        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_other_plastic_resin:createAction
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_detail_other_plastic_resin:createAction
         _format: json
         _sylius:
-            form: coramer_sigtec_reporttechnicalbundle_properties_additiveused
+            form: coramer_sigtec_reporttechnicalbundle_properties_otherplasticresin_detailotherplasticresin
     options:
         expose: true
     requirements:
@@ -36,9 +36,9 @@ coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_
 coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_update:
     pattern:  /{slug}/update
     defaults:
-        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_other_plastic_resin:updateAction
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_detail_other_plastic_resin:updateAction
         _sylius:
-            form: coramer_sigtec_reporttechnicalbundle_properties_additiveused
+            form: coramer_sigtec_reporttechnicalbundle_properties_otherplasticresin_detailotherplasticresin
         _format: json
     options:
         expose: true
@@ -48,7 +48,7 @@ coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_
 coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_delete:
     pattern:  /{slug}/delete
     defaults:
-        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_other_plastic_resin:deleteAction
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_detail_other_plastic_resin:deleteAction
         _format: json
     options:
         expose: true

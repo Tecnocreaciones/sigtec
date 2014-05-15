@@ -108,6 +108,7 @@ class DetailProductStorageType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage',
             'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
+            'csrf_protection' => false,
         ));
     }
 

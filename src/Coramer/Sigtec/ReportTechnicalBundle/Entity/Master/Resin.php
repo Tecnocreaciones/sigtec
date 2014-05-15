@@ -32,6 +32,13 @@ class Resin
     /**
      * @var boolean
      *
+     * @ORM\Column(name="marketedByCoramer", type="boolean", nullable=true)
+     */
+    private $marketedByCoramer = true;
+
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active = true;
@@ -196,5 +203,28 @@ class Resin
     public function getGrades()
     {
         return $this->grades;
+    }
+
+    /**
+     * Set marketedByCoramer
+     *
+     * @param boolean $marketedByCoramer
+     * @return Resin
+     */
+    public function setMarketedByCoramer($marketedByCoramer)
+    {
+        $this->marketedByCoramer = $marketedByCoramer;
+
+        return $this;
+    }
+
+    /**
+     * Get marketedByCoramer
+     *
+     * @return boolean 
+     */
+    public function getMarketedByCoramer()
+    {
+        return $this->marketedByCoramer;
     }
 }

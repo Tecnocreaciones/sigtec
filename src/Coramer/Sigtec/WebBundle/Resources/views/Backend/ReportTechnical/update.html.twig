@@ -361,7 +361,7 @@
                                         <td colspan="5" class="bold text-center">&nbsp;</td>
                                     </tr>
                                     <tr ng-repeat="other_plastic_resin in reportTechnical.other_plastic_resin.detail_others_plastic_resin" data="[[ other_plastic_resin|json ]]">
-                                        <td><a href ng-click="addAdditiveUsed(other_plastic_resin)" >[[ other_plastic_resin.additive.description ]]</a></td>
+                                        <td><a href ng-click="addDetailOtherPlasticResin(other_plastic_resin)" >[[ other_plastic_resin.additive.description ]]</a></td>
                                         <td>[[ other_plastic_resin.product.description ]]</td>
                                         <td>[[ other_plastic_resin.base_polymer ]]</td>
                                         <td>[[ other_plastic_resin.mark ]]</td>
@@ -374,7 +374,7 @@
                                 </table>
                                 <br/>    
                                 <p class="button-height align-right">
-                                    <a href ng-click="addAdditiveUsed()" class="button glossy mid-margin-right">
+                                    <a href ng-click="addDetailOtherPlasticResin()" class="button glossy mid-margin-right">
                                         <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
                                         {{ 'sigtec.button.add_detail'|trans }}
                                     </a>

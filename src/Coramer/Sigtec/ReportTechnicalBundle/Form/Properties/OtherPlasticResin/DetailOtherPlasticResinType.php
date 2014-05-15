@@ -15,13 +15,66 @@ class DetailOtherPlasticResinType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('requirement')
-            ->add('grade')
-            ->add('supplier')
-            ->add('process')
-            ->add('product')
-            ->add('resin')
-            ->add('otherPlasticResin')
+            ->add('grade',null,array(
+                'label' => 'sigtec.detail_other_plastic_resin.grade',
+                'attr' => array(
+                    'class' => 'input small-margin-right input-mini validate[required,integer]',
+                    'ng-model' => 'model.detail_other_plastic_resin.grade',
+                ),
+            ))
+            ->add('supplier',null,array(
+                'label' => 'sigtec.detail_other_plastic_resin.supplier',
+                'attr' => array(
+                    'class' => 'input small-margin-right input-mini validate[required,integer]',
+                    'ng-model' => 'model.detail_other_plastic_resin.supplier',
+                ),
+            ))
+            ->add('process','entity',array(
+                'label' => 'sigtec.detail_other_plastic_resin.process',
+                'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process',
+                'property' => 'description',
+                'attr' => array(
+                    'class' => 'select small-margin-right validate[required]',
+                    'ng-model' => 'model.other_plastic_resin.detail_other_plastic_resin.process',
+                    'ng-options' => 'value as value.description for (key,value) in data.product_manufactured.process',
+                ),
+                'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
+                    return $er->getQueryAllActive();
+                }
+            ))
+            ->add('product','entity',array(
+                'label' => 'sigtec.detail_other_plastic_resin.product',
+                'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product',
+                'property' => 'description',
+                'attr' => array(
+                    'class' => 'select small-margin-right validate[required]',
+                    'ng-model' => 'model.other_plastic_resin.detail_other_plastic_resin.product',
+                    'ng-options' => 'value as value.description for (key,value) in data.products',
+                ),
+                'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
+                    return $er->getQueryAllActive();
+                }
+            ))
+            ->add('resin','entity',array(
+                'label' => 'sigtec.detail_other_plastic_resin.resin',
+                'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Resin',
+                'property' => 'description',
+                'attr' => array(
+                    'class' => 'select small-margin-right validate[required]',
+                    'ng-model' => 'model.other_plastic_resin.detail_other_plastic_resin.resin',
+                    'ng-options' => 'value as value.description for (key,value) in data.resins',
+                ),
+                'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
+                    return $er->getQueryAllActive();
+                }
+            ))
+            ->add('requirement',null,array(
+                'label' => 'sigtec.detail_other_plastic_resin.requirement',
+                'attr' => array(
+                    'class' => 'input small-margin-right input-mini validate[required,integer]',
+                    'ng-model' => 'model.detail_other_plastic_resin.requirement',
+                ),
+            ))
         ;
     }
     
@@ -31,7 +84,9 @@ class DetailOtherPlasticResinType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin'
+            'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin',
+            'translation_domain' => 'CoramerSigtecReportTechnicalBundle',
+            'csrf_protection' => false,
         ));
     }
 

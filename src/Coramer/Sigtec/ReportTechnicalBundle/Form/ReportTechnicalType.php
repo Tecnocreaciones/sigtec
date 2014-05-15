@@ -26,7 +26,8 @@ class ReportTechnicalType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical'
+            'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical',
+            'csrf_protection' => false,
         ));
     }
 

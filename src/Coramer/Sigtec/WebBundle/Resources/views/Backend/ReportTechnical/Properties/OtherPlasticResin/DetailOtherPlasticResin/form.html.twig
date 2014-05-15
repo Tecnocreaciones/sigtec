@@ -1,36 +1,14 @@
 {% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
 <form id="form_pop_up" method="POST" action="[[ reportTechnicalHelper.form.action.url ]]">
 <fieldset class="fieldset fields-list">
-    <legend class="legend">{{ 'sigtec.description_of_products_manufactured.product_manufactured'|trans }}</legend>
-    <div class="field-block button-height">
-        {{ form_label(form.resin) }}
-        {{ form_widget(form.resin) }}
-        <span class="info-spot">
-            <span class="icon-info-round"></span>
-            <span class="info-bubble">
-                {{ 'sigtec.help.product_manufactured.resin'|trans({},'help') }}
-            </span>
-        </span>
-        {{ form_errors(form.resin) }}
-    </div>
-    <div class="field-block button-height">
-        {{ form_label(form.grade) }}
-        {{ form_widget(form.grade) }}
-        <span class="info-spot">
-            <span class="icon-info-round"></span>
-            <span class="info-bubble">
-                {{ 'sigtec.help.product_manufactured.grade'|trans({},'help') }}
-            </span>
-        </span>
-        {{ form_errors(form.grade) }}
-    </div>
+    <legend class="legend">{{ 'sigtec.other_plastic_resins.detail_other_plastic_resin'|trans }}</legend>
     <div class="field-block button-height">
         {{ form_label(form.process) }}
         {{ form_widget(form.process) }}
         <span class="info-spot">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
-                {{ 'sigtec.help.product_manufactured.process'|trans({},'help') }}
+                {{ 'sigtec.help.detail_other_plastic_resin.process'|trans({},'help') }}
             </span>
         </span>
         {{ form_errors(form.process) }}
@@ -41,10 +19,32 @@
         <span class="info-spot">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
-                {{ 'sigtec.help.product_manufactured.product'|trans({},'help') }}
+                {{ 'sigtec.help.detail_other_plastic_resin.product'|trans({},'help') }}
             </span>
         </span>
         {{ form_errors(form.product) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.resin) }}
+        {{ form_widget(form.resin) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.detail_other_plastic_resin.resin'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.resin) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.grade) }}
+        {{ form_widget(form.grade) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.detail_other_plastic_resin.grade'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.grade) }}
     </div>
     <div class="field-block button-height">
         {{ form_label(form.requirement) }}
@@ -52,10 +52,21 @@
         <span class="info-spot">
             <span class="icon-info-round"></span>
             <span class="info-bubble">
-                {{ 'sigtec.help.product_manufactured.requirement'|trans({},'help') }}
+                {{ 'sigtec.help.detail_other_plastic_resin.requirement'|trans({},'help') }}
             </span>
         </span>
         {{ form_errors(form.requirement) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.supplier) }}
+        {{ form_widget(form.supplier) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.detail_other_plastic_resin.supplier'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.supplier) }}
     </div>
 </fieldset>
 {{ form_rest(form) }}

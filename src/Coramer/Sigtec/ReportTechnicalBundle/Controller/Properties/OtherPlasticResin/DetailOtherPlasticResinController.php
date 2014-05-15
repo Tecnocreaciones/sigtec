@@ -136,9 +136,8 @@ class DetailOtherPlasticResinController extends BaseController
         }
         
         $resource = $this->createNew();
-        $resource->setReportTechnical($reportTechnical);
         $form = $this->getForm($resource);
-        return $this->render('CoramerSigtecWebBundle:Backend/ReportTechnical/Properties/OtherPlasticResin/DetailOtherPlasticResin/form.html.twig',array(
+        return $this->render('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/OtherPlasticResin/DetailOtherPlasticResin/form.html.twig',array(
             'form' => $form->createView(),
             'reportTechnical' => $reportTechnical,
         ));
