@@ -58,6 +58,7 @@ sigtec:
                 production_level: No details of the production level.
                 product_manufactured: No details of the products manufactured.
                 additive_used: No details of the additives use.
+                other_plastic_resin: There are no details of other plastic resins.
     button:
         add_detail: Add detail
     description_of_the_business_areas:

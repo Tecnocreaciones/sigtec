@@ -44,7 +44,7 @@ angular.module('sigtecModule.controllers', [])
   })
   .controller('ReportTechnicalController',function($scope,$http,reportTechnicalManager,notificationBarService,notifyService,sfTranslator){
       $scope.reportTechnical = {
-              id: 0,
+              id: null,
               professional_profile: {
                   quantity_professionals: 0,
                     quantity_technical: 0,
@@ -53,17 +53,18 @@ angular.module('sigtecModule.controllers', [])
                     total: 0
               },
               description_area_company: {
-                  id: '',
-                  plants_description: {
-                      
-                  },
-                  detail_product_storages: {
-                      
-                  }
+                  id: null,
+                  plants_description: { },
+                  detail_product_storages: { }
               },
               production_levels: { },
               products_manufactured: { },
-              additives_used: {}
+              additives_used: { },
+              other_plastic_resin: {
+                  id: null,
+                  use_other_plastic_resins: false,
+                  detail_others_plastic_resin: { }
+              }
           };
           
       var defaultModel = {
@@ -102,6 +103,10 @@ angular.module('sigtecModule.controllers', [])
               additive: null,
               product: null,
               additive_supplier: null
+          },
+          other_plastic_resin:{
+              use_other_plastic_resins: false,
+              detail_others_plastic_resin: { }
           }
       };
       

@@ -70,7 +70,7 @@ class ReportTechnical implements ReportTechnicalInterface
     /**
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile
      *
-     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile",cascade={"persist","remove"})
+     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile",cascade={"persist"})
      */
     private $professionalProfile;
     
@@ -110,7 +110,7 @@ class ReportTechnical implements ReportTechnicalInterface
      * Otras resinas plasticas
      * 
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin
-     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin",inversedBy="reportTechnical")
+     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin",inversedBy="reportTechnical",cascade={"persist"})
      */
     private $otherPlasticResin;
     

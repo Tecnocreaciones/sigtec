@@ -337,6 +337,50 @@
                             <h3>6) {{ 'sigtec.other_plastic_resins.other_plastic_resins'|trans }}</h3>
                             <p>{{ 'sigtec.help.other_plastic_resins.other_plastic_resins'|trans({},'help') }}</p>
 			</div>
+                        <div class="field-block">
+                            {{ 'sigtec.help.other_plastic_resins.do_you_use_other_different_plastic_resins'|trans({},'help') }}
+                            <input type="checkbox" ng-model="reportTechnical.other_plastic_resin.use_other_plastic_resins" class="mid-margin-left">
+                            <br />
+                            <br />
+                            <div ng-show="reportTechnical.other_plastic_resin.use_other_plastic_resins" >
+                                <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection6" >
+                                    <tr>
+                                        <th>{{ 'sigtec.table.header.process'|trans }}</th>
+                                        <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                                        <th>{{ 'sigtec.table.header.resin'|trans }}</th>
+                                        <th>{{ 'sigtec.table.header.grade'|trans }}</th> 
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                    <tr ng-hide="reportTechnical.other_plastic_resin.detail_others_plastic_resin">
+                                        <td colspan="5" class="bold text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr ng-hide="reportTechnical.other_plastic_resin.detail_others_plastic_resin">
+                                        <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.other_plastic_resin'|trans }}</td>
+                                    </tr>
+                                    <tr ng-hide="reportTechnical.other_plastic_resin.detail_others_plastic_resin">
+                                        <td colspan="5" class="bold text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr ng-repeat="other_plastic_resin in reportTechnical.other_plastic_resin.detail_others_plastic_resin" data="[[ other_plastic_resin|json ]]">
+                                        <td><a href ng-click="addAdditiveUsed(other_plastic_resin)" >[[ other_plastic_resin.additive.description ]]</a></td>
+                                        <td>[[ other_plastic_resin.product.description ]]</td>
+                                        <td>[[ other_plastic_resin.base_polymer ]]</td>
+                                        <td>[[ other_plastic_resin.mark ]]</td>
+                                        <td>
+                                            <span class="button-group compact">
+                                                <a href ng-click="itemDelete(other_plastic_resin._links.delete.href,reportTechnicalManager.reload().additiveUsed)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>    
+                                <p class="button-height align-right">
+                                    <a href ng-click="addAdditiveUsed()" class="button glossy mid-margin-right">
+                                        <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                                        {{ 'sigtec.button.add_detail'|trans }}
+                                    </a>
+                                </p>
+                            </div>
+			</div>
                         <div class="field-block button-height wizard-controls align-right">
 
 				<a href ng-click="save()" class="button glossy mid-margin-right">
@@ -558,6 +602,11 @@
         {
             return  '<strong>{{ 'sigtec.table.header.additive_supplier'|trans }}:</strong> ' + data.additive_supplier.description + '<br>' +
                     '<strong>{{ 'sigtec.table.header.concentration'|trans }}:</strong> ' + data.concentration + ' ' + data._labels.type_concentration + '<br>';
+        }
+        function getTableExtraInfoSection6(data)
+        {
+            return  '<strong>{{ 'sigtec.table.header.requirement'|trans }}:</strong> ' + data.requirement + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.supplier'|trans }}:</strong> ' + data.supplier + '<br>';
         }
              $(document).ready(function() {
             //Example for table extra info methos to override

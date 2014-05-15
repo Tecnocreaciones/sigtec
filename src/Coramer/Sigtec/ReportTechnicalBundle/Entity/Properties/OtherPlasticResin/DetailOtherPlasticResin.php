@@ -85,7 +85,7 @@ class DetailOtherPlasticResin
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin", inversedBy="detailOthersPlasticResin")
      */
-    private $OtherPlasticResin;
+    private $otherPlasticResin;
 
     /**
      * Get id
@@ -243,7 +243,7 @@ class DetailOtherPlasticResin
      */
     public function setOtherPlasticResin(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin $otherPlasticResin = null)
     {
-        $this->OtherPlasticResin = $otherPlasticResin;
+        $this->otherPlasticResin = $otherPlasticResin;
 
         return $this;
     }
@@ -255,6 +255,6 @@ class DetailOtherPlasticResin
      */
     public function getOtherPlasticResin()
     {
-        return $this->OtherPlasticResin;
+        return $this->otherPlasticResin;
     }
 }

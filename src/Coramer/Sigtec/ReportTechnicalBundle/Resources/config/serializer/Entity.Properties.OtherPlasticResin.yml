@@ -1,0 +1,12 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,id]
+        useOtherPlasticResins:
+            expose: true
+            groups: [show,report_technical]
+        detailOthersPlasticResin:
+            expose: true
+            groups: [show,report_technical]

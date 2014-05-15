@@ -1,0 +1,24 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,id]
+        process:
+            expose: true
+            groups: [show,report_technical]
+        product:
+            expose: true
+            groups: [show,report_technical]
+        resin:
+            expose: true
+            groups: [show,report_technical]
+        requirement:
+            expose: true
+            groups: [show,report_technical]
+        grade:
+            expose: true
+            groups: [show,report_technical]
+        supplier:
+            expose: true
+            groups: [show,report_technical]

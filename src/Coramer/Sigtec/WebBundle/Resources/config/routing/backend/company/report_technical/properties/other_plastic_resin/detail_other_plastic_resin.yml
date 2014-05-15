@@ -1,0 +1,58 @@
+coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin:
+    pattern: /.{_format}
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_other_plastic_resin:listAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_form:
+    pattern:  /get-form
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_other_plastic_resin:getFormAction
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_additiveused
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        
+coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_create:
+    pattern:  /create
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_other_plastic_resin:createAction
+        _format: json
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_additiveused
+    options:
+        expose: true
+    requirements:
+        _method: POST
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_update:
+    pattern:  /{slug}/update
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_other_plastic_resin:updateAction
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_additiveused
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST|PUT
+        
+coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_delete:
+    pattern:  /{slug}/delete
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_other_plastic_resin:deleteAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST|DELETE
+        _format: json|xml
+        

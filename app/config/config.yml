@@ -319,6 +319,12 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\DescriptionAreaCompany\DetailProductStorage\MaterialController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage\Material
+         coramer_sigtec_backend.company_report_technical_properties_detail_other_plastic_resin:
+            driver: doctrine/orm
+            templates: CoramerSigtecWebBundle:Backend/ReportTechnical/Properties/OtherPlasticResin/DetailOtherPlasticResin
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\OtherPlasticResin\DetailOtherPlasticResinController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin
          coramer_sigtec_backend.company_report_technical_type_process:
             driver: doctrine/orm
             classes:
