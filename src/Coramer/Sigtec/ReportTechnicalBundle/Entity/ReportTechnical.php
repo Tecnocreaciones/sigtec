@@ -107,6 +107,14 @@ class ReportTechnical implements ReportTechnicalInterface
     private $additivesUsed;
     
     /**
+     * Descripcion de los mercados
+     * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket",mappedBy="reportTechnical")
+     */
+    private $descriptionMarkets;
+    
+    /**
      * Otras resinas plasticas
      * 
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin
@@ -118,6 +126,7 @@ class ReportTechnical implements ReportTechnicalInterface
         $this->productionLevels = new \Doctrine\Common\Collections\ArrayCollection();
         $this->productsManufactured = new \Doctrine\Common\Collections\ArrayCollection();
         $this->additivesUsed = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->descriptionMarkets = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
