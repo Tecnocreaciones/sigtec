@@ -47,6 +47,7 @@ class SerializeEventListerner implements EventSubscriberInterface
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeProductionLevel', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeProductManufactured', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeAdditiveUsed', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeDetailOtherPlasticResin', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin','format' => 'json'),
         );
     }
     
@@ -168,6 +169,24 @@ class SerializeEventListerner implements EventSubscriberInterface
         ));
         $event->getVisitor()->addData('_labels', array(
             'type_concentration' => $typeConcentration[$object->getTypeConcentration()],
+        ));
+    }
+    
+    /**
+     * Captura el evento luego que se serealiza un detalle de otra resina plastica
+     * @param ObjectEvent $event
+     */
+    function onPostSerializeDetailOtherPlasticResin(ObjectEvent $event) {
+        $object = $event->getObject();
+        $reportTechnical = $object->getOtherPlasticResin()->getReportTechnical();
+        
+        $event->getVisitor()->addData('_links', array(
+            'edit' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_update',array('id' => $reportTechnical->getId(),'slug' =>$object->getId()))
+                ),
+            'delete' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_delete',array('id' => $reportTechnical->getId(),'slug' =>$object->getId()))
+                ),
         ));
     }
     

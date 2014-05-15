@@ -96,6 +96,16 @@ class OtherPlasticResin
     }
 
     /**
+     * Is useOtherPlasticResins
+     *
+     * @return boolean 
+     */
+    public function isUseOtherPlasticResins()
+    {
+        return $this->useOtherPlasticResins;
+    }
+
+    /**
      * Add detailOthersPlasticResin
      *
      * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin $detailOthersPlasticResin
@@ -103,7 +113,7 @@ class OtherPlasticResin
      */
     public function addDetailOthersPlasticResin(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin $detailOthersPlasticResin)
     {
-        $this->detailOthersPlasticResin[] = $detailOthersPlasticResin;
+        $this->detailOthersPlasticResin->add($detailOthersPlasticResin);
 
         return $this;
     }

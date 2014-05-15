@@ -59,6 +59,7 @@ sigtec:
             mark: Marca
             additive_supplier: Proveedor
             concentration: Concentración
+            supplier: Proveedor
         content:
             empty:
                 storage: No existen detalles de almacenaje de los productos.

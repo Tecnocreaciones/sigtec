@@ -18,15 +18,8 @@ class DetailOtherPlasticResinType extends AbstractType
             ->add('grade',null,array(
                 'label' => 'sigtec.detail_other_plastic_resin.grade',
                 'attr' => array(
-                    'class' => 'input small-margin-right input-mini validate[required,integer]',
-                    'ng-model' => 'model.detail_other_plastic_resin.grade',
-                ),
-            ))
-            ->add('supplier',null,array(
-                'label' => 'sigtec.detail_other_plastic_resin.supplier',
-                'attr' => array(
-                    'class' => 'input small-margin-right input-mini validate[required,integer]',
-                    'ng-model' => 'model.detail_other_plastic_resin.supplier',
+                    'class' => 'input small-margin-right input-small validate[required,integer]',
+                    'ng-model' => 'model.other_plastic_resin.detail_other_plastic_resin.grade',
                 ),
             ))
             ->add('process','entity',array(
@@ -60,19 +53,26 @@ class DetailOtherPlasticResinType extends AbstractType
                 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Resin',
                 'property' => 'description',
                 'attr' => array(
-                    'class' => 'select small-margin-right validate[required]',
+                    'class' => 'select small-margin-right  input-small validate[required]',
                     'ng-model' => 'model.other_plastic_resin.detail_other_plastic_resin.resin',
-                    'ng-options' => 'value as value.description for (key,value) in data.resins',
+                    'ng-options' => 'value as value.description for (key,value) in data.resins.not_by_coramer',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
-                    return $er->getQueryAllActive();
+                    return $er->getQueryBuilderNotMarketedByCoramer();
                 }
             ))
             ->add('requirement',null,array(
                 'label' => 'sigtec.detail_other_plastic_resin.requirement',
                 'attr' => array(
                     'class' => 'input small-margin-right input-mini validate[required,integer]',
-                    'ng-model' => 'model.detail_other_plastic_resin.requirement',
+                    'ng-model' => 'model.other_plastic_resin.detail_other_plastic_resin.requirement',
+                ),
+            ))
+            ->add('supplier',null,array(
+                'label' => 'sigtec.detail_other_plastic_resin.supplier',
+                'attr' => array(
+                    'class' => 'input small-margin-right validate[required,integer]',
+                    'ng-model' => 'model.other_plastic_resin.detail_other_plastic_resin.supplier',
                 ),
             ))
         ;

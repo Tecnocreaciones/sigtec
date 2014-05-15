@@ -1,4 +1,4 @@
-coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin:
+coramer_sigtec_backend_company_report_technical_properties_other_plastic_resin:
     pattern: /.{_format}
     defaults:
         _controller: coramer_sigtec_backend.controller.company_report_technical_properties_detail_other_plastic_resin:listAction

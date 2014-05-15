@@ -361,13 +361,13 @@
                                         <td colspan="5" class="bold text-center">&nbsp;</td>
                                     </tr>
                                     <tr ng-repeat="other_plastic_resin in reportTechnical.other_plastic_resin.detail_others_plastic_resin" data="[[ other_plastic_resin|json ]]">
-                                        <td><a href ng-click="addDetailOtherPlasticResin(other_plastic_resin)" >[[ other_plastic_resin.additive.description ]]</a></td>
+                                        <td><a href ng-click="addDetailOtherPlasticResin(other_plastic_resin)" >[[ other_plastic_resin.process.description ]]</a></td>
                                         <td>[[ other_plastic_resin.product.description ]]</td>
-                                        <td>[[ other_plastic_resin.base_polymer ]]</td>
-                                        <td>[[ other_plastic_resin.mark ]]</td>
+                                        <td>[[ other_plastic_resin.resin.description ]]</td>
+                                        <td>[[ other_plastic_resin.grade ]]</td>
                                         <td>
                                             <span class="button-group compact">
-                                                <a href ng-click="itemDelete(other_plastic_resin._links.delete.href,reportTechnicalManager.reload().additiveUsed)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                                <a href ng-click="itemDelete(other_plastic_resin._links.delete.href,reportTechnicalManager.reload().detailOtherPlasticResin)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
                                             </span>
                                         </td>
                                     </tr>

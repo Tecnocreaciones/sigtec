@@ -28,6 +28,10 @@ class MasterEntityRepository extends EntityRepository
         return $this->findBy(array('active' => false));
     }
     
+    /**
+     * 
+     * @return \Doctrine\ORM\QueryBuilder
+     */
     function getQueryAllActive() {
         $qb = $this->createQueryBuilder('p');
         $qb

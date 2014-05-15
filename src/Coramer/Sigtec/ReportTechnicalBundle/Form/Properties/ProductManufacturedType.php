@@ -22,12 +22,12 @@ class ProductManufacturedType extends AbstractType
                 'mapped' => false,
                 'attr' => array(
                     'class' => 'select input-large auto-refesh expandable-list small-margin-right validate[required]',
-                    'ng-options' => 'value as value.description for (key,value) in data.resins',
+                    'ng-options' => 'value as value.description for (key,value) in data.resins.by_coramer',
                     'ng-model' => 'model.product_manufactured.resin',
                     'ng-change' => 'reportTechnicalManager.getData().getGrade(model.product_manufactured.resin)',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
-                    return $er->getQueryAllActive();
+                    return $er->getQueryBuilderMarketedByCoramer();
                 }
             ))
             ->add('grade','entity',array(
@@ -38,7 +38,6 @@ class ProductManufacturedType extends AbstractType
                     'class' => 'select input-large auto-refesh expandable-list small-margin-right validate[required]',
                     'ng-options' => 'value as value.description for (key,value) in data.grades',
                     'ng-model' => 'model.product_manufactured.grade',
-                    //'ng-change' => 'reportTechnicalManager.getData().getProcess(model.product_manufactured.type_process)',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
                     return $er->getQueryAllActive();
@@ -52,7 +51,6 @@ class ProductManufacturedType extends AbstractType
                     'class' => 'select input-large auto-refesh expandable-list small-margin-right validate[required]',
                     'ng-options' => 'value as value.description for (key,value) in data.product_manufactured.process',
                     'ng-model' => 'model.product_manufactured.process',
-                    //'ng-change' => 'reportTechnicalManager.getData().getProcess(model.product_manufactured.type_process)',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
                     return $er->getQueryAllActive();
@@ -66,7 +64,6 @@ class ProductManufacturedType extends AbstractType
                     'class' => 'select input-large auto-refesh expandable-list small-margin-right validate[required]',
                     'ng-options' => 'value as value.description for (key,value) in data.products',
                     'ng-model' => 'model.product_manufactured.product',
-                    //'ng-change' => 'reportTechnicalManager.getData().getProcess(model.product_manufactured.type_process)',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\ProductRepository $er){
                     return $er->getQueryAllActive();

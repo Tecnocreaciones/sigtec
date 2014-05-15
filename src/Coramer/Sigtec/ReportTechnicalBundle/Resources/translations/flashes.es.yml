@@ -1,21 +1,25 @@
 coramer_sigtec_backend:
     company_report_technical:
-        create: El reporte técnico se ha creado
-        update: El reporte técnico se ha actualizado
-        delete: El reporte técnico se ha eliminado
+        create: El reporte técnico se ha creado.
+        update: El reporte técnico se ha actualizado.
+        delete: El reporte técnico se ha eliminado.
     company_report_technical_properties_detail_product_storage:
-        create: Detalle de almacenaje de producto agregado
-        update: Detalle de almacenaje de producto actualizado
-        delete: Detalle de almacenaje de producto eliminado
+        create: Detalle de almacenaje de producto agregado.
+        update: Detalle de almacenaje de producto actualizado.
+        delete: Detalle de almacenaje de producto eliminado.
     company_report_technical_properties_production_level: 
-        create: Nivel de producción agregado
-        update: Nivel de producción actualizado
-        delete: Nivel de producción eliminado
+        create: Nivel de producción agregado.
+        update: Nivel de producción actualizado.
+        delete: Nivel de producción eliminado.
     company_report_technical_properties_product_manufactured:
-        create: Descripción de producto agregado
-        update: Descripción de producto actualizado
-        delete: Descripción de producto eliminado
+        create: Descripción de producto agregado.
+        update: Descripción de producto actualizado.
+        delete: Descripción de producto eliminado.
     company_report_technical_properties_additive_used:
-        create: Descripción del aditivo usado agregado
-        update: Descripción del aditivo usado actualizado
-        delete: Descripción del aditivo usado eliminado
+        create: Descripción del aditivo usado agregado.
+        update: Descripción del aditivo usado actualizado.
+        delete: Descripción del aditivo usado eliminado.
+    company_report_technical_properties_detail_other_plastic_resin:
+        create: Otra resina plástica agregada.
+        update: Otra resina plástica actualizada.
+        delete: Otra resina plástica eliminada.

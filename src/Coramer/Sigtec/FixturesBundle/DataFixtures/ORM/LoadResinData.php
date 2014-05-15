@@ -44,6 +44,27 @@ class LoadResinData extends AbstractFixture implements FixtureInterface,  Ordere
             $this->addReference('resin-PE', $resin);
             $manager->persist($resin);
             
+        //No comercializadas por Coramer
+        $resin = new Resin();
+        $resin->setDescription('PS')
+              ->setMarketedByCoramer(false);
+            $manager->persist($resin);
+            
+        $resin = new Resin();
+        $resin->setDescription('PET')
+              ->setMarketedByCoramer(false);
+            $manager->persist($resin);
+            
+        $resin = new Resin();
+        $resin->setDescription('PC')
+              ->setMarketedByCoramer(false);
+            $manager->persist($resin);
+            
+        $resin = new Resin();
+        $resin->setDescription('ABS')
+              ->setMarketedByCoramer(false);
+            $manager->persist($resin);
+            
         $manager->flush();
     }
 }

@@ -12,4 +12,47 @@ use Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository;
  */
 class ResinRepository extends MasterEntityRepository
 {
+    /**
+     * Devuelve el query builder de las resinas comercializadas por Coramer
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    function getQueryBuilderMarketedByCoramer()
+    {
+        $qb = $this->getQueryAllActive();
+        $qb
+           ->andWhere('p.marketedByCoramer = :marketedByCoramer')
+           ->setParameter('marketedByCoramer', true)
+            ;
+        return $qb;
+    }
+    
+    /**
+     * Devuelve el query builder de las resinas NO comercializadas por Coramer
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    function getQueryBuilderNotMarketedByCoramer()
+    {
+        $qb = $this->getQueryAllActive();
+        $qb
+           ->andWhere('p.marketedByCoramer = :marketedByCoramer')
+           ->setParameter('marketedByCoramer', false)
+            ;
+        return $qb;
+    }
+    /**
+     * Devuelve las resinas NO comercializadas por Coramer
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    function getNotMarketedByCoramer()
+    {
+        return $this->getQueryBuilderNotMarketedByCoramer()->getQuery()->getResult();
+    }
+    /**
+     * Devuelve las resinas NO comercializadas por Coramer
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    function getMarketedByCoramer()
+    {
+        return $this->getQueryBuilderMarketedByCoramer()->getQuery()->getResult();
+    }
 }

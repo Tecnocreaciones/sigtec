@@ -1,21 +1,25 @@
 coramer_sigtec_backend:
     company_report_technical:
-        create: The technical report has been created
-        update: The technical report has been updated
-        delete: The technical report has been removed
+        create: The technical report has been created.
+        update: The technical report has been updated.
+        delete: The technical report has been removed.
     company_report_technical_properties_detail_product_storage:
-        create: Detail product added storage
-        update: Detail product storage updated
-        delete: Detail product storage deleted
+        create: Detail product added storage.
+        update: Detail product storage updated.
+        delete: Detail product storage deleted.
     company_report_technical_properties_production_level: 
-        create: Added production level
-        update: Updated production level
-        delete: Production level removed
+        create: Added production level.
+        update: Updated production level.
+        delete: Production level removed.
     company_report_technical_properties_product_manufactured:
-        create: Product description added
-        update: Product description updated
-        delete: Product description removed
+        create: Product description added.
+        update: Product description updated.
+        delete: Product description removed.
     company_report_technical_properties_additive_used:
-        create: Description added additive used
-        update: Description additive used updated
-        delete: Description removed additive used
+        create: Description added additive used.
+        update: Description additive used updated.
+        delete: Description removed additive used.
+    company_report_technical_properties_detail_other_plastic_resin:
+        create: Another plastic resin added.
+        update: Another plastic resin updated.
+        delete: Another plastic resin removed.

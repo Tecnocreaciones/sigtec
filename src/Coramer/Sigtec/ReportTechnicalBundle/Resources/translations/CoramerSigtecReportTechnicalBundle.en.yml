@@ -59,6 +59,7 @@ sigtec:
             mark: Mark
             additive_supplier: Supplier
             concentration: Concentration
+            supplier: Supplier
         content:
             empty:
                 storage: There are no details of storage products.

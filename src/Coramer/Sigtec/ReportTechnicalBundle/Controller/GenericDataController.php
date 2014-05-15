@@ -105,14 +105,27 @@ class GenericDataController extends FOSRestController
     }
     
     /**
-     * Retorna la lista de resinas activas
+     * Retorna la lista de resinas activas comercializadas por Coramer
      * 
      * @return json|xml
      */
-    function getResinAction()
+    function getResinByCoramerAction()
     {
         $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_resin');
-        $view = $this->view($repository->getAllActive());
+        $view = $this->view($repository->getMarketedByCoramer());
+        $view->getSerializationContext()->setGroups(array('id','list'));
+        return $this->handleView($view);
+    }
+    
+    /**
+     * Retorna la lista de resinas activas comercializadas por Coramer
+     * 
+     * @return json|xml
+     */
+    function getResinNotByCoramerAction()
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_resin');
+        $view = $this->view($repository->getNotMarketedByCoramer());
         $view->getSerializationContext()->setGroups(array('id','list'));
         return $this->handleView($view);
     }

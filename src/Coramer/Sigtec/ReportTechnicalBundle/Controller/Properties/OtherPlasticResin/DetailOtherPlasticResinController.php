@@ -27,7 +27,7 @@ class DetailOtherPlasticResinController extends BaseController
         $view = $this
             ->view()
         ;
-        $view->setData($reportTechnical->getAdditivesUsed());
+        $view->setData($reportTechnical->getOtherPlasticResin());
         return $this->handleView($view);
     }
     
@@ -38,15 +38,21 @@ class DetailOtherPlasticResinController extends BaseController
         if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
             throw $this->createAccessDeniedHttpException();
         }
+        $otherPlasticResin = $reportTechnical->getOtherPlasticResin();
+        
         $resource = $this->createNew();
-        $resource->setReportTechnical($reportTechnical);
+        $resource->setOtherPlasticResin($otherPlasticResin);
         $form = $this->getForm($resource);
         $data = array();
         $view = $this->view();
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
-            $resource->setReportTechnical($reportTechnical);
             $resource = $this->domainManager->create($resource);
-            
+            if(!$otherPlasticResin->isUseOtherPlasticResins()){
+                $otherPlasticResin->setUseOtherPlasticResins(true);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($otherPlasticResin);
+                $em->flush();
+            }
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
             if (null === $resource) {
@@ -75,7 +81,19 @@ class DetailOtherPlasticResinController extends BaseController
             if(!$resource){
                 throw $this->createNotFoundException();
             }
+            $otherPlasticResin = $reportTechnical->getOtherPlasticResin();
+            
             $this->domainManager->delete($resource);
+            
+            $otherPlasticResin->removeDetailOthersPlasticResin($resource);
+            
+            if($otherPlasticResin->getDetailOthersPlasticResin()->isEmpty()){
+                $otherPlasticResin->setUseOtherPlasticResins(false);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($otherPlasticResin);
+                $em->flush();
+            }
+            
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
             $data = array(
@@ -93,7 +111,6 @@ class DetailOtherPlasticResinController extends BaseController
             throw $this->createAccessDeniedHttpException();
         }
         $resource = $this->getRepository()->find($request->get('slug'));
-        $resource->setReportTechnical($reportTechnical);
         $form = $this->getForm($resource);
         
         if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
