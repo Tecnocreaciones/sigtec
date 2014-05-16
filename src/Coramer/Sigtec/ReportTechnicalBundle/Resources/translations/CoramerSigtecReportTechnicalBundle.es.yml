@@ -111,6 +111,17 @@ sigtec:
             requirement: Requerimiento
             destiny: Destino
             port: Puerto
+    growth_potential:
+        growth_potential: Potencial de crecimiento
+        last_investment_machinery: Fecha de última inversión en maquinarias
+        growth_markets: ¿Cual de sus mercados considera en crecimiento?
+        other_markets: ¿Considera entrar en otros mercados?
+        purchase_new_machineries: ¿Planifica adquirir nuevas maquinarias?
+        new_machinery:
+            new_machinery: Nueva maquinaria
+            reason_for_purchase: Razón de compra
+            quantity: Cantidad
+            capacity: Capacidad
     report_technical:
         approve: Aprobar
         reject: Rechazar

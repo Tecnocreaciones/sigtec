@@ -106,6 +106,17 @@ sigtec:
             requirement: Requirement
             destiny: Destiny
             port: Port
+    growth_potential:
+        growth_potential: Growth potential
+        last_investment_machinery: Last investment in machinery
+        rowth_markets: ¿Which of their markets considered growth
+        other_markets: ¿Do you consider entering other markets?
+        purchase_new_machineries: ¿Do you plan to purchase new machineries?
+        new_machinery:
+            new_machinery: New machinery
+            reason_for_purchase: Reason for purchase
+            quantity: Quantity
+            capacity: Capacity
     report_technical:
         approve: Approve
         reject: Reject

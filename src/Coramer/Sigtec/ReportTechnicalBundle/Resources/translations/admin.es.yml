@@ -17,6 +17,7 @@ admin:
             detail_product_storage:
                 material: Material
                 storage: Almacenaje
+    reason_purchase: Razón de compra
     
 #Table show
 Description: Descripción
@@ -44,3 +45,4 @@ Parent: Padre
 "Process List": Lista de los procesos
 "Description Area List": Lista de las areas de la empresa
 "Storage List": Lista de almacenajes
+"Reason Purchase List": Lista de razones

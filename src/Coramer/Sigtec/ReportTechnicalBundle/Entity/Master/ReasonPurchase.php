@@ -1,17 +1,27 @@
 <?php
 
+/*
+ * This file is part of the TecnoCreaciones package.
+ * 
+ * (c) www.tecnocreaciones.com
+ * 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Coramer\Sigtec\ReportTechnicalBundle\Entity\Master;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Mercado (Hijo de categoria)
+ * Razon de compra
  *
+ * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\SubSegmentRepository")
+ * @ORM\Entity(repositoryClass="Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\ReasonPurchaseRepository")
  */
-class SubSegment
+class ReasonPurchase
 {
     /**
      * @var integer
@@ -28,6 +38,14 @@ class SubSegment
      * @ORM\Column(name="description", type="string", length=100)
      */
     private $description;
+    
+    /**
+     * Ayuda
+     * 
+     * @var string
+     * @ORM\Column(name="help", type="text")
+     */
+    private $help;
     
     /**
      * @var boolean
@@ -53,13 +71,6 @@ class SubSegment
     private $updatedAt;
 
     /**
-     * @var Segment
-     * 
-     * @ORM\ManyToOne(targetEntity="Segment",inversedBy="subSegments")
-     */
-    private $segment;
-
-    /**
      * Get id
      *
      * @return integer 
@@ -73,7 +84,7 @@ class SubSegment
      * Set description
      *
      * @param string $description
-     * @return SubSegment
+     * @return ReasonPurchase
      */
     public function setDescription($description)
     {
@@ -93,10 +104,33 @@ class SubSegment
     }
 
     /**
+     * Set help
+     *
+     * @param string $help
+     * @return ReasonPurchase
+     */
+    public function setHelp($help)
+    {
+        $this->help = $help;
+
+        return $this;
+    }
+
+    /**
+     * Get help
+     *
+     * @return string 
+     */
+    public function getHelp()
+    {
+        return $this->help;
+    }
+
+    /**
      * Set active
      *
      * @param boolean $active
-     * @return SubSegment
+     * @return ReasonPurchase
      */
     public function setActive($active)
     {
@@ -119,7 +153,7 @@ class SubSegment
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return SubSegment
+     * @return ReasonPurchase
      */
     public function setCreatedAt($createdAt)
     {
@@ -142,7 +176,7 @@ class SubSegment
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return SubSegment
+     * @return ReasonPurchase
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -159,28 +193,5 @@ class SubSegment
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Set segment
-     *
-     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment $segment
-     * @return SubSegment
-     */
-    public function setSegment(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment $segment = null)
-    {
-        $this->segment = $segment;
-
-        return $this;
-    }
-
-    /**
-     * Get segment
-     *
-     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment 
-     */
-    public function getSegment()
-    {
-        return $this->segment;
     }
 }

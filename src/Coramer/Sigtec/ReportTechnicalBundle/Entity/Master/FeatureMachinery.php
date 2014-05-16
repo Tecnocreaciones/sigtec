@@ -42,8 +42,8 @@ class FeatureMachinery
     
     /**
      * Ayuda
+     * 
      * @var string
-     *
      * @ORM\Column(name="help", type="text")
      */
     private $help;
