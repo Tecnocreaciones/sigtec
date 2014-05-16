@@ -109,6 +109,7 @@ class ReportTechnicalController extends ResourceController
                     ->setOtherPlasticResin(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin())
                     ->setExportation(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation())
                     ->setDescriptionAreaCompany($descriptionAreaCompanyManager->build($company))
+                    ->setGrowthPotential(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential())
                     ;
             
             $resource = $this->domainManager->create($resource);

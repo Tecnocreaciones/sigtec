@@ -1,0 +1,27 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\NewMachinery:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,id]
+        quantity:
+            expose: true
+            groups: [show,report_technical]
+        typeProcess:
+            expose: true
+            groups: [show,report_technical]
+        process:
+            expose: true
+            groups: [show,report_technical]
+        capacity:
+            expose: true
+            groups: [show,report_technical]
+        resin:
+            expose: true
+            groups: [show,report_technical]
+        product:
+            expose: true
+            groups: [show,report_technical]
+        reasonPurchase:
+            expose: true
+            groups: [show,report_technical]

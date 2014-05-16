@@ -43,3 +43,6 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
         exportation:
             expose: true
             groups: [show,report_technical]
+        growthPotential:
+            expose: true
+            groups: [show,report_technical]

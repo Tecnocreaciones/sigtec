@@ -35,15 +35,15 @@ class GrowthPotential
      * Fecha de última inversión en maquinarias
      * 
      * @var \DateTime
-     * @ORM\Column(name="lastInvestmentMachinery",type="datetime",nullable=true)
+     * @ORM\Column(name="lastInvestmentMachinery",type="date",nullable=true)
      */
     private $lastInvestmentMachinery;
     
     /**
      * Mercados en crecimiento
      * 
-     * @var \DateTime
-     * @ORM\Column(name="growthMarkets",type="datetime",nullable=true)
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment
+     * @ORM\ManyToMany(targetEntity="\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment",cascade={"persist"})
      */
     private $growthMarkets;
     
@@ -78,6 +78,13 @@ class GrowthPotential
      * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\NewMachinery",mappedBy="growthPotential")
      */
     private $newMachineries;
+    
+    /**
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical
+     * 
+     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical",mappedBy="growthPotential")
+     */
+    private $reportTechnical;
     
     /**
      * Constructor
@@ -119,29 +126,6 @@ class GrowthPotential
     public function getLastInvestmentMachinery()
     {
         return $this->lastInvestmentMachinery;
-    }
-
-    /**
-     * Set growthMarkets
-     *
-     * @param \DateTime $growthMarkets
-     * @return GrowthPotential
-     */
-    public function setGrowthMarkets($growthMarkets)
-    {
-        $this->growthMarkets = $growthMarkets;
-
-        return $this;
-    }
-
-    /**
-     * Get growthMarkets
-     *
-     * @return \DateTime 
-     */
-    public function getGrowthMarkets()
-    {
-        return $this->growthMarkets;
     }
 
     /**
@@ -254,5 +238,61 @@ class GrowthPotential
     public function getNewMachineries()
     {
         return $this->newMachineries;
+    }
+
+    /**
+     * Set reportTechnical
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnical
+     * @return GrowthPotential
+     */
+    public function setReportTechnical(\Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnical = null)
+    {
+        $this->reportTechnical = $reportTechnical;
+
+        return $this;
+    }
+
+    /**
+     * Get reportTechnical
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical 
+     */
+    public function getReportTechnical()
+    {
+        return $this->reportTechnical;
+    }
+
+    /**
+     * Add growthMarkets
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment $growthMarkets
+     * @return GrowthPotential
+     */
+    public function addGrowthMarket(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment $growthMarkets)
+    {
+        $this->growthMarkets->add($growthMarkets);
+
+        return $this;
+    }
+
+    /**
+     * Remove growthMarkets
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment $growthMarkets
+     */
+    public function removeGrowthMarket(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment $growthMarkets)
+    {
+        $this->growthMarkets->removeElement($growthMarkets);
+    }
+
+    /**
+     * Get growthMarkets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGrowthMarkets()
+    {
+        return $this->growthMarkets;
     }
 }

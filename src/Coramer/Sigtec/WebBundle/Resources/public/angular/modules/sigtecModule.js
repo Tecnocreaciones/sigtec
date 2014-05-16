@@ -53,7 +53,6 @@ angular.module('sigtecModule.controllers', [])
                     total: 0
               },
               description_area_company: {
-                  id: null,
                   plants_description: { },
                   detail_product_storages: { }
               },
@@ -61,11 +60,17 @@ angular.module('sigtecModule.controllers', [])
               products_manufactured: { },
               additives_used: { },
               other_plastic_resin: {
-                  id: null,
                   use_other_plastic_resins: false,
                   detail_others_plastic_resin: { }
               },
-              description_markets: { }
+              description_markets: { },
+              growth_potential: {
+                  growth_markets: { },
+                  do_you_consider_entering_other_markets: false,
+                  other_markets: { },
+                  do_you_plan_to_purchase_new_machineries: false,
+                  new_machineries: { }
+              }
           };
           
       var defaultModel = {
@@ -129,6 +134,13 @@ angular.module('sigtecModule.controllers', [])
                   requirement: 0,
                   destiny: null,
                   port: null
+              }
+          },
+          growth_potential: {
+              do_you_consider_entering_other_markets: false,
+              growth_market: {
+                  segment: null,
+                  sub_segment: null,
               }
           }
       };
@@ -273,6 +285,15 @@ angular.module('sigtecModule.controllers', [])
           notificationBarService.getLoadStatus().loading();
           $scope.templates.formExportationProduct.parameterCallback = productExport;
           $scope.template = $scope.templates.formExportationProduct;
+          $scope.openModalForm();
+      };
+      
+      $scope.growthPotential = { };
+      //Añade o actualiza un mercado de crecimiento
+      $scope.growthPotential.addGrowthMarket = function(p){
+          notificationBarService.getLoadStatus().loading();
+          $scope.templates.growthPotential.formGrowthMarket.parameterCallback = p;
+          $scope.template = $scope.templates.growthPotential.formGrowthMarket;
           $scope.openModalForm();
       };
       
@@ -468,6 +489,22 @@ angular.module('sigtecModule.controllers', [])
                   requirement: 0,
                   destiny: null,
                   port: null
+              }
+          }
+    };
+    
+    //Establece la data del formulario de mercados de crecimientos
+    $scope.setDataGrowthMarket = function(growthMarket){
+        if(growthMarket != undefined){
+             $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:growthMarket.id});
+             $scope.reportTechnicalManager.getData().getSubSegmentsGrowthMarket($scope.data.segments[growthMarket.segment.id],growthMarket.id);
+             $scope.model.growth_potential.growth_market.segment = $scope.data.segments[growthMarket.segment.id];
+             
+          }else{
+              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
+              $scope.model.growth_potential.growth_market = {
+                  segment: null,
+                  sub_segment: null
               }
           }
     };
@@ -679,6 +716,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
             exportation: {
                 exportation_product: 'coramer_sigtec_backend_company_report_technical_properties_exportation_product'
             },
+            growth_potential: {
+                growth_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market'
+            },
             data:{
                 material: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_material',
                 storages: 'coramer_sigtec_backend_company_report_technical_data_storages',
@@ -699,7 +739,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 segments: 'coramer_sigtec_backend_company_report_technical_data_segments',
                 exportation: {
                     ports: 'coramer_sigtec_backend_company_report_technical_data_ports'
-                }    
+                },
             },                    
             form: {
                 detail_product_storage: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_form',
@@ -709,6 +749,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 detail_other_plastic_resin: 'coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_form',
                 description_market: 'coramer_sigtec_backend_company_report_technical_properties_description_market_form',
                 export_product: 'coramer_sigtec_backend_company_report_technical_properties_exportation_product_form',
+                growth_potential: {
+                    growth_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_form'
+                }
             }
         }
     };
@@ -729,7 +772,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 {
                     formDetailProductStorage: { 
                         name: 'formDetailProductStorage.html', 
-                        url: self.getUrlFormDetailProductStorage(),
+                        url: self.getUrl().getUrlFormDetailProductStorage(),
                         loadCallback:$scope.setDataDetailsStorage,
                         parameterCallback: null, 
                         load: false,
@@ -741,7 +784,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     },
                     formProductionLevel: { 
                         name: 'formProductionLevel.html', 
-                        url: self.getUrlFormProductionLevel(),
+                        url: self.getUrl().getUrlFormProductionLevel(),
                         loadCallback:$scope.setDataProductionLevel,
                         parameterCallback: null, 
                         load: false,
@@ -753,7 +796,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     },
                     formProductManufactured: { 
                         name: 'formProductManufactured.html', 
-                        url: self.getUrlFormProductManufactured(),
+                        url: self.getUrl().getUrlFormProductManufactured(),
                         loadCallback:$scope.setDataProductManufactured,
                         parameterCallback: null, 
                         load: false,
@@ -765,7 +808,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     },
                     formAdditiveUsed: { 
                         name: 'formAdditiveUsed.html', 
-                        url: self.getUrlFormAdditiveUsed(),
+                        url: self.getUrl().getUrlFormAdditiveUsed(),
                         loadCallback:$scope.setDataAdditiveUsed,
                         parameterCallback: null, 
                         load: false,
@@ -777,7 +820,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     },
                     formDetailOtherPlasticResin: { 
                         name: 'formDetailOtherPlasticResin.html', 
-                        url: self.getUrlFormDetailOtherPlasticResin(),
+                        url: self.getUrl().getUrlFormDetailOtherPlasticResin(),
                         loadCallback:$scope.setDataDetailOtherPlasticResin,
                         parameterCallback: null, 
                         load: false,
@@ -789,7 +832,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     },
                     formDescriptionMarket: { 
                         name: 'formDescriptionMarket.html', 
-                        url: self.getUrlDescriptionMarket(),
+                        url: self.getUrl().getUrlDescriptionMarket(),
                         loadCallback:$scope.setDataDescriptionMarket,
                         parameterCallback: null, 
                         load: false,
@@ -801,7 +844,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     },
                     formExportationProduct: { 
                         name: 'formExportationProduct.html', 
-                        url: self.getUrlExportationProduct(),
+                        url: self.getUrl().getUrlExportationProduct(),
                         loadCallback:$scope.setDataExportationProduct,
                         parameterCallback: null, 
                         load: false,
@@ -810,6 +853,20 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             update: 'coramer_sigtec_backend_company_report_technical_properties_exportation_product_update'
                         },
                         reload: self.reload().exportationProduct
+                    },
+                    growthPotential: {
+                        formGrowthMarket: {
+                        name: 'formGrowthMarket.html', 
+                        url: self.getUrl().getGrowthPotential().growthMarket(),
+                        loadCallback:$scope.setDataGrowthMarket,
+                        parameterCallback: null, 
+                        load: false,
+                        routes: {
+                            create: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_add',
+                            update: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_update'
+                        },
+                        reload: self.reload().getGrowthPotential().growthMarket
+                        }
                     }
                 };
                 $scope.template = '';
@@ -1037,6 +1094,16 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         scope.data.exportation.ports = dataArray;
                     });
                 },
+                getSubSegmentsGrowthMarket: function(segment,selected){
+                   var dataArray = [];
+                    jQuery.each(segment.sub_segments,function(i,val){
+                        dataArray[val.id] = val;
+                    });
+                    scope.data.sub_segments = dataArray;
+                    if(selected != undefined){
+                        scope.model.growth_potential.growth_market.sub_segment = dataArray[selected];
+                    }
+                },
             }
         },
         setId: function(i){
@@ -1089,6 +1156,15 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         scope.reportTechnical.exportation.products_export = d;
                     });
               },
+              getGrowthPotential: function(){
+                    return {
+                        growthMarket: function(){
+                            return $http.get(self.generateRoute(config.routes.growth_potential.growth_market)).success(function(d){
+                                scope.reportTechnical.growth_potential.growth_markets = d;
+                            });
+                        }
+                    }
+                }
           }  
         },
         generateRoute: function(route,parameters){
@@ -1100,26 +1176,41 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 
             });
         },
-        getUrlFormDetailProductStorage: function() {
-            return this.generateRoute(config.routes.form.detail_product_storage,{_format:'html'});
+        getUrl: function(){
+            var self = this;
+            return {
+                getUrlFormDetailProductStorage: function() {
+                    return self.generateRoute(config.routes.form.detail_product_storage,{_format:'html'});
+                },
+                getUrlFormProductionLevel: function() {
+                    return self.generateRoute(config.routes.form.production_level,{_format:'html'});
+                },
+                getUrlFormProductManufactured: function() {
+                    return self.generateRoute(config.routes.form.product_manufactured,{_format:'html'});
+                },
+                getUrlFormAdditiveUsed: function() {
+                    return self.generateRoute(config.routes.form.additive_used,{_format:'html'});
+                },
+                getUrlFormDetailOtherPlasticResin: function() {
+                    return self.generateRoute(config.routes.form.detail_other_plastic_resin,{_format:'html'});
+                },
+                getUrlDescriptionMarket: function() {
+                    return self.generateRoute(config.routes.form.description_market,{_format:'html'});
+                },
+                getUrlExportationProduct: function() {
+                    return self.generateRoute(config.routes.form.export_product,{_format:'html'});
+                },
+                getGrowthPotential: function(){
+                    
+                    return {
+                        growthMarket: function(){
+                            return self.generateRoute(config.routes.form.growth_potential.growth_market,{_format:'html'});
+                            
+                        }
+                    }
+                }
+            }
         },
-        getUrlFormProductionLevel: function() {
-            return this.generateRoute(config.routes.form.production_level,{_format:'html'});
-        },
-        getUrlFormProductManufactured: function() {
-            return this.generateRoute(config.routes.form.product_manufactured,{_format:'html'});
-        },
-        getUrlFormAdditiveUsed: function() {
-            return this.generateRoute(config.routes.form.additive_used,{_format:'html'});
-        },
-        getUrlFormDetailOtherPlasticResin: function() {
-            return this.generateRoute(config.routes.form.detail_other_plastic_resin,{_format:'html'});
-        },
-        getUrlDescriptionMarket: function() {
-            return this.generateRoute(config.routes.form.description_market,{_format:'html'});
-        },
-        getUrlExportationProduct: function() {
-            return this.generateRoute(config.routes.form.export_product,{_format:'html'});
-        },
+        
     }
 });

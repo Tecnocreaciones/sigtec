@@ -130,6 +130,14 @@ class ReportTechnical implements ReportTechnicalInterface
      */
     private $exportation;
     
+    /**
+     * Potencial de crecimiento
+     * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential
+     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential",inversedBy="reportTechnical",cascade={"persist"})
+     */
+    private $growthPotential;
+    
     public function __construct() {
         $this->productionLevels = new \Doctrine\Common\Collections\ArrayCollection();
         $this->productsManufactured = new \Doctrine\Common\Collections\ArrayCollection();
@@ -507,5 +515,28 @@ class ReportTechnical implements ReportTechnicalInterface
     public function getExportation()
     {
         return $this->exportation;
+    }
+
+    /**
+     * Set growthPotential
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential $growthPotential
+     * @return ReportTechnical
+     */
+    public function setGrowthPotential(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential $growthPotential = null)
+    {
+        $this->growthPotential = $growthPotential;
+
+        return $this;
+    }
+
+    /**
+     * Get growthPotential
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential 
+     */
+    public function getGrowthPotential()
+    {
+        return $this->growthPotential;
     }
 }

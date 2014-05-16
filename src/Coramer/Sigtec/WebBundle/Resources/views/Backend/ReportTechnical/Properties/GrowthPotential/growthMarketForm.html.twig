@@ -1,0 +1,32 @@
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+<form id="form_pop_up" method="POST" action="[[ reportTechnicalHelper.form.action.url ]]">
+<fieldset class="fieldset fields-list">
+    <legend class="legend">{{ 'sigtec.growth_potential.growth_market.growth_market'|trans }}</legend>
+    <div class="field-block button-height">
+        {{ form_label(form.segment) }}
+        {{ form_widget(form.segment) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.growth_potential.growth_market.segment'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.segment) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.subSegment) }}
+        {{ form_widget(form.subSegment) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.growth_potential.growth_market.sub_segment'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.subSegment) }}
+    </div>
+</fieldset>
+{{ form_rest(form) }}
+</form>
+<script>
+    jQuery('#form_pop_up').validationEngine({showOneMessage:true});
+</script>

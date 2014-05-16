@@ -1,0 +1,54 @@
+coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market:
+    pattern: /growth-market/.{_format}
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential:listGrowthMarketAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_form:
+    pattern: /growth-market/get-form
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential:getGrowthMarketFormAction
+        _format: html
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: html
+        
+coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_add:
+    pattern: /growth-market/add
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential:addGrowthMarketAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST|PUT
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_update:
+    pattern: /growth-market/{slug}/update
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential:updateGrowthMarketAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST|PUT
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_delete:
+    pattern:  /growth-market/{slug}/delete
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential:deleteGrowthMarketAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST|DELETE
+        _format: json|xml

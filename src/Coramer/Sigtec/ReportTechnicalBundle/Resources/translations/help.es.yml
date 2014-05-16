@@ -53,3 +53,7 @@ sigtec:
             exportation_products: >
                                 Se documenta si la empresa ha realizado exportaciones, y en ese caso, 
                                 a través de qué puertos y a cuáles destinos.
+        growth_potential:
+            growth_potential: >
+                            Se registran los planes de crecimiento de la empresa en cuanto a la adquisición de nuevas 
+                            maquinas, planes de expansión de sus clientes y la exploración de nuevos mercados.

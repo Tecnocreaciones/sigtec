@@ -334,6 +334,11 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\Exportation\ExportationProductController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ExportationProduct
+         coramer_sigtec_backend.company_report_technical_properties_growth_potential:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\GrowthPotentialController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential
          coramer_sigtec_backend.company_report_technical_type_process:
             driver: doctrine/orm
             classes:

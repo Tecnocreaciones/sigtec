@@ -1,0 +1,24 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,id]
+        lastInvestmentMachinery:
+            expose: true
+            groups: [show,report_technical]
+        growthMarkets:
+            expose: true
+            groups: [show,report_technical]
+        doYouConsiderEnteringOtherMarkets:
+            expose: true
+            groups: [show,report_technical]
+        otherMarkets:
+            expose: true
+            groups: [show,report_technical]
+        doYouPlanToPurchaseNewMachineries:
+            expose: true
+            groups: [show,report_technical]
+        newMachineries:
+            expose: true
+            groups: [show,report_technical]

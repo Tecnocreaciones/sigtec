@@ -87,3 +87,7 @@ coramer_sigtec_company_report_technical_properties_description_market:
 coramer_sigtec_company_report_technical_properties_exportation_product:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/exportation/exportation_product.yml"
     prefix:   /{id}/exportation-product
+    
+coramer_sigtec_company_report_technical_properties_growth_potential:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/growth_potential.yml"
+    prefix:   /{id}/growth-potential

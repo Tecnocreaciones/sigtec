@@ -23,7 +23,7 @@ use Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController;
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
-class BaseController extends ResourceController
+abstract class BaseController extends ResourceController
 {
     /**
      * 

@@ -74,6 +74,8 @@ sigtec:
                 other_plastic_resin: No existen detalles de otras resinas plásticas.
                 description_market: No existen detalles de los mercados.
                 product_to_export: No existen detalles de los productos a exportar.
+                growth_potential:
+                    growth_market: No existen detalles de sus mercados en crecimiento.
     button:
         add_detail: Añadir detalle
     description_of_the_business_areas:
@@ -115,13 +117,17 @@ sigtec:
         growth_potential: Potencial de crecimiento
         last_investment_machinery: Fecha de última inversión en maquinarias
         growth_markets: ¿Cual de sus mercados considera en crecimiento?
-        other_markets: ¿Considera entrar en otros mercados?
-        purchase_new_machineries: ¿Planifica adquirir nuevas maquinarias?
+        do_you_consider_entering_other_markets: ¿Considera entrar en otros mercados?
+        do_you_plan_to_purchase_new_machineries: ¿Planifica adquirir nuevas maquinarias?
         new_machinery:
             new_machinery: Nueva maquinaria
             reason_for_purchase: Razón de compra
             quantity: Cantidad
             capacity: Capacidad
+        growth_market:
+            growth_market: Mercado en crecimiento
+            segment: Segmento
+            sub_segment: Sub segmento
     report_technical:
         approve: Aprobar
         reject: Rechazar
