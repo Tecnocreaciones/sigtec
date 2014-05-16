@@ -1,0 +1,54 @@
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+<form id="form_pop_up" method="POST" action="[[ reportTechnicalHelper.form.action.url ]]">
+<fieldset class="fieldset fields-list">
+    <legend class="legend">{{ 'sigtec.exportation_products.exportation_product.exportation_product'|trans }}</legend>
+    <div class="field-block button-height">
+        {{ form_label(form.product) }}
+        {{ form_widget(form.product) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.exportation_products.exportation_product.product'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.product) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.requirement) }}
+        {{ form_widget(form.requirement) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.exportation_products.exportation_product.requirement'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.requirement) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.destiny) }}
+        {{ form_widget(form.destiny) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.exportation_products.exportation_product.destiny'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.destiny) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.port) }}
+        {{ form_widget(form.port) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.exportation_products.exportation_product.port'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.port) }}
+    </div>
+</fieldset>
+{{ form_rest(form) }}
+</form>
+<script>
+    jQuery('#form_pop_up').validationEngine({showOneMessage:true});
+</script>

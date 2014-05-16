@@ -1,0 +1,57 @@
+coramer_sigtec_backend_company_report_technical_properties_exportation_product:
+    pattern: /.{_format}
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_exportation_product:listAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_exportation_product_form:
+    pattern:  /get-form
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_exportation_product:getFormAction
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_exportation_exportationproduct
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        
+coramer_sigtec_backend_company_report_technical_properties_exportation_product_create:
+    pattern:  /create
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_exportation_product:createAction
+        _format: json
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_exportation_exportationproduct
+    options:
+        expose: true
+    requirements:
+        _method: POST
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_exportation_product_update:
+    pattern:  /{slug}/update
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_exportation_product:updateAction
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_exportation_exportationproduct
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST|PUT
+        
+coramer_sigtec_backend_company_report_technical_properties_exportation_product_delete:
+    pattern:  /{slug}/delete
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_exportation_product:deleteAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST|DELETE
+        _format: json|xml

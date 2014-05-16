@@ -11,6 +11,7 @@
         <parameter key="coramer_sigtec_report_technical.report_technical.properties.product_manufactured.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured</parameter>
         <parameter key="coramer_sigtec_report_technical.report_technical.properties.additive_used.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed</parameter>
         <parameter key="coramer_sigtec_report_technical.report_technical.properties.detail_other_plastic_resin.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin</parameter>
+        <parameter key="coramer_sigtec_report_technical.report_technical.properties.exportation.exportation_product.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ExportationProduct</parameter>
         <parameter key="coramer_sigtec_report_technical.report_technical.properties.description_market.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket</parameter>
         <parameter key="coramer_sigtec_report_technical.form.type.report_technical.properties.description_area_company.detail_product_storage.class">Coramer\Sigtec\ReportTechnicalBundle\Form\Properties\DescriptionAreaCompany\DetailProductStorageType</parameter>
         <parameter key="coramer_sigtec_report_technical.form.type.report_technical.properties.production_level.class">Coramer\Sigtec\ReportTechnicalBundle\Form\Properties\ProductionLevelType</parameter>
@@ -81,6 +82,12 @@
         >
             <argument>Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment</argument>
         </service>
+        <service id="coramer_sigtec_backend.repository.company_report_technical_port" class="Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\PortRepository" 
+            factory-service="tecnocreaciones_resource.manager_entity_repository"
+            factory-method="getRepository"
+        >
+            <argument>Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Port</argument>
+        </service>
         <service id="coramer_sigtec_report_technical.form.type.report_technical" class="%coramer_sigtec_report_technical.form.type.report_technical.class%">
             <argument>%coramer_sigtec_company.company.class%</argument>
             <tag name="form.type" alias="coramer_sigtec_reporttechnicalbundle_reporttechnical" />
@@ -113,6 +120,10 @@
        <service id="coramer_sigtec_report_technical.form.type.report_technical.properties.detail_other_plastic_resin" class="Coramer\Sigtec\ReportTechnicalBundle\Form\Properties\OtherPlasticResin\DetailOtherPlasticResinType">
             <argument>%coramer_sigtec_report_technical.report_technical.properties.detail_other_plastic_resin.class%</argument>
             <tag name="form.type" alias="coramer_sigtec_reporttechnicalbundle_properties_otherplasticresin_detailotherplasticresin" />
+        </service> 
+       <service id="coramer_sigtec_report_technical.form.type.report_technical.properties.exportation.exportation_product" class="Coramer\Sigtec\ReportTechnicalBundle\Form\Properties\Exportation\ExportationProductType">
+            <argument>%coramer_sigtec_report_technical.report_technical.properties.exportation.exportation_product.class%</argument>
+            <tag name="form.type" alias="coramer_sigtec_reporttechnicalbundle_properties_exportation_exportationproduct" />
         </service> 
         <service id="coramer_sigtec_report_technical.properties.description_area_company_manager" class="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompanyManager">
             <argument type="service" id="doctrine.orm.entity_manager"  />

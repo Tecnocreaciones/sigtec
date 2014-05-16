@@ -57,17 +57,17 @@ class Exportation
     /**
      * Productos a exportar
      * 
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ProductToExport
-     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ProductToExport",mappedBy="exportation")
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ExportationProduct
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ExportationProduct",mappedBy="exportation")
      */
-    private $productsToExport;
+    private $productsExport;
     
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->productsToExport = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->productsExport = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -150,35 +150,35 @@ class Exportation
     }
 
     /**
-     * Add productsToExport
+     * Add productsExport
      *
-     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ProductToExport $productsToExport
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ExportationProduct $productsExport
      * @return Exportation
      */
-    public function addProductsToExport(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ProductToExport $productsToExport)
+    public function addProductsExport(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ExportationProduct $productsExport)
     {
-        $this->productsToExport[] = $productsToExport;
+        $this->productsExport[] = $productsExport;
 
         return $this;
     }
 
     /**
-     * Remove productsToExport
+     * Remove productsExport
      *
-     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ProductToExport $productsToExport
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ExportationProduct $productsExport
      */
-    public function removeProductsToExport(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ProductToExport $productsToExport)
+    public function removeProductsExport(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ExportationProduct $productsExport)
     {
-        $this->productsToExport->removeElement($productsToExport);
+        $this->productsExport->removeElement($productsExport);
     }
 
     /**
-     * Get productsToExport
+     * Get productsExport
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getProductsToExport()
+    public function getProductsExport()
     {
-        return $this->productsToExport;
+        return $this->productsExport;
     }
 }

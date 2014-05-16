@@ -122,6 +122,14 @@ angular.module('sigtecModule.controllers', [])
               sub_segment: null,
               participation_rate: 0,
               requirement: 0
+          },
+          exportation: {
+              exportation_product: {
+                  product: null,
+                  requirement: 0,
+                  destiny: null,
+                  port: null
+              }
           }
       };
       
@@ -150,7 +158,11 @@ angular.module('sigtecModule.controllers', [])
               suppliers: null
           },
           segments: null,
-          sub_segments: null
+          sub_segments: null,
+          exportation: {
+              products: null,
+              ports: null
+          }
       };
       $scope.form = {};
       
@@ -254,6 +266,13 @@ angular.module('sigtecModule.controllers', [])
           notificationBarService.getLoadStatus().loading();
           $scope.templates.formDescriptionMarket.parameterCallback = descriptionMarket;
           $scope.template = $scope.templates.formDescriptionMarket;
+          $scope.openModalForm();
+      };
+      //Añade o actualiza un producto a exportar
+      $scope.addProductExport = function(productExport){
+          notificationBarService.getLoadStatus().loading();
+          $scope.templates.formExportationProduct.parameterCallback = productExport;
+          $scope.template = $scope.templates.formExportationProduct;
           $scope.openModalForm();
       };
       
@@ -404,9 +423,10 @@ angular.module('sigtecModule.controllers', [])
                   requirement: 0,
                   grade: null,
                   supplier: null
-              }
+              };
           }
-    }
+    };
+    
     //Establece la data del formulario de los detalles de las otras resinas plasticas
     $scope.setDataDescriptionMarket = function(descriptionMarket){
         if(descriptionMarket != undefined){
@@ -429,7 +449,28 @@ angular.module('sigtecModule.controllers', [])
                   requirement: 0
               }
           }
-    }
+    };
+    
+    //Establece la data del formulario de exportacion de productos
+    $scope.setDataExportationProduct = function(exportationProduct){
+        if(exportationProduct != undefined){
+             $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:exportationProduct.id});
+             
+             $scope.reportTechnicalManager.getData().getExportProducts(exportationProduct.product.id);
+             $scope.model.exportation.exportation_product.requirement = exportationProduct.requirement;
+             $scope.model.exportation.exportation_product.destiny = exportationProduct.destiny;
+             $scope.model.exportation.exportation_product.port = $scope.data.exportation.ports[exportationProduct.port.id];
+             
+          }else{
+              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
+              $scope.model.exportation.exportation_product = {
+                  product: null,
+                  requirement: 0,
+                  destiny: null,
+                  port: null
+              }
+          }
+    };
       
       function cancelFormModal(){
           console.log('cancelFormModal');
@@ -581,6 +622,9 @@ angular.module('sigtecModule.controllers', [])
           if($scope.data.additive.segments == null){
               reportTechnicalManager.getData().getSegments();
           }
+          if($scope.data.exportation.ports == null){
+              reportTechnicalManager.getData().getExportationPorts();
+          }
           
       };
       
@@ -632,6 +676,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
             additive_used: 'coramer_sigtec_backend_company_report_technical_properties_additive_used',
             other_plastic_resin: 'coramer_sigtec_backend_company_report_technical_properties_other_plastic_resin',
             description_market: 'coramer_sigtec_backend_company_report_technical_properties_description_market',
+            exportation: {
+                exportation_product: 'coramer_sigtec_backend_company_report_technical_properties_exportation_product'
+            },
             data:{
                 material: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_material',
                 storages: 'coramer_sigtec_backend_company_report_technical_data_storages',
@@ -650,6 +697,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 additive_products: 'coramer_sigtec_backend_company_report_technical_data_additive_products',
                 additive_suppliers: 'coramer_sigtec_backend_company_report_technical_data_additive_suppliers',
                 segments: 'coramer_sigtec_backend_company_report_technical_data_segments',
+                exportation: {
+                    ports: 'coramer_sigtec_backend_company_report_technical_data_ports'
+                }    
             },                    
             form: {
                 detail_product_storage: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_form',
@@ -658,6 +708,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 additive_used: 'coramer_sigtec_backend_company_report_technical_properties_additive_used_form',
                 detail_other_plastic_resin: 'coramer_sigtec_backend_company_report_technical_properties_detail_other_plastic_resin_form',
                 description_market: 'coramer_sigtec_backend_company_report_technical_properties_description_market_form',
+                export_product: 'coramer_sigtec_backend_company_report_technical_properties_exportation_product_form',
             }
         }
     };
@@ -747,11 +798,24 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             update: 'coramer_sigtec_backend_company_report_technical_properties_description_market_update'
                         },
                         reload: self.reload().descriptionMarket
+                    },
+                    formExportationProduct: { 
+                        name: 'formExportationProduct.html', 
+                        url: self.getUrlExportationProduct(),
+                        loadCallback:$scope.setDataExportationProduct,
+                        parameterCallback: null, 
+                        load: false,
+                        routes: {
+                            create: 'coramer_sigtec_backend_company_report_technical_properties_exportation_product_create',
+                            update: 'coramer_sigtec_backend_company_report_technical_properties_exportation_product_update'
+                        },
+                        reload: self.reload().exportationProduct
                     }
                 };
                 $scope.template = '';
                 self.getData().getPlants($scope.reportTechnical.company.id);
                 scope.reportTechnicalManager.getData().getAdditivesProducts();
+                scope.reportTechnicalManager.getData().getExportProducts();
                 notificationBarService.getLoadStatus().done();
             });
         },
@@ -924,6 +988,18 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             scope.model.additive_used.product = dataArray[selected];
                         }
                 },
+                getExportProducts: function(selected){
+                        var dataArray = [];
+                        jQuery.each(scope.reportTechnical.products_manufactured,function(i,vals){
+                            if(vals != undefined){
+                                dataArray[vals.product.id] = vals.product;
+                            }
+                        });
+                        scope.data.exportation.products = dataArray;
+                        if(selected != undefined){
+                            scope.model.exportation.exportation_product.product = dataArray[selected];
+                        }
+                },
                 getSuppliers: function(){
                     return $http.get(self.generateRoute(config.routes.data.additive_suppliers)).success(function(d){
                         var dataArray = [];
@@ -951,6 +1027,15 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     if(selected != undefined){
                         scope.model.description_market.sub_segment = dataArray[selected];
                     }
+                },
+                getExportationPorts: function(){
+                    return $http.get(self.generateRoute(config.routes.data.exportation.ports)).success(function(d){
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[val.id] = val;
+                          });
+                        scope.data.exportation.ports = dataArray;
+                    });
                 },
             }
         },
@@ -981,6 +1066,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
               productManufactured: function(){
                   return $http.get(self.generateRoute(config.routes.product_manufactured)).success(function(d){
                         scope.reportTechnical.products_manufactured = d;
+                        scope.reportTechnicalManager.getData().getAdditivesProducts();
                     });
               },
               additiveUsed: function(){
@@ -996,6 +1082,11 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
               descriptionMarket: function(){
                   return $http.get(self.generateRoute(config.routes.description_market)).success(function(d){
                         scope.reportTechnical.description_markets = d;
+                    });
+              },
+              exportationProduct: function(){
+                  return $http.get(self.generateRoute(config.routes.exportation.exportation_product)).success(function(d){
+                        scope.reportTechnical.exportation.products_export = d;
                     });
               },
           }  
@@ -1026,6 +1117,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
         },
         getUrlDescriptionMarket: function() {
             return this.generateRoute(config.routes.form.description_market,{_format:'html'});
+        },
+        getUrlExportationProduct: function() {
+            return this.generateRoute(config.routes.form.export_product,{_format:'html'});
         },
     }
 });

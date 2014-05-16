@@ -1,4 +1,4 @@
-Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ProductToExport:
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ExportationProduct:
     exclusion_policy: ALL
     properties:
         id:

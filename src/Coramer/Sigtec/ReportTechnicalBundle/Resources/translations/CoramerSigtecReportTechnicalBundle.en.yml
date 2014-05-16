@@ -63,6 +63,8 @@ sigtec:
             segment: Segment
             sub_segment: Sub Segment
             participation_rate: Participation
+            destiny: Destiny
+            port: Port
         content:
             empty:
                 storage: There are no details of storage products.
@@ -98,6 +100,12 @@ sigtec:
         exportation_products: Exportation of products
         has_exported_products: ¿It has exported some of their products?
         it_plans_to_export: ¿Have plans to export its products?
+        exportation_product:
+            exportation_product: Exportation of product
+            product: Product
+            requirement: Requirement
+            destiny: Destiny
+            port: Port
     report_technical:
         approve: Approve
         reject: Reject

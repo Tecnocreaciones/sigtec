@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class ProductToExport
+class ExportationProduct
 {
     /**
      * @var integer
@@ -67,9 +67,10 @@ class ProductToExport
      * Exportacion
      * 
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation
-     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation",inversedBy="productsToExport")
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation",inversedBy="productsExport")
      */
     private $exportation;
+    
 
     /**
      * Get id
@@ -85,7 +86,7 @@ class ProductToExport
      * Set requirement
      *
      * @param integer $requirement
-     * @return ProductToExport
+     * @return ExportationProduct
      */
     public function setRequirement($requirement)
     {
@@ -108,7 +109,7 @@ class ProductToExport
      * Set destiny
      *
      * @param string $destiny
-     * @return ProductToExport
+     * @return ExportationProduct
      */
     public function setDestiny($destiny)
     {
@@ -131,7 +132,7 @@ class ProductToExport
      * Set product
      *
      * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product $product
-     * @return ProductToExport
+     * @return ExportationProduct
      */
     public function setProduct(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product $product = null)
     {
@@ -154,7 +155,7 @@ class ProductToExport
      * Set port
      *
      * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Port $port
-     * @return ProductToExport
+     * @return ExportationProduct
      */
     public function setPort(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Port $port = null)
     {
@@ -177,7 +178,7 @@ class ProductToExport
      * Set exportation
      *
      * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation $exportation
-     * @return ProductToExport
+     * @return ExportationProduct
      */
     public function setExportation(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation $exportation = null)
     {

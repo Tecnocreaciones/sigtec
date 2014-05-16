@@ -10,6 +10,6 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation:
         itPlansToExport:
             expose: true
             groups: [show,report_technical]
-        productsToExport:
+        productsExport:
             expose: true
             groups: [show,report_technical]
