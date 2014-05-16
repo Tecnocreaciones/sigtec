@@ -1,0 +1,9 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Port:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [id,show]
+        description:
+            expose: true
+            groups: [show,list,report_technical]

@@ -71,6 +71,7 @@ sigtec:
                 additive_used: No details of the additives use.
                 other_plastic_resin: There are no details of other plastic resins.
                 description_market: No details of the markets.
+                product_to_export: No details of the products exported.
     button:
         add_detail: Add detail
     description_of_the_business_areas:
@@ -93,6 +94,10 @@ sigtec:
         detail_other_plastic_resin: Detail of other resin used
     description_of_the_market:
         description_of_the_market: Description of the market
+    exportation_products:
+        exportation_products: Exportation of products
+        has_exported_products: ¿It has exported some of their products?
+        it_plans_to_export: ¿Have plans to export its products?
     report_technical:
         approve: Approve
         reject: Reject

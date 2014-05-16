@@ -122,6 +122,14 @@ class ReportTechnical implements ReportTechnicalInterface
      */
     private $descriptionMarkets;
     
+    /**
+     * Exportacion
+     * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation
+     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation",inversedBy="reportTechnical",cascade={"persist"})
+     */
+    private $exportation;
+    
     public function __construct() {
         $this->productionLevels = new \Doctrine\Common\Collections\ArrayCollection();
         $this->productsManufactured = new \Doctrine\Common\Collections\ArrayCollection();
@@ -476,5 +484,28 @@ class ReportTechnical implements ReportTechnicalInterface
     public function getDescriptionMarkets()
     {
         return $this->descriptionMarkets;
+    }
+
+    /**
+     * Set exportation
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation $exportation
+     * @return ReportTechnical
+     */
+    public function setExportation(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation $exportation = null)
+    {
+        $this->exportation = $exportation;
+
+        return $this;
+    }
+
+    /**
+     * Get exportation
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation 
+     */
+    public function getExportation()
+    {
+        return $this->exportation;
     }
 }

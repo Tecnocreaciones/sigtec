@@ -49,3 +49,7 @@ sigtec:
                                     Esta sección es destinada al estudio del mercado de la empresa, a  través de la
                                     clasificación de los productos terminados enun segmento y subsegmento de mercado 
                                     con un porcentaje de participacion estimado.
+        exportation_products:
+            exportation_products: >
+                                Se documenta si la empresa ha realizado exportaciones, y en ese caso, 
+                                a través de qué puertos y a cuáles destinos.

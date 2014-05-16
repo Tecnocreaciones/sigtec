@@ -71,6 +71,7 @@ sigtec:
                 additive_used: No existen detalles de los aditivos usados.
                 other_plastic_resin: No existen detalles de otras resinas plásticas.
                 description_market: No existen detalles de los mercados.
+                product_to_export: No existen detalles de los productos a exportar.
     button:
         add_detail: Añadir detalle
     description_of_the_business_areas:
@@ -98,6 +99,10 @@ sigtec:
         sub_segment: Sub segmento
         participation_rate: Participación
         requirement: Requerimiento
+    exportation_products:
+        exportation_products: Exportación de productos
+        has_exported_products: ¿Ha exportado alguno de sus productos?
+        it_plans_to_export: ¿Tienes planes de exportar sus productos?
     report_technical:
         approve: Aprobar
         reject: Rechazar

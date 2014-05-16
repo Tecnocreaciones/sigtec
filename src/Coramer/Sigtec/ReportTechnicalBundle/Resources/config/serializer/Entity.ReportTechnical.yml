@@ -40,3 +40,6 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
         descriptionMarkets:
             expose: true
             groups: [show,report_technical]
+        exportation:
+            expose: true
+            groups: [show,report_technical]

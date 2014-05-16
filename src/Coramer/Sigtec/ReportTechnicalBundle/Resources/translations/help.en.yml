@@ -49,3 +49,7 @@ sigtec:
                                     This section is devoted to the study of the market for the company, through 
                                     the classification of the finished products, as set segment and sub-segment 
                                     market with an estimated percentage of participation.
+        exportation_products:
+            exportation_products: >
+                                Documented if the company has made exports, and if so,
+                                through which ports and which destinations.

@@ -1,0 +1,18 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ProductToExport:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,id]
+        product:
+            expose: true
+            groups: [show,report_technical]
+        requirement:
+            expose: true
+            groups: [show,report_technical]
+        destiny:
+            expose: true
+            groups: [show,report_technical]
+        port:
+            expose: true
+            groups: [show,report_technical]

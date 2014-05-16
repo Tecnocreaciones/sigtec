@@ -107,6 +107,7 @@ class ReportTechnicalController extends ResourceController
                     ->setArchive($sequenceGenerator->getNextTempArchive())
                     ->setProfessionalProfile(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile())
                     ->setOtherPlasticResin(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin())
+                    ->setExportation(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation())
                     ->setDescriptionAreaCompany($descriptionAreaCompanyManager->build($company))
                     ;
             
