@@ -12,4 +12,47 @@ use Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository;
  */
 class ProcessRepository extends MasterEntityRepository
 {
+    /**
+     * Devuelve el query builder de los procesos comercializados por Coramer
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    function getQueryBuilderMarketedByCoramer()
+    {
+        $qb = $this->getQueryAllActive();
+        $qb
+           ->andWhere('p.marketedByCoramer = :marketedByCoramer')
+           ->setParameter('marketedByCoramer', true)
+            ;
+        return $qb;
+    }
+    
+    /**
+     * Devuelve el query builder de los procesos NO comercializados por Coramer
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    function getQueryBuilderNotMarketedByCoramer()
+    {
+        $qb = $this->getQueryAllActive();
+        $qb
+           ->andWhere('p.marketedByCoramer = :marketedByCoramer')
+           ->setParameter('marketedByCoramer', false)
+            ;
+        return $qb;
+    }
+    /**
+     * Devuelve los procesos NO comercializados por Coramer
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    function getNotMarketedByCoramer()
+    {
+        return $this->getQueryBuilderNotMarketedByCoramer()->getQuery()->getResult();
+    }
+    /**
+     * Devuelve los procesos comercializados por Coramer
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    function getMarketedByCoramer()
+    {
+        return $this->getQueryBuilderMarketedByCoramer()->getQuery()->getResult();
+    }
 }

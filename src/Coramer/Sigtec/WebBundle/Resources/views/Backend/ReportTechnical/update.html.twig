@@ -562,7 +562,7 @@
                                             <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
                                             {{ 'sigtec.button.add_detail'|trans }}
                                         </a>
-                                </p>
+                                    </p>
                                 </div>
                                 <br />
                                 <br />
@@ -571,7 +571,40 @@
                                 {{ form_errors(form.growthPotential.doYouPlanToPurchaseNewMachineries) }}
                                 <br />
                                 <br />
-                                
+                                <div ng-show="reportTechnical.growth_potential.do_you_plan_to_purchase_new_machineries">
+                                    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection9_2">
+                                        <tr>
+                                            <th>{{ 'sigtec.table.header.segment'|trans }}</th>
+                                            <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                        <tr ng-hide="reportTechnical.growth_potential.new_machineries">
+                                            <td colspan="3" class="bold text-center">&nbsp;</td>
+                                        </tr>
+                                        <tr ng-hide="reportTechnical.growth_potential.new_machineries">
+                                            <td colspan="3" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.new_machinery'|trans }}</td>
+                                        </tr>
+                                        <tr ng-hide="reportTechnical.growth_potential.new_machineries">
+                                            <td colspan="3" class="bold text-center">&nbsp;</td>
+                                        </tr>
+                                        <tr ng-repeat="new_machinery in reportTechnical.growth_potential.new_machineries" data="[[ new_machinery|json ]]">
+                                            <td><a href ng-click="growthPotential.addNewMachinery(new_machinery)" >[[ new_machinery.segment.description ]]</a></td>
+                                            <td>[[ new_machinery.sub_segment.description ]]</td>
+                                            <td>
+                                                <span class="button-group compact">
+                                                    <a href ng-click="itemDelete(new_machinery._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().otherMarket)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <p class="button-height align-right">
+                                        <a href ng-click="growthPotential.addNewMachinery()" class="button glossy mid-margin-right">
+                                            <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                                            {{ 'sigtec.button.add_detail'|trans }}
+                                        </a>
+                                    </p>
+                                </div>
                                 
 			</div>
                         <div class="field-block button-height wizard-controls align-right">

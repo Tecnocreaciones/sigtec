@@ -66,6 +66,8 @@ sigtec:
             destiny: Destiny
             port: Port
             motive: Motive
+            quantity: Quantity
+            reason_purchase: Reason for purchase
         content:
             empty:
                 storage: There are no details of storage products.
@@ -78,6 +80,7 @@ sigtec:
                 growth_potential:
                     growth_market: There are no details of its growth markets.
                     other_market: There are no details of its growth markets.
+                    new_machinery: No details of new machinery.
     button:
         add_detail: Add detail
     description_of_the_business_areas:

@@ -66,6 +66,8 @@ sigtec:
             destiny: Destino
             port: Puerto
             motive: Motivo
+            quantity: Cantidad
+            reason_purchase: Razón de compra
         content:
             empty:
                 storage: No existen detalles de almacenaje de los productos.
@@ -78,6 +80,7 @@ sigtec:
                 growth_potential:
                     growth_market: No existen detalles de sus mercados en crecimiento.
                     other_market: No existen detalles de otros mercados.
+                    new_machinery: No existen detalles de nuevas maquinarias.
     button:
         add_detail: Añadir detalle
     description_of_the_business_areas:

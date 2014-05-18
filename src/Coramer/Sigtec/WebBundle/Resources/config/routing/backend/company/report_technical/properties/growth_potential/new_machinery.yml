@@ -1,0 +1,60 @@
+coramer_sigtec_backend_company_report_technical_properties_growth_potential_new_machinery:
+    pattern: /.{_format}
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential_new_machinery:listAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_growth_potential_new_machinery_form:
+    pattern: /get-form
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential_new_machinery:getFormAction
+        _format: html
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_growthpotential_newmachinery
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: html
+        
+coramer_sigtec_backend_company_report_technical_properties_growth_potential_new_machinery_create:
+    pattern: /create
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential_new_machinery:createAction
+        _format: json
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_growthpotential_newmachinery
+    options:
+        expose: true
+    requirements:
+        _method: POST|PUT
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_growth_potential_new_machinery_update:
+    pattern: /{slug}/update
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential_new_machinery:updateAction
+        _format: json
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_growthpotential_newmachinery
+    options:
+        expose: true
+    requirements:
+        _method: POST|PUT
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_growth_potential_new_machinery_delete:
+    pattern:  /{slug}/delete
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential_new_machinery:deleteAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST|DELETE
+        _format: json|xml

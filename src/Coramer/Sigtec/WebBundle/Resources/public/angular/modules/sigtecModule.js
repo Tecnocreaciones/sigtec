@@ -308,6 +308,14 @@ angular.module('sigtecModule.controllers', [])
           $scope.openModalForm();
       };
       
+      //Añade o actualiza otro mercado
+      $scope.growthPotential.addNewMachinery = function(p){
+          notificationBarService.getLoadStatus().loading();
+          $scope.templates.growthPotential.formNewMachinery.parameterCallback = p;
+          $scope.template = $scope.templates.growthPotential.formNewMachinery;
+          $scope.openModalForm();
+      };
+      
     //Setea el formulario detalle de almacenaje del producto
     $scope.setDataDetailsStorage = function(detailProductStorage){
         if(detailProductStorage != undefined){
@@ -537,6 +545,23 @@ angular.module('sigtecModule.controllers', [])
               };
           }
     };
+    
+    //Establece la data del formulario de nuevas maquinarias
+    $scope.setDataNewMachinery = function(newMachinery){
+        if(newMachinery != undefined){
+             $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:newMachinery.id});
+             $scope.model.growth_potential.other_market.segment = $scope.data.segments[newMachinery.segment.id];
+             $scope.model.growth_potential.other_market.motive = newMachinery.motive;
+             
+          }else{
+              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
+              $scope.model.growth_potential.other_market = {
+                  segment: null,
+                  sub_segment: null,
+                  motive: null,
+              };
+          }
+    };
       
       function cancelFormModal(){
           console.log('cancelFormModal');
@@ -750,7 +775,8 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
             },
             growth_potential: {
                 growth_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market',
-                other_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_other_market'
+                other_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_other_market',
+                new_machinery: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_new_machinery'
             },
             data:{
                 material: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_material',
@@ -775,6 +801,10 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 },
                 growth_potential: {
                     segments: 'coramer_sigtec_backend_company_report_technical_data_segments_by_report_technical',
+                    new_machinery: {
+                        segments: '',
+                        sub_segments: ''
+                    }
                 }
             },                    
             form: {
@@ -787,7 +817,8 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 export_product: 'coramer_sigtec_backend_company_report_technical_properties_exportation_product_form',
                 growth_potential: {
                     growth_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_form',
-                    other_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_other_market_form'
+                    other_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_other_market_form',
+                    new_machinery: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_new_machinery_form'
                 }
             }
         }
@@ -915,6 +946,18 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                                 update: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_other_market_update'
                             },
                             reload: self.reload().getGrowthPotential().otherMarket
+                        },
+                        formNewMachinery: {
+                            name: 'formNewMachinery.html', 
+                            url: self.getUrl().getGrowthPotential().newMachinery(),
+                            loadCallback:$scope.setDataNewMachinery,
+                            parameterCallback: null, 
+                            load: false,
+                            routes: {
+                                create: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_new_machinery_create',
+                                update: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_new_machinery_update'
+                            },
+                            reload: self.reload().getGrowthPotential().newMachinery
                         }
                     }
                 };
@@ -1236,6 +1279,11 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             return $http.get(self.generateRoute(config.routes.growth_potential.other_market)).success(function(d){
                                 scope.reportTechnical.growth_potential.other_markets = d;
                             });
+                        },
+                        newMachinery: function(){
+                            return $http.get(self.generateRoute(config.routes.growth_potential.new_machinery)).success(function(d){
+                                scope.reportTechnical.growth_potential.new_machineries = d;
+                            });
                         }
                     }
                 }
@@ -1282,6 +1330,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         },
                         otherMarket: function(){
                             return self.generateRoute(config.routes.form.growth_potential.other_market,{_format:'html'});
+                        },
+                        newMachinery: function(){
+                            return self.generateRoute(config.routes.form.growth_potential.new_machinery,{_format:'html'});
                         }
                     }
                 }

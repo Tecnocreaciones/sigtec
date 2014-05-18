@@ -1,0 +1,87 @@
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+<form id="form_pop_up" method="POST" action="[[ reportTechnicalHelper.form.action.url ]]">
+<fieldset class="fieldset fields-list">
+    <legend class="legend">{{ 'sigtec.growth_potential.new_machinery.new_machinery'|trans }}</legend>
+    <div class="field-block button-height">
+        {{ form_label(form.quantity) }}
+        {{ form_widget(form.quantity) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.growth_potential.new_machinery.quantity'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.quantity) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.capacity) }}
+        {{ form_widget(form.capacity) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.growth_potential.new_machinery.capacity'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.capacity) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.typeProcess) }}
+        {{ form_widget(form.typeProcess) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.growth_potential.new_machinery.type_process'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.typeProcess) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.process) }}
+        {{ form_widget(form.process) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.growth_potential.new_machinery.process'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.process) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.resin) }}
+        {{ form_widget(form.resin) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.growth_potential.new_machinery.resin'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.resin) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.product) }}
+        {{ form_widget(form.product) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.growth_potential.new_machinery.product'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.product) }}
+    </div>
+    <div class="field-block button-height">
+        {{ form_label(form.reasonPurchase) }}
+        {{ form_widget(form.reasonPurchase) }}
+        <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                {{ 'sigtec.help.growth_potential.new_machinery.reason_purchase'|trans({},'help') }}
+            </span>
+        </span>
+        {{ form_errors(form.reasonPurchase) }}
+    </div>
+</fieldset>
+{{ form_rest(form) }}
+</form>
+<script>
+    jQuery('#form_pop_up').validationEngine({showOneMessage:true});
+</script>

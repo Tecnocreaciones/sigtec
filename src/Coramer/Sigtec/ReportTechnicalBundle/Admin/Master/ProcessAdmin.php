@@ -32,6 +32,7 @@ class ProcessAdmin extends Admin
                 'property'=>'description',
                 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\TypeProcess'
             ))
+            ->add('marketedByCoramer')
             ->add('active', null, array('label' => 'Active'))
         ;
     }
@@ -45,6 +46,7 @@ class ProcessAdmin extends Admin
                 'property'=>'description',
                 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\TypeProcess'
             ))
+            ->add('marketedByCoramer')
             ->add('active')
         ;
     }
@@ -58,8 +60,8 @@ class ProcessAdmin extends Admin
                 'associated_property'=>'description',
                 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\TypeProcess'
             ))
+            ->add('marketedByCoramer')
             ->add('createdAt')
-            ->add('updatedAt')
             ->add('active')
         ;
     }

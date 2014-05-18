@@ -349,6 +349,11 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\GrowthPotential\OtherMarketController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\OtherMarket
+         coramer_sigtec_backend.company_report_technical_properties_growth_potential_new_machinery:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\GrowthPotential\NewMachineryController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\NewMachinery
          coramer_sigtec_backend.company_report_technical_type_process:
             driver: doctrine/orm
             classes:
@@ -389,6 +394,11 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment
+         coramer_sigtec_backend.company_report_technical_reason_purchase:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\GenericDataController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ReasonPurchase
          coramer_sigtec_backend.company_report_technical_port:
             driver: doctrine/orm
             classes:

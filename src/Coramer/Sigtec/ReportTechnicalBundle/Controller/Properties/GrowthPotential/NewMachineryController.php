@@ -16,14 +16,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * Controlador de otros mercados
+ * Controlador de nuevas maquinarias
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
-class OtherMarketController extends BaseController
+class NewMachineryController extends BaseController
 {
     /**
-     * Retorna el formulario de otros mercados
+     * Retorna el formulario de nueva maquinaria
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
@@ -40,14 +40,14 @@ class OtherMarketController extends BaseController
         $resource = $this->createNew();
         $resource->setGrowthPotential($reportTechnical->getGrowthPotential());
         $form = $this->getForm($resource);
-        return $this->render('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/GrowthPotential/otherMarketForm.html.twig',array(
+        return $this->render('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/GrowthPotential/newMachineryForm.html.twig',array(
             'form' => $form->createView(),
             'reportTechnical' => $reportTechnical,
         ));
     }
     
     /**
-     * Lista los otros mercados
+     * Lista las nuevas maquinarias
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
@@ -70,7 +70,7 @@ class OtherMarketController extends BaseController
     }
     
     /**
-     * Añade un mercado en crecimiento
+     * Añade una nueva maquinaria
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
@@ -94,8 +94,8 @@ class OtherMarketController extends BaseController
             $resource->setGrowthPotential($reportTechnical->getGrowthPotential());
             $resource = $this->domainManager->create($resource);
             
-            if(!$growthPotential->isDoYouPlanToPurchaseNewMachineries()){
-                $growthPotential->setDoYouPlanToPurchaseNewMachineries(true);
+            if(!$growthPotential->isDoYouConsiderEnteringOtherMarkets()){
+                $growthPotential->setDoYouConsiderEnteringOtherMarkets(true);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($growthPotential);
                 $em->flush();
@@ -118,7 +118,7 @@ class OtherMarketController extends BaseController
     }
     
     /**
-     * Actualiza un mercado en crecimiento
+     * Actualiza una nueva maquinaria
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -166,7 +166,7 @@ class OtherMarketController extends BaseController
     }
     
     /**
-     * Elimina un mercado en crecimiento
+     * Elimina una nueva maquinaria
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
@@ -187,13 +187,13 @@ class OtherMarketController extends BaseController
             $growthPotential = $reportTechnical->getGrowthPotential();
             
             $this->domainManager->delete($resource);
-            $growthPotential->removeNewMachinery($resource);
+            $growthPotential->removeOtherMarket($resource);
             
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
             
-            if($growthPotential->getNewMachineries()->isEmpty()){
-                $growthPotential->setDoYouPlanToPurchaseNewMachineries(false);
+            if($growthPotential->getOtherMarkets()->isEmpty()){
+                $growthPotential->setDoYouConsiderEnteringOtherMarkets(false);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($growthPotential);
                 $em->flush();

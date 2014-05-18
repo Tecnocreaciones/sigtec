@@ -1,5 +1,5 @@
 coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market:
-    pattern: /growth-market/.{_format}
+    pattern: /.{_format}
     defaults:
         _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential_market:listAction
         _format: json
@@ -10,7 +10,7 @@ coramer_sigtec_backend_company_report_technical_properties_growth_potential_grow
         _format: json|xml
         
 coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_form:
-    pattern: /growth-market/get-form
+    pattern: /get-form
     defaults:
         _controller: coramer_sigtec_backend.controller.company_report_technical_properties_growth_potential_market:getFormAction
         _format: html

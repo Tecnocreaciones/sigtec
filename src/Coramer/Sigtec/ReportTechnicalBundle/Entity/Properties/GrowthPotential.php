@@ -185,6 +185,16 @@ class GrowthPotential
     }
 
     /**
+     * Is doYouPlanToPurchaseNewMachineries
+     *
+     * @return boolean 
+     */
+    public function isDoYouPlanToPurchaseNewMachineries()
+    {
+        return $this->doYouPlanToPurchaseNewMachineries;
+    }
+
+    /**
      * Add otherMarkets
      *
      * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\OtherMarket $otherMarkets
@@ -225,7 +235,7 @@ class GrowthPotential
      */
     public function addNewMachinery(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\NewMachinery $newMachineries)
     {
-        $this->newMachineries[] = $newMachineries;
+        $this->newMachineries->add($newMachineries);
 
         return $this;
     }

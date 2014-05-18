@@ -35,6 +35,13 @@ class TypeProcess
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active = true;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="marketedByCoramer", type="boolean", nullable=true)
+     */
+    private $marketedByCoramer = true;
 
     /**
      * @var \DateTime
@@ -195,5 +202,28 @@ class TypeProcess
     public function getProcesses()
     {
         return $this->processes;
+    }
+
+    /**
+     * Set marketedByCoramer
+     *
+     * @param boolean $marketedByCoramer
+     * @return TypeProcess
+     */
+    public function setMarketedByCoramer($marketedByCoramer)
+    {
+        $this->marketedByCoramer = $marketedByCoramer;
+
+        return $this;
+    }
+
+    /**
+     * Get marketedByCoramer
+     *
+     * @return boolean 
+     */
+    public function getMarketedByCoramer()
+    {
+        return $this->marketedByCoramer;
     }
 }

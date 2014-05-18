@@ -17,7 +17,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
 /**
- * Description of SimpleBaseAdmin
+ * Base comun para administracion de maestros
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */

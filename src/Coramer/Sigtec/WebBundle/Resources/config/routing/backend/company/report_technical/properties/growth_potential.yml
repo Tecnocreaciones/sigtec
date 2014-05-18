@@ -5,3 +5,7 @@ coramer_sigtec_company_report_technical_properties_growth_potential_growing_mart
 coramer_sigtec_company_report_technical_properties_growth_potential_other_market:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/growth_potential/other_market.yml"
     prefix:   /other-market
+    
+coramer_sigtec_company_report_technical_properties_growth_potential_new_machinery:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/growth_potential/new_machinery.yml"
+    prefix:   /new-machinery
