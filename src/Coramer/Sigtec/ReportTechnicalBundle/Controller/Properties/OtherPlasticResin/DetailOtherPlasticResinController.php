@@ -87,6 +87,9 @@ class DetailOtherPlasticResinController extends BaseController
             
             $otherPlasticResin->removeDetailOthersPlasticResin($resource);
             
+            /** @var FlashBag $flashBag */
+            $flashBag = $this->get('session')->getBag('flashes');
+            
             if($otherPlasticResin->getDetailOthersPlasticResin()->isEmpty()){
                 $otherPlasticResin->setUseOtherPlasticResins(false);
                 $em = $this->getDoctrine()->getManager();
@@ -94,8 +97,6 @@ class DetailOtherPlasticResinController extends BaseController
                 $em->flush();
             }
             
-            /** @var FlashBag $flashBag */
-            $flashBag = $this->get('session')->getBag('flashes');
             $data = array(
                 'message' => $flashBag->get('success'),
             );

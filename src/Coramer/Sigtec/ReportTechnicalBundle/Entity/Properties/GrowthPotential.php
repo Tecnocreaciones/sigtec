@@ -152,6 +152,16 @@ class GrowthPotential
     }
 
     /**
+     * Get doYouConsiderEnteringOtherMarkets
+     *
+     * @return boolean 
+     */
+    public function isDoYouConsiderEnteringOtherMarkets()
+    {
+        return $this->doYouConsiderEnteringOtherMarkets;
+    }
+
+    /**
      * Set doYouPlanToPurchaseNewMachineries
      *
      * @param boolean $doYouPlanToPurchaseNewMachineries

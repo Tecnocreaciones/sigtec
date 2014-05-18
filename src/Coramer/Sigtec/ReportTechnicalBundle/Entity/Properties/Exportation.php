@@ -104,6 +104,16 @@ class Exportation
     }
 
     /**
+     * Get hasExportedProducts
+     *
+     * @return boolean 
+     */
+    public function hasExportedProducts()
+    {
+        return $this->hasExportedProducts;
+    }
+
+    /**
      * Set itPlansToExport
      *
      * @param boolean $itPlansToExport

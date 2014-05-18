@@ -35,7 +35,7 @@ class OtherMarket
      * Motivo
      * 
      * @var string
-     * @ORM\Column(name="motive",type="string",length=100)
+     * @ORM\Column(name="motive",type="string",length=255)
      */
     private $motive;
     

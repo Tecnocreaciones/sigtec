@@ -529,6 +529,41 @@
                                 {{ 'sigtec.growth_potential.do_you_consider_entering_other_markets'|trans }}
                                 {{ form_widget(form.growthPotential.doYouConsiderEnteringOtherMarkets) }}
                                 {{ form_errors(form.growthPotential.doYouConsiderEnteringOtherMarkets) }}
+                                <br /> <br />
+                                <div ng-show="reportTechnical.growth_potential.do_you_consider_entering_other_markets">
+                                    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection9_2">
+                                        <tr>
+                                            <th>{{ 'sigtec.table.header.segment'|trans }}</th>
+                                            <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                        <tr ng-hide="reportTechnical.growth_potential.other_markets">
+                                            <td colspan="3" class="bold text-center">&nbsp;</td>
+                                        </tr>
+                                        <tr ng-hide="reportTechnical.growth_potential.other_markets">
+                                            <td colspan="3" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.other_market'|trans }}</td>
+                                        </tr>
+                                        <tr ng-hide="reportTechnical.growth_potential.other_markets">
+                                            <td colspan="3" class="bold text-center">&nbsp;</td>
+                                        </tr>
+                                        <tr ng-repeat="other_market in reportTechnical.growth_potential.other_markets" data="[[ other_market|json ]]">
+                                            <td><a href ng-click="growthPotential.addOtherMarket(other_market)" >[[ other_market.segment.description ]]</a></td>
+                                            <td>[[ other_market.sub_segment.description ]]</td>
+                                            <td>
+                                                <span class="button-group compact">
+                                                    <a href ng-click="itemDelete(other_market._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().otherMarket)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <p class="button-height align-right">
+                                        <a href ng-click="growthPotential.addOtherMarket()" class="button glossy mid-margin-right">
+                                            <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                                            {{ 'sigtec.button.add_detail'|trans }}
+                                        </a>
+                                </p>
+                                </div>
                                 <br />
                                 <br />
                                 {{ 'sigtec.growth_potential.do_you_plan_to_purchase_new_machineries'|trans }}
@@ -769,6 +804,10 @@
         function getTableExtraInfoSection7(data)
         {
             return '<strong>{{ 'sigtec.table.header.requirement'|trans }}:</strong> ' + data.requirement;
+        }
+        function getTableExtraInfoSection9_2(data)
+        {
+            return '<strong>{{ 'sigtec.table.header.motive'|trans }}:</strong> ' + data.motive;
         }
              $(document).ready(function() {
             //Example for table extra info methos to override

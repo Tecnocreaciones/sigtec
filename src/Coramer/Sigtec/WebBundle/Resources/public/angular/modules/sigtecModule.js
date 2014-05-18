@@ -300,6 +300,14 @@ angular.module('sigtecModule.controllers', [])
           $scope.openModalForm();
       };
       
+      //Añade o actualiza otro mercado
+      $scope.growthPotential.addOtherMarket = function(p){
+          notificationBarService.getLoadStatus().loading();
+          $scope.templates.growthPotential.formOtherMarket.parameterCallback = p;
+          $scope.template = $scope.templates.growthPotential.formOtherMarket;
+          $scope.openModalForm();
+      };
+      
     //Setea el formulario detalle de almacenaje del producto
     $scope.setDataDetailsStorage = function(detailProductStorage){
         if(detailProductStorage != undefined){
@@ -509,6 +517,24 @@ angular.module('sigtecModule.controllers', [])
                   segment: null,
                   sub_segment: null
               }
+          }
+    };
+    
+    //Establece la data del formulario de otros mercados
+    $scope.setDataOtherMarket = function(otherMarket){
+        if(otherMarket != undefined){
+             $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:otherMarket.id});
+             $scope.reportTechnicalManager.getData().getSubSegmentsOtherMarket($scope.data.segments[otherMarket.segment.id],otherMarket.sub_segment.id);
+             $scope.model.growth_potential.other_market.segment = $scope.data.segments[otherMarket.segment.id];
+             $scope.model.growth_potential.other_market.motive = otherMarket.motive;
+             
+          }else{
+              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
+              $scope.model.growth_potential.other_market = {
+                  segment: null,
+                  sub_segment: null,
+                  motive: null,
+              };
           }
     };
       
@@ -723,7 +749,8 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 exportation_product: 'coramer_sigtec_backend_company_report_technical_properties_exportation_product'
             },
             growth_potential: {
-                growth_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market'
+                growth_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market',
+                other_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_other_market'
             },
             data:{
                 material: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_material',
@@ -759,7 +786,8 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 description_market: 'coramer_sigtec_backend_company_report_technical_properties_description_market_form',
                 export_product: 'coramer_sigtec_backend_company_report_technical_properties_exportation_product_form',
                 growth_potential: {
-                    growth_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_form'
+                    growth_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_form',
+                    other_market: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_other_market_form'
                 }
             }
         }
@@ -865,16 +893,28 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     },
                     growthPotential: {
                         formGrowthMarket: {
-                        name: 'formGrowthMarket.html', 
-                        url: self.getUrl().getGrowthPotential().growthMarket(),
-                        loadCallback:$scope.setDataGrowthMarket,
-                        parameterCallback: null, 
-                        load: false,
-                        routes: {
-                            create: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_create',
-                            update: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_update'
+                            name: 'formGrowthMarket.html', 
+                            url: self.getUrl().getGrowthPotential().growthMarket(),
+                            loadCallback:$scope.setDataGrowthMarket,
+                            parameterCallback: null, 
+                            load: false,
+                            routes: {
+                                create: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_create',
+                                update: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_update'
+                            },
+                            reload: self.reload().getGrowthPotential().growthMarket
                         },
-                        reload: self.reload().getGrowthPotential().growthMarket
+                        formOtherMarket: {
+                            name: 'formOtherMarket.html', 
+                            url: self.getUrl().getGrowthPotential().otherMarket(),
+                            loadCallback:$scope.setDataOtherMarket,
+                            parameterCallback: null, 
+                            load: false,
+                            routes: {
+                                create: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_other_market_create',
+                                update: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_other_market_update'
+                            },
+                            reload: self.reload().getGrowthPotential().otherMarket
                         }
                     }
                 };
@@ -1122,6 +1162,16 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         scope.model.growth_potential.growth_market.sub_segment = dataArray[selected];
                     }
                 },
+                getSubSegmentsOtherMarket: function(segment,selected){
+                   var dataArray = [];
+                    jQuery.each(segment.sub_segments,function(i,val){
+                        dataArray[val.id] = val;
+                    });
+                    scope.data.sub_segments = dataArray;
+                    if(selected != undefined){
+                        scope.model.growth_potential.other_market.sub_segment = dataArray[selected];
+                    }
+                },
             }
         },
         setId: function(i){
@@ -1181,6 +1231,11 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             return $http.get(self.generateRoute(config.routes.growth_potential.growth_market)).success(function(d){
                                 scope.reportTechnical.growth_potential.growth_markets = d;
                             });
+                        },
+                        otherMarket: function(){
+                            return $http.get(self.generateRoute(config.routes.growth_potential.other_market)).success(function(d){
+                                scope.reportTechnical.growth_potential.other_markets = d;
+                            });
                         }
                     }
                 }
@@ -1224,7 +1279,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     return {
                         growthMarket: function(){
                             return self.generateRoute(config.routes.form.growth_potential.growth_market,{_format:'html'});
-                            
+                        },
+                        otherMarket: function(){
+                            return self.generateRoute(config.routes.form.growth_potential.other_market,{_format:'html'});
                         }
                     }
                 }

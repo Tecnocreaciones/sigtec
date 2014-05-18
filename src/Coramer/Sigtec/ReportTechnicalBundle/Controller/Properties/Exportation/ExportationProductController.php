@@ -39,13 +39,20 @@ class ExportationProductController extends BaseController
             throw $this->createAccessDeniedHttpException();
         }
         $resource = $this->createNew();
-        $resource->setExportation($reportTechnical->getExportation());
-        
+        $exportation = $reportTechnical->getExportation();
+        $resource->setExportation($exportation);
         $form = $this->getForm($resource);
         $data = array();
         $view = $this->view();
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $resource = $this->domainManager->create($resource);
+            
+            if(!$exportation->hasExportedProducts()){
+                $exportation->setHasExportedProducts(true);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($exportation);
+                $em->flush();
+            }
             
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
@@ -75,9 +82,22 @@ class ExportationProductController extends BaseController
             if(!$resource){
                 throw $this->createNotFoundException();
             }
+            $exportation = $reportTechnical->getExportation();
+            
             $this->domainManager->delete($resource);
+            $exportation->removeProductsExport($resource);
+            
+            
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
+            
+            if($exportation->getProductsExport()->isEmpty()){
+                $exportation->setHasExportedProducts(false);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($exportation);
+                $em->flush();
+            }
+            
             $data = array(
                 'message' => $flashBag->get('success'),
             );

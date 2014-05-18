@@ -65,6 +65,7 @@ sigtec:
             participation_rate: Participation
             destiny: Destiny
             port: Port
+            motive: Motive
         content:
             empty:
                 storage: There are no details of storage products.
@@ -76,6 +77,7 @@ sigtec:
                 product_to_export: No details of the products exported.
                 growth_potential:
                     growth_market: There are no details of its growth markets.
+                    other_market: There are no details of its growth markets.
     button:
         add_detail: Add detail
     description_of_the_business_areas:
@@ -123,6 +125,11 @@ sigtec:
             growth_market: Growing market
             segment: Segment
             sub_segment: Sub segment
+        other_market:
+            other_market: Other market
+            segment: Segment
+            sub_segment: Sub segment
+            motive: Motive
     report_technical:
         approve: Approve
         reject: Reject

@@ -35,3 +35,7 @@ coramer_sigtec_backend:
         create: Market growth added.
         update: Market growth updated.
         delete: Market growth removed.
+    company_report_technical_properties_growth_potential_other_market:
+        create: Other market added.
+        update: Other market updated.
+        delete: Other market removed.    

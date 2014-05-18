@@ -15,16 +15,15 @@ use Coramer\Sigtec\ReportTechnicalBundle\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-
 /**
- * Controlador de mercados en crecimiento
+ * Controlador de otros mercados
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
-class GrowingMarketController extends BaseController
+class OtherMarketController extends BaseController
 {
     /**
-     * Retorna el formulario de mercado en crecimiento
+     * Retorna el formulario de otros mercados
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
@@ -41,14 +40,14 @@ class GrowingMarketController extends BaseController
         $resource = $this->createNew();
         $resource->setGrowthPotential($reportTechnical->getGrowthPotential());
         $form = $this->getForm($resource);
-        return $this->render('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/GrowthPotential/growthMarketForm.html.twig',array(
+        return $this->render('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/GrowthPotential/otherMarketForm.html.twig',array(
             'form' => $form->createView(),
             'reportTechnical' => $reportTechnical,
         ));
     }
     
     /**
-     * Lista los mercados en crecimiento
+     * Lista los otros mercados
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
@@ -65,7 +64,7 @@ class GrowingMarketController extends BaseController
         
         $growthPotential = $reportTechnical->getGrowthPotential();
         
-        $view = $this->view($growthPotential->getGrowthMarkets());
+        $view = $this->view($growthPotential->getOtherMarkets());
         $view->getSerializationContext()->setGroups(array('id','report_technical'));
         return $this->handleView($view);
     }
@@ -85,13 +84,22 @@ class GrowingMarketController extends BaseController
             throw $this->createAccessDeniedHttpException();
         }
         $resource = $this->createNew();
-        $resource->setGrowthPotential($reportTechnical->getGrowthPotential());
+        $growthPotential = $reportTechnical->getGrowthPotential();
+        
+        $resource->setGrowthPotential($growthPotential);
         $form = $this->getForm($resource);
         $data = array();
         $view = $this->view();
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $resource->setGrowthPotential($reportTechnical->getGrowthPotential());
             $resource = $this->domainManager->create($resource);
+            
+            if(!$growthPotential->isDoYouConsiderEnteringOtherMarkets()){
+                $growthPotential->setDoYouConsiderEnteringOtherMarkets(true);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($growthPotential);
+                $em->flush();
+            }
             
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
@@ -176,9 +184,21 @@ class GrowingMarketController extends BaseController
             if(!$resource){
                 throw $this->createNotFoundException();
             }
+            $growthPotential = $reportTechnical->getGrowthPotential();
+            
             $this->domainManager->delete($resource);
+            $growthPotential->removeOtherMarket($resource);
+            
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
+            
+            if($growthPotential->getOtherMarkets()->isEmpty()){
+                $growthPotential->setDoYouConsiderEnteringOtherMarkets(false);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($growthPotential);
+                $em->flush();
+            }
+            
             $data = array(
                 'message' => $flashBag->get('success'),
             );

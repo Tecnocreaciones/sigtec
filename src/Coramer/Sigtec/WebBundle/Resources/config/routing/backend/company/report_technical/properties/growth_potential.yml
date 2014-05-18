@@ -1,3 +1,7 @@
-coramer_sigtec_company_report_technical_properties_growth_potential:
+coramer_sigtec_company_report_technical_properties_growth_potential_growing_martet:
     resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/growth_potential/growing_market.yml"
     prefix:   /growth-market
+    
+coramer_sigtec_company_report_technical_properties_growth_potential_other_market:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/growth_potential/other_market.yml"
+    prefix:   /other-market
