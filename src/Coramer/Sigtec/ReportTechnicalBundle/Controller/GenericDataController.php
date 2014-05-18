@@ -222,6 +222,20 @@ class GenericDataController extends FOSRestController
         return $this->handleView($view);
     }
     
+    /**
+     * Retorna la lista de segmentos de un reporte tecnico
+     * 
+     * @return json|xml
+     */
+    function getSegmentsByReportTechnicalAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $reportTechnical = $this->findReportTechnicalOr404($request);
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_segment');
+        $view = $this->view($repository->getByReportTechnical($reportTechnical));
+        $view->getSerializationContext()->setGroups(array('id','report_technical'));
+        return $this->handleView($view);
+    }
+    
     protected function trans($id, $parameters = array(), $domain = 'CoramerSigtecReportTechnicalBundle')
     {
         return $this->getTranslator()->trans($id, $parameters, $domain);
@@ -242,7 +256,7 @@ class GenericDataController extends FOSRestController
      * @return ReportTechnical
      * @throws NotFoundHttpException
      */
-    protected function findReportTechnicalOr404(Request $request)
+    protected function findReportTechnicalOr404(\Symfony\Component\HttpFoundation\Request $request)
     {
         $resource = $this->getReportTechnicalRepository()->find($request->get('id'));
         if(!$resource){

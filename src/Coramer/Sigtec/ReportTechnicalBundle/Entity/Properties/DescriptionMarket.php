@@ -43,7 +43,7 @@ class DescriptionMarket
      * Segmento
      * 
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment
-     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment")
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment",inversedBy="descriptionMarkets")
      */
     private $segment;
     

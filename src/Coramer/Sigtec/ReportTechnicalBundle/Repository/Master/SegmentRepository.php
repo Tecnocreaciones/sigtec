@@ -12,4 +12,18 @@ use Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository;
  */
 class SegmentRepository extends MasterEntityRepository
 {
+    function getQueryBuilderByReportTechnical(\Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnical)
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb->innerJoin('s.descriptionMarkets', 'dm')
+           ->andWhere('dm.reportTechnical = :reportTechnical')
+           ->setParameter('reportTechnical',$reportTechnical)
+                ;
+        return $qb;
+    }
+    
+    function getByReportTechnical(\Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnical) 
+    {
+        return $this->getQueryBuilderByReportTechnical($reportTechnical)->getQuery()->getResult();
+    }
 }

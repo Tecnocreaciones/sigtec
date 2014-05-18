@@ -65,9 +65,18 @@ class Segment
      * @ORM\OneToMany(targetEntity="SubSegment", mappedBy="segment")
      */
     private $subSegments;
+    
+    /**
+     * Descripcion de mercado
+     * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket",mappedBy="segment")
+     */
+    private $descriptionMarkets;
 
     public function __construct() {
         $this->subSegments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->descriptionMarkets = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -226,5 +235,38 @@ class Segment
     public function getSubSegments()
     {
         return $this->subSegments;
+    }
+
+    /**
+     * Add descriptionMarkets
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket $descriptionMarkets
+     * @return Segment
+     */
+    public function addDescriptionMarket(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket $descriptionMarkets)
+    {
+        $this->descriptionMarkets[] = $descriptionMarkets;
+
+        return $this;
+    }
+
+    /**
+     * Remove descriptionMarkets
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket $descriptionMarkets
+     */
+    public function removeDescriptionMarket(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket $descriptionMarkets)
+    {
+        $this->descriptionMarkets->removeElement($descriptionMarkets);
+    }
+
+    /**
+     * Get descriptionMarkets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDescriptionMarkets()
+    {
+        return $this->descriptionMarkets;
     }
 }

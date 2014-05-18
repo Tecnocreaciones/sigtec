@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Coramer\Sigtec\ReportTechnicalBundle\Repository\Properties\GrowthPotential\GrowingMarketRepository")
  */
 class GrowingMarket
 {

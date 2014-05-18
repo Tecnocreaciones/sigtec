@@ -14,6 +14,7 @@ class GrowingMarketType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $reportTechnical = $builder->getData()->getGrowthPotential()->getReportTechnical();
         $builder
                 ->add('segment','entity',array(
                     'label' => 'sigtec.growth_potential.growth_market.segment',
@@ -22,11 +23,11 @@ class GrowingMarketType extends AbstractType
                     'attr' => array(
                         'class' => 'select expandable-list small-margin-right input-large validate[required]',
                         'ng-model' => 'model.growth_potential.growth_market.segment',
-                        'ng-options' => 'value as value.description for (key,value) in data.segments',
+                        'ng-options' => 'value as value.description for (key,value) in data.growth_potential.segments',
                         'ng-change' => 'reportTechnicalManager.getData().getSubSegmentsGrowthMarket(model.growth_potential.growth_market.segment)'
                     ),
-                    'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
-                        return $er->getQueryAllActive();
+                    'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er) use ($reportTechnical){
+                        return $er->getQueryBuilderByReportTechnical($reportTechnical);
                     }
                 ))
                 ->add('subSegment','entity',array(

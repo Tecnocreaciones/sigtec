@@ -39,6 +39,7 @@ class GrowingMarketController extends BaseController
             throw $this->createAccessDeniedHttpException();
         }
         $resource = $this->createNew();
+        $resource->setGrowthPotential($reportTechnical->getGrowthPotential());
         $form = $this->getForm($resource);
         return $this->render('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/GrowthPotential/growthMarketForm.html.twig',array(
             'form' => $form->createView(),
@@ -64,6 +65,7 @@ class GrowingMarketController extends BaseController
         $growthPotential = $reportTechnical->getGrowthPotential();
         
         $view = $this->view($growthPotential->getGrowthMarkets());
+        $view->getSerializationContext()->setGroups(array('id','report_technical'));
         return $this->handleView($view);
     }
     
@@ -178,44 +180,5 @@ class GrowingMarketController extends BaseController
             );
             return new JsonResponse($data);
         }
-    }
-    
-    /**
-     * Contruye el formulario de los mercados en crecimiento
-     * @param type $data
-     * @return type
-     */
-    private function getFormGrowthMarket($data = null)
-    {
-        return $this->createFormBuilder($data,array('translation_domain'=>'CoramerSigtecReportTechnicalBundle','csrf_protection' => false))
-                ->add('segment','entity',array(
-                    'label' => 'sigtec.growth_potential.growth_market.segment',
-                    'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment',
-                    'property' => 'description',
-                    'attr' => array(
-                        'class' => 'select expandable-list small-margin-right input-large validate[required]',
-                        'ng-model' => 'model.growth_potential.growth_market.segment',
-                        'ng-options' => 'value as value.description for (key,value) in data.segments',
-                        'ng-change' => 'reportTechnicalManager.getData().getSubSegmentsGrowthMarket(model.growth_potential.growth_market.segment)'
-                    ),
-                    'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
-                        return $er->getQueryAllActive();
-                    }
-                ))
-                ->add('subSegment','entity',array(
-                    'label' => 'sigtec.growth_potential.growth_market.sub_segment',
-                    'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment',
-                    'property' => 'description',
-                    'attr' => array(
-                        'class' => 'select auto-refesh expandable-list small-margin-right input-large validate[required]',
-                        'ng-model' => 'model.growth_potential.growth_market.sub_segment',
-                        'ng-options' => 'value as value.description for (key,value) in data.sub_segments',
-                    ),
-                    'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
-                        return $er->getQueryAllActive();
-                    }
-                ))
-                ->getForm()
-                ;
     }
 }

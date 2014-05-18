@@ -89,6 +89,12 @@
         >
             <argument>Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Port</argument>
         </service>
+        <service id="coramer_sigtec_backend.repository.company_report_technical_properties_growth_potential_market" class="Coramer\Sigtec\ReportTechnicalBundle\Repository\Properties\GrowthPotential\GrowingMarketRepository" 
+            factory-service="tecnocreaciones_resource.manager_entity_repository"
+            factory-method="getRepository"
+        >
+            <argument>%coramer_sigtec_report_technical.report_technical.properties.growth_potential.growing_market.class%</argument>
+        </service>
         <service id="coramer_sigtec_report_technical.form.type.report_technical" class="%coramer_sigtec_report_technical.form.type.report_technical.class%">
             <argument>%coramer_sigtec_company.company.class%</argument>
             <tag name="form.type" alias="coramer_sigtec_reporttechnicalbundle_reporttechnical" />

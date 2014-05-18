@@ -174,6 +174,9 @@ angular.module('sigtecModule.controllers', [])
           exportation: {
               products: null,
               ports: null
+          },
+          growth_potential: {
+              segments: null
           }
       };
       $scope.form = {};
@@ -662,6 +665,9 @@ angular.module('sigtecModule.controllers', [])
           if($scope.data.exportation.ports == null){
               reportTechnicalManager.getData().getExportationPorts();
           }
+          if($scope.data.growth_potential.segments == null){
+              reportTechnicalManager.getData().getGrowthMarketSegments();
+          }
           
       };
       
@@ -740,6 +746,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 exportation: {
                     ports: 'coramer_sigtec_backend_company_report_technical_data_ports'
                 },
+                growth_potential: {
+                    segments: 'coramer_sigtec_backend_company_report_technical_data_segments_by_report_technical',
+                }
             },                    
             form: {
                 detail_product_storage: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_form',
@@ -1094,6 +1103,15 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         scope.data.exportation.ports = dataArray;
                     });
                 },
+                getGrowthMarketSegments: function(){
+                    return $http.get(self.generateRoute(config.routes.data.growth_potential.segments)).success(function(d){
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[val.id] = val;
+                          });
+                        scope.data.growth_potential.segments = dataArray;
+                    });
+                },
                 getSubSegmentsGrowthMarket: function(segment,selected){
                    var dataArray = [];
                     jQuery.each(segment.sub_segments,function(i,val){
@@ -1149,6 +1167,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
               descriptionMarket: function(){
                   return $http.get(self.generateRoute(config.routes.description_market)).success(function(d){
                         scope.reportTechnical.description_markets = d;
+                        scope.reportTechnicalManager.getData().getGrowthMarketSegments();
                     });
               },
               exportationProduct: function(){
