@@ -86,4 +86,16 @@ abstract class BaseController extends ResourceController
 
         return $this->handleView($view);
     }
+    
+    /**
+     * 
+     * @param type $id
+     * @param array $parameters
+     * @param type $domain
+     * @return string
+     */
+    function trans($id, array $parameters = array(), $domain = 'flashes')
+    {
+        return $this->get('translator')->trans($id,$parameters, $domain);
+    }
 }

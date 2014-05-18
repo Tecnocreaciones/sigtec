@@ -50,6 +50,7 @@ class SerializeEventListerner implements EventSubscriberInterface
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeDetailOtherPlasticResin', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeDescriptionMarket', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeExportationProduct', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ExportationProduct','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeGrowingMarket', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\GrowingMarket','format' => 'json'),
         );
     }
     
@@ -211,7 +212,7 @@ class SerializeEventListerner implements EventSubscriberInterface
     }
     
     /**
-     * Captura el evento luego que se serializa una descripcion de mercado
+     * Captura el evento luego que se serializa una exportacion de producto
      * @param ObjectEvent $event
      */
     function onPostSerializeExportationProduct(ObjectEvent $event) {
@@ -224,6 +225,24 @@ class SerializeEventListerner implements EventSubscriberInterface
                 ),
             'delete' => array(
                 'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_exportation_product_delete',array('id' => $reportTechnical->getId(),'slug' =>$object->getId()))
+                ),
+        ));
+    }
+    
+    /**
+     * Captura el evento luego que se serializa un mercado en crecimiento
+     * @param ObjectEvent $event
+     */
+    function onPostSerializeGrowingMarket(ObjectEvent $event) {
+        $object = $event->getObject();
+        $reportTechnical = $object->getGrowthPotential()->getReportTechnical();
+        
+        $event->getVisitor()->addData('_links', array(
+            'edit' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_update',array('id' => $reportTechnical->getId(),'slug' =>$object->getId()))
+                ),
+            'delete' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_delete',array('id' => $reportTechnical->getId(),'slug' =>$object->getId()))
                 ),
         ));
     }

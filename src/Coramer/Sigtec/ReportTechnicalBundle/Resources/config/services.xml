@@ -12,6 +12,7 @@
         <parameter key="coramer_sigtec_report_technical.report_technical.properties.additive_used.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed</parameter>
         <parameter key="coramer_sigtec_report_technical.report_technical.properties.detail_other_plastic_resin.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin\DetailOtherPlasticResin</parameter>
         <parameter key="coramer_sigtec_report_technical.report_technical.properties.exportation.exportation_product.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation\ExportationProduct</parameter>
+        <parameter key="coramer_sigtec_report_technical.report_technical.properties.growth_potential.growing_market.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\GrowingMarket</parameter>
         <parameter key="coramer_sigtec_report_technical.report_technical.properties.description_market.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket</parameter>
         <parameter key="coramer_sigtec_report_technical.form.type.report_technical.properties.description_area_company.detail_product_storage.class">Coramer\Sigtec\ReportTechnicalBundle\Form\Properties\DescriptionAreaCompany\DetailProductStorageType</parameter>
         <parameter key="coramer_sigtec_report_technical.form.type.report_technical.properties.production_level.class">Coramer\Sigtec\ReportTechnicalBundle\Form\Properties\ProductionLevelType</parameter>
@@ -124,7 +125,11 @@
        <service id="coramer_sigtec_report_technical.form.type.report_technical.properties.exportation.exportation_product" class="Coramer\Sigtec\ReportTechnicalBundle\Form\Properties\Exportation\ExportationProductType">
             <argument>%coramer_sigtec_report_technical.report_technical.properties.exportation.exportation_product.class%</argument>
             <tag name="form.type" alias="coramer_sigtec_reporttechnicalbundle_properties_exportation_exportationproduct" />
-        </service> 
+        </service>
+       <service id="coramer_sigtec_report_technical.form.type.report_technical.properties.growth_potential.growing_market" class="Coramer\Sigtec\ReportTechnicalBundle\Form\Properties\GrowthPotential\GrowingMarketType">
+            <argument>%coramer_sigtec_report_technical.report_technical.properties.growth_potential.growing_market.class%</argument>
+            <tag name="form.type" alias="coramer_sigtec_reporttechnicalbundle_properties_growthpotential_growingmarket" />
+        </service>
         <service id="coramer_sigtec_report_technical.properties.description_area_company_manager" class="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompanyManager">
             <argument type="service" id="doctrine.orm.entity_manager"  />
         </service>

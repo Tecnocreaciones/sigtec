@@ -509,7 +509,7 @@
                                         </tr>
                                         <tr ng-repeat="growth_market in reportTechnical.growth_potential.growth_markets" data="[[ growth_market|json ]]">
                                             <td><a href ng-click="growthPotential.addGrowthMarket(growth_market)" >[[ growth_market.segment.description ]]</a></td>
-                                            <td>[[ growth_market.description ]]</td>
+                                            <td>[[ growth_market.sub_segment.description ]]</td>
                                             <td>
                                                 <span class="button-group compact">
                                                     <a href ng-click="itemDelete(growth_market._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().growthMarket)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>

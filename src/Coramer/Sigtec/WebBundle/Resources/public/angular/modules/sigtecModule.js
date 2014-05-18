@@ -497,7 +497,7 @@ angular.module('sigtecModule.controllers', [])
     $scope.setDataGrowthMarket = function(growthMarket){
         if(growthMarket != undefined){
              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:growthMarket.id});
-             $scope.reportTechnicalManager.getData().getSubSegmentsGrowthMarket($scope.data.segments[growthMarket.segment.id],growthMarket.id);
+             $scope.reportTechnicalManager.getData().getSubSegmentsGrowthMarket($scope.data.segments[growthMarket.segment.id],growthMarket.sub_segment.id);
              $scope.model.growth_potential.growth_market.segment = $scope.data.segments[growthMarket.segment.id];
              
           }else{
@@ -862,7 +862,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         parameterCallback: null, 
                         load: false,
                         routes: {
-                            create: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_add',
+                            create: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_create',
                             update: 'coramer_sigtec_backend_company_report_technical_properties_growth_potential_growth_market_update'
                         },
                         reload: self.reload().getGrowthPotential().growthMarket

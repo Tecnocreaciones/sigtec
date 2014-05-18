@@ -12,4 +12,4 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Segment:
             groups: [show,list,report_technical]
         subSegments:
             expose: true
-            groups: [show,details]
+            groups: [show,details,report_technical]

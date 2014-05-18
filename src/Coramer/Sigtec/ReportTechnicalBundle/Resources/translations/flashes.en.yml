@@ -31,3 +31,7 @@ coramer_sigtec_backend:
         create: Detail product export added.
         update: Detail product export updated.
         delete: Detail product export removed.
+    company_report_technical_properties_growth_potential_market:
+        create: Market growth added.
+        update: Market growth updated.
+        delete: Market growth removed.

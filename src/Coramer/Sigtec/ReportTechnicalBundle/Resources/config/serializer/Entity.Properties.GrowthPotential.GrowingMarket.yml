@@ -1,0 +1,12 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\GrowingMarket:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,id]
+        segment:
+            expose: true
+            groups: [show,report_technical]
+        subSegment:
+            expose: true
+            groups: [show,report_technical]

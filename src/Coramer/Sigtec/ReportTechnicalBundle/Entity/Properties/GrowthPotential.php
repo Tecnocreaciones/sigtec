@@ -42,8 +42,8 @@ class GrowthPotential
     /**
      * Mercados en crecimiento
      * 
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment
-     * @ORM\ManyToMany(targetEntity="\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\SubSegment",cascade={"persist"})
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\GrowingMarket
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\GrowingMarket",mappedBy="growthPotential")
      */
     private $growthMarkets;
     
