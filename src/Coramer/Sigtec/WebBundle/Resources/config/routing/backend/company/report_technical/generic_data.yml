@@ -21,7 +21,7 @@ coramer_sigtec_backend_company_report_technical_data_separated_resin:
         _format: json|xml
         
 coramer_sigtec_backend_company_report_technical_data_type_process_by_coramer:
-    pattern:  /type-process.{_format}
+    pattern:  /type-process-by-coramer.{_format}
     defaults:
         _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getTypeProcessByCoramerAction
         _format: json
@@ -31,10 +31,10 @@ coramer_sigtec_backend_company_report_technical_data_type_process_by_coramer:
         _method: GET
         _format: json|xml
         
-coramer_sigtec_backend_company_report_technical_data_type_process_not_by_coramer:
-    pattern:  /type-process.{_format}
+coramer_sigtec_backend_company_report_technical_data_type_process_all:
+    pattern:  /type-process-all.{_format}
     defaults:
-        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getTypeProcessNotByCoramerAction
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getTypeProcessAllAction
         _format: json
     options:
         expose: true
@@ -68,6 +68,17 @@ coramer_sigtec_backend_company_report_technical_data_resin_not_by_coramer:
     pattern:  /resin-not-by-coramer.{_format}
     defaults:
         _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getResinNotByCoramerAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_data_resin_all:
+    pattern:  /resin-all.{_format}
+    defaults:
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getResinAllAction
         _format: json
     options:
         expose: true
@@ -167,6 +178,17 @@ coramer_sigtec_backend_company_report_technical_data_segments_by_report_technica
     pattern:  /segments/report-technical.{_format}
     defaults:
         _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getSegmentsByReportTechnicalAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_data_new_machinery_reason_purchase:
+    pattern:  /reason-purchases.{_format}
+    defaults:
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getReasonPurchaseAction
         _format: json
     options:
         expose: true

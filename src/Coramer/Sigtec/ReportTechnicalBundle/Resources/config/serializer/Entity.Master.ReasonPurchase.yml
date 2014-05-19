@@ -1,12 +1,12 @@
-Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\TypeProcess:
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ReasonPurchase:
     exclusion_policy: ALL
     properties:
         id:
             expose: true
-            groups: [show,list,id]
+            groups: [id,show]
         description:
             expose: true
             groups: [show,list,report_technical]
-        processes:
+        help:
             expose: true
-            groups: [show,list]
+            groups: [show,list,report_technical]

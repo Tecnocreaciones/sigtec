@@ -64,7 +64,7 @@ class NewMachineryController extends BaseController
         
         $growthPotential = $reportTechnical->getGrowthPotential();
         
-        $view = $this->view($growthPotential->getOtherMarkets());
+        $view = $this->view($growthPotential->getNewMachineries());
         $view->getSerializationContext()->setGroups(array('id','report_technical'));
         return $this->handleView($view);
     }
@@ -94,8 +94,8 @@ class NewMachineryController extends BaseController
             $resource->setGrowthPotential($reportTechnical->getGrowthPotential());
             $resource = $this->domainManager->create($resource);
             
-            if(!$growthPotential->isDoYouConsiderEnteringOtherMarkets()){
-                $growthPotential->setDoYouConsiderEnteringOtherMarkets(true);
+            if(!$growthPotential->isDoYouPlanToPurchaseNewMachineries()){
+                $growthPotential->setDoYouPlanToPurchaseNewMachineries(true);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($growthPotential);
                 $em->flush();
@@ -187,13 +187,13 @@ class NewMachineryController extends BaseController
             $growthPotential = $reportTechnical->getGrowthPotential();
             
             $this->domainManager->delete($resource);
-            $growthPotential->removeOtherMarket($resource);
+            $growthPotential->removeNewMachinery($resource);
             
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
             
-            if($growthPotential->getOtherMarkets()->isEmpty()){
-                $growthPotential->setDoYouConsiderEnteringOtherMarkets(false);
+            if($growthPotential->getNewMachineries()->isEmpty()){
+                $growthPotential->setDoYouPlanToPurchaseNewMachineries(false);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($growthPotential);
                 $em->flush();

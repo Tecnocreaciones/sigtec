@@ -38,4 +38,8 @@ coramer_sigtec_backend:
     company_report_technical_properties_growth_potential_other_market:
         create: Other market added.
         update: Other market updated.
-        delete: Other market removed.    
+        delete: Other market removed.
+    company_report_technical_properties_growth_potential_new_machinery:
+        create: New machinery added.
+        update: New machinery updated.
+        delete: New machinery removed.

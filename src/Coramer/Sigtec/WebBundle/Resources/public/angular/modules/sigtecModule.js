@@ -141,6 +141,15 @@ angular.module('sigtecModule.controllers', [])
               growth_market: {
                   segment: null,
                   sub_segment: null,
+              },
+              new_machinery: {
+                  quantity: 0,
+                  capacity: 0,
+                  type_process: null,
+                  process: null,
+                  resin: null,
+                  product: null,
+                  reason_purchase: null
               }
           }
       };
@@ -158,7 +167,8 @@ angular.module('sigtecModule.controllers', [])
           process: null,
           resins: {
               by_coramer: null,
-              not_by_coramer: null
+              not_by_coramer: null,
+              all: null
           },
           grades: null,
           product_manufactured: {
@@ -179,6 +189,9 @@ angular.module('sigtecModule.controllers', [])
           },
           growth_potential: {
               segments: null
+          },
+          new_machinery: {
+              reason_purchases: null
           }
       };
       $scope.form = {};
@@ -551,15 +564,26 @@ angular.module('sigtecModule.controllers', [])
     $scope.setDataNewMachinery = function(newMachinery){
         if(newMachinery != undefined){
              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:newMachinery.id});
-             $scope.model.growth_potential.other_market.segment = $scope.data.segments[newMachinery.segment.id];
-             $scope.model.growth_potential.other_market.motive = newMachinery.motive;
+             $scope.model.growth_potential.new_machinery.quantity = newMachinery.quantity;
+             $scope.model.growth_potential.new_machinery.capacity = newMachinery.capacity;
+             
+             $scope.model.growth_potential.new_machinery.type_process = $scope.data.type_process.all[newMachinery.type_process.id];
+             $scope.reportTechnicalManager.getData().getProcessOfNewMachinery($scope.data.type_process.all[newMachinery.type_process.id],newMachinery.process.id);
+             
+             $scope.model.growth_potential.new_machinery.resin = $scope.data.resins.all[newMachinery.resin.id];
+             $scope.model.growth_potential.new_machinery.product = $scope.data.products[newMachinery.product.id];
+             $scope.model.growth_potential.new_machinery.reason_purchase = $scope.data.new_machinery.reason_purchases[newMachinery.reason_purchase.id];
              
           }else{
               $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
-              $scope.model.growth_potential.other_market = {
-                  segment: null,
-                  sub_segment: null,
-                  motive: null,
+              $scope.model.growth_potential.new_machinery = {
+                  quantity: 0,
+                  capacity: 0,
+                  type_process: null,
+                  process: null,
+                  resin: null,
+                  product: null,
+                  reason_purchase: null
               };
           }
     };
@@ -693,14 +717,17 @@ angular.module('sigtecModule.controllers', [])
           if($scope.data.type_process.by_coramer == null){
               reportTechnicalManager.getData().getTypeProcessByCoramer();
           }
-          if($scope.data.type_process.not_by_coramer == null){
-              reportTechnicalManager.getData().getTypeProcessNotByCoramer();
+          if($scope.data.type_process.all == null){
+              reportTechnicalManager.getData().getTypeProcessAll();
           }
           if($scope.data.resins.by_coramer == null){
               reportTechnicalManager.getData().getResinByCoramer();
           }
           if($scope.data.resins.not_by_coramer == null){
               reportTechnicalManager.getData().getResinNotByCoramer();
+          }
+          if($scope.data.resins.all == null){
+              reportTechnicalManager.getData().getResinAll();
           }
           if($scope.data.products == null){
               reportTechnicalManager.getData().getProduct();
@@ -722,6 +749,9 @@ angular.module('sigtecModule.controllers', [])
           }
           if($scope.data.growth_potential.segments == null){
               reportTechnicalManager.getData().getGrowthMarketSegments();
+          }
+          if($scope.data.new_machinery.reason_purchases == null){
+              reportTechnicalManager.getData().getReasonPurchase();
           }
           
       };
@@ -788,12 +818,13 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 separated_resin: 'coramer_sigtec_backend_company_report_technical_data_separated_resin',
                 type_process: {
                     by_coramer: 'coramer_sigtec_backend_company_report_technical_data_type_process_by_coramer',
-                    not_by_coramer: 'coramer_sigtec_backend_company_report_technical_data_type_process_not_by_coramer'
+                    all: 'coramer_sigtec_backend_company_report_technical_data_type_process_all'
                 },
                 process: 'coramer_sigtec_backend_company_report_technical_data_process',
                 resin: {
                     by_coramer: 'coramer_sigtec_backend_company_report_technical_data_resin_by_coramer',
-                    not_by_coramer: 'coramer_sigtec_backend_company_report_technical_data_resin_not_by_coramer'
+                    not_by_coramer: 'coramer_sigtec_backend_company_report_technical_data_resin_not_by_coramer',
+                    all: 'coramer_sigtec_backend_company_report_technical_data_resin_all'
                 },
                 grade: 'coramer_sigtec_backend_company_report_technical_data_grade',
                 product: 'coramer_sigtec_backend_company_report_technical_data_product',
@@ -808,10 +839,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 },
                 growth_potential: {
                     segments: 'coramer_sigtec_backend_company_report_technical_data_segments_by_report_technical',
-                    new_machinery: {
-                        segments: '',
-                        sub_segments: ''
-                    }
+                },
+                new_machinery: {
+                    reason_purchase: 'coramer_sigtec_backend_company_report_technical_data_new_machinery_reason_purchase'
                 }
             },                    
             form: {
@@ -1014,13 +1044,13 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         scope.data.type_process.by_coramer = dataArray;
                     });
                 },
-                getTypeProcessNotByCoramer: function(){
-                    return $http.get(self.generateRoute(config.routes.data.type_process.not_by_coramer)).success(function(d){
+                getTypeProcessAll: function(){
+                    return $http.get(self.generateRoute(config.routes.data.type_process.all)).success(function(d){
                         var dataArray = [];
                           jQuery.each(d,function(i,val){
                               dataArray[val.id] = val;
                           });
-                        scope.data.type_process.not_by_coramer = dataArray;
+                        scope.data.type_process.all = dataArray;
                     });
                 },
                 getResinByCoramer: function(){
@@ -1039,6 +1069,15 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                               dataArray[val.id] = val;
                           });
                         scope.data.resins.not_by_coramer = dataArray;
+                    });
+                },
+                getResinAll: function(){
+                    return $http.get(self.generateRoute(config.routes.data.resin.all)).success(function(d){
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[val.id] = val;
+                          });
+                        scope.data.resins.all = dataArray;
                     });
                 },
                 getProduct: function(){
@@ -1071,6 +1110,19 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         scope.data.process = dataArray;
                         if(selected != undefined){
                             scope.model.production_level.process = scope.data.process[selected];
+                        }
+                        notificationBarService.getLoadStatus().done();
+                },
+                getProcessOfNewMachinery: function(typeProcess,selected){
+                    notificationBarService.getLoadStatus().loading();
+                    scope.data.process = {};
+                        var dataArray = [];
+                          jQuery.each(typeProcess.processes,function(i,val){
+                              dataArray[val.id] = val;
+                          });
+                        scope.data.process = dataArray;
+                        if(selected != undefined){
+                            scope.model.growth_potential.new_machinery.process = scope.data.process[selected];
                         }
                         notificationBarService.getLoadStatus().done();
                 },
@@ -1203,6 +1255,15 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     if(selected != undefined){
                         scope.model.growth_potential.other_market.sub_segment = dataArray[selected];
                     }
+                },
+                getReasonPurchase: function(){
+                    return $http.get(self.generateRoute(config.routes.data.new_machinery.reason_purchase)).success(function(d){
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[val.id] = val;
+                          });
+                        scope.data.new_machinery.reason_purchases = dataArray;
+                    });
                 },
             }
         },

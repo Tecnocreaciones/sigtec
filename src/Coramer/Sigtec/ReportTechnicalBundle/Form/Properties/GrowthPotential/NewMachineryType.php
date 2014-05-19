@@ -33,12 +33,11 @@ class NewMachineryType extends AbstractType
                 'label' => 'sigtec.table.header.type_process',
                 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\TypeProcess',
                 'property' => 'description',
-                'mapped' => false,
                 'attr' => array(
                     'class' => 'select input-large auto-refesh expandable-list small-margin-right validate[required]',
-                    'ng-options' => 'value as value for (key,value) in data.type_process',
+                    'ng-options' => 'value as value.description for (key,value) in data.type_process.all',
                     'ng-model' => 'model.growth_potential.new_machinery.type_process',
-                    'ng-change' => 'reportTechnicalManager.getData().getProcess(model.production_level.type_process)',
+                    'ng-change' => 'reportTechnicalManager.getData().getProcessOfNewMachinery(model.growth_potential.new_machinery.type_process)',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
                     return $er->getQueryAllActive();
@@ -50,7 +49,7 @@ class NewMachineryType extends AbstractType
                 'property' => 'description',
                 'attr' => array(
                     'class' => 'select replacement input-large auto-refesh expandable-list small-margin-right validate[required]',
-                    'ng-options' => 'value as value for (key,value) in data.process',
+                    'ng-options' => 'value as value.description for (key,value) in data.process',
                     'ng-model' => 'model.growth_potential.new_machinery.process',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
@@ -64,7 +63,7 @@ class NewMachineryType extends AbstractType
                 'attr' => array(
                     'class' => 'select small-margin-right  input-small validate[required]',
                     'ng-model' => 'model.growth_potential.new_machinery.resin',
-                    'ng-options' => 'value as value.description for (key,value) in data.resins.not_by_coramer',
+                    'ng-options' => 'value as value.description for (key,value) in data.resins.all',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
                     return $er->getQueryAllActive();
@@ -77,7 +76,7 @@ class NewMachineryType extends AbstractType
                 'attr' => array(
                     'class' => 'select small-margin-right validate[required]',
                     'ng-model' => 'model.growth_potential.new_machinery.product',
-                    'ng-options' => 'value as value.description for (key,value) in data.additive.products',
+                    'ng-options' => 'value as value.description for (key,value) in data.products',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\ProductRepository $er){
                     return $er->getQueryAllActive();
@@ -90,7 +89,7 @@ class NewMachineryType extends AbstractType
                 'attr' => array(
                     'class' => 'select small-margin-right validate[required]',
                     'ng-model' => 'model.growth_potential.new_machinery.reason_purchase',
-                    'ng-options' => 'value as value.description for (key,value) in data.additive.products',
+                    'ng-options' => 'value as value.description for (key,value) in data.new_machinery.reason_purchases',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
                     return $er->getQueryAllActive();

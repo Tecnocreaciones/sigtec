@@ -572,27 +572,31 @@
                                 <br />
                                 <br />
                                 <div ng-show="reportTechnical.growth_potential.do_you_plan_to_purchase_new_machineries">
-                                    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection9_2">
+                                    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection9_3">
                                         <tr>
-                                            <th>{{ 'sigtec.table.header.segment'|trans }}</th>
-                                            <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
+                                            <th>{{ 'sigtec.table.header.quantity'|trans }}</th>
+                                            <th>{{ 'sigtec.table.header.capacity'|trans }}</th>
+                                            <th>{{ 'sigtec.table.header.type_process'|trans }}</th>
+                                            <th>{{ 'sigtec.table.header.process'|trans }}</th>
                                             <th>&nbsp;</th>
                                         </tr>
                                         <tr ng-hide="reportTechnical.growth_potential.new_machineries">
-                                            <td colspan="3" class="bold text-center">&nbsp;</td>
+                                            <td colspan="5" class="bold text-center">&nbsp;</td>
                                         </tr>
                                         <tr ng-hide="reportTechnical.growth_potential.new_machineries">
-                                            <td colspan="3" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.new_machinery'|trans }}</td>
+                                            <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.new_machinery'|trans }}</td>
                                         </tr>
                                         <tr ng-hide="reportTechnical.growth_potential.new_machineries">
-                                            <td colspan="3" class="bold text-center">&nbsp;</td>
+                                            <td colspan="5" class="bold text-center">&nbsp;</td>
                                         </tr>
                                         <tr ng-repeat="new_machinery in reportTechnical.growth_potential.new_machineries" data="[[ new_machinery|json ]]">
-                                            <td><a href ng-click="growthPotential.addNewMachinery(new_machinery)" >[[ new_machinery.segment.description ]]</a></td>
-                                            <td>[[ new_machinery.sub_segment.description ]]</td>
+                                            <td><a href ng-click="growthPotential.addNewMachinery(new_machinery)" >[[ new_machinery.quantity ]]</a></td>
+                                            <td>[[ new_machinery.capacity ]]</td>
+                                            <td>[[ new_machinery.type_process.description ]]</td>
+                                            <td>[[ new_machinery.process.description ]]</td>
                                             <td>
                                                 <span class="button-group compact">
-                                                    <a href ng-click="itemDelete(new_machinery._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().otherMarket)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                                    <a href ng-click="itemDelete(new_machinery._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().newMachinery)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
                                                 </span>
                                             </td>
                                         </tr>
@@ -841,6 +845,12 @@
         function getTableExtraInfoSection9_2(data)
         {
             return '<strong>{{ 'sigtec.table.header.motive'|trans }}:</strong> ' + data.motive;
+        }
+        function getTableExtraInfoSection9_3(data)
+        {
+            return  '<strong>{{ 'sigtec.table.header.resin'|trans }}:</strong> ' + data.resin.description + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.product'|trans }}:</strong> ' + data.product.description + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.reason_purchase'|trans }}:</strong> ' + data.reason_purchase.description + '<br>';
         }
              $(document).ready(function() {
             //Example for table extra info methos to override

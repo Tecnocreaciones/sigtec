@@ -91,10 +91,10 @@ class GenericDataController extends FOSRestController
      * 
      * @return json|xml
      */
-    function getTypeProcessNotByCoramerAction()
+    function getTypeProcessAllAction()
     {
         $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_type_process');
-        $view = $this->view($repository->getNotMarketedByCoramer());
+        $view = $this->view($repository->getAllActive());
         $view->getSerializationContext()->setGroups(array('id','list'));
         return $this->handleView($view);
     }
@@ -138,6 +138,19 @@ class GenericDataController extends FOSRestController
     {
         $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_resin');
         $view = $this->view($repository->getNotMarketedByCoramer());
+        $view->getSerializationContext()->setGroups(array('id','list'));
+        return $this->handleView($view);
+    }
+    
+    /**
+     * Retorna la lista de resinas activas comercializadas por Coramer
+     * 
+     * @return json|xml
+     */
+    function getResinAllAction()
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_resin');
+        $view = $this->view($repository->getAllActive());
         $view->getSerializationContext()->setGroups(array('id','list'));
         return $this->handleView($view);
     }
@@ -244,6 +257,19 @@ class GenericDataController extends FOSRestController
         $reportTechnical = $this->findReportTechnicalOr404($request);
         $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_segment');
         $view = $this->view($repository->getByReportTechnical($reportTechnical));
+        $view->getSerializationContext()->setGroups(array('id','report_technical'));
+        return $this->handleView($view);
+    }
+    
+    /**
+     * Retorna la lista de segmentos de un reporte tecnico
+     * 
+     * @return json|xml
+     */
+    function getReasonPurchaseAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_reason_purchase');
+        $view = $this->view($repository->getAllActive());
         $view->getSerializationContext()->setGroups(array('id','report_technical'));
         return $this->handleView($view);
     }

@@ -39,3 +39,7 @@ coramer_sigtec_backend:
         create: Otro mercado agregado.
         update: Otro mercado actualizado.
         delete: Otro mercado eliminado.
+    company_report_technical_properties_growth_potential_new_machinery:
+        create: Nueva maquinaria agregada.
+        update: Nueva maquinaria actualizada.
+        delete: Nueva maquinaria eliminada.
