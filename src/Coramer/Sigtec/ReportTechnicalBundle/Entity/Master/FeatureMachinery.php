@@ -31,11 +31,19 @@ class FeatureMachinery
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * Nombre
+     * 
+     * @var string
+     * @ORM\Column(name="name", type="string", length=100)
+     */
+    private $name;
 
     /**
      * Descripcion
+     * 
      * @var string
-     *
      * @ORM\Column(name="description", type="string", length=100)
      */
     private $description;
@@ -57,20 +65,12 @@ class FeatureMachinery
     private $fieldType;
 
     /**
-     * Tipo de unidad
-     * @var string
-     *
-     * @ORM\Column(name="unitType", type="string", length=100)
-     */
-    private $unitType;
-
-    /**
-     * Valores disponibles
+     * Parametros del campo
      * @var array
      *
-     * @ORM\Column(name="values", type="array")
+     * @ORM\Column(name="parameters", type="array")
      */
-    private $values;
+    private $parameters;
     
     /**
      * @var boolean
@@ -96,11 +96,21 @@ class FeatureMachinery
     private $updatedAt;
     
     /**
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Machinery
+     * Modelo de maquinaria
      * 
-     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Machinery",inversedBy="machinery")
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery
+     * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery",mappedBy="featuresMachinery")
      */
-    private $machinery;
+    private $modelMachinery;
+    
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->modelMachinery = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -110,6 +120,29 @@ class FeatureMachinery
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return FeatureMachinery
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -133,6 +166,75 @@ class FeatureMachinery
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set help
+     *
+     * @param string $help
+     * @return FeatureMachinery
+     */
+    public function setHelp($help)
+    {
+        $this->help = $help;
+
+        return $this;
+    }
+
+    /**
+     * Get help
+     *
+     * @return string 
+     */
+    public function getHelp()
+    {
+        return $this->help;
+    }
+
+    /**
+     * Set fieldType
+     *
+     * @param string $fieldType
+     * @return FeatureMachinery
+     */
+    public function setFieldType($fieldType)
+    {
+        $this->fieldType = $fieldType;
+
+        return $this;
+    }
+
+    /**
+     * Get fieldType
+     *
+     * @return string 
+     */
+    public function getFieldType()
+    {
+        return $this->fieldType;
+    }
+
+    /**
+     * Set parameters
+     *
+     * @param array $parameters
+     * @return FeatureMachinery
+     */
+    public function setParameters($parameters)
+    {
+        $this->parameters = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * Get parameters
+     *
+     * @return array 
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 
     /**
@@ -205,117 +307,35 @@ class FeatureMachinery
     }
 
     /**
-     * Set machinery
+     * Add modelMachinery
      *
-     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Machinery $machinery
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery $modelMachinery
      * @return FeatureMachinery
      */
-    public function setMachinery(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Machinery $machinery = null)
+    public function addModelMachinery(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery $modelMachinery)
     {
-        $this->machinery = $machinery;
+        $this->modelMachinery[] = $modelMachinery;
 
         return $this;
     }
 
     /**
-     * Get machinery
+     * Remove modelMachinery
      *
-     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Machinery 
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery $modelMachinery
      */
-    public function getMachinery()
+    public function removeModelMachinery(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery $modelMachinery)
     {
-        return $this->machinery;
+        $this->modelMachinery->removeElement($modelMachinery);
     }
 
     /**
-     * Set help
+     * Get modelMachinery
      *
-     * @param string $help
-     * @return FeatureMachinery
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function setHelp($help)
+    public function getModelMachinery()
     {
-        $this->help = $help;
-
-        return $this;
-    }
-
-    /**
-     * Get help
-     *
-     * @return string 
-     */
-    public function getHelp()
-    {
-        return $this->help;
-    }
-
-    /**
-     * Set fieldType
-     *
-     * @param string $fieldType
-     * @return FeatureMachinery
-     */
-    public function setFieldType($fieldType)
-    {
-        $this->fieldType = $fieldType;
-
-        return $this;
-    }
-
-    /**
-     * Get fieldType
-     *
-     * @return string 
-     */
-    public function getFieldType()
-    {
-        return $this->fieldType;
-    }
-
-    /**
-     * Set unitType
-     *
-     * @param string $unitType
-     * @return FeatureMachinery
-     */
-    public function setUnitType($unitType)
-    {
-        $this->unitType = $unitType;
-
-        return $this;
-    }
-
-    /**
-     * Get unitType
-     *
-     * @return string 
-     */
-    public function getUnitType()
-    {
-        return $this->unitType;
-    }
-
-    /**
-     * Set values
-     *
-     * @param array $values
-     * @return FeatureMachinery
-     */
-    public function setValues($values)
-    {
-        $this->values = $values;
-
-        return $this;
-    }
-
-    /**
-     * Get values
-     *
-     * @return array 
-     */
-    public function getValues()
-    {
-        return $this->values;
+        return $this->modelMachinery;
     }
 }

@@ -15,13 +15,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Maquinaria
+ * Modelo de maquinaria
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\MachineryRepository")
  */
-class Machinery
+class ModelMachinery
 {
     /**
      * @var integer
@@ -33,12 +33,13 @@ class Machinery
     private $id;
 
     /**
+     * Nombre
+     * 
      * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=100)
      */
-    private $description;
-
+    private $name;
+    
     /**
      * @var boolean
      *
@@ -63,9 +64,10 @@ class Machinery
     private $updatedAt;
     
     /**
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery
+     * Caracteristicas de la maquinaria
      * 
-     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery",mappedBy="machinery")
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery
+     * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery",inversedBy="modelMachinery")
      */
     private $featuresMachinery;
     
@@ -76,7 +78,7 @@ class Machinery
     {
         $this->featuresMachinery = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
@@ -91,7 +93,7 @@ class Machinery
      * Set description
      *
      * @param string $description
-     * @return Machinery
+     * @return ModelMachinery
      */
     public function setDescription($description)
     {
@@ -114,7 +116,7 @@ class Machinery
      * Set active
      *
      * @param boolean $active
-     * @return Machinery
+     * @return ModelMachinery
      */
     public function setActive($active)
     {
@@ -137,7 +139,7 @@ class Machinery
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Machinery
+     * @return ModelMachinery
      */
     public function setCreatedAt($createdAt)
     {
@@ -160,7 +162,7 @@ class Machinery
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Machinery
+     * @return ModelMachinery
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -183,11 +185,11 @@ class Machinery
      * Add featuresMachinery
      *
      * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery $featuresMachinery
-     * @return Machinery
+     * @return ModelMachinery
      */
     public function addFeaturesMachinery(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery $featuresMachinery)
     {
-        $this->featuresMachinery[] = $featuresMachinery;
+        $this->featuresMachinery->add($featuresMachinery);
 
         return $this;
     }
@@ -210,5 +212,28 @@ class Machinery
     public function getFeaturesMachinery()
     {
         return $this->featuresMachinery;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return ModelMachinery
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

@@ -25,7 +25,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 class LoadProcessData extends AbstractFixture implements FixtureInterface,OrderedFixtureInterface
 {
     public function getOrder() {
-        return 2;
+        return 3;
     }
 
     public function load(ObjectManager $manager)
@@ -42,8 +42,10 @@ class LoadProcessData extends AbstractFixture implements FixtureInterface,Ordere
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Extrusión de compuestos');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Extrusión de compuestos')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('extrusion_compound'))
+                ;
             $manager->persist($process);
             
         $process = new Process();

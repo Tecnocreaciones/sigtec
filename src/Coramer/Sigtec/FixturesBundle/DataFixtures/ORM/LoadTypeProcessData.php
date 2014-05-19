@@ -25,7 +25,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 class LoadTypeProcessData extends AbstractFixture implements FixtureInterface,  OrderedFixtureInterface
 {
     public function getOrder() {
-        return 1;
+        return 2;
     }
 
     public function load(ObjectManager $manager) {

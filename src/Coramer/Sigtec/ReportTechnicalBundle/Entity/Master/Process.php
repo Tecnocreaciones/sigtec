@@ -74,11 +74,20 @@ class Process
     private $updatedAt;
     
     /**
-     *
+     * Tipo de proceso
+     * 
      * @var TypeProcess
      * @ORM\ManyToOne(targetEntity="TypeProcess",inversedBy="processes")
      */
     private $typeProcess;
+    
+    /**
+     * Modelo de maquinaria
+     * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery
+     * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery")
+     */
+    private $modelMachinery;
 
     /**
      * Get id
@@ -272,5 +281,28 @@ class Process
     public function getMarketedByCoramer()
     {
         return $this->marketedByCoramer;
+    }
+
+    /**
+     * Set modelMachinery
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery $modelMachinery
+     * @return Process
+     */
+    public function setModelMachinery(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery $modelMachinery = null)
+    {
+        $this->modelMachinery = $modelMachinery;
+
+        return $this;
+    }
+
+    /**
+     * Get modelMachinery
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery 
+     */
+    public function getModelMachinery()
+    {
+        return $this->modelMachinery;
     }
 }
