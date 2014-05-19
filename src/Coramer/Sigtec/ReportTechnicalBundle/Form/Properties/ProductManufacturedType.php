@@ -53,7 +53,7 @@ class ProductManufacturedType extends AbstractType
                     'ng-model' => 'model.product_manufactured.process',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
-                    return $er->getQueryAllActive();
+                    return $er->getQueryBuilderMarketedByCoramer();
                 }
             ))
             ->add('product','entity',array(

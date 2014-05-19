@@ -32,7 +32,7 @@ class DetailOtherPlasticResinType extends AbstractType
                     'ng-options' => 'value as value.description for (key,value) in data.product_manufactured.process',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
-                    return $er->getQueryAllActive();
+                    return $er->getQueryBuilderMarketedByCoramer();
                 }
             ))
             ->add('product','entity',array(

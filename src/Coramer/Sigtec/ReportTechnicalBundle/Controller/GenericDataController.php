@@ -79,10 +79,22 @@ class GenericDataController extends FOSRestController
      * 
      * @return json|xml
      */
-    function getTypeProcessAction()
+    function getTypeProcessByCoramerAction()
     {
         $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_type_process');
-        $view = $this->view($repository->getAllActive());
+        $view = $this->view($repository->getMarketedByCoramer());
+        $view->getSerializationContext()->setGroups(array('id','list'));
+        return $this->handleView($view);
+    }
+    /**
+     * Retorna los tipos de procesos
+     * 
+     * @return json|xml
+     */
+    function getTypeProcessNotByCoramerAction()
+    {
+        $repository = $this->get('coramer_sigtec_backend.repository.company_report_technical_type_process');
+        $view = $this->view($repository->getNotMarketedByCoramer());
         $view->getSerializationContext()->setGroups(array('id','list'));
         return $this->handleView($view);
     }
@@ -100,7 +112,7 @@ class GenericDataController extends FOSRestController
             $this->createNotFoundException();
         }
         $view = $this->view($resource->getProcesses());
-        $view->getSerializationContext()->setGroups(array('id','list'));
+        $view->getSerializationContext()->setGroups(array('id','report_technical'));
         return $this->handleView($view);
     }
     

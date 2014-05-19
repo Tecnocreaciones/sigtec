@@ -151,14 +151,16 @@ angular.module('sigtecModule.controllers', [])
           plants: null,
           storages: null,
           separated_resins: null,
-          type_process: null,
+          type_process: {
+              by_coramer: null,
+              not_by_coramer: null
+          },
           process: null,
           resins: {
               by_coramer: null,
               not_by_coramer: null
           },
           grades: null,
-          cache_grades: null,
           product_manufactured: {
               process: null
           },
@@ -347,7 +349,7 @@ angular.module('sigtecModule.controllers', [])
         if(productionLevel != undefined){
               $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:productionLevel.id});
               
-              $scope.model.production_level.type_process = $scope.data.type_process[productionLevel.process.type_process.id];
+              $scope.model.production_level.type_process = $scope.data.type_process.by_coramer[productionLevel.process.type_process.id];
               $scope.model.production_level.shifts = productionLevel.shifts;
               $scope.model.production_level.hours = productionLevel.hours;
               $scope.model.production_level.daysMonth = productionLevel.daysMonth;
@@ -356,8 +358,7 @@ angular.module('sigtecModule.controllers', [])
               $scope.model.production_level.busy = productionLevel.busy;
               $scope.model.production_level.idle = productionLevel.idle;
               $scope.model.production_level.percentage = productionLevel.percentage;
-              
-              reportTechnicalManager.getData().getProcess(productionLevel.process.type_process.id,productionLevel.process.id);
+              reportTechnicalManager.getData().getProcess($scope.data.type_process.by_coramer[productionLevel.process.type_process.id],productionLevel.process.id);
           }else{
               $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id});
               $scope.model.production_level = {
@@ -379,9 +380,9 @@ angular.module('sigtecModule.controllers', [])
         if(productManufactured != undefined){
              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:productManufactured.id});
              
-             $scope.reportTechnicalManager.getData().getGrade(productManufactured.grade.resin,productManufactured.grade.id);
+             $scope.reportTechnicalManager.getData().getGrade($scope.data.resins.by_coramer[productManufactured.grade.resin.id],productManufactured.grade.id);
              
-             $scope.model.product_manufactured.resin = $scope.data.resins[productManufactured.grade.resin.id];
+             $scope.model.product_manufactured.resin = $scope.data.resins.by_coramer[productManufactured.grade.resin.id];
              $scope.model.product_manufactured.process = $scope.data.product_manufactured.process[productManufactured.process.id];
              $scope.model.product_manufactured.product = $scope.data.products[productManufactured.product.id];
              $scope.model.product_manufactured.requirement = productManufactured.requirement;
@@ -401,9 +402,9 @@ angular.module('sigtecModule.controllers', [])
         if(productManufactured != undefined){
              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:productManufactured.id});
              
-             $scope.reportTechnicalManager.getData().getGrade(productManufactured.grade.resin,productManufactured.grade.id);
+             $scope.reportTechnicalManager.getData().getGrade($scope.data.resins.by_coramer[productManufactured.grade.resin.id],productManufactured.grade.id);
              
-             $scope.model.product_manufactured.resin = $scope.data.resins[productManufactured.grade.resin.id];
+             $scope.model.product_manufactured.resin = $scope.data.resins.by_coramer[productManufactured.grade.resin.id];
              $scope.model.product_manufactured.process = $scope.data.product_manufactured.process[productManufactured.process.id];
              $scope.model.product_manufactured.product = $scope.data.products[productManufactured.product.id];
              $scope.model.product_manufactured.requirement = productManufactured.requirement;
@@ -689,8 +690,11 @@ angular.module('sigtecModule.controllers', [])
           if($scope.data.separated_resins == null){
               reportTechnicalManager.getData().getSeparatedResin();
           }
-          if($scope.data.type_process == null){
-              reportTechnicalManager.getData().getTypeProcess();
+          if($scope.data.type_process.by_coramer == null){
+              reportTechnicalManager.getData().getTypeProcessByCoramer();
+          }
+          if($scope.data.type_process.not_by_coramer == null){
+              reportTechnicalManager.getData().getTypeProcessNotByCoramer();
           }
           if($scope.data.resins.by_coramer == null){
               reportTechnicalManager.getData().getResinByCoramer();
@@ -782,7 +786,10 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                 material: 'coramer_sigtec_backend_company_report_technical_detail_product_storage_material',
                 storages: 'coramer_sigtec_backend_company_report_technical_data_storages',
                 separated_resin: 'coramer_sigtec_backend_company_report_technical_data_separated_resin',
-                type_process: 'coramer_sigtec_backend_company_report_technical_data_type_process',
+                type_process: {
+                    by_coramer: 'coramer_sigtec_backend_company_report_technical_data_type_process_by_coramer',
+                    not_by_coramer: 'coramer_sigtec_backend_company_report_technical_data_type_process_not_by_coramer'
+                },
                 process: 'coramer_sigtec_backend_company_report_technical_data_process',
                 resin: {
                     by_coramer: 'coramer_sigtec_backend_company_report_technical_data_resin_by_coramer',
@@ -998,13 +1005,22 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         scope.data.separated_resins = dataArray;
                     });
                 },
-                getTypeProcess: function(){
-                    return $http.get(self.generateRoute(config.routes.data.type_process)).success(function(d){
+                getTypeProcessByCoramer: function(){
+                    return $http.get(self.generateRoute(config.routes.data.type_process.by_coramer)).success(function(d){
                         var dataArray = [];
                           jQuery.each(d,function(i,val){
-                              dataArray[val.id] = val.description;
+                              dataArray[val.id] = val;
                           });
-                        scope.data.type_process = dataArray;
+                        scope.data.type_process.by_coramer = dataArray;
+                    });
+                },
+                getTypeProcessNotByCoramer: function(){
+                    return $http.get(self.generateRoute(config.routes.data.type_process.not_by_coramer)).success(function(d){
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[val.id] = val;
+                          });
+                        scope.data.type_process.not_by_coramer = dataArray;
                     });
                 },
                 getResinByCoramer: function(){
@@ -1035,23 +1051,9 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                     });
                 },
                 getGrade: function(resin,selected){
-                        if(scope.data.cache_grades == null){
-                            return $http.get(self.generateRoute(config.routes.data.grade)).success(function(d){
-                              var dataArrayTmp = [];
-                              jQuery.each(d,function(i,val){
-                                  dataArrayTmp[val.id] = val;
-                              });
-                              scope.data.cache_grades = dataArrayTmp;
-                            });
-                        }
-
                         var dataArray = [];
-                        jQuery.each(scope.data.cache_grades,function(i,vals){
-                            if(vals != undefined){
-                                if(vals.resin.id == resin.id){
-                                    dataArray[vals.id] = vals;
-                                }
-                            }
+                        jQuery.each(resin.grades,function(i,val){
+                                dataArray[val.id] = val;
                         });
                         
                         scope.data.grades = dataArray;
@@ -1059,31 +1061,18 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             scope.model.product_manufactured.grade = dataArray[selected];
                         }
                 },
-                getProcess: function(idTypeProcess,selected){
-                    if(idTypeProcess !== parseInt(idTypeProcess)){
-                        jQuery.each(scope.data.type_process,function(i,val){
-                            if(idTypeProcess == val){
-                                idTypeProcess = i;
-                            }
-                        });
-                    }
+                getProcess: function(typeProcess,selected){
                     notificationBarService.getLoadStatus().loading();
                     scope.data.process = {};
-                    return $http.get(self.generateRoute(config.routes.data.process,{idTypeProcess: idTypeProcess})).success(function(d){
                         var dataArray = [];
-                          jQuery.each(d,function(i,val){
-                              dataArray[val.id] = val.description;
+                          jQuery.each(typeProcess.processes,function(i,val){
+                              dataArray[val.id] = val;
                           });
                         scope.data.process = dataArray;
                         if(selected != undefined){
                             scope.model.production_level.process = scope.data.process[selected];
-                            //scope.openModalForm();
-                            //scope.modal.closeModal();
-                            $.modal.preBuildShowForm(jQuery("#div-template"));
-                            //scope.openModalForm();
                         }
                         notificationBarService.getLoadStatus().done();
-                    });
                 },
                 getPlants: function(companyId){
                     return $http.get(self.generateRoute(config.routes.data.plants,{company_id: companyId})).success(function(d){

@@ -20,10 +20,21 @@ coramer_sigtec_backend_company_report_technical_data_separated_resin:
         _method: GET
         _format: json|xml
         
-coramer_sigtec_backend_company_report_technical_data_type_process:
+coramer_sigtec_backend_company_report_technical_data_type_process_by_coramer:
     pattern:  /type-process.{_format}
     defaults:
-        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getTypeProcessAction
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getTypeProcessByCoramerAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: GET
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_data_type_process_not_by_coramer:
+    pattern:  /type-process.{_format}
+    defaults:
+        _controller: coramer_sigtec_report_technical.controller.report_technical.generic_data:getTypeProcessNotByCoramerAction
         _format: json
     options:
         expose: true

@@ -22,12 +22,12 @@ class ProductionLevelType extends AbstractType
                 'mapped' => false,
                 'attr' => array(
                     'class' => 'select input-large auto-refesh expandable-list small-margin-right validate[required]',
-                    'ng-options' => 'value as value for (key,value) in data.type_process',
+                    'ng-options' => 'value as value.description for (key,value) in data.type_process.by_coramer',
                     'ng-model' => 'model.production_level.type_process',
                     'ng-change' => 'reportTechnicalManager.getData().getProcess(model.production_level.type_process)',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
-                    return $er->getQueryAllActive();
+                    return $er->getQueryBuilderMarketedByCoramer();
                 }
             ))
             ->add('process','entity',array(
@@ -36,11 +36,11 @@ class ProductionLevelType extends AbstractType
                 'property' => 'description',
                 'attr' => array(
                     'class' => 'select replacement input-large auto-refesh expandable-list small-margin-right validate[required]',
-                    'ng-options' => 'value as value for (key,value) in data.process',
+                    'ng-options' => 'value as value.description for (key,value) in data.process',
                     'ng-model' => 'model.production_level.process',
                 ),
                 'query_builder' => function(\Coramer\Sigtec\CoreBundle\Repository\Model\MasterEntityRepository $er){
-                    return $er->getQueryAllActive();
+                    return $er->getQueryBuilderMarketedByCoramer();
                 }
             ))
             ->add('shifts',null,array(
