@@ -46,3 +46,6 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
         growthPotential:
             expose: true
             groups: [show,report_technical]
+        inventoryLevel:
+            expose: true
+            groups: [show,report_technical]

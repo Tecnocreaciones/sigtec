@@ -138,6 +138,10 @@ sigtec:
             segment: Segmento
             sub_segment: Sub segmento
             motive: Motivo
+    inventory_level:
+        inventory_level: Nivel de inventario
+        days_of_inventory_of_raw_materials: Materia prima
+        days_of_finished_product_inventory: Producto terminado
     report_technical:
         approve: Aprobar
         reject: Rechazar

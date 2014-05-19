@@ -138,6 +138,14 @@ class ReportTechnical implements ReportTechnicalInterface
      */
     private $growthPotential;
     
+    /**
+     * Potencial de crecimiento
+     * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\InventoryLevel
+     * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\InventoryLevel",inversedBy="reportTechnical",cascade={"persist"})
+     */
+    private $inventoryLevel;
+    
     public function __construct() {
         $this->productionLevels = new \Doctrine\Common\Collections\ArrayCollection();
         $this->productsManufactured = new \Doctrine\Common\Collections\ArrayCollection();
@@ -538,5 +546,28 @@ class ReportTechnical implements ReportTechnicalInterface
     public function getGrowthPotential()
     {
         return $this->growthPotential;
+    }
+
+    /**
+     * Set inventoryLevel
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\InventoryLevel $inventoryLevel
+     * @return ReportTechnical
+     */
+    public function setInventoryLevel(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\InventoryLevel $inventoryLevel = null)
+    {
+        $this->inventoryLevel = $inventoryLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get inventoryLevel
+     *
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\InventoryLevel 
+     */
+    public function getInventoryLevel()
+    {
+        return $this->inventoryLevel;
     }
 }

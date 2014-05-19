@@ -19,6 +19,7 @@ class ReportTechnicalType extends AbstractType
             ->add('descriptionAreaCompany',new Properties\DescriptionAreaCompanyType())
             ->add('exportation',new Properties\ExportationType())
             ->add('growthPotential',new Properties\GrowthPotentialType())
+            ->add('inventoryLevel',new Properties\InventoryLevelType())
         ;
     }
     

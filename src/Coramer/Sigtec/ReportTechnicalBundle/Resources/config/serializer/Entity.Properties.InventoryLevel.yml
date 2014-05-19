@@ -1,0 +1,12 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\InventoryLevel:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,id]
+        daysOfInventoryOfRawMaterials:
+            expose: true
+            groups: [show,report_technical]
+        daysOfFinishedProductInventory:
+            expose: true
+            groups: [show,report_technical]

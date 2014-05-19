@@ -30,7 +30,7 @@
 
 			<div class="field-block">
 				<h3>1) {{ 'sigtec.professional_profile'|trans }}</h3>
-				<p>{{ 'sigtec.help.professional_profile.professional_profile'|trans({},'help') }}:</p>
+				<p>{{ 'sigtec.help.professional_profile.professional_profile'|trans({},'help') }}</p>
 			</div>
 			<div class="field-block button-height">
                                 {{ form_label(form.professionalProfile.quantityProfessionals) }}
@@ -38,7 +38,7 @@
                                 <span class="info-spot">
                                         <span class="icon-info-round"></span>
                                         <span class="info-bubble">
-                                                {{ 'sigtec.help.professional_profile.quantity_professionals'|trans({},'help') }}.
+                                                {{ 'sigtec.help.professional_profile.quantity_professionals'|trans({},'help') }}
                                         </span>
                                 </span>
                                 {{ form_errors(form.professionalProfile.quantityProfessionals) }}
@@ -49,7 +49,7 @@
                                 <span class="info-spot">
                                         <span class="icon-info-round"></span>
                                         <span class="info-bubble">
-                                                {{ 'sigtec.help.professional_profile.quantity_technical'|trans({},'help') }}.
+                                                {{ 'sigtec.help.professional_profile.quantity_technical'|trans({},'help') }}
                                         </span>
                                 </span>
                                 {{ form_errors(form.professionalProfile.quantityTechnical) }}
@@ -60,7 +60,7 @@
                                 <span class="info-spot">
                                         <span class="icon-info-round"></span>
                                         <span class="info-bubble">
-                                                {{ 'sigtec.help.professional_profile.quantity_laborers'|trans({},'help') }}.
+                                                {{ 'sigtec.help.professional_profile.quantity_laborers'|trans({},'help') }}
                                         </span>
                                 </span>
                                 {{ form_errors(form.professionalProfile.quantityLaborers) }}
@@ -71,7 +71,7 @@
                                 <span class="info-spot">
                                         <span class="icon-info-round"></span>
                                         <span class="info-bubble">
-                                                {{ 'sigtec.help.professional_profile.quantity_other'|trans({},'help') }}.
+                                                {{ 'sigtec.help.professional_profile.quantity_other'|trans({},'help') }}
                                         </span>
                                 </span>
                                 {{ form_errors(form.professionalProfile.quantityOther) }}
@@ -84,11 +84,11 @@
                         {# Seccion 2 #}
                         <div class="field-block">
                             <h3>2) {{ 'sigtec.description_of_the_business_areas.description_of_the_business_areas'|trans }}</h3>
-                            <p>{{ 'sigtec.help.description_of_the_business_areas.description_of_the_business_areas'|trans({},'help') }}.</p>
+                            <p>{{ 'sigtec.help.description_of_the_business_areas.description_of_the_business_areas'|trans({},'help') }}</p>
 			</div>
                         <div class="field-block">
                             <h5>2.1) {{ 'sigtec.description_of_the_business_areas.general_production_and_storage'|trans }}</h5>
-                            <p>{{ 'sigtec.help.description_of_the_business_areas.general_production_and_storage'|trans({},'help') }}:</p>
+                            <p>{{ 'sigtec.help.description_of_the_business_areas.general_production_and_storage'|trans({},'help') }}</p>
 			</div>
                         <div class="field-block">
                             <table class="simple-table">
@@ -160,7 +160,7 @@
                                 
                         <div class="field-block">
                             <h5>2.2) {{ 'sigtec.description_of_the_business_areas.storage_product_detail'|trans }}</h5>
-                            <p>{{ 'sigtec.help.description_of_the_business_areas.storage_product_detail'|trans({},'help') }}:</p>
+                            <p>{{ 'sigtec.help.description_of_the_business_areas.storage_product_detail'|trans({},'help') }}</p>
 			</div>
                         <div class="field-block">
                             <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection2">
@@ -610,6 +610,33 @@
                                     </p>
                                 </div>
                                 
+			</div>
+                        {# Seccion 10 #}
+                        <div class="field-block">
+                            <h3>10) {{ 'sigtec.inventory_level.inventory_level'|trans }}</h3>
+                            <p>{{ 'sigtec.help.inventory_level.inventory_level'|trans({},'help') }}</p>
+			</div>
+                        <div class="field-block button-height">
+                                {{ form_label(form.inventoryLevel.daysOfInventoryOfRawMaterials) }}
+                                {{ form_widget(form.inventoryLevel.daysOfInventoryOfRawMaterials) }}
+                                <span class="info-spot">
+                                        <span class="icon-info-round"></span>
+                                        <span class="info-bubble">
+                                                {{ 'sigtec.help.inventory_level.days_of_inventory_of_raw_materials'|trans({},'help') }}
+                                        </span>
+                                </span>
+                                {{ form_errors(form.inventoryLevel.daysOfInventoryOfRawMaterials) }}
+			</div>
+                        <div class="field-block button-height">
+                                {{ form_label(form.inventoryLevel.daysOfFinishedProductInventory) }}
+                                {{ form_widget(form.inventoryLevel.daysOfFinishedProductInventory) }}
+                                <span class="info-spot">
+                                        <span class="icon-info-round"></span>
+                                        <span class="info-bubble">
+                                                {{ 'sigtec.help.inventory_level.days_of_finished_product_inventory'|trans({},'help') }}
+                                        </span>
+                                </span>
+                                {{ form_errors(form.inventoryLevel.daysOfFinishedProductInventory) }}
 			</div>
                         <div class="field-block button-height wizard-controls align-right">
 

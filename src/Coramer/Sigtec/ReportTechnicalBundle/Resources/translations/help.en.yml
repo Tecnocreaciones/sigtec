@@ -57,3 +57,7 @@ sigtec:
             growth_potential: >
                             Growth plans of the company in respect of the acquisition of new machines, expansion 
                             plans of its customers and explore new markets are recorded.
+        inventory_level:
+            inventory_level: The days of inventory of both raw material and finished product are indicated.
+            days_of_inventory_of_raw_materials: Days of inventory of raw materials.
+            days_of_finished_product_inventory: Days of finished product inventory.

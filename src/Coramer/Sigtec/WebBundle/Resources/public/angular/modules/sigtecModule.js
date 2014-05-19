@@ -70,6 +70,10 @@ angular.module('sigtecModule.controllers', [])
                   other_markets: { },
                   do_you_plan_to_purchase_new_machineries: false,
                   new_machineries: { }
+              },
+              inventory_level: {
+                  days_of_inventory_of_raw_materials: 0,
+                  days_of_finished_product_inventory: 0
               }
           };
           

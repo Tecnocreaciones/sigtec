@@ -110,6 +110,7 @@ class ReportTechnicalController extends ResourceController
                     ->setExportation(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation())
                     ->setDescriptionAreaCompany($descriptionAreaCompanyManager->build($company))
                     ->setGrowthPotential(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential())
+                    ->setInventoryLevel(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\InventoryLevel())
                     ;
             
             $resource = $this->domainManager->create($resource);
