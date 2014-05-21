@@ -73,6 +73,14 @@ class FeatureMachinery
     private $parameters;
     
     /**
+     * Parametros no serializables del campo (Se evaluaran al crear el campo)
+     * @var array
+     *
+     * @ORM\Column(name="evalParameters", type="array")
+     */
+    private $evalParameters;
+    
+    /**
      * @var boolean
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
@@ -102,8 +110,7 @@ class FeatureMachinery
      * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery",mappedBy="featuresMachinery")
      */
     private $modelMachinery;
-    
-    
+
     /**
      * Constructor
      */
@@ -337,5 +344,28 @@ class FeatureMachinery
     public function getModelMachinery()
     {
         return $this->modelMachinery;
+    }
+
+    /**
+     * Set evalParameters
+     *
+     * @param array $evalParameters
+     * @return FeatureMachinery
+     */
+    public function setEvalParameters($evalParameters)
+    {
+        $this->evalParameters = $evalParameters;
+
+        return $this;
+    }
+
+    /**
+     * Get evalParameters
+     *
+     * @return array 
+     */
+    public function getEvalParameters()
+    {
+        return $this->evalParameters;
     }
 }

@@ -11,19 +11,28 @@
 
 namespace Coramer\Sigtec\FixturesBundle\DataFixtures\ORM;
 
-use Jeremeamia\SuperClosure\SerializableClosure;
 use Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * Data de las caracteristicas de las maquinarias
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
-class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFixture implements FixtureInterface, OrderedFixtureInterface
+class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     *
+     * @var \Symfony\Component\DependencyInjection\ContainerInterface
+     */
+    private $container;
+    
     public function load(ObjectManager $manager) {
         //Numero
         $featureMachinery = new FeatureMachinery();
@@ -35,9 +44,12 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.nro',
                     'constraints' => array(
-                       new \Symfony\Component\Validator\Constraints\NotBlank(),
-                       new \Symfony\Component\Validator\Constraints\NotNull(),
-                   )
+                       new NotBlank(),
+                       new NotNull(),
+                   ),
+                   'attr' => array(
+                       'class' => 'input small-margin-right validate[required,integer]',
+                   ),
                 ));
             $manager->persist($featureMachinery);
             $this->addReference('nro', $featureMachinery);
@@ -52,9 +64,12 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.mark',
                     'constraints' => array(
-                       new \Symfony\Component\Validator\Constraints\NotBlank(),
-                       new \Symfony\Component\Validator\Constraints\NotNull(),
-                   )
+                       new NotBlank(),
+                       new NotNull(),
+                   ),
+                   'attr' => array(
+                       'class' => 'input small-margin-right validate[required]',
+                   ),
                 ));
             $manager->persist($featureMachinery);
             $this->addReference('mark', $featureMachinery);
@@ -63,19 +78,22 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
         $featureMachinery = new FeatureMachinery();
         $featureMachinery
                 ->setDescription('Tipo de equipo(monocapa o multicapa)')
-                ->setHelp('sigtec.help.feature_machinery.mark')
+                ->setHelp('sigtec.help.feature_machinery.type')
                 ->setName('type')
                 ->setFieldType('choice')
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.type',
                     'constraints' => array(
-                       new \Symfony\Component\Validator\Constraints\NotBlank(),
-                       new \Symfony\Component\Validator\Constraints\NotNull(),
+                       new NotBlank(),
+                       new NotNull(),
                    ),
                     'choices' => array(
                         'MC' => 'MC (Monocapa)',
                         'CE' => 'CE (Multicapa)',
-                    )
+                    ),
+                    'attr' => array(
+                       'class' => 'select small-margin-right validate[required]',
+                   ),
                 ));
             $manager->persist($featureMachinery);
             $this->addReference('type', $featureMachinery);
@@ -90,8 +108,11 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.maximum_capacity',
                     'constraints' => array(
-                       new \Symfony\Component\Validator\Constraints\NotBlank(),
-                       new \Symfony\Component\Validator\Constraints\NotNull(),
+                       new NotBlank(),
+                       new NotNull(),
+                   ),
+                  'attr' => array(
+                       'class' => 'input small-margin-right validate[required,integer]',
                    ),
                 ));
             $manager->persist($featureMachinery);
@@ -107,8 +128,11 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.year_manufacture',
                     'constraints' => array(
-                       new \Symfony\Component\Validator\Constraints\NotBlank(),
-                       new \Symfony\Component\Validator\Constraints\NotNull(),
+                       new NotBlank(),
+                       new NotNull(),
+                   ),
+                    'attr' => array(
+                       'class' => 'input small-margin-right validate[required,integer]',
                    ),
                 ));
             $manager->persist($featureMachinery);
@@ -124,14 +148,17 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.screw_type',
                     'constraints' => array(
-                       new \Symfony\Component\Validator\Constraints\NotBlank(),
-                       new \Symfony\Component\Validator\Constraints\NotNull(),
+                       new NotBlank(),
+                       new NotNull(),
                    ),
                    'choices' => array(
                        'ES' => 'Tornillo estandar',
                        'PM' => 'Punta mezcladora',
                        'TB' => 'Posee barrera',
                        'DT' => 'Doble Tornillo',
+                   ),
+                    'attr' => array(
+                       'class' => 'select small-margin-right validate[required]',
                    ),
                 ));
             $manager->persist($featureMachinery);
@@ -147,10 +174,13 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.screw_diameter',
                     'constraints' => array(
-                       new \Symfony\Component\Validator\Constraints\NotBlank(),
-                       new \Symfony\Component\Validator\Constraints\NotNull(),
+                       new NotBlank(),
+                       new NotNull(),
                    ),
                    'precision' => 2,
+                   'attr' => array(
+                       'class' => 'input small-margin-right validate[required]',
+                   ),
                 ));
             $manager->persist($featureMachinery);
             $this->addReference('screw_diameter', $featureMachinery);
@@ -165,12 +195,15 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.type_cut',
                     'constraints' => array(
-                       new \Symfony\Component\Validator\Constraints\NotBlank(),
-                       new \Symfony\Component\Validator\Constraints\NotNull(),
+                       new NotBlank(),
+                       new NotNull(),
                    ),
                    'choices' => array(
                        'CA' => 'Bajo agua',
                        'CN' => 'Normal',
+                   ),
+                   'attr' => array(
+                       'class' => 'select small-margin-right validate[required]',
                    ),
                 ));
             $manager->persist($featureMachinery);
@@ -186,20 +219,23 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.operating_time',
                     'constraints' => array(
-                       new \Symfony\Component\Validator\Constraints\NotBlank(),
-                       new \Symfony\Component\Validator\Constraints\NotNull(),
+                       new NotBlank(),
+                       new NotNull(),
+                   ),
+                   'attr' => array(
+                       'class' => 'select small-margin-right validate[required]',
                    ),
                 ));
             $manager->persist($featureMachinery);
             $this->addReference('operating_time', $featureMachinery);
-            
-            $getProductActive = new SerializableClosure(function (\Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\ProductRepository $er){
+            $getProductActive ='function (\Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\ProductRepository $er){
                  return $er->getQueryAllActive();
-            });
+            };';
             
-            $getPlantActive = new SerializableClosure(function(\Coramer\Sigtec\CompanyBundle\Repository\PlantRepository $er){
-                 return $er->getQueryAllActive();
-            });
+            $getPlantActive = 'function(\Coramer\Sigtec\CompanyBundle\Repository\PlantRepository $er) use ($company){
+                return $er->getQueryBuilderAllActiveByCompany($company);
+            };';
+            
         //Producto principal
         $featureMachinery = new FeatureMachinery();
         $featureMachinery
@@ -210,13 +246,19 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.main_product',
                     'constraints' => array(
-                       new \Symfony\Component\Validator\Constraints\NotBlank(),
-                       new \Symfony\Component\Validator\Constraints\NotNull(),
+                       new NotBlank(),
+                       new NotNull(),
                    ),
                    'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product',
                    'property' => 'description',
+                   'attr' => array(
+                       'class' => 'select small-margin-right validate[required]',
+                   ),
+                ))
+                ->setEvalParameters(array(
                    'query_builder' => $getProductActive
-                ));
+                ))
+                ;
             $manager->persist($featureMachinery);
             $this->addReference('main_product', $featureMachinery);
         
@@ -230,13 +272,19 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.plant',
                     'constraints' => array(
-                       new \Symfony\Component\Validator\Constraints\NotBlank(),
-                       new \Symfony\Component\Validator\Constraints\NotNull(),
+                       new NotBlank(),
+                       new NotNull(),
                    ),
                    'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Plant',
                    'property' => 'name',
+                   'attr' => array(
+                       'class' => 'select small-margin-right validate[required]',
+                   ),
+                ))
+                ->setEvalParameters(array(
                    'query_builder' => $getPlantActive,
-                ));
+                ))
+                ;
             $manager->persist($featureMachinery);
             $this->addReference('plant', $featureMachinery);
         
@@ -246,4 +294,9 @@ class LoadFeatureMachineryData extends \Doctrine\Common\DataFixtures\AbstractFix
     public function getOrder() {
         return 1;
     }
+
+    public function setContainer(\Symfony\Component\DependencyInjection\ContainerInterface $container = null) {
+        $this->container = $container;
+    }
+
 }

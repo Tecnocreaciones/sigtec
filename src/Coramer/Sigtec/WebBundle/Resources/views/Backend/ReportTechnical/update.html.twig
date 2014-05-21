@@ -227,12 +227,14 @@
                                     <td colspan="5" class="bold text-center">&nbsp;</td>
                                 </tr>
                                 <tr ng-repeat="production_level in reportTechnical.production_levels" data="[[ production_level|json ]]">
-                                    <td><a href ng-click="addLevelProduction(production_level)" >[[ production_level.process.description ]]</a></td>
+                                    <td><a href ng-click="addLevelProduction(production_level)" >[[ production_level.id ]] [[ production_level.process.description ]]</a></td>
                                     <td>[[ production_level.shifts ]]</td>
                                     <td>[[ production_level.hours ]]</td>
                                     <td>[[ production_level.days_month]]</td>
                                     <td>
                                         <span class="button-group compact">
+                                            <a href="javascript:void(0)" class="button icon-list with-tooltip" title="Lista de maquinarias"></a>
+                                            <a href ng-click="addMachinery(production_level)" class="button icon-list-add with-tooltip" title="Añadir una maquinaria"></a>
                                             <a href ng-click="itemDelete(production_level._links.delete.href,reportTechnicalManager.reload().productionLevel)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
                                         </span>
                                     </td>

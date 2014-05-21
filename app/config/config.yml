@@ -302,6 +302,11 @@ sylius_resource:
             classes:
                 controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\ProductionLevelController
                 model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel
+         coramer_sigtec_backend.company_report_technical_properties_production_level_machinery:
+            driver: doctrine/orm
+            classes:
+                controller: Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\ProductionLevel\MachineryController
+                model: Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel\Machinery
          coramer_sigtec_backend.company_report_technical_properties_product_manufactured:
             driver: doctrine/orm
             templates: CoramerSigtecWebBundle:Backend/ReportTechnical/Properties/ProductManufactured

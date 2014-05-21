@@ -54,3 +54,7 @@ coramer_sigtec_backend_company_report_technical_properties_production_level_form
         expose: true
     requirements:
         _method: GET
+
+_coramer_sigtec_backend_company_report_technical_properties_production_level_machinery:
+    resource: "@CoramerSigtecWebBundle/Resources/config/routing/backend/company/report_technical/properties/production_level/machinery.yml"
+    prefix:   /machinery

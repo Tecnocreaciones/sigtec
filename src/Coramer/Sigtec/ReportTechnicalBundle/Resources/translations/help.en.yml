@@ -61,3 +61,7 @@ sigtec:
             inventory_level: The days of inventory of both raw material and finished product are indicated.
             days_of_inventory_of_raw_materials: Days of inventory of raw materials.
             days_of_finished_product_inventory: Days of finished product inventory.
+        feature_machinery:
+            nro: Indicate the number of machines that has the same characteristics and use.
+            mark: Indicate equipment brand. If unknown post script.
+            type: Indicate "MC" if the computer is monolayer or "CE" if the computer is multilayered.

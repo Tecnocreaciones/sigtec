@@ -1,0 +1,28 @@
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+{% form_theme form 'CoramerSigtecCoreBundle:Form:escapeLabel.html.twig' %}
+
+<form id="form_pop_up" method="POST" action="[[ reportTechnicalHelper.form.action.url ]]">
+<fieldset class="fieldset fields-list">
+    <legend class="legend">{{ 'sigtec.production_level.production_level'|trans }}</legend>
+    {% for children in form.children %}
+        <div class="field-block field-block-custom button-height">
+            {{ form_label(children) }}
+            {{ form_widget(children) }}
+            {% if children.vars['attr']['help'] != '' %}
+                <span class="info-spot">
+                    <span class="icon-info-round"></span>
+                    <span class="info-bubble">
+                        {{ children.vars['attr']['help']|trans({},'help') }}
+                    </span>
+                </span>
+            {% endif %}
+            {{ form_errors(children) }}
+        </div>
+    {% endfor%}
+</fieldset>
+
+{{ form_rest(form) }}
+</form>
+<script>
+    jQuery('#form_pop_up').validationEngine({showOneMessage:true});
+</script>

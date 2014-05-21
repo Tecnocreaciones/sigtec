@@ -104,13 +104,29 @@ class ProductionLevel
     private $percentage = 0;
     
     /**
+     * Maquinarias
+     * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel\Machinery
+     * @ORM\OneToMany(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel\Machinery",mappedBy="productionLevel")
+     */
+    private $machineries;
+    
+    /**
      * Reporte tecnico
      * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical 
      * 
      * @ORM\ManyToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical",inversedBy="productionLevels")
      */
     private $reportTechnical;
-
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->machineries = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -349,5 +365,38 @@ class ProductionLevel
     public function getReportTechnical()
     {
         return $this->reportTechnical;
+    }
+
+    /**
+     * Add machineries
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel\Machinery $machineries
+     * @return ProductionLevel
+     */
+    public function addMachinery(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel\Machinery $machineries)
+    {
+        $this->machineries[] = $machineries;
+
+        return $this;
+    }
+
+    /**
+     * Remove machineries
+     *
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel\Machinery $machineries
+     */
+    public function removeMachinery(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel\Machinery $machineries)
+    {
+        $this->machineries->removeElement($machineries);
+    }
+
+    /**
+     * Get machineries
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMachineries()
+    {
+        return $this->machineries;
     }
 }

@@ -274,6 +274,27 @@ angular.module('sigtecModule.controllers', [])
           $scope.template = $scope.templates.formProductionLevel;
           $scope.openModalForm();
       };
+      //Abre la ventana modal para añadir o actualizar una maquinaria de un nivel de produccion
+      $scope.addMachinery = function(production_level){
+          var id = production_level.process.id;
+          notificationBarService.getLoadStatus().loading();
+          if($scope.templates.formProductionLevel.process[id] == undefined){
+              $scope.templates.formProductionLevel.process[id] = {
+                    url: $scope.reportTechnicalManager.generateRoute('coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_form',{slug:production_level.id,_format:'html'}),
+                    loadCallback:$scope.setDataMachinery,
+                    parameterCallback: null, 
+                    load: false,
+                    routes: {
+                        create: 'coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_create',
+                        update: 'coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_update'
+                    },
+                    reload: $scope.reportTechnicalManager.reload().productionLevel,
+              };
+          }
+          $scope.templates.formProductionLevel.process[id].parameterCallback = production_level;
+          $scope.template = $scope.templates.formProductionLevel.process[id];
+          $scope.openModalForm();
+      };
       //Añade o actualiza un producto fabricado
       $scope.addProductManufactured = function(productManufactured){
           notificationBarService.getLoadStatus().loading();
@@ -391,6 +412,28 @@ angular.module('sigtecModule.controllers', [])
                   percentage: 0
               };
           }
+    };
+    //Establece la data del formulario de la maquinaria
+    $scope.setDataMachinery = function(productionLevel){
+//        if(productionLevel != undefined){
+//              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:productionLevel.id});
+//              
+//          }else{
+              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id,slug:productionLevel.id});
+              
+              $scope.model.production_level = {
+                  type_process: null,
+                  process: null,
+                  shifts: 0,
+                  hours: 0,
+                  days_month: 0,
+                  theoretical: 0,
+                  installed: 0,
+                  busy: 0,
+                  idle: 0,
+                  percentage: 0
+              };
+//          }
     }
     //Establece la data del formulario de los productos fabricados
     $scope.setDataProductManufactured = function(productManufactured){
@@ -901,7 +944,10 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             create: 'coramer_sigtec_backend_company_report_technical_properties_production_level_create',
                             update: 'coramer_sigtec_backend_company_report_technical_properties_production_level_update'
                         },
-                        reload: self.reload().productionLevel
+                        reload: self.reload().productionLevel,
+                        process: {
+                            
+                        }
                     },
                     formProductManufactured: { 
                         name: 'formProductManufactured.html', 

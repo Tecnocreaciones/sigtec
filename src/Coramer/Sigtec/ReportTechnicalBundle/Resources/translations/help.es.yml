@@ -61,3 +61,7 @@ sigtec:
             inventory_level: Se indican los días de inventario tanto de materia prima como de producto terminado.
             days_of_inventory_of_raw_materials: Días de inventario de materia prima.
             days_of_finished_product_inventory: Dias de inventario de producto terminado.
+        feature_machinery:
+            nro: Indicar el número de máquinas que posee con las mismas caracteristicas y uso.
+            mark: Indicar marca del equipo. Si no lo conoce colocar un guión.
+            type: Indicar "MC" si el equipo es monocapa o "CE" si el equipo es multicapa.

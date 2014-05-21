@@ -1,0 +1,41 @@
+coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_form:
+    pattern:  /{slug}/get-form
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_production_level_machinery:getFormProcessAction
+        _sylius:
+            form: coramer_sigtec_reporttechnicalbundle_properties_productionlevel
+    options:
+        expose: true
+    requirements:
+        _method: GET
+
+coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_create:
+    pattern:  /{slug}/create
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_production_level_machinery:createAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST
+        _format: json|xml
+        
+coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_update:
+    pattern:  /{slug}/update
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_production_level_machinery:updateAction
+    options:
+        expose: true
+    requirements:
+        _method: POST|PUT
+        
+coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_delete:
+    pattern:  /{slug}/delete
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_production_level_machinery:deleteAction
+        _format: json
+    options:
+        expose: true
+    requirements:
+        _method: POST|DELETE
+        _format: json|xml

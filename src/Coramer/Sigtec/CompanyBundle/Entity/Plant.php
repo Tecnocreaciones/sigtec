@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Plant
+ * Planta
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Coramer\Sigtec\CompanyBundle\Repository\PlantRepository")

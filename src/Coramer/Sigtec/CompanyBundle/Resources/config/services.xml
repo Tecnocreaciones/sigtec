@@ -4,19 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="coramer_sigtec_company.example.class">Coramer\Sigtec\CompanyBundle\Example</parameter>
-    </parameters>
-
-    <services>
-        <service id="coramer_sigtec_company.example" class="%coramer_sigtec_company.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
     <parameters>
         <parameter key="coramer_sigtec_company.company.class">Coramer\Sigtec\CompanyBundle\Entity\Company</parameter>
         <parameter key="coramer_sigtec_company.company_manager.class">Coramer\Sigtec\CompanyBundle\Manager\CompanyManager</parameter>
@@ -54,6 +41,12 @@
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
+        </service>
+        <service id="repository.plant" class="Coramer\Sigtec\CompanyBundle\Repository\PlantRepository">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <tag name="app.repository" class="Coramer\Sigtec\CompanyBundle\Entity\Plant" />
         </service>
         <service id="coramer_sigtec_company.form.type.company" class="%coramer_sigtec_company.form.type.company.class%">
             <argument>%coramer_sigtec_company.company.class%</argument>

@@ -14,13 +14,6 @@
                 <option name="message">sigtec.validators.the_covered_area_must_be_less_than_or_equal_to_the_total_area</option>
             </constraint>
         </getter>
-        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
-            <option name="fields">
-                <value>plant</value>
-                <value>dedication</value>
-            </option>
-            <option name="message">pland ss already exists.</option>
-        </constraint>
     </class>
     <class name="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed">
         <getter property="validConcentration">
