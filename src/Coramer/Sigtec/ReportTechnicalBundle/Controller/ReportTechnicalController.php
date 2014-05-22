@@ -47,7 +47,7 @@ class ReportTechnicalController extends ResourceController
             ->setTemplateVar($this->config->getResourceName())
             ->setData($resource)
         ;
-        $view->getSerializationContext()->setGroups(array('id','report_technical'));
+        $view->getSerializationContext()->setGroups(array('id','report_technical','process_details'));
         return $this->handleView($view);
     }
     

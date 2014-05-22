@@ -39,3 +39,12 @@ coramer_sigtec_backend_company_report_technical_properties_production_level_mach
     requirements:
         _method: POST|DELETE
         _format: json|xml
+
+coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_list:
+    pattern:  /list
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical_properties_production_level_machinery:listAction
+    options:
+        expose: true
+    requirements:
+        _method: GET

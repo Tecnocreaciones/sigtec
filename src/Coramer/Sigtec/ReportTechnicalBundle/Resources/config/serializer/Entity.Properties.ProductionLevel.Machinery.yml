@@ -1,0 +1,9 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel\Machinery:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [show,report_technical]
+        data:
+            expose: true
+            groups: [show,report_technical]

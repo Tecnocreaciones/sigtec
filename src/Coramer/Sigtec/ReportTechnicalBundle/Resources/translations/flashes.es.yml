@@ -43,3 +43,7 @@ coramer_sigtec_backend:
         create: Nueva maquinaria agregada.
         update: Nueva maquinaria actualizada.
         delete: Nueva maquinaria eliminada.
+    company_report_technical_properties_production_level_machinery:
+        create: Maquinaria agregada.
+        update: Maquinaria actualizada.
+        delete: Maquinaria eliminada.

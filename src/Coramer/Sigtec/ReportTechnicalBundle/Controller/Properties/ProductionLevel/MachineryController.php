@@ -32,17 +32,15 @@ class MachineryController extends BaseController
         $resource = $this->createNew();
         
         $form = $this->getFormMachinary($request,$request->get('form'));
-        $data = $form->getData();
+        $dataForm = $form->getData();
         $view = $this->view();
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $productionLevel = $this->getProductionLevel($request->get('slug'));
             $resource
-                    ->setData($data)
+                    ->setData($dataForm)
                     ->setProductionLevel($productionLevel)
                     ;
-            var_dump($data);
-            die;
-            $resource->setReportTechnical($reportTechnical);
+            
             $resource = $this->domainManager->create($resource);
             
             /** @var FlashBag $flashBag */
@@ -129,5 +127,20 @@ class MachineryController extends BaseController
             $formBuilder->add($featureMachinery->getName(),$featureMachinery->getFieldType(),$parameters);
         }
         return $formBuilder->getForm();
+    }
+    
+    function listAction(Request $request)
+    {
+        $reportTechnical = $this->findReportTechnicalOr404($request);
+        //Security Check
+        $user = $this->getUser();
+        $company = $reportTechnical->getCompany();
+        if(!$user->getCompanies()->contains($company)){
+            throw $this->createAccessDeniedHttpException();
+        }
+        
+        return $this->render('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/ProductionLevel/machineryList.html.twig',array(
+            'reportTechnical' => $reportTechnical,
+        ));
     }
 }

@@ -1,15 +1,18 @@
-Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Process:
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery:
     exclusion_policy: ALL
     properties:
         id:
             expose: true
-            groups: [show,list,id]
+            groups: [id,show]
+        name:
+            expose: true
+            groups: [show,list,report_technical]
         description:
             expose: true
             groups: [show,list,report_technical]
-        typeProcess:
+        help:
             expose: true
             groups: [show,list,report_technical]
-        modelMachinery:
+        fieldType:
             expose: true
-            groups: [process_details]
+            groups: [show,list,report_technical]

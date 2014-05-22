@@ -31,3 +31,6 @@ Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel:
         percentage:
             expose: true
             groups: [show,report_technical]
+        machineries:
+            expose: true
+            groups: [show,report_technical]

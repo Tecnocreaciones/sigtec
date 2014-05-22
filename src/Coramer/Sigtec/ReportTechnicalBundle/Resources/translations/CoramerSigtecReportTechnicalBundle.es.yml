@@ -146,6 +146,18 @@ sigtec:
         approve: Aprobar
         reject: Rechazar
     feature_machinery:
+        label:
+            number: Nro
+            mark: Marca
+            type: Tipo
+            maximum_capacity: Capacidad máxima (kg/h)
+            year_manufacture: Año de fabricación
+            screw_type: Tipo de tornillo
+            screw_diameter: Diámetro del tornillo (mm)
+            type_cut: Tipo de corte
+            operating_time: Tiempo de operación (días/mes)
+            main_product: Producto principal
+            plant: Localidad
         error:
             no_assigned: El proceso "%m%", no tiene un modelo de maquinaria asignado.
         nro: Cantidad

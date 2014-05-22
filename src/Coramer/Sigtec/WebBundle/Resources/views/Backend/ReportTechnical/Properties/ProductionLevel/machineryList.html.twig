@@ -1,0 +1,12 @@
+<table class="table simple-table">
+    <tr>
+        <th ng-repeat="feature_machinery in template.parameterCallback.process.model_machinery.features_machinery">
+            [[ feature_machinery._labels.label ]]
+        </th>
+    </tr>
+    <tr ng-repeat="machinery in template.parameterCallback.machineries">
+        <td ng-repeat="d in machinery._data.options | orderBy:predicate:reverse">
+            [[ d.value ]]
+        </td>
+    </tr>
+</table>

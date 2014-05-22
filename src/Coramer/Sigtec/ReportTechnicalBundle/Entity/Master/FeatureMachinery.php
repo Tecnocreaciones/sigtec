@@ -47,7 +47,7 @@ class FeatureMachinery
      * @ORM\Column(name="description", type="string", length=100)
      */
     private $description;
-    
+
     /**
      * Ayuda
      * 
@@ -58,8 +58,8 @@ class FeatureMachinery
 
     /**
      * Tipo de campo
+     * 
      * @var string
-     *
      * @ORM\Column(name="fieldType", type="string", length=100)
      */
     private $fieldType;
@@ -117,6 +117,14 @@ class FeatureMachinery
     public function __construct()
     {
         $this->modelMachinery = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    function getParameter($name)
+    {
+        if(!isset($this->parameters[$name])){
+            throw new \InvalidArgumentException(sprintf('Parameter "%s" dont exist'));
+        }
+        return $this->parameters[$name];
     }
 
     /**

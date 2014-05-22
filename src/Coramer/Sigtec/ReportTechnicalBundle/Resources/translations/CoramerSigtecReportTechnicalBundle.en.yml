@@ -141,6 +141,18 @@ sigtec:
         approve: Approve
         reject: Reject
     feature_machinery:
+        label:
+            nro: Quantity
+            mark: Mark
+            type: Type
+            maximum_capacity: Maximum capacity (kg/h)
+            year_manufacture: Year manufacture
+            screw_type: Screw type 
+            screw_diameter: Screw diameter (mm)
+            type_cut: Type cut
+            operating_time: Operating time (day/month)
+            main_product: Main product
+            plant: Location
         error:
             no_assigned: The process "%m%", does not have a model assigned machinery.
         nro: Quantity

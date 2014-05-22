@@ -24,8 +24,14 @@ use Symfony\Component\Routing\Router;
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
-class SerializeEventListerner implements EventSubscriberInterface
+class SerializeEventListerner implements EventSubscriberInterface,  \Symfony\Component\DependencyInjection\ContainerAwareInterface
 {
+    /**
+     *
+     * @var \Symfony\Component\DependencyInjection\ContainerInterface
+     */
+    private $container;
+    
     /**
      * 
      * @var Router
@@ -53,6 +59,8 @@ class SerializeEventListerner implements EventSubscriberInterface
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeGrowingMarket', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\GrowingMarket','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeOtherMarket', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\OtherMarket','format' => 'json'),
             array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeNewMachinery', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential\NewMachinery','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeFeatureMachinery', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery','format' => 'json'),
+            array('event' => Events::POST_SERIALIZE, 'method' => 'onPostSerializeMachinery', 'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel\Machinery','format' => 'json'),
         );
     }
     
@@ -286,6 +294,41 @@ class SerializeEventListerner implements EventSubscriberInterface
     }
     
     /**
+     * Captura el evento luego que se serializa una caracteristica de maquinaria
+     * @param ObjectEvent $event
+     */
+    function onPostSerializeFeatureMachinery(ObjectEvent $event) {
+        $object = $event->getObject();
+        
+        $event->getVisitor()->addData('_labels', array(
+            'label' => $this->trans(sprintf('sigtec.feature_machinery.label.%s',$object->getName()),array(),'CoramerSigtecReportTechnicalBundle'),
+        ));
+    }
+    
+    /**
+     * Captura el evento luego que se serializa una maquinaria
+     * @param ObjectEvent $event
+     */
+    function onPostSerializeMachinery(ObjectEvent $event) {
+        $object = $event->getObject();
+        $data = array();
+        $i = 0;
+        $parameterResolver = $this->getFeatureParameterResolver();
+        foreach ($object->getData() as $name => $value) {
+            $value = $parameterResolver->getResolveValue($name, $value);
+            $data[] = array(
+                'pos' => $i,
+                'name' => $name,
+                'value' => $value,
+            );
+            $i++;
+        }
+        $event->getVisitor()->addData('_data', array(
+            'options' => $data,
+        ));
+    }
+    
+    /**
      * Captura el evento luego que se serealia un detalle de almacenaje del producto del reporte tecnico
      * @param ObjectEvent $event
      */
@@ -327,5 +370,18 @@ class SerializeEventListerner implements EventSubscriberInterface
 
     public function setTranslator(Translator $translator) {
         $this->translator = $translator;
+    }
+    
+    public function setContainer(\Symfony\Component\DependencyInjection\ContainerInterface $container = null) {
+        $this->container = $container;
+    }
+    
+    /**
+     * 
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Resolve\FeatureMachine\ParameterResolver
+     */
+    private function getFeatureParameterResolver()
+    {
+        return $this->container->get('coramer_sigtec_report_technical.parameter_resolver');
     }
 }

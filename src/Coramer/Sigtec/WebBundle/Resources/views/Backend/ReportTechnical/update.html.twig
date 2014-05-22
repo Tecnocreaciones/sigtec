@@ -233,7 +233,7 @@
                                     <td>[[ production_level.days_month]]</td>
                                     <td>
                                         <span class="button-group compact">
-                                            <a href="javascript:void(0)" class="button icon-list with-tooltip" title="Lista de maquinarias"></a>
+                                            <a href ng-click="listMachinery(production_level)" class="button icon-list with-tooltip" title="Lista de maquinarias"></a>
                                             <a href ng-click="addMachinery(production_level)" class="button icon-list-add with-tooltip" title="Añadir una maquinaria"></a>
                                             <a href ng-click="itemDelete(production_level._links.delete.href,reportTechnicalManager.reload().productionLevel)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
                                         </span>

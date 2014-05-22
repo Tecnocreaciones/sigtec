@@ -40,6 +40,10 @@ coramer_sigtec_backend:
         update: Other market updated.
         delete: Other market removed.
     company_report_technical_properties_growth_potential_new_machinery:
-        create: New machinery added.
-        update: New machinery updated.
-        delete: New machinery removed.
+        create: Machinery added.
+        update: Machinery updated.
+        delete: Machinery removed.
+    company_report_technical_properties_production_level_machinery:
+        create: Machinery added.
+        update: Machinery updated.
+        delete: Machinery removed.

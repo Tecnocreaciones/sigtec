@@ -1,0 +1,12 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\ModelMachinery:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [id,show]
+        name:
+            expose: true
+            groups: [show,list,report_technical]
+        featuresMachinery:
+            expose: true
+            groups: [show,list,report_technical]

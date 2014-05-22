@@ -295,6 +295,15 @@ angular.module('sigtecModule.controllers', [])
           $scope.template = $scope.templates.formProductionLevel.process[id];
           $scope.openModalForm();
       };
+      
+      $scope.listMachinery = function(production_level){
+          notificationBarService.getLoadStatus().loading();
+          $scope.template = $scope.templates.formProductionLevel.machinery.list;
+          $scope.template.parameterCallback = production_level;
+          $scope.predicate = '-pos';
+          $scope.reverse = true;
+          $scope.openModalForm();
+      };
       //Añade o actualiza un producto fabricado
       $scope.addProductManufactured = function(productManufactured){
           notificationBarService.getLoadStatus().loading();
@@ -689,7 +698,8 @@ angular.module('sigtecModule.controllers', [])
       
       function openFormModal(openCallback){
           var area = $("#div-template");
-          $scope.modal = $.modal.showForm(area,confirmFormModal,cancelFormModal);
+          var options = {};
+          $.modal.showForm(area,confirmFormModal,cancelFormModal,options);
           $.modal.preBuildShowForm(area);
           if($scope.template.loadCallback){
               $scope.template.loadCallback($scope.template.parameterCallback);
@@ -947,6 +957,12 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                         reload: self.reload().productionLevel,
                         process: {
                             
+                        },
+                        machinery: {
+                            list: {
+                                url: self.generateRoute('coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_list',{_format: "html"}),
+                                parameterCallback: null
+                            },
                         }
                     },
                     formProductManufactured: { 
