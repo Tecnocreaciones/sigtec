@@ -59,6 +59,63 @@ class MachineryController extends BaseController
         return $this->handleView($view);
     }
     
+    public function updateAction(Request $request) {
+        $reportTechnical = $this->findReportTechnicalOr404($request);
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
+        
+        $resource = $this->getRepository()->find($request->get('id_machinery'));
+        if(!$resource){
+            throw $this->createNotFoundException();
+        }
+        $form = $this->getFormMachinary($request);
+        
+        if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
+            $parameterResolver = $this->container->get('coramer_sigtec_report_technical.parameter_resolver');
+            $dataResources = array();
+            foreach ($form->getData() as $name => $value) {
+                $value = $parameterResolver->getResolveInverseValue($name, $value);
+                $dataResources[$name] = $value;
+            }
+            $resource->setData($dataResources);
+            $this->domainManager->update($resource);
+            /** @var FlashBag $flashBag */
+            $flashBag = $this->get('session')->getBag('flashes');
+            $data = array(
+                'message' => $flashBag->get('success'),
+            );
+            return new \Symfony\Component\HttpFoundation\JsonResponse($data);
+        }
+
+        if ($this->config->isApiRequest()) {
+            return $this->handleView($this->view($form));
+        }
+        
+        $route = 'coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_update';
+        $parameters = array(
+            'id' => $reportTechnical->getId(),
+            'slug' => $request->get('slug'),
+            'id_machinery' => $request->get('id_machinery')
+        );
+        $url = $this->generateUrl($route,$parameters);
+        
+        $view = $this
+            ->view()
+            ->setTemplate('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/ProductionLevel/formProcess.html.twig')
+            ->setData(array(
+                $this->config->getResourceName() => $resource,
+                'form'                           => $form->createView(),
+                'reportTechnical' => $reportTechnical,
+                'url' => $url
+            ))
+        ;
+        
+        return $this->handleView($view);
+    }
+    
     function getFormProcessAction(Request $request)
     {
         $reportTechnical = $this->findReportTechnicalOr404($request);
@@ -69,13 +126,33 @@ class MachineryController extends BaseController
             throw $this->createAccessDeniedHttpException();
         }
         $data = array();
+        $route = 'coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_create';
+        if(($idMachinery = $request->get('id_machinery'))){
+            $machinery = $this->getRepository()->find($idMachinery);
+            if(!$machinery){
+                throw $this->createNotFoundException();
+            }
+            $data = $machinery->getData();
+            $route = 'coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_update';
+        }
         $form = $this->getFormMachinary($request,$data);
         if($form instanceof \Symfony\Component\HttpFoundation\Response){
             return $form;
         }
+        
+        $parameters = array(
+            'id' => $reportTechnical->getId(),
+            'slug' => $request->get('slug')
+        );
+        if($idMachinery){
+            $parameters['id_machinery'] = $idMachinery;
+        }
+        $url = $this->generateUrl($route,$parameters);
+        
         return $this->render('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/ProductionLevel/formProcess.html.twig',array(
             'form' => $form->createView(),
             'reportTechnical' => $reportTechnical,
+            'url' => $url
         ));
     }
     
@@ -94,7 +171,7 @@ class MachineryController extends BaseController
         return $productionLevel;
     }
 
-    private function getFormMachinary($request,$data = array())
+    private function getFormMachinary(Request $request,$data = array())
     {
         $reportTechnical = $this->findReportTechnicalOr404($request);
         $company = $reportTechnical->getCompany();
@@ -142,5 +219,27 @@ class MachineryController extends BaseController
         return $this->render('CoramerSigtecWebBundle:Backend:ReportTechnical/Properties/ProductionLevel/machineryList.html.twig',array(
             'reportTechnical' => $reportTechnical,
         ));
+    }
+    
+    public function deleteAction(Request $request) {
+        $reportTechnical = $this->findReportTechnicalOr404($request);
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
+        if($request->isXmlHttpRequest()){
+            $resource = $this->getRepository()->find($request->get('slug'));
+            if(!$resource){
+                throw $this->createNotFoundException();
+            }
+            $this->domainManager->delete($resource);
+            /** @var FlashBag $flashBag */
+            $flashBag = $this->get('session')->getBag('flashes');
+            $data = array(
+                'message' => $flashBag->get('success'),
+            );
+            return new JsonResponse($data);
+        }
     }
 }

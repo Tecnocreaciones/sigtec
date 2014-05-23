@@ -1,12 +1,23 @@
+<h3 class="thin">{{ 'sigtec.feature_machinery.process'|trans({},'CoramerSigtecReportTechnicalBundle') }}: <b>[[ template.parameterCallback.process.description ]]</b></h3>
+
 <table class="table simple-table">
     <tr>
         <th ng-repeat="feature_machinery in template.parameterCallback.process.model_machinery.features_machinery">
             [[ feature_machinery._labels.label ]]
         </th>
+        <th>&nbsp;</th>
     </tr>
     <tr ng-repeat="machinery in template.parameterCallback.machineries">
         <td ng-repeat="d in machinery._data.options | orderBy:predicate:reverse">
-            [[ d.value ]]
+            <a href  ng-if="$first" ng-click="addMachinery(template.parameterCallback,machinery)" class="with-tooltip" title="{{ 'sigtec.edit'|trans }}">
+                [[ d.value ]]
+            </a>
+            <span ng-if="!$first">
+                [[ d.value ]]
+            </span>
+        </td>
+        <td>
+            <a href ng-click="itemDelete(machinery._links.delete.href,reportTechnicalManager.reload().machinery,template.parameterCallback)" class="button icon-trash confirm" title="{{ 'sigtec.delete'|trans }}"></a>
         </td>
     </tr>
 </table>

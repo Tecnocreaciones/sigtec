@@ -21,7 +21,7 @@ coramer_sigtec_backend_company_report_technical_properties_production_level_mach
         _format: json|xml
         
 coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_update:
-    pattern:  /{slug}/update
+    pattern:  /{slug}/{id_machinery}/update
     defaults:
         _controller: coramer_sigtec_backend.controller.company_report_technical_properties_production_level_machinery:updateAction
     options:

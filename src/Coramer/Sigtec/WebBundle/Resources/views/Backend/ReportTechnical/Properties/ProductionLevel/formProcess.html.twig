@@ -1,7 +1,7 @@
 {% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
 {% form_theme form 'CoramerSigtecCoreBundle:Form:escapeLabel.html.twig' %}
 
-<form id="form_pop_up" method="POST" action="[[ reportTechnicalHelper.form.action.url ]]">
+<form id="form_pop_up_2" method="POST" action="{{ url }}">
 <fieldset class="fieldset fields-list">
     <legend class="legend">{{ 'sigtec.production_level.production_level'|trans }}</legend>
     {% for children in form.children %}
@@ -24,5 +24,5 @@
 {{ form_rest(form) }}
 </form>
 <script>
-    jQuery('#form_pop_up').validationEngine({showOneMessage:true});
+    jQuery('#form_pop_up_2').validationEngine({showOneMessage:true});
 </script>

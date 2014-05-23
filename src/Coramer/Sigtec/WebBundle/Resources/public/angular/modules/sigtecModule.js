@@ -42,7 +42,7 @@ angular.module('sigtecModule.controllers', [])
               });
           }
   })
-  .controller('ReportTechnicalController',function($scope,$http,reportTechnicalManager,notificationBarService,notifyService,sfTranslator){
+  .controller('ReportTechnicalController',function($scope,$http,reportTechnicalManager,notificationBarService,notifyService,sfTranslator,$templateCache){
       $scope.reportTechnical = {
               id: null,
               professional_profile: {
@@ -157,7 +157,7 @@ angular.module('sigtecModule.controllers', [])
               }
           }
       };
-      
+      $scope.template_no_cache = {url: null,load: false};
       $scope.model = defaultModel;
       $scope.data = {
           materials: null,
@@ -224,7 +224,7 @@ angular.module('sigtecModule.controllers', [])
           }
       };
       
-      $scope.itemDelete = function(url,callback){
+      $scope.itemDelete = function(url,callback,parameter){
         $.modal.confirm('¿'+ sfTranslator.trans('tecnocreaciones_vzla_government.question.delete') +'?', function()
         {
             $http.post(url,{_method:'DELETE'},{headers:{'X-Requested-With':'XMLHttpRequest'}}).success(function(data){
@@ -240,7 +240,7 @@ angular.module('sigtecModule.controllers', [])
                     });
                 });
                 if(callback){
-                    callback.call(this);
+                    callback.call(this,parameter);
                 }
             });
         }, function(){},
@@ -253,13 +253,16 @@ angular.module('sigtecModule.controllers', [])
       $scope.templateLoad = function(template){
           template.load = true;
           return openFormModal();
-      }
+      };
+      $scope.templateLoadNoCache = function(template){
+          return openFormModalNoCache();
+      };
       
       $scope.openModalForm = function (){
           if($scope.template.load == true){
               openFormModal();
           }
-      }
+      };
       //Abre la ventana modal para añadir o actualizar los detalles de almacenamiento del producto
       $scope.addDetailsStorage = function(detailProductStorage){
           notificationBarService.getLoadStatus().loading();
@@ -275,12 +278,16 @@ angular.module('sigtecModule.controllers', [])
           $scope.openModalForm();
       };
       //Abre la ventana modal para añadir o actualizar una maquinaria de un nivel de produccion
-      $scope.addMachinery = function(production_level){
+      $scope.addMachinery = function(production_level,machinery){
           var id = production_level.process.id;
+          var parameters = { slug:production_level.id,_format:'html' };
+          if(machinery != undefined){
+             parameters.id_machinery = machinery.id;
+          }
           notificationBarService.getLoadStatus().loading();
-          if($scope.templates.formProductionLevel.process[id] == undefined){
-              $scope.templates.formProductionLevel.process[id] = {
-                    url: $scope.reportTechnicalManager.generateRoute('coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_form',{slug:production_level.id,_format:'html'}),
+//          if($scope.templates.formProductionLevel.process[id] == undefined){
+              $scope.templates.formProductionLevel.process = {
+                    url: $scope.reportTechnicalManager.generateRoute('coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_form',parameters),
                     loadCallback:$scope.setDataMachinery,
                     parameterCallback: null, 
                     load: false,
@@ -288,18 +295,21 @@ angular.module('sigtecModule.controllers', [])
                         create: 'coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_create',
                         update: 'coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_update'
                     },
-                    reload: $scope.reportTechnicalManager.reload().productionLevel,
+                    reload: $scope.reportTechnicalManager.reload().machinery,
+                    reload_parameter: production_level,
               };
-          }
-          $scope.templates.formProductionLevel.process[id].parameterCallback = production_level;
-          $scope.template = $scope.templates.formProductionLevel.process[id];
-          $scope.openModalForm();
+//          }
+          
+          $scope.templates.formProductionLevel.process.parameterCallback = production_level;
+          $scope.template_no_cache = $scope.templates.formProductionLevel.process;
+//          $scope.openModalForm();
       };
       
       $scope.listMachinery = function(production_level){
           notificationBarService.getLoadStatus().loading();
           $scope.template = $scope.templates.formProductionLevel.machinery.list;
           $scope.template.parameterCallback = production_level;
+          $scope.template.modalOptions = {title: ' ',minWidth:1200,minHeight:1200};
           $scope.predicate = '-pos';
           $scope.reverse = true;
           $scope.openModalForm();
@@ -428,22 +438,9 @@ angular.module('sigtecModule.controllers', [])
 //              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.update,{id: $scope.reportTechnical.id, slug:productionLevel.id});
 //              
 //          }else{
-              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id,slug:productionLevel.id});
-              
-              $scope.model.production_level = {
-                  type_process: null,
-                  process: null,
-                  shifts: 0,
-                  hours: 0,
-                  days_month: 0,
-                  theoretical: 0,
-                  installed: 0,
-                  busy: 0,
-                  idle: 0,
-                  percentage: 0
-              };
-//          }
-    }
+//              $scope.reportTechnicalHelper.form.action.url = Routing.generate($scope.template.routes.create,{id: $scope.reportTechnical.id,slug:productionLevel.id});
+          
+    };
     //Establece la data del formulario de los productos fabricados
     $scope.setDataProductManufactured = function(productManufactured){
         if(productManufactured != undefined){
@@ -648,7 +645,7 @@ angular.module('sigtecModule.controllers', [])
           console.log('cancelFormModal');
       }
       function confirmFormModal(modal){
-            var idForm = 'form_pop_up';
+            var idForm = $scope.id_form_pop_up;
             var form = jQuery('#'+idForm);
             var valid = form.validationEngine('validate');
             var result = false;
@@ -664,13 +661,21 @@ angular.module('sigtecModule.controllers', [])
                         data    : formData,
                         headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With':'XMLHttpRequest' }  // set the headers so angular passing info as form data (not request payload)
                     }).success(function(data){
-                        $scope.form.errors = {};
-                        notifyService.success(data.message);
-                        if(successCallback){
-                           successCallback.call(this);
+                        if($scope.template.remove_form == true){
+                            var myForm = document.getElementById(idForm);
+                            myForm.parentNode.removeChild(myForm);
+                        }
+                        if(data.message != undefined){
+                            $scope.form.errors = {};
+                            notifyService.success(data.message);
+                            if(successCallback){
+                               successCallback.call(this,$scope.template.reload_parameter);
+                            }
+                            modal.closeModal();
+                        }else{
+                            modal.setModalContent(data);
                         }
                         notificationBarService.getLoadStatus().done();
-                        modal.closeModal();
                     }).error(function(data){
                         if(data.message != undefined){
                             notifyService.error(Translator.trans(data.message));
@@ -698,12 +703,39 @@ angular.module('sigtecModule.controllers', [])
       
       function openFormModal(openCallback){
           var area = $("#div-template");
-          var options = {};
-          $.modal.showForm(area,confirmFormModal,cancelFormModal,options);
+          $scope.id_form_pop_up = 'form_pop_up';
+          var options = {title: ' '};
+          if($scope.template.modalOptions){
+              options = $scope.template.modalOptions;
+          }
+          var modal = $.modal.showForm(area,confirmFormModal,cancelFormModal,options);
           $.modal.preBuildShowForm(area);
+          
           if($scope.template.loadCallback){
               $scope.template.loadCallback($scope.template.parameterCallback);
           }
+          notificationBarService.getLoadStatus().done();
+      }
+      
+      function openFormModalNoCache(openCallback){
+          var area = $("#div-template-no-cache");
+          $scope.id_form_pop_up = 'form_pop_up_2';
+          var options = {title: ' '};
+          if($scope.template_no_cache.modalOptions){
+              options = $scope.template_no_cache.modalOptions;
+          }
+          $scope.template.reload = $scope.template_no_cache.reload;
+          $scope.template.remove_form = true;
+          $scope.template.reload_parameter = $scope.template_no_cache.reload_parameter;
+          
+          var modal = $.modal.showForm(area,confirmFormModal,cancelFormModal,options);
+          $.modal.preBuildShowForm(area);
+          
+          if($scope.template_no_cache.loadCallback){
+              $scope.template_no_cache.loadCallback($scope.template_no_cache.parameterCallback);
+          }
+          $templateCache.removeAll();
+          $scope.template_no_cache = {};
           notificationBarService.getLoadStatus().done();
       }
       
@@ -1402,7 +1434,20 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
                             });
                         }
                     }
-                }
+                },
+                machinery: function(production_level){
+                  return $http.get(self.generateRoute(config.routes.production_level)).success(function(d){
+                        scope.reportTechnical.production_levels = d;
+                        var dataArray = [];
+                          jQuery.each(d,function(i,val){
+                              dataArray[val.process.id] = val.process;
+                              if(production_level.id == val.id){
+                                  scope.template.parameterCallback = val;
+                              }
+                          });
+                        scope.data.product_manufactured.process = dataArray;
+                    });
+              },
           }  
         },
         generateRoute: function(route,parameters){

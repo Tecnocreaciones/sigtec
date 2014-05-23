@@ -60,6 +60,26 @@ class ParameterResolver implements \Symfony\Component\DependencyInjection\Contai
             return $value;
         endswitch;
     }
+    /**
+     * Resuelve el valor inverso de las caracteristicas
+     * 
+     * @param type $name
+     * @param type $value
+     * @return type
+     */
+    function getResolveInverseValue($name,$value) 
+    {
+        $feature = $this->getFeaturesMachineryByName($name);
+        $fieldType = $feature->getFieldType();
+        switch ($fieldType):
+            case 'entity':
+                return $this->inverseResolveByEntity($feature,$value);
+            case 'choice':
+                return $this->inverseResolveByChoice($feature,$value);
+            default;
+            return $value;
+        endswitch;
+    }
     
     public function setContainer(\Symfony\Component\DependencyInjection\ContainerInterface $container = null) {
         $this->container = $container;
@@ -115,7 +135,35 @@ class ParameterResolver implements \Symfony\Component\DependencyInjection\Contai
             return $accessor->getValue($entity, $property);
         }
     }
+    
+    /**
+     * Resuelve el valor por la entidad
+     * 
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery $feature
+     * @param integer $id
+     * @return string
+     */
+    function inverseResolveByEntity(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery $feature,$entity) 
+    {
+        $accessor = \Symfony\Component\PropertyAccess\PropertyAccess::createPropertyAccessor();
+        return $accessor->getValue($entity, 'id');
+    }
 
+    /**
+     * Resuelve el valor inverso por la opcion
+     * 
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery $feature
+     * @param type $value
+     * @return string
+     */
+    function inverseResolveByChoice(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\FeatureMachinery $feature,$value) 
+    {
+        $choices = $feature->getParameter('choices');
+        if(array_key_exists($value, $choices)){
+            return $value;
+        }
+    }
+    
     /**
      * Resuelve el valor por la opcion
      * 

@@ -141,6 +141,7 @@ sigtec:
         approve: Approve
         reject: Reject
     feature_machinery:
+        process: Process
         label:
             nro: Quantity
             mark: Mark

@@ -311,8 +311,16 @@ class SerializeEventListerner implements EventSubscriberInterface,  \Symfony\Com
      */
     function onPostSerializeMachinery(ObjectEvent $event) {
         $object = $event->getObject();
+        $reportTechnical = $object->getProductionLevel()->getReportTechnical();
         $data = array();
         $i = 0;
+        
+        $event->getVisitor()->addData('_links', array(
+            'delete' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_properties_production_level_machinery_delete',array('id' => $reportTechnical->getId(),'slug' =>$object->getId()))
+                ),
+        ));
+        
         $parameterResolver = $this->getFeatureParameterResolver();
         foreach ($object->getData() as $name => $value) {
             $value = $parameterResolver->getResolveValue($name, $value);

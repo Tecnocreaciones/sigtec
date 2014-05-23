@@ -146,6 +146,7 @@ sigtec:
         approve: Aprobar
         reject: Rechazar
     feature_machinery:
+        process: Proceso
         label:
             number: Nro
             mark: Marca

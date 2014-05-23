@@ -187,7 +187,7 @@
                                     <td>[[ detail_product_storage.dedication.description ]]</td>
                                     <td>
                                         <span class="button-group compact">
-                                            <a href ng-click="itemDelete(detail_product_storage._links.delete.href,reportTechnicalManager.reload().detailProductStorage)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                            <a href ng-click="itemDelete(detail_product_storage._links.delete.href,reportTechnicalManager.reload().detailProductStorage)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
                                         </span>
                                     </td>
                                 </tr>
@@ -227,7 +227,7 @@
                                     <td colspan="5" class="bold text-center">&nbsp;</td>
                                 </tr>
                                 <tr ng-repeat="production_level in reportTechnical.production_levels" data="[[ production_level|json ]]">
-                                    <td><a href ng-click="addLevelProduction(production_level)" >[[ production_level.id ]] [[ production_level.process.description ]]</a></td>
+                                    <td><a href ng-click="addLevelProduction(production_level)" >[[ production_level.process.description ]]</a></td>
                                     <td>[[ production_level.shifts ]]</td>
                                     <td>[[ production_level.hours ]]</td>
                                     <td>[[ production_level.days_month]]</td>
@@ -235,7 +235,7 @@
                                         <span class="button-group compact">
                                             <a href ng-click="listMachinery(production_level)" class="button icon-list with-tooltip" title="Lista de maquinarias"></a>
                                             <a href ng-click="addMachinery(production_level)" class="button icon-list-add with-tooltip" title="Añadir una maquinaria"></a>
-                                            <a href ng-click="itemDelete(production_level._links.delete.href,reportTechnicalManager.reload().productionLevel)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                            <a href ng-click="itemDelete(production_level._links.delete.href,reportTechnicalManager.reload().productionLevel)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
                                         </span>
                                     </td>
                                 </tr>
@@ -278,7 +278,7 @@
                                     <td>[[ product_manufactured.grade.description ]]</td>
                                     <td>
                                         <span class="button-group compact">
-                                            <a href ng-click="itemDelete(product_manufactured._links.delete.href,reportTechnicalManager.reload().productManufactured)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                            <a href ng-click="itemDelete(product_manufactured._links.delete.href,reportTechnicalManager.reload().productManufactured)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
                                         </span>
                                     </td>
                                 </tr>
@@ -321,7 +321,7 @@
                                     <td>[[ additive_used.mark ]]</td>
                                     <td>
                                         <span class="button-group compact">
-                                            <a href ng-click="itemDelete(additive_used._links.delete.href,reportTechnicalManager.reload().additiveUsed)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                            <a href ng-click="itemDelete(additive_used._links.delete.href,reportTechnicalManager.reload().additiveUsed)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
                                         </span>
                                     </td>
                                 </tr>
@@ -369,7 +369,7 @@
                                         <td>[[ other_plastic_resin.grade ]]</td>
                                         <td>
                                             <span class="button-group compact">
-                                                <a href ng-click="itemDelete(other_plastic_resin._links.delete.href,reportTechnicalManager.reload().detailOtherPlasticResin)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                                <a href ng-click="itemDelete(other_plastic_resin._links.delete.href,reportTechnicalManager.reload().detailOtherPlasticResin)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
                                             </span>
                                         </td>
                                     </tr>
@@ -413,7 +413,7 @@
                                         <td>[[ description_market.participation_rate ]]</td>
                                         <td>
                                             <span class="button-group compact">
-                                                <a href ng-click="itemDelete(description_market._links.delete.href,reportTechnicalManager.reload().descriptionMarket)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                                <a href ng-click="itemDelete(description_market._links.delete.href,reportTechnicalManager.reload().descriptionMarket)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
                                             </span>
                                         </td>
                                     </tr>
@@ -468,7 +468,7 @@
                                             <td>[[ product_to_export.port.description ]]</td>
                                             <td>
                                                 <span class="button-group compact">
-                                                    <a href ng-click="itemDelete(product_to_export._links.delete.href,reportTechnicalManager.reload().exportationProduct)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                                    <a href ng-click="itemDelete(product_to_export._links.delete.href,reportTechnicalManager.reload().exportationProduct)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
                                                 </span>
                                             </td>
                                         </tr>
@@ -514,7 +514,7 @@
                                             <td>[[ growth_market.sub_segment.description ]]</td>
                                             <td>
                                                 <span class="button-group compact">
-                                                    <a href ng-click="itemDelete(growth_market._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().growthMarket)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                                    <a href ng-click="itemDelete(growth_market._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().growthMarket)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
                                                 </span>
                                             </td>
                                         </tr>
@@ -553,7 +553,7 @@
                                             <td>[[ other_market.sub_segment.description ]]</td>
                                             <td>
                                                 <span class="button-group compact">
-                                                    <a href ng-click="itemDelete(other_market._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().otherMarket)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                                    <a href ng-click="itemDelete(other_market._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().otherMarket)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
                                                 </span>
                                             </td>
                                         </tr>
@@ -598,7 +598,7 @@
                                             <td>[[ new_machinery.process.description ]]</td>
                                             <td>
                                                 <span class="button-group compact">
-                                                    <a href ng-click="itemDelete(new_machinery._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().newMachinery)" class="button icon-trash with-tooltip confirm" title="Eliminar"></a>
+                                                    <a href ng-click="itemDelete(new_machinery._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().newMachinery)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
                                                 </span>
                                             </td>
                                         </tr>
@@ -652,8 +652,9 @@
 				</button>
 			</div>
                             {{ form_rest(form) }}
-                        <div class="hide" style="display: none">
+                        <div class="hide" style="display: none;">
                             <div id="div-template" ng-include="template.url" onload="templateLoad(template)" ></div>
+                            <div id="div-template-no-cache" ng-include="template_no_cache.url" onload="templateLoadNoCache(template_no_cache)" ></div>
                         </div>
 		</fieldset>
 

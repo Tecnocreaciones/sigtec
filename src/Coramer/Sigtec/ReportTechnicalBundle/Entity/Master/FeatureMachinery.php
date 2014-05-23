@@ -122,7 +122,7 @@ class FeatureMachinery
     function getParameter($name)
     {
         if(!isset($this->parameters[$name])){
-            throw new \InvalidArgumentException(sprintf('Parameter "%s" dont exist'));
+            throw new \InvalidArgumentException(sprintf('Parameter "%s" dont exist',$name));
         }
         return $this->parameters[$name];
     }
