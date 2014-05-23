@@ -565,6 +565,48 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             $manager->persist($featureMachinery);
             $this->addReference('court_min', $featureMachinery);
         
+        //Rango diametro (mm)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Rango de diámetros de tubos (mín-máx) que se fabrica con el equipo en milimetros')
+                ->setHelp('sigtec.help.feature_machinery.diameter_range')
+                ->setName('diameter_range')
+                ->setFieldType('string')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.diameter_range',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('diameter_range', $featureMachinery);
+        
+        //Rango espesor (mm)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Rango de espesores de tubos (mín-máx) que se fabrica con el equipo en milimetros')
+                ->setHelp('sigtec.help.feature_machinery.thickness_range')
+                ->setName('thickness_range')
+                ->setFieldType('string')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.thickness_range',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('thickness_range', $featureMachinery);
+        
             //nro (Numero)
             //mark (Marca)
             //extrusion_type (Tipo de extrusión)
@@ -583,12 +625,14 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             //number_orifices (Número de orificios)
             //title_max (Titulo maximo)
             //number_strips (Numero de flejes)
-            //width_strips (Ancho de flejes mm)
-            //head_width (Ancho de cabezal mm)
-            //lamina_maximum_width (Ancho máximo de lamina mm)
-            //lamina_maximum_thickness (Espesor máximo de lamina mm)
+            //width_strips (Ancho de flejes (mm))
+            //head_width (Ancho de cabezal (mm))
+            //lamina_maximum_width (Ancho máximo de lamina (mm))
+            //lamina_maximum_thickness (Espesor máximo de lamina (mm))
             //product_weight (Peso del producto (kg))
             //court_min (Cortes por minuto)
+            //diameter_range (Rango diametro (mm))
+            //thickness_range (Rango espesor (mm))
             
         $manager->flush();
     }

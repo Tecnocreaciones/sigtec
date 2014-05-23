@@ -219,6 +219,46 @@ class LoadModelMachineryData extends AbstractFixture implements FixtureInterface
                 ;
                 $manager->persist($modelMachinery);
                 $this->addReference('extrusion_raffia', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Extrusión de rafia')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('head_width'))
+                ->addFeaturesMachinery($this->getReference('lamina_maximum_width'))
+                ->addFeaturesMachinery($this->getReference('title_max'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('extrusion_raffia', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Extrusión de tuberías')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('head_width'))
+                ->addFeaturesMachinery($this->getReference('diameter_range'))
+                ->addFeaturesMachinery($this->getReference('thickness_range'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('pipe_extrusion', $modelMachinery);
                 
                 
         $manager->flush();
