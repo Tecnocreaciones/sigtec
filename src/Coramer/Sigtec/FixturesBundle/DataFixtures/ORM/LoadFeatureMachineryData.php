@@ -188,10 +188,10 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             $manager->persist($featureMachinery);
             $this->addReference('screw_diameter', $featureMachinery);
         
-        //Tipo de corte
+        //Tipo de corte (Bajo agua, Normal)
         $featureMachinery = new FeatureMachinery();
         $featureMachinery
-                ->setDescription('Tipo de corte')
+                ->setDescription('Tipo de corte(Bajo agua, Normal)')
                 ->setHelp('sigtec.help.feature_machinery.type_cut')
                 ->setName('type_cut')
                 ->setFieldType('choice')
@@ -238,6 +238,10 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             
             $getPlantActive = 'function(\Coramer\Sigtec\CompanyBundle\Repository\PlantRepository $er) use ($company){
                 return $er->getQueryBuilderAllActiveByCompany($company);
+            };';
+            
+            $getResinActive = 'function(\Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\ResinRepository $er) {
+                return $er->getQueryBuilderMarketedByCoramer();
             };';
             
         //Producto principal
@@ -291,6 +295,32 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ;
             $manager->persist($featureMachinery);
             $this->addReference('plant', $featureMachinery);
+        
+        //Resina
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Resina que utiliza')
+                ->setHelp('sigtec.help.feature_machinery.resin')
+                ->setName('resin')
+                ->setFieldType('entity')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.resin',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Resin',
+                   'property' => 'name',
+                   'attr' => array(
+                       'class' => 'select small-margin-right validate[required]',
+                   ),
+                ))
+                ->setEvalParameters(array(
+                   'query_builder' => $getResinActive,
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('resin', $featureMachinery);
         
         //Peso
         $featureMachinery = new FeatureMachinery();
@@ -607,6 +637,141 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             $manager->persist($featureMachinery);
             $this->addReference('thickness_range', $featureMachinery);
         
+        //Tipo de cabezal
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('"AC" si es acumulador o "EC" si es de extrusión continua')
+                ->setHelp('sigtec.help.feature_machinery.head_type')
+                ->setName('head_type')
+                ->setFieldType('choice')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.head_type',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'select input-small small-margin-right validate[required]',
+                   ),
+                   'choices' => array(
+                       'AC' => 'Acumulador',
+                       'EC' => 'Extrusión continua',
+                   )
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('head_type', $featureMachinery);
+        
+        //Estaciones
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Numero de estaciones')
+                ->setHelp('sigtec.help.feature_machinery.station')
+                ->setName('station')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.station',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('station', $featureMachinery);
+        
+        //Capacidad de envase (Litros)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Capacidad del envase (Litros)')
+                ->setHelp('sigtec.help.feature_machinery.container_capacity')
+                ->setName('container_capacity')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.container_capacity',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('container_capacity', $featureMachinery);
+        
+        //Tipo de corte de parison
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Capacidad del envase (Litros)')
+                ->setHelp('sigtec.help.feature_machinery.type_cut_parison')
+                ->setName('type_cut_parison')
+                ->setFieldType('choice')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.type_cut_parison',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'select input-small small-margin-right validate[required]',
+                   ),
+                    'choices' => array(
+                       'CC' => 'Cuchilla caliente',
+                       'CF' => 'Cuchilla fria',
+                       'CB' => 'Corte con cabezal',
+                   )
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('type_cut_parison', $featureMachinery);
+        
+        //Ciclos (segundos)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Tiempo total de ciclos (segundos)')
+                ->setHelp('sigtec.help.feature_machinery.cycle')
+                ->setName('cycle')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.cycle',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-small small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('cycle', $featureMachinery);
+        
+        //Peso(gramo) / Ciclo(segundos)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Peso del envase en gramos y el tiempo total del ciclo en segundos')
+                ->setHelp('sigtec.help.feature_machinery.weight_cycle')
+                ->setName('weight_cycle')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.weight_cycle',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-small small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('weight_cycle', $featureMachinery);
+        
             //nro (Numero)
             //mark (Marca)
             //extrusion_type (Tipo de extrusión)
@@ -614,7 +779,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             //year_manufacture (Año de fabricacion)
             //screw_type (Tipo de tornillo)
             //screw_diameter (Diámetro de tornillo)
-            //type_cut (Tipo de corte)
+            //type_cut (Tipo de corte (Bajo agua, Normal))
             //operating_time (Tiempo de operación)
             //main_product (Producto principal)
             //plant (Planta)
@@ -633,6 +798,13 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             //court_min (Cortes por minuto)
             //diameter_range (Rango diametro (mm))
             //thickness_range (Rango espesor (mm))
+            //head_type (Tipo de cabezal)
+            //station (Estaciones)
+            //container_capacity (Capacidad de envase (Litros))
+            //resin (Resina)
+            //type_cut_parison (Tipo de corte de parison)
+            //cycle (Ciclos (segundos))
+            //weight_cycle (Peso(gramo) / Ciclo(segundos))
             
         $manager->flush();
     }
