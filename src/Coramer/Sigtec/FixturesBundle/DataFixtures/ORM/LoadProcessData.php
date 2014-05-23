@@ -37,8 +37,11 @@ class LoadProcessData extends AbstractFixture implements FixtureInterface,Ordere
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Extrusión compresión');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process
+                ->setDescription('Extrusión compresión')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('extrusion_compression'));
+                ;
             $manager->persist($process);
             
         $process = new Process();
@@ -49,18 +52,24 @@ class LoadProcessData extends AbstractFixture implements FixtureInterface,Ordere
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Extrusión de fibras');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Extrusión de fibras')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('fiber_extrusion'));
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Extrusión de flejes');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Extrusión de flejes')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('strapping_extrusion'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Extrusión de lamina');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Extrusión de lamina')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('sheet_extrusion'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
@@ -69,28 +78,38 @@ class LoadProcessData extends AbstractFixture implements FixtureInterface,Ordere
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Extrusión de película plana');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Extrusión de película plana')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('flat_film_extrusion'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Extrusión de película tubular');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Extrusión de película tubular')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('tubular_film_extrusion'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Extrusión de perfiles grandes');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Extrusión de perfiles grandes')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('large_extrusion_profiles'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Extrusión de perfiles pequeños');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Extrusión de perfiles pequeños')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('small_annular_extrusion_profiles'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Extrusión de rafia');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Extrusión de rafia')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('extrusion_raffia'))
+                ;
             $manager->persist($process);
             
         $process = new Process();

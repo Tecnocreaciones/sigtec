@@ -34,6 +34,9 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
     private $container;
     
     public function load(ObjectManager $manager) {
+        
+        $validationNotBlank = new NotBlank();
+        $validationNotNull = new NotNull();
         //Numero
         $featureMachinery = new FeatureMachinery();
         $featureMachinery
@@ -44,8 +47,8 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.nro',
                     'constraints' => array(
-                       new NotBlank(),
-                       new NotNull(),
+                       $validationNotBlank,
+                       $validationNotNull,
                    ),
                    'attr' => array(
                        'class' => 'input small-margin-right validate[required,integer]',
@@ -64,8 +67,8 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.mark',
                     'constraints' => array(
-                       new NotBlank(),
-                       new NotNull(),
+                       $validationNotBlank,
+                       $validationNotNull,
                    ),
                    'attr' => array(
                        'class' => 'input small-margin-right validate[required]',
@@ -74,18 +77,18 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             $manager->persist($featureMachinery);
             $this->addReference('mark', $featureMachinery);
         
-        //Tipo
+        //Tipo de extrusión
         $featureMachinery = new FeatureMachinery();
         $featureMachinery
                 ->setDescription('Tipo de equipo(monocapa o multicapa)')
-                ->setHelp('sigtec.help.feature_machinery.type')
-                ->setName('type')
+                ->setHelp('sigtec.help.feature_machinery.extrusion_type')
+                ->setName('extrusion_type')
                 ->setFieldType('choice')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.type',
+                    'label' => 'sigtec.feature_machinery.extrusion_type',
                     'constraints' => array(
-                       new NotBlank(),
-                       new NotNull(),
+                       $validationNotBlank,
+                       $validationNotNull,
                    ),
                     'choices' => array(
                         'MC' => 'MC (Monocapa)',
@@ -96,7 +99,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                    ),
                 ));
             $manager->persist($featureMachinery);
-            $this->addReference('type', $featureMachinery);
+            $this->addReference('extrusion_type', $featureMachinery);
         
         //Capacidad maxima
         $featureMachinery = new FeatureMachinery();
@@ -108,8 +111,8 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.maximum_capacity',
                     'constraints' => array(
-                       new NotBlank(),
-                       new NotNull(),
+                       $validationNotBlank,
+                       $validationNotNull,
                    ),
                   'attr' => array(
                        'class' => 'input small-margin-right validate[required,integer]',
@@ -128,8 +131,8 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.year_manufacture',
                     'constraints' => array(
-                       new NotBlank(),
-                       new NotNull(),
+                       $validationNotBlank,
+                       $validationNotNull,
                    ),
                     'attr' => array(
                        'class' => 'input small-margin-right validate[required,integer]',
@@ -148,8 +151,8 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.screw_type',
                     'constraints' => array(
-                       new NotBlank(),
-                       new NotNull(),
+                       $validationNotBlank,
+                       $validationNotNull,
                    ),
                    'choices' => array(
                        'ES' => 'Tornillo estandar',
@@ -174,8 +177,8 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.screw_diameter',
                     'constraints' => array(
-                       new NotBlank(),
-                       new NotNull(),
+                       $validationNotBlank,
+                       $validationNotNull,
                    ),
                    'precision' => 2,
                    'attr' => array(
@@ -195,8 +198,8 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.type_cut',
                     'constraints' => array(
-                       new NotBlank(),
-                       new NotNull(),
+                       $validationNotBlank,
+                       $validationNotNull,
                    ),
                    'choices' => array(
                        'CA' => 'Bajo agua',
@@ -219,8 +222,8 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.operating_time',
                     'constraints' => array(
-                       new NotBlank(),
-                       new NotNull(),
+                       $validationNotBlank,
+                       $validationNotNull,
                    ),
                    'attr' => array(
                        'class' => 'select small-margin-right validate[required]',
@@ -228,6 +231,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ));
             $manager->persist($featureMachinery);
             $this->addReference('operating_time', $featureMachinery);
+            
             $getProductActive ='function (\Coramer\Sigtec\ReportTechnicalBundle\Repository\Master\ProductRepository $er){
                  return $er->getQueryAllActive();
             };';
@@ -246,8 +250,8 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.main_product',
                     'constraints' => array(
-                       new NotBlank(),
-                       new NotNull(),
+                       $validationNotBlank,
+                       $validationNotNull,
                    ),
                    'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product',
                    'property' => 'description',
@@ -272,8 +276,8 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.plant',
                     'constraints' => array(
-                       new NotBlank(),
-                       new NotNull(),
+                       $validationNotBlank,
+                       $validationNotNull,
                    ),
                    'class' => 'Coramer\Sigtec\CompanyBundle\Entity\Plant',
                    'property' => 'name',
@@ -288,6 +292,304 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             $manager->persist($featureMachinery);
             $this->addReference('plant', $featureMachinery);
         
+        //Peso
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Peso del producto que fabrica con este equipo')
+                ->setHelp('sigtec.help.feature_machinery.weight')
+                ->setName('weight')
+                ->setFieldType('number')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.weight',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-small small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('weight', $featureMachinery);
+        
+        //Cavidad
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Numero de cavidades del molde')
+                ->setHelp('sigtec.help.feature_machinery.cavity')
+                ->setName('cavity')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.cavity',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required,integer]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('cavity', $featureMachinery);
+        
+        //Piezas por minuto
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Velocidad del equipo en numero de piezas por minuto')
+                ->setHelp('sigtec.help.feature_machinery.pieces_min')
+                ->setName('pieces_min')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.pieces_min',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required,integer]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('pieces_min', $featureMachinery);
+        
+        //Número de hileras
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Número de hileras del equipo')
+                ->setHelp('sigtec.help.feature_machinery.number_rows')
+                ->setName('number_rows')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.number_rows',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required,integer]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('number_rows', $featureMachinery);
+        
+        //Número de orificios
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Número de orificios del equipo')
+                ->setHelp('sigtec.help.feature_machinery.number_orifices')
+                ->setName('number_orifices')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.number_orifices',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required,integer]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('number_orifices', $featureMachinery);
+        
+        //Titulo maximo
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Titulo (denier) máximo que se fabrica con el equipo')
+                ->setHelp('sigtec.help.feature_machinery.title_max')
+                ->setName('title_max')
+                ->setFieldType('number')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.title_max',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required,integer]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('title_max', $featureMachinery);
+        
+        //Numero de flejes
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Número de flejes que fabrica el equipo')
+                ->setHelp('sigtec.help.feature_machinery.number_strips')
+                ->setName('number_strips')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.number_strips',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required,integer]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('number_strips', $featureMachinery);
+        
+        //Ancho de flejes mm
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Ancho de flejes en milimetro')
+                ->setHelp('sigtec.help.feature_machinery.width_strips')
+                ->setName('width_strips')
+                ->setFieldType('number')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.width_strips',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('width_strips', $featureMachinery);
+        
+        //Ancho de cabezal mm
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Ancho del cabezal en milimetro. Si tiene varios cabezales indidar el ancho de cada uno.')
+                ->setHelp('sigtec.help.feature_machinery.head_width')
+                ->setName('head_width')
+                ->setFieldType('string')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.head_width',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('head_width', $featureMachinery);
+        
+        //Ancho máximo mm
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Ancho máximo de lámina que se fabrica con el equipo en milimetros')
+                ->setHelp('sigtec.help.feature_machinery.lamina_maximum_width')
+                ->setName('lamina_maximum_width')
+                ->setFieldType('number')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.lamina_maximum_width',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('lamina_maximum_width', $featureMachinery);
+        
+        //Espesor máximo mm
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Espesor maximo de lamina que se fabrica con el equipo en milimetros')
+                ->setHelp('sigtec.help.feature_machinery.lamina_maximum_thickness')
+                ->setName('lamina_maximum_thickness')
+                ->setFieldType('number')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.lamina_maximum_thickness',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('lamina_maximum_thickness', $featureMachinery);
+        
+        //Peso del producto (kg)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Peso del perfil en kilogramo')
+                ->setHelp('sigtec.help.feature_machinery.product_weight')
+                ->setName('product_weight')
+                ->setFieldType('number')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.product_weight',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('product_weight', $featureMachinery);
+        
+        //Cortes por minuto
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Velocidad de equipo en número de cortes por minuto')
+                ->setHelp('sigtec.help.feature_machinery.court_min')
+                ->setName('court_min')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.court_min',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-mini small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('court_min', $featureMachinery);
+        
+            //nro (Numero)
+            //mark (Marca)
+            //extrusion_type (Tipo de extrusión)
+            //maximum_capacity (Capacidad maxima)
+            //year_manufacture (Año de fabricacion)
+            //screw_type (Tipo de tornillo)
+            //screw_diameter (Diámetro de tornillo)
+            //type_cut (Tipo de corte)
+            //operating_time (Tiempo de operación)
+            //main_product (Producto principal)
+            //plant (Planta)
+            //weight (Peso g)
+            //cavity (Cavidad)
+            //pieces_min (Piezas por minuto)
+            //number_rows (Número de hileras)
+            //number_orifices (Número de orificios)
+            //title_max (Titulo maximo)
+            //number_strips (Numero de flejes)
+            //width_strips (Ancho de flejes mm)
+            //head_width (Ancho de cabezal mm)
+            //lamina_maximum_width (Ancho máximo de lamina mm)
+            //lamina_maximum_thickness (Espesor máximo de lamina mm)
+            //product_weight (Peso del producto (kg))
+            //court_min (Cortes por minuto)
+            
         $manager->flush();
     }
 

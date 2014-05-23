@@ -34,7 +34,7 @@ class LoadModelMachineryData extends AbstractFixture implements FixtureInterface
                 ->setName('Extrusión de compuesto')
                 ->addFeaturesMachinery($this->getReference('nro'))
                 ->addFeaturesMachinery($this->getReference('mark'))
-                ->addFeaturesMachinery($this->getReference('type'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
                 ->addFeaturesMachinery($this->getReference('maximum_capacity'))
                 ->addFeaturesMachinery($this->getReference('year_manufacture'))
                 ->addFeaturesMachinery($this->getReference('screw_type'))
@@ -46,6 +46,181 @@ class LoadModelMachineryData extends AbstractFixture implements FixtureInterface
                 ;
             $manager->persist($modelMachinery);
             $this->addReference('extrusion_compound', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Extrusión de compresión')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('weight'))
+                ->addFeaturesMachinery($this->getReference('cavity'))
+                ->addFeaturesMachinery($this->getReference('pieces_min'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('extrusion_compression', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Extrusión de fibras')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('number_rows'))
+                ->addFeaturesMachinery($this->getReference('number_orifices'))
+                ->addFeaturesMachinery($this->getReference('title_max'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('fiber_extrusion', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Extrusión de flejes')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('number_strips'))
+                ->addFeaturesMachinery($this->getReference('width_strips'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('strapping_extrusion', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Extrusión de lámina')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('head_width'))
+                ->addFeaturesMachinery($this->getReference('lamina_maximum_width'))
+                ->addFeaturesMachinery($this->getReference('lamina_maximum_thickness'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('sheet_extrusion', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Extrusión de película plana')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('head_width'))
+                ->addFeaturesMachinery($this->getReference('lamina_maximum_width'))
+                ->addFeaturesMachinery($this->getReference('lamina_maximum_thickness'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('flat_film_extrusion', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Extrusión de película tubular')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('head_width'))
+                ->addFeaturesMachinery($this->getReference('lamina_maximum_width'))
+                ->addFeaturesMachinery($this->getReference('lamina_maximum_thickness'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('tubular_film_extrusion', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Extrusión de perfiles grandes')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('product_weight'))
+                ->addFeaturesMachinery($this->getReference('court_min'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('large_extrusion_profiles', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Extrusión de perfiles anulares pequeños')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('product_weight'))
+                ->addFeaturesMachinery($this->getReference('court_min'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('small_annular_extrusion_profiles', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Extrusión de rafia')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('product_weight'))
+                ->addFeaturesMachinery($this->getReference('court_min'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('extrusion_raffia', $modelMachinery);
+                
+                
         $manager->flush();
     }
 
