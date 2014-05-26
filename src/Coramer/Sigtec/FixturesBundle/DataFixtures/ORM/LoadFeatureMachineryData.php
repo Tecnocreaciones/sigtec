@@ -45,7 +45,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('number')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.nro',
+                    'label' => 'sigtec.feature_machinery.label.nro',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -65,7 +65,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('mark')
                 ->setFieldType('text')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.mark',
+                    'label' => 'sigtec.feature_machinery.label.mark',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -85,7 +85,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('extrusion_type')
                 ->setFieldType('choice')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.extrusion_type',
+                    'label' => 'sigtec.feature_machinery.label.extrusion_type',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -109,7 +109,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('maximum_capacity')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.maximum_capacity',
+                    'label' => 'sigtec.feature_machinery.label.maximum_capacity',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -129,7 +129,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('year_manufacture')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.year_manufacture',
+                    'label' => 'sigtec.feature_machinery.label.year_manufacture',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -149,7 +149,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('screw_type')
                 ->setFieldType('choice')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.screw_type',
+                    'label' => 'sigtec.feature_machinery.label.screw_type',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -175,7 +175,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('screw_diameter')
                 ->setFieldType('number')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.screw_diameter',
+                    'label' => 'sigtec.feature_machinery.label.screw_diameter',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -196,7 +196,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('type_cut')
                 ->setFieldType('choice')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.type_cut',
+                    'label' => 'sigtec.feature_machinery.label.type_cut',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -220,7 +220,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('operating_time')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.operating_time',
+                    'label' => 'sigtec.feature_machinery.label.operating_time',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -252,7 +252,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('main_product')
                 ->setFieldType('entity')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.main_product',
+                    'label' => 'sigtec.feature_machinery.label.main_product',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -278,7 +278,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('profile_coated')
                 ->setFieldType('entity')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.profile_coated',
+                    'label' => 'sigtec.feature_machinery.label.profile_coated',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -304,7 +304,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('plant')
                 ->setFieldType('entity')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.plant',
+                    'label' => 'sigtec.feature_machinery.label.plant',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -330,7 +330,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('resin')
                 ->setFieldType('entity')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.resin',
+                    'label' => 'sigtec.feature_machinery.label.resin',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -356,7 +356,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('weight')
                 ->setFieldType('number')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.weight',
+                    'label' => 'sigtec.feature_machinery.label.weight',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -377,7 +377,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('cavity')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.cavity',
+                    'label' => 'sigtec.feature_machinery.label.cavity',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -398,7 +398,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('pieces_min')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.pieces_min',
+                    'label' => 'sigtec.feature_machinery.label.pieces_min',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -419,7 +419,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('number_rows')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.number_rows',
+                    'label' => 'sigtec.feature_machinery.label.number_rows',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -440,7 +440,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('number_orifices')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.number_orifices',
+                    'label' => 'sigtec.feature_machinery.label.number_orifices',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -461,7 +461,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('title_max')
                 ->setFieldType('number')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.title_max',
+                    'label' => 'sigtec.feature_machinery.label.title_max',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -482,7 +482,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('number_strips')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.number_strips',
+                    'label' => 'sigtec.feature_machinery.label.number_strips',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -503,7 +503,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('width_strips')
                 ->setFieldType('number')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.width_strips',
+                    'label' => 'sigtec.feature_machinery.label.width_strips',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -524,7 +524,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('head_width')
                 ->setFieldType('text')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.head_width',
+                    'label' => 'sigtec.feature_machinery.label.head_width',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -545,7 +545,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('lamina_maximum_width')
                 ->setFieldType('number')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.lamina_maximum_width',
+                    'label' => 'sigtec.feature_machinery.label.lamina_maximum_width',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -566,7 +566,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('lamina_maximum_thickness')
                 ->setFieldType('number')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.lamina_maximum_thickness',
+                    'label' => 'sigtec.feature_machinery.label.lamina_maximum_thickness',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -587,7 +587,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('product_weight')
                 ->setFieldType('number')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.product_weight',
+                    'label' => 'sigtec.feature_machinery.label.product_weight',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -608,7 +608,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('court_min')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.court_min',
+                    'label' => 'sigtec.feature_machinery.label.court_min',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -629,7 +629,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('diameter_range')
                 ->setFieldType('text')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.diameter_range',
+                    'label' => 'sigtec.feature_machinery.label.diameter_range',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -650,7 +650,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('thickness_range')
                 ->setFieldType('text')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.thickness_range',
+                    'label' => 'sigtec.feature_machinery.label.thickness_range',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -671,7 +671,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('head_type')
                 ->setFieldType('choice')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.head_type',
+                    'label' => 'sigtec.feature_machinery.label.head_type',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -696,7 +696,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('station')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.station',
+                    'label' => 'sigtec.feature_machinery.label.station',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -717,7 +717,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('container_capacity')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.container_capacity',
+                    'label' => 'sigtec.feature_machinery.label.container_capacity',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -738,7 +738,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('type_cut_parison')
                 ->setFieldType('choice')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.type_cut_parison',
+                    'label' => 'sigtec.feature_machinery.label.type_cut_parison',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -764,7 +764,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('cycle')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.cycle',
+                    'label' => 'sigtec.feature_machinery.label.cycle',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -785,7 +785,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('weight_cycle')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.weight_cycle',
+                    'label' => 'sigtec.feature_machinery.label.weight_cycle',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -806,7 +806,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('closing_force')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.closing_force',
+                    'label' => 'sigtec.feature_machinery.label.closing_force',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -827,7 +827,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('type_mixed')
                 ->setFieldType('choice')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.type_mixed',
+                    'label' => 'sigtec.feature_machinery.label.type_mixed',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -852,7 +852,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('mixing_time')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.mixing_time',
+                    'label' => 'sigtec.feature_machinery.label.mixing_time',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -873,7 +873,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('load_capacity')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.load_capacity',
+                    'label' => 'sigtec.feature_machinery.label.load_capacity',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -894,7 +894,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('coating_thickness')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.coating_thickness',
+                    'label' => 'sigtec.feature_machinery.label.coating_thickness',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -915,7 +915,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('maximum_width_coating')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.maximum_width_coating',
+                    'label' => 'sigtec.feature_machinery.label.maximum_width_coating',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -936,7 +936,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('maximum_coating_thickness')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.maximum_coating_thickness',
+                    'label' => 'sigtec.feature_machinery.label.maximum_coating_thickness',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -957,7 +957,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('heating_system')
                 ->setFieldType('text')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.heating_system',
+                    'label' => 'sigtec.feature_machinery.label.heating_system',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -978,7 +978,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('number_molds')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.number_molds',
+                    'label' => 'sigtec.feature_machinery.label.number_molds',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -999,7 +999,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('motor_power')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.motor_power',
+                    'label' => 'sigtec.feature_machinery.label.motor_power',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1020,7 +1020,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('particle_size')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.particle_size',
+                    'label' => 'sigtec.feature_machinery.label.particle_size',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1041,7 +1041,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('refrigeration_type')
                 ->setFieldType('text')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.refrigeration_type',
+                    'label' => 'sigtec.feature_machinery.label.refrigeration_type',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1062,7 +1062,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('roller_diameter')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.roller_diameter',
+                    'label' => 'sigtec.feature_machinery.label.roller_diameter',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1083,7 +1083,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('width_calender')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.width_calender',
+                    'label' => 'sigtec.feature_machinery.label.width_calender',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1104,7 +1104,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('maximum_width')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.maximum_width',
+                    'label' => 'sigtec.feature_machinery.label.maximum_width',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1125,7 +1125,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('maximum_thickness')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.maximum_thickness',
+                    'label' => 'sigtec.feature_machinery.label.maximum_thickness',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1146,7 +1146,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('width')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.width',
+                    'label' => 'sigtec.feature_machinery.label.width',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1167,7 +1167,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('linear_velocity')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.linear_velocity',
+                    'label' => 'sigtec.feature_machinery.label.linear_velocity',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1188,7 +1188,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('number_colors')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.number_colors',
+                    'label' => 'sigtec.feature_machinery.label.number_colors',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1209,7 +1209,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('type_printing')
                 ->setFieldType('text')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.type_printing',
+                    'label' => 'sigtec.feature_machinery.label.type_printing',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1230,7 +1230,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('characteristics')
                 ->setFieldType('textarea')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.characteristics',
+                    'label' => 'sigtec.feature_machinery.label.characteristics',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1251,7 +1251,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('observations')
                 ->setFieldType('textarea')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.observations',
+                    'label' => 'sigtec.feature_machinery.label.observations',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1272,7 +1272,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('printing_speed')
                 ->setFieldType('number')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.printing_speed',
+                    'label' => 'sigtec.feature_machinery.label.printing_speed',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1293,7 +1293,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('type_adhesive')
                 ->setFieldType('choice')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.type_adhesive',
+                    'label' => 'sigtec.feature_machinery.label.type_adhesive',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1317,7 +1317,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('number_layers')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.number_layers',
+                    'label' => 'sigtec.feature_machinery.label.number_layers',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1338,7 +1338,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('sealing_type')
                 ->setFieldType('text')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.sealing_type',
+                    'label' => 'sigtec.feature_machinery.label.sealing_type',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1359,7 +1359,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('tracks')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.tracks',
+                    'label' => 'sigtec.feature_machinery.label.tracks',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1380,7 +1380,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('sealing_velocity')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.sealing_velocity',
+                    'label' => 'sigtec.feature_machinery.label.sealing_velocity',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
@@ -1401,7 +1401,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setName('type_tissue')
                 ->setFieldType('choice')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.type_tissue',
+                    'label' => 'sigtec.feature_machinery.label.type_tissue',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
