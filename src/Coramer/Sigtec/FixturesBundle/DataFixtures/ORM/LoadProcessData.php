@@ -134,8 +134,10 @@ class LoadProcessData extends AbstractFixture implements FixtureInterface,Ordere
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Extrusión termoformado');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Extrusión termoformado')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('thermoforming_extrusion'))
+                ;
             $manager->persist($process);
             
         $process = new Process();

@@ -783,7 +783,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             //operating_time (Tiempo de operación)
             //main_product (Producto principal)
             //plant (Planta)
-            //weight (Peso g)
+            //weight (Peso (gramo))
             //cavity (Cavidad)
             //pieces_min (Piezas por minuto)
             //number_rows (Número de hileras)
