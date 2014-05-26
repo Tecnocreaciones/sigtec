@@ -32,8 +32,10 @@ class LoadProcessData extends AbstractFixture implements FixtureInterface,Ordere
     {
         //typeProcess-primario
         $process = new Process();
-        $process->setDescription('Calandrado');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Calandrado')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('calendering'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
@@ -181,19 +183,25 @@ class LoadProcessData extends AbstractFixture implements FixtureInterface,Ordere
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Soplado');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Soplado')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('blown'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Termoformado');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Termoformado')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('thermoformed'))
+                ;
             $manager->persist($process);
             
         //typeProcess-secundario
         $process = new Process();
-        $process->setDescription('Corte o refilado');
-        $process->setTypeProcess($this->getReference('typeProcess-secundario'));
+        $process->setDescription('Corte o refilado')
+                ->setTypeProcess($this->getReference('typeProcess-secundario'))
+                ->setModelMachinery($this->getReference('cutting_or_trimming'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
@@ -202,23 +210,31 @@ class LoadProcessData extends AbstractFixture implements FixtureInterface,Ordere
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Impresión');
-        $process->setTypeProcess($this->getReference('typeProcess-secundario'));
+        $process->setDescription('Impresión')
+                ->setTypeProcess($this->getReference('typeProcess-secundario'))
+                ->setModelMachinery($this->getReference('print'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Laminación');
-        $process->setTypeProcess($this->getReference('typeProcess-secundario'));
+        $process->setDescription('Laminación')
+                ->setTypeProcess($this->getReference('typeProcess-secundario'))
+                ->setModelMachinery($this->getReference('lamination'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Sellado');
-        $process->setTypeProcess($this->getReference('typeProcess-secundario'));
+        $process->setDescription('Sellado')
+                ->setTypeProcess($this->getReference('typeProcess-secundario'))
+                ->setModelMachinery($this->getReference('sealing'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Tejeduría');
-        $process->setTypeProcess($this->getReference('typeProcess-secundario'));
+        $process->setDescription('Tejeduría')
+                ->setTypeProcess($this->getReference('typeProcess-secundario'))
+                ->setModelMachinery($this->getReference('weaving'))
+                ;
             $manager->persist($process);
             
         //typeProcess-preparacion
@@ -237,8 +253,10 @@ class LoadProcessData extends AbstractFixture implements FixtureInterface,Ordere
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Pulverizado');
-        $process->setTypeProcess($this->getReference('typeProcess-preparacion'));
+        $process->setDescription('Pulverizado')
+                ->setTypeProcess($this->getReference('typeProcess-preparacion'))
+                ->setModelMachinery($this->getReference('pulverized'))
+                ;
             $manager->persist($process);
             
         $process = new Process();

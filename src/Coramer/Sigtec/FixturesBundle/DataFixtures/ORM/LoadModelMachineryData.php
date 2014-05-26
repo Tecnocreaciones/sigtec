@@ -423,7 +423,182 @@ class LoadModelMachineryData extends AbstractFixture implements FixtureInterface
                 ;
                 $manager->persist($modelMachinery);
                 $this->addReference('rotomolding', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Soplado')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('cavity'))
+                ->addFeaturesMachinery($this->getReference('container_capacity'))
+                ->addFeaturesMachinery($this->getReference('resin'))
+                ->addFeaturesMachinery($this->getReference('weight'))
+                ->addFeaturesMachinery($this->getReference('cycle'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('blown', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Termoformado')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('weight'))
+                ->addFeaturesMachinery($this->getReference('cavity'))
+                ->addFeaturesMachinery($this->getReference('cycle'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('thermoformed', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Pulverizado')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('motor_power'))
+                ->addFeaturesMachinery($this->getReference('particle_size'))
+                ->addFeaturesMachinery($this->getReference('refrigeration_type'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('pulverized', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Recuperado')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('type_cut'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('recovered', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Calandrado')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('roller_diameter'))
+                ->addFeaturesMachinery($this->getReference('width_calender'))
+                ->addFeaturesMachinery($this->getReference('maximum_width'))
+                ->addFeaturesMachinery($this->getReference('maximum_thickness'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('calendering', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Corte o refilado')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('width'))
+                ->addFeaturesMachinery($this->getReference('linear_velocity'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('cutting_or_trimming', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Impresión')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('number_colors'))
+                ->addFeaturesMachinery($this->getReference('type_printing'))
+                ->addFeaturesMachinery($this->getReference('printing_speed'))
+                ->addFeaturesMachinery($this->getReference('characteristics'))
+                ->addFeaturesMachinery($this->getReference('observations'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('print', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Laminación')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('type_adhesive'))
+                ->addFeaturesMachinery($this->getReference('width'))
+                ->addFeaturesMachinery($this->getReference('linear_velocity'))
+                ->addFeaturesMachinery($this->getReference('number_layers'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('lamination', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Sellado')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('tracks'))
+                ->addFeaturesMachinery($this->getReference('sealing_type'))
+                ->addFeaturesMachinery($this->getReference('sealing_velocity'))
+                ->addFeaturesMachinery($this->getReference('observations'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('sealing', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Tejeduría')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('type_tissue'))
+                ->addFeaturesMachinery($this->getReference('linear_velocity'))
+                ->addFeaturesMachinery($this->getReference('width'))
                 
+                ->addFeaturesMachinery($this->getReference('observations'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('weaving', $modelMachinery);
                 
         $manager->flush();
     }
