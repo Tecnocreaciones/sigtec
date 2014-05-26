@@ -1270,7 +1270,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ->setDescription('Velocidad de impresión en golpes por minutos (gpm) o en metros por minutos (m/min)')
                 ->setHelp('sigtec.help.feature_machinery.printing_speed')
                 ->setName('printing_speed')
-                ->setFieldType('double')
+                ->setFieldType('number')
                 ->setParameters(array(
                     'label' => 'sigtec.feature_machinery.printing_speed',
                     'constraints' => array(
