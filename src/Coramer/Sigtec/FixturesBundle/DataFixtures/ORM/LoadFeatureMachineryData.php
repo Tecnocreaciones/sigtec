@@ -733,7 +733,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
         //Tipo de corte de parison
         $featureMachinery = new FeatureMachinery();
         $featureMachinery
-                ->setDescription('Capacidad del envase (Litros)')
+                ->setDescription('Tipo de corte de parison')
                 ->setHelp('sigtec.help.feature_machinery.type_cut_parison')
                 ->setName('type_cut_parison')
                 ->setFieldType('choice')

@@ -145,7 +145,7 @@ sigtec:
         label:
             nro: Quantity
             mark: Mark
-            type: Type
+            extrusion_type: Extrusion type
             maximum_capacity: Maximum capacity (kg/h)
             year_manufacture: Year manufacture
             screw_type: Screw type 
@@ -154,6 +154,57 @@ sigtec:
             operating_time: Operating time (day/month)
             main_product: Main product
             plant: Location
+            profile_coated: Profile coated
+            resin: Resin
+            weight: Weight
+            cavity: Cavities
+            pieces_min: Parts per minute
+            number_rows: Number of rows
+            number_orifices: Number of orifices
+            title_max: Maximum titer
+            number_strips: Number of strips
+            width_strips: Width strips (mm)
+            head_width: Head width (mm)
+            lamina_maximum_width: Maximum width (mm)
+            lamina_maximum_thickness: Maximum thickness (mm)
+            product_weight: Product weight (kg)
+            court_min: Cuts per minute
+            diameter_range: Diameter range (mm)
+            thickness_range: Thickness range (mm)
+            head_type: Head type
+            station: Stations
+            container_capacity: Container capacity (L)
+            type_cut_parison: Cut type
+            cycle: Cycles (s)
+            weight_cycle: Weight of container (g/s)
+            closing_force: Closing force (T)
+            type_mixed: Mixed type
+            mixing_time: Mixing time (m)
+            load_capacity: Mixing Capacity (kg)
+            coating_thickness: Coating thickness (mm)
+            maximum_width_coating: Maximum coating width (mm)
+            maximum_coating_thickness: Maximum coating thickness (mm)
+            heating_system: Heating system
+            number_molds: Number of molds
+            motor_power: Motor power (HP)
+            particle_size: Particle size
+            refrigeration_type: Refrigeration type
+            roller_diameter: Roller diameter (mm)
+            width_calender: Width calender (mm)
+            maximum_width: Maximum width (mm)
+            maximum_thickness: Maximum thickness (mm)
+            linear_velocity: Linear velocity (m/min)
+            number_colors: Number of colors
+            type_printing: Type of printing
+            characteristics: Characteristics
+            observations: Observations
+            printing_speed: Printing speed
+            type_adhesive: Type adhesive
+            number_layers: Number of layers
+            sealing_type: Sealing type
+            tracks: Tracks
+            sealing_velocity: Sealing speed (gpm)
+            type_tissue: Tissue Type
         error:
             no_assigned: The process "%m%", does not have a model assigned machinery.
         nro: Quantity

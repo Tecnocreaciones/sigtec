@@ -150,7 +150,7 @@ sigtec:
         label:
             number: Nro
             mark: Marca
-            type: Tipo
+            extrusion_type: Tipo de extrusión
             maximum_capacity: Capacidad máxima (kg/h)
             year_manufacture: Año de fabricación
             screw_type: Tipo de tornillo
@@ -159,6 +159,56 @@ sigtec:
             operating_time: Tiempo de operación (días/mes)
             main_product: Producto principal
             plant: Localidad
+            profile_coated: Perfil recubierto
+            resin: Resina
+            weight: Peso
+            cavity: Cavidades
+            pieces_min: Piezas por minuto
+            number_rows: Número de hileras
+            number_orifices: Número de orificios
+            title_max: Título máximo
+            number_strips: Número de flejes
+            width_strips: Ancho de flejes (mm)
+            head_width: Ancho de cabezal (mm)
+            lamina_maximum_width: Ancho máximo (mm)
+            lamina_maximum_thickness: Espesor máximo (mm)
+            product_weight: Peso del producto (kg)
+            court_min: Cortes por minuto
+            diameter_range: Rango diámetro (mm)
+            head_type: Tipo de cabezal
+            station: Estaciones
+            container_capacity: Capacidad de envase (L)
+            type_cut_parison: Tipo de corte
+            cycle: Ciclos (s)
+            weight_cycle: Peso del envase (g/s)
+            closing_force: Fuerza de cierre (T)
+            type_mixed: Tipo de mezclado
+            mixing_time: Tiempo de mezclado (m)
+            load_capacity: Capacidad de mezcla (kg)
+            coating_thickness: Espesor del recubrimiento (mm)
+            maximum_width_coating: Ancho máximo de recubrimiento (mm)
+            maximum_coating_thickness: Espesor máximo de recubrimiento (mm)
+            heating_system: Sistema de calefacción
+            number_molds: Número de moldes
+            motor_power: Potencia del motor (HP)
+            particle_size: Tamaño de particula
+            refrigeration_type: Tipo de refrigeración
+            roller_diameter: Diámetro de rodillos (mm)
+            width_calender: Ancho de calandra (mm)
+            maximum_width: Ancho maximo (mm)
+            maximum_thickness: Espesor máximo (mm)
+            linear_velocity: Velocidad lineal (m/min)
+            number_colors: Cantidad de colores
+            type_printing: Tipo de impresión
+            characteristics: Caracteristicas
+            observations: Observaciones
+            printing_speed: Velocidad de impresión (gmp, m/min)
+            type_adhesive: Tipo de adhesivo
+            number_layers: Número de capas
+            sealing_type: Tipo de sellado
+            tracks: Pistas
+            sealing_velocity: Velocidad de sellado (gpm)
+            type_tissue: Tipo de tejido
         error:
             no_assigned: El proceso "%m%", no tiene un modelo de maquinaria asignado.
         nro: Cantidad
