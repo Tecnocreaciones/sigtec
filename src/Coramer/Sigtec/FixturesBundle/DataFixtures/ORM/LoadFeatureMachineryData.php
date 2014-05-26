@@ -101,7 +101,7 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             $manager->persist($featureMachinery);
             $this->addReference('extrusion_type', $featureMachinery);
         
-        //Capacidad maxima
+        //Capacidad maxima (k/h)
         $featureMachinery = new FeatureMachinery();
         $featureMachinery
                 ->setDescription('Capacidad maxima de procesamiento de resina en k/h')
@@ -269,6 +269,32 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
                 ;
             $manager->persist($featureMachinery);
             $this->addReference('main_product', $featureMachinery);
+        
+        //Perfil recubierto (Producto)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Producto que se recubre')
+                ->setHelp('sigtec.help.feature_machinery.profile_coated')
+                ->setName('profile_coated')
+                ->setFieldType('entity')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.profile_coated',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Master\Product',
+                   'property' => 'description',
+                   'attr' => array(
+                       'class' => 'select small-margin-right validate[required]',
+                   ),
+                ))
+                ->setEvalParameters(array(
+                   'query_builder' => $getProductActive
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('profile_coated', $featureMachinery);
         
         //Planta
         $featureMachinery = new FeatureMachinery();
@@ -772,10 +798,182 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             $manager->persist($featureMachinery);
             $this->addReference('weight_cycle', $featureMachinery);
         
+        //Fuerza de cierre (Tonelada)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Fuerza de cierre del equipo en toneladas')
+                ->setHelp('sigtec.help.feature_machinery.closing_force')
+                ->setName('closing_force')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.closing_force',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-small small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('closing_force', $featureMachinery);
+        
+        //Tipo de Mezclado
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Tipo de mezclado')
+                ->setHelp('sigtec.help.feature_machinery.type_mixed')
+                ->setName('type_mixed')
+                ->setFieldType('choice')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.type_mixed',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'select input-small small-margin-right validate[required]',
+                   ),
+                    'choices' => array(
+                       0 => 'Turbomezclador',
+                       1 => 'Mezclador de baja velocidad',
+                   )
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('type_mixed', $featureMachinery);
+            
+        //Tiempo de mezclado (minutos)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Tiempo de mezclado en minutos')
+                ->setHelp('sigtec.help.feature_machinery.mixing_time')
+                ->setName('mixing_time')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.mixing_time',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-small small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('mixing_time', $featureMachinery);
+            
+        //Capacidad de carga de mezcla (kilogramo)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Capacidad de carga de mezcla en kilogramos')
+                ->setHelp('sigtec.help.feature_machinery.load_capacity')
+                ->setName('load_capacity')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.load_capacity',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-small small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('load_capacity', $featureMachinery);
+            
+        //Espesor del recubrimiento (milimetros)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Capacidad de carga de mezcla en kilogramos')
+                ->setHelp('sigtec.help.feature_machinery.coating_thickness')
+                ->setName('coating_thickness')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.coating_thickness',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-small small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('coating_thickness', $featureMachinery);
+            
+        //Ancho maximo de recubrimiento (milimetros)
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Ancho maximo de recubrimiento en milimetros')
+                ->setHelp('sigtec.help.feature_machinery.maximum_width_coating')
+                ->setName('maximum_width_coating')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.maximum_width_coating',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-small small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('maximum_width_coating', $featureMachinery);
+            
+        //Sistema de calefaccion
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Sistema de calefacción que utiliza el equipo (flama, horno, etc)')
+                ->setHelp('sigtec.help.feature_machinery.heating_system')
+                ->setName('heating_system')
+                ->setFieldType('string')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.heating_system',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-small small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('heating_system', $featureMachinery);
+            
+        //Numero de moldes
+        $featureMachinery = new FeatureMachinery();
+        $featureMachinery
+                ->setDescription('Número de moldes que tiene el equipo')
+                ->setHelp('sigtec.help.feature_machinery.number_molds')
+                ->setName('number_molds')
+                ->setFieldType('integer')
+                ->setParameters(array(
+                    'label' => 'sigtec.feature_machinery.number_molds',
+                    'constraints' => array(
+                       $validationNotBlank,
+                       $validationNotNull,
+                   ),
+                   'attr' => array(
+                       'class' => 'input input-small small-margin-right validate[required]',
+                   ),
+                ))
+                ;
+            $manager->persist($featureMachinery);
+            $this->addReference('number_molds', $featureMachinery);
+            
             //nro (Numero)
             //mark (Marca)
             //extrusion_type (Tipo de extrusión)
-            //maximum_capacity (Capacidad maxima)
+            //maximum_capacity (Capacidad maxima (k/h))
             //year_manufacture (Año de fabricacion)
             //screw_type (Tipo de tornillo)
             //screw_diameter (Diámetro de tornillo)
@@ -805,6 +1003,16 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
             //type_cut_parison (Tipo de corte de parison)
             //cycle (Ciclos (segundos))
             //weight_cycle (Peso(gramo) / Ciclo(segundos))
+            //closing_force (Fuerza de cierre (Tonelada))
+            //type_mixed (Tipo de Mezclado)
+            //mixing_time (Tiempo de mezclado (minutos))
+            //load_capacity (Capacidad de carga de mezcla (kilogramo))
+            //profile_coated (Perfil recubierto (Producto))
+            //coating_thickness (Espesor del recubrimiento (milimetros))
+            //maximum_width_coating (Ancho maximo de recubrimiento (milimetros))
+            //maximum_coating_thickness (Espesor maximo de recubrimiento (milimetros))
+            //heating_system (Sistema de calefaccion)
+            //number_molds (Numero de moldes)
             
         $manager->flush();
     }

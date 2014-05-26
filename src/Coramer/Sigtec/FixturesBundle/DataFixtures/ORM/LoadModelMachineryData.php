@@ -295,6 +295,134 @@ class LoadModelMachineryData extends AbstractFixture implements FixtureInterface
                 ;
                 $manager->persist($modelMachinery);
                 $this->addReference('thermoforming_extrusion', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Inyección')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('closing_force'))
+                ->addFeaturesMachinery($this->getReference('weight'))
+                ->addFeaturesMachinery($this->getReference('cavity'))
+                ->addFeaturesMachinery($this->getReference('cycle'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('injection', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Inyección Soplado')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('closing_force'))
+                ->addFeaturesMachinery($this->getReference('weight'))
+                ->addFeaturesMachinery($this->getReference('cavity'))
+                ->addFeaturesMachinery($this->getReference('cycle'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('injection_blow', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Mezclado')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('type_mixed'))
+                ->addFeaturesMachinery($this->getReference('load_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('mixing_time'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('mixed', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Peletizado')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('type_cut'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('pelleted', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Recubrimiento de perfiles')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('profile_coated'))
+                ->addFeaturesMachinery($this->getReference('coating_thickness'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('coating_profiles', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Recubrimiento por extrusión')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('extrusion_type'))
+                ->addFeaturesMachinery($this->getReference('screw_type'))
+                ->addFeaturesMachinery($this->getReference('screw_diameter'))
+                ->addFeaturesMachinery($this->getReference('head_width'))
+                ->addFeaturesMachinery($this->getReference('maximum_width_coating'))
+                ->addFeaturesMachinery($this->getReference('maximum_coating_thickness'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('coating_extrusion', $modelMachinery);
+            
+        $modelMachinery = new ModelMachinery();
+        $modelMachinery
+                ->setName('Rotomoldeo')
+                ->addFeaturesMachinery($this->getReference('nro'))
+                ->addFeaturesMachinery($this->getReference('mark'))
+                ->addFeaturesMachinery($this->getReference('maximum_capacity'))
+                ->addFeaturesMachinery($this->getReference('year_manufacture'))
+                ->addFeaturesMachinery($this->getReference('heating_system'))
+                ->addFeaturesMachinery($this->getReference('weight'))
+                ->addFeaturesMachinery($this->getReference('cycle'))
+                ->addFeaturesMachinery($this->getReference('number_molds'))
+                ->addFeaturesMachinery($this->getReference('operating_time'))
+                ->addFeaturesMachinery($this->getReference('main_product'))
+                ->addFeaturesMachinery($this->getReference('plant'))
+                ;
+                $manager->persist($modelMachinery);
+                $this->addReference('rotomolding', $modelMachinery);
                 
                 
         $manager->flush();

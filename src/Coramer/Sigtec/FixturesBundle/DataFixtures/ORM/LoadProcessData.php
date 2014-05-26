@@ -146,28 +146,38 @@ class LoadProcessData extends AbstractFixture implements FixtureInterface,Ordere
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Inyección');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Inyección')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('injection'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Inyección soplado');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Inyección soplado')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('injection_blow'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Recubrimiento de perfiles');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Recubrimiento de perfiles')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('coating_profiles'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Recubrimiento por Extrusión');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Recubrimiento por Extrusión')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('coating_extrusion'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Rotomoldeo');
-        $process->setTypeProcess($this->getReference('typeProcess-primario'));
+        $process->setDescription('Rotomoldeo')
+                ->setTypeProcess($this->getReference('typeProcess-primario'))
+                ->setModelMachinery($this->getReference('rotomolding'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
@@ -213,13 +223,17 @@ class LoadProcessData extends AbstractFixture implements FixtureInterface,Ordere
             
         //typeProcess-preparacion
         $process = new Process();
-        $process->setDescription('Mezclado');
-        $process->setTypeProcess($this->getReference('typeProcess-preparacion'));
+        $process->setDescription('Mezclado')
+                ->setTypeProcess($this->getReference('typeProcess-preparacion'))
+                ->setModelMachinery($this->getReference('mixed'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
-        $process->setDescription('Peletizado');
-        $process->setTypeProcess($this->getReference('typeProcess-preparacion'));
+        $process->setDescription('Peletizado')
+                ->setTypeProcess($this->getReference('typeProcess-preparacion'))
+                ->setModelMachinery($this->getReference('pelleted'))
+                ;
             $manager->persist($process);
             
         $process = new Process();
