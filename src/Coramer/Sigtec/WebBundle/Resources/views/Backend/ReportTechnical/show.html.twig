@@ -7,6 +7,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/table3860.css?v=1') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/switches3860.css?v=1') }}">
 {% endblock stylesheets %}
 
 {% block body -%}
@@ -48,421 +49,438 @@
             {{ company_report_technical.updatedAt|date('Y-m-d h:i a') }}
         </p>
     </fieldset>
-    <details class="details margin-bottom" >
-        <summary>{{ 'sigtec.professional_profile'|trans }}</summary>
-        <div class="with-padding">
-            <p class="inline-label">
-                <label class="label">{{ 'sigtec.quantity_professionals'|trans }}</label>
-                {{ company_report_technical.professionalProfile.quantityProfessionals }}
-            </p>
-            <p class="inline-label">
-                <label class="label">{{ 'sigtec.quantity_technical'|trans }}</label>
-                {{ company_report_technical.professionalProfile.quantityTechnical }}
-            </p>
-            <p class="inline-label">
-                <label class="label">{{ 'sigtec.quantity_laborers'|trans }}</label>
-                {{ company_report_technical.professionalProfile.quantityLaborers }}
-            </p>
-            <p class="inline-label">
-                <label class="label">{{ 'sigtec.quantity_other'|trans }}</label>
-                {{ company_report_technical.professionalProfile.quantityOther }}
-            </p>
-            <p class="inline-label">
-                <label class="label">{{ 'sigtec.total_employees'|trans }}</label>
-                {{ company_report_technical.professionalProfile.total }}
-            </p>
-        </div>
-    </details>
 
-    <h3 class="thin">{{ 'sigtec.description_of_the_business_areas.description_of_the_business_areas'|trans }}</h3>
-    <dl class="accordion">
-        <dt>{{ 'sigtec.description_of_the_business_areas.general_production_and_storage'|trans }}</dt>
-        <dd>
-            <div class="with-padding">
-                <table class="simple-table">
-                    <tr>
-                        <th></th> 
-                        <th>{{ 'sigtec.table.header.total'|trans|raw }}</th> 
-                        <th>{{ 'sigtec.table.header.covered'|trans|raw }}</th>
-                    </tr>
-                    {% for plantDescription in company_report_technical.descriptionAreaCompany.plantsDescription %}
+    <h4>{{ 'sigtec.details_technical_report'|trans }}</h4>
+
+    <div class="standard-tabs margin-bottom" id="add-tabs">
+
+            <ul class="tabs">
+                    <li class="active"><a href="#tab-1" class="with-tooltip" title="{{ 'sigtec.professional_profile'|trans }}">{{ 'sigtec.tabs.title.professional_profile'|trans }}</a></li>
+                    <li><a href="#tab-2" class="with-tooltip" title="{{ 'sigtec.description_of_the_business_areas.description_of_the_business_areas'|trans }}">{{ 'sigtec.tabs.title.description_of_the_business_areas'|trans }}</a></li>
+                    <li><a href="#tab-3" class="with-tooltip" title="{{ 'sigtec.production_level.production_level'|trans }}">{{ 'sigtec.tabs.title.production_level'|trans }}</a></li>
+                    <li><a href="#tab-4" class="with-tooltip" title="{{ 'sigtec.description_of_products_manufactured.description_of_products_manufactured'|trans }}">{{ 'sigtec.tabs.title.description_of_products_manufactured'|trans }}</a></li>
+                    <li><a href="#tab-5" class="with-tooltip" title="{{ 'sigtec.additives_used_in_the_process.additives_used_in_the_process'|trans }}">{{ 'sigtec.tabs.title.additives_used_in_the_process'|trans }}</a></li>
+                    <li><a href="#tab-6" class="with-tooltip" title="{{ 'sigtec.other_plastic_resins.other_plastic_resins'|trans }}">{{ 'sigtec.tabs.title.other_plastic_resins'|trans }}</a></li>
+                    <li><a href="#tab-7" class="with-tooltip" title="{{ 'sigtec.description_of_the_market.description_of_the_market'|trans }}">{{ 'sigtec.tabs.title.description_of_the_market'|trans }}</a></li>
+                    <li><a href="#tab-8" class="with-tooltip" title="{{ 'sigtec.exportation_products.exportation_products'|trans }}">{{ 'sigtec.tabs.title.exportation_products'|trans }}</a></li>
+                    <li><a href="#tab-9" class="with-tooltip" title="{{ 'sigtec.growth_potential.growth_potential'|trans }}">{{ 'sigtec.tabs.title.growth_potential'|trans }}</a></li>
+                    <li><a href="#tab-10" class="with-tooltip" title="{{ 'sigtec.inventory_level.inventory_level'|trans }}">{{ 'sigtec.tabs.title.inventory_level'|trans }}</a></li>
+            </ul>
+
+            <div class="tabs-content">
+                
+                <div id="tab-1" class="with-padding">
+                    <p class="inline-label">
+                        <label class="label">{{ 'sigtec.quantity_professionals'|trans }}</label>
+                        {{ company_report_technical.professionalProfile.quantityProfessionals }}
+                    </p>
+                    <p class="inline-label">
+                        <label class="label">{{ 'sigtec.quantity_technical'|trans }}</label>
+                        {{ company_report_technical.professionalProfile.quantityTechnical }}
+                    </p>
+                    <p class="inline-label">
+                        <label class="label">{{ 'sigtec.quantity_laborers'|trans }}</label>
+                        {{ company_report_technical.professionalProfile.quantityLaborers }}
+                    </p>
+                    <p class="inline-label">
+                        <label class="label">{{ 'sigtec.quantity_other'|trans }}</label>
+                        {{ company_report_technical.professionalProfile.quantityOther }}
+                    </p>
+                    <p class="inline-label">
+                        <label class="label">{{ 'sigtec.total_employees'|trans }}</label>
+                        {{ company_report_technical.professionalProfile.total }}
+                    </p>
+                </div>
+                
+                <div id="tab-2" >
+                     <dl class="accordion">
+                        <dt>{{ 'sigtec.description_of_the_business_areas.general_production_and_storage'|trans }}</dt>
+                        <dd>
+                            <div class="with-padding">
+                                <table class="simple-table">
+                                    <tr>
+                                        <th></th> 
+                                        <th>{{ 'sigtec.table.header.total'|trans|raw }}</th> 
+                                        <th>{{ 'sigtec.table.header.covered'|trans|raw }}</th>
+                                    </tr>
+                                    {% for plantDescription in company_report_technical.descriptionAreaCompany.plantsDescription %}
+                                        <tr>
+                                            <td colspan="3">
+                                                <b>{{ plantDescription.plant.name }}</b>
+                                            </td> 
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                {{ plantDescription.area.descriptionArea.description }}
+                                            </td> 
+                                            <td>
+                                                {{ plantDescription.area.totalArea }}
+                                            </td>
+                                            <td>
+                                                {{ plantDescription.area.coveredArea }}
+                                            </td>
+                                        </tr>
+                                        {% for area in plantDescription.area.areas %}
+                                            <tr>
+                                                <td>
+                                                    {{ area.descriptionArea.description }}
+                                                </td> 
+                                                <td>
+                                                    {{ area.totalArea }}
+                                                </td>
+                                                <td>
+                                                    {{ area.coveredArea }}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        <tr>
+                                            <td colspan="3">&nbsp;</td> 
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </dd>
+                        <dt>{{ 'sigtec.description_of_the_business_areas.storage_product_detail'|trans }}</dt>
+                        <dd>
+                            <div class="with-padding">
+                                <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection2">
+                                    <tr>
+                                        <th>{{ 'sigtec.table.header.material'|trans }}</th>
+                                        <th>{{ 'sigtec.table.header.storage'|trans }}</th>
+                                        <th>{{ 'sigtec.table.header.plant'|trans }}</th>
+                                        <th>{{ 'sigtec.table.header.dedication'|trans|raw }}</th> 
+                                    </tr>
+                                    {% for detailProductStorage in company_report_technical.descriptionAreaCompany.detailProductStorages %}
+                                        <tr data="{{ detailProductStorage|serialize }}">
+                                            <td>{{ detailProductStorage.material.description }}</td>
+                                            <td>{{ detailProductStorage.getLabelStorage|trans }}</td>
+                                            <td>{{ detailProductStorage.plant.name }}</td>
+                                            <td>{{ detailProductStorage.dedication.description }}</td>
+                                        </tr>
+                                    {% else %}
+                                            <tr>
+                                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.storage'|trans }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                                            </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+                                
+                <div id="tab-3" class="with-padding">
+                    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoWithMachinery" >
                         <tr>
-                            <td colspan="3">
-                                <b>{{ plantDescription.plant.name }}</b>
-                            </td> 
+                            <td colspan="5" class="align-center"><b>{{ 'sigtec.table.header.production_capacity'|trans }}</b></td>
                         </tr>
                         <tr>
-                            <td>
-                                {{ plantDescription.area.descriptionArea.description }}
-                            </td> 
-                            <td>
-                                {{ plantDescription.area.totalArea }}
-                            </td>
-                            <td>
-                                {{ plantDescription.area.coveredArea }}
-                            </td>
-                        </tr>
-                        {% for area in plantDescription.area.areas %}
-                            <tr>
-                                <td>
-                                    {{ area.descriptionArea.description }}
-                                </td> 
-                                <td>
-                                    {{ area.totalArea }}
-                                </td>
-                                <td>
-                                    {{ area.coveredArea }}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        <tr>
-                            <td colspan="3">&nbsp;</td> 
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
-        </dd>
-        <dt>{{ 'sigtec.description_of_the_business_areas.storage_product_detail'|trans }}</dt>
-        <dd>
-            <div class="with-padding">
-                <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection2">
-                    <tr>
-                        <th>{{ 'sigtec.table.header.material'|trans }}</th>
-                        <th>{{ 'sigtec.table.header.storage'|trans }}</th>
-                        <th>{{ 'sigtec.table.header.plant'|trans }}</th>
-                        <th>{{ 'sigtec.table.header.dedication'|trans|raw }}</th> 
-                    </tr>
-                    {% for detailProductStorage in company_report_technical.descriptionAreaCompany.detailProductStorages %}
-                        <tr data="{{ detailProductStorage|serialize }}">
-                            <td>{{ detailProductStorage.material.description }}</td>
-                            <td>{{ detailProductStorage.getLabelStorage|trans }}</td>
-                            <td>{{ detailProductStorage.plant.name }}</td>
-                            <td>{{ detailProductStorage.dedication.description }}</td>
-                        </tr>
-                    {% else %}
-                            <tr>
-                                <td colspan="4" class="bold text-center">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.storage'|trans }}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="bold text-center">&nbsp;</td>
-                            </tr>
-                    {% endfor %}
-                </table>
-            </div>
-        </dd>
-    </dl>
-    <details class="details margin-bottom" >
-        <summary>{{ 'sigtec.production_level.production_level'|trans }}</summary>
-        <div class="with-padding">
-            <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoWithMachinery" >
-                <tr>
-                    <td colspan="5" class="align-center"><b>{{ 'sigtec.table.header.production_capacity'|trans }}</b></td>
-                </tr>
-                <tr>
-                    <th>{{ 'sigtec.table.header.process'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.shifts'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.hours'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.days_month'|trans|raw }}</th> 
-                </tr>
-                {% for production_level in company_report_technical.productionLevels %}
-                    <tr data="{{ production_level|serialize }}">
-                        <td>{{ production_level.process.description }}</td>
-                        <td>{{ production_level.shifts }}</td>
-                        <td>{{ production_level.hours }}</td>
-                        <td>{{ production_level.daysMonth}}</td>
-                    </tr>
-                {% else %}
-                    <tr >
-                        <td colspan="4" class="bold text-center">&nbsp;</td>
-                    </tr>
-                    <tr >
-                        <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.production_level'|trans }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="bold text-center">&nbsp;</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </details>
-            
-    <details class="details margin-bottom" >
-        <summary>{{ 'sigtec.description_of_products_manufactured.description_of_products_manufactured'|trans }}</summary>
-        <div class="with-padding">
-            <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection4" >
-                <tr>
-                    <th>{{ 'sigtec.table.header.process'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.product'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.resin'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.grade'|trans|raw }}</th> 
-                </tr>
-                {% for product_manufactured in company_report_technical.productsManufactured %}
-                    <tr data="{{ product_manufactured|serialize }}">
-                        <td>{{ product_manufactured.process.description }}</td>
-                        <td>{{ product_manufactured.product.description }}</td>
-                        <td>{{ product_manufactured.grade.resin.description }}</td>
-                        <td>{{ product_manufactured.grade.description }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="4" class="bold text-center">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.product_manufactured'|trans }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="bold text-center">&nbsp;</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </details>
-    <details class="details margin-bottom" >
-        <summary>{{ 'sigtec.additives_used_in_the_process.additives_used_in_the_process'|trans }}</summary>
-        <div class="with-padding">
-            <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection5" >
-            <tr>
-                <th>{{ 'sigtec.table.header.additive'|trans }}</th>
-                <th>{{ 'sigtec.table.header.product'|trans }}</th>
-                <th>{{ 'sigtec.table.header.base_polymer'|trans }}</th>
-                <th>{{ 'sigtec.table.header.mark'|trans }}</th> 
-            </tr>
-            {% for additive_used in company_report_technical.additivesUsed %}
-                <tr data="{{ additive_used|serialize }}">
-                    <td>{{ additive_used.additive.description }}</td>
-                    <td>{{ additive_used.product.description }}</td>
-                    <td>{{ additive_used.basePolymer }}</td>
-                    <td>{{ additive_used.mark }}</td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="4" class="bold text-center">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.additive_used'|trans }}</td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="bold text-center">&nbsp;</td>
-                </tr>
-            {% endfor %}
-        </table>
-        </div>
-    </details>
-    <details class="details margin-bottom" >
-        <summary>{{ 'sigtec.other_plastic_resins.other_plastic_resins'|trans }}</summary>
-        <div class="with-padding">
-            <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection6" >
-                <tr>
-                    <th>{{ 'sigtec.table.header.process'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.product'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.resin'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.grade'|trans }}</th> 
-                </tr>
-                {% for other_plastic_resin in company_report_technical.otherPlasticResin.detailOthersPlasticResin %}
-                    <tr data="{{ other_plastic_resin|serialize }}">
-                        <td>{{ other_plastic_resin.process.description }}</td>
-                        <td>{{ other_plastic_resin.product.description }}</td>
-                        <td>{{ other_plastic_resin.resin.description }}</td>
-                        <td>{{ other_plastic_resin.grade }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="4" class="bold text-center">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.other_plastic_resin'|trans }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="bold text-center">&nbsp;</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </details>
-    <details class="details margin-bottom" >
-        <summary>{{ 'sigtec.description_of_the_market.description_of_the_market'|trans }}</summary>
-        <div class="with-padding">
-            <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection7" >
-                <tr>
-                    <th>{{ 'sigtec.table.header.product'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.segment'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.participation_rate'|trans }}</th> 
-                </tr>
-                {% for description_market in company_report_technical.descriptionMarkets %}
-                    <tr data="{{ description_market|serialize }}">
-                        <td>{{ description_market.product.description }}</td>
-                        <td>{{ description_market.segment.description }}</td>
-                        <td>{{ description_market.subSegment.description }}</td>
-                        <td>{{ description_market.participationRate }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="4" class="bold text-center">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.description_market'|trans }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="bold text-center">&nbsp;</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </details>
-    <details class="details margin-bottom" >
-        <summary>{{ 'sigtec.exportation_products.exportation_products'|trans }}</summary>
-        <div class="with-padding">
-            {{ 'sigtec.exportation_products.has_exported_products'|trans }}
-            {% if company_report_technical.exportation.hasExportedProducts == true %}
-                {{ 'sigtec.yes'|trans }}
-            {% else %}
-                {{ 'sigtec.no'|trans }}
-            {% endif %}
-            <br /><br />
-            {{ 'sigtec.exportation_products.it_plans_to_export'|trans }}
-            {% if company_report_technical.exportation.itPlansToExport == true %}
-                <small class="tag green-bg ng-scope">{{ 'sigtec.yes'|trans }}</small>
-            {% else %}
-                <small class="tag red-bg ng-scope">{{ 'sigtec.no'|trans }}</small>
-            {% endif %}
-            <br /><br />
-            <table class="simple-table table-responsive">
-                <tr>
-                    <th>{{ 'sigtec.table.header.product'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.requirement'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.destiny'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.port'|trans }}</th> 
-                </tr>
-                {% for product_to_export in company_report_technical.exportation.productsExport %}
-                    <tr data="{{ product_to_export|serialize }}">
-                        <td>{{ product_to_export.product.description }}</td>
-                        <td>{{ product_to_export.requirement }}</td>
-                        <td>{{ product_to_export.destiny }}</td>
-                        <td>{{ product_to_export.port.description }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="4" class="bold text-center">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.product_to_export'|trans }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="bold text-center">&nbsp;</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </details>
-    <details class="details margin-bottom" >
-        <summary>{{ 'sigtec.growth_potential.growth_potential'|trans }}</summary>
-        <div class="with-padding">
-            {{ 'sigtec.growth_potential.last_investment_machinery'|trans }}:
-            {% if company_report_technical.growthPotential.lastInvestmentMachinery %}
-                {{ company_report_technical.growthPotential.lastInvestmentMachinery|date('h-dm') }}
-            {% else %}
-                <small class="tag red-bg ng-scope">{{ 'sigtec.none'|trans }}</small>
-            {% endif %}
-            <br /> <br />
-            <h4>{{ 'sigtec.growth_potential.growth_markets'|trans }}</h4>
-            <table class="simple-table table-responsive">
-                <tr>
-                    <th>{{ 'sigtec.table.header.segment'|trans }}</th>
-                    <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
-                </tr>
-                {% for growth_market in company_report_technical.growthPotential.growthMarkets %}
-                    <tr data="{{ growth_market|serialize }}">
-                        <td>{{ growth_market.segment.description }}</td>
-                        <td>{{ growth_market.subSegment.description }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="2" class="bold text-center">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.growth_market'|trans }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="bold text-center">&nbsp;</td>
-                    </tr>
-                {% endfor  %}
-            </table>
-            <br /><br />
-                <h4>{{ 'sigtec.growth_potential.do_you_consider_entering_other_markets'|trans }}
-                    {% if company_report_technical.growthPotential.doYouConsiderEnteringOtherMarkets == true %}
-                        <small class="tag green-bg ng-scope">{{ 'sigtec.yes'|trans }}</small>
-                    {% else %}
-                        <small class="tag red-bg ng-scope">{{ 'sigtec.no'|trans }}</small>
-                    {% endif %}
-                </h4>
-                {% if company_report_technical.growthPotential.doYouConsiderEnteringOtherMarkets == true %}
-                    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection9_2">
-                            <tr>
-                                <th>{{ 'sigtec.table.header.segment'|trans }}</th>
-                                <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
-                            </tr>
-                            {% for other_market in company_report_technical.growthPotential.otherMarkets %}
-                                <tr data="{{ other_market|serialize }}">
-                                    <td>{{ other_market.segment.description }}</td>
-                                    <td>{{ other_market.subSegment.description }}</td>
-                                </tr>
-                            {% else %}
-                                <tr>
-                                    <td colspan="2" class="bold text-center">&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.other_market'|trans }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="bold text-center">&nbsp;</td>
-                                </tr>
-                            {% endfor %}
-                    </table>
-                {% endif %}
-            <br /><br />
-                <h4>
-                    {{ 'sigtec.growth_potential.do_you_plan_to_purchase_new_machineries'|trans }}
-                    {% if company_report_technical.growthPotential.doYouPlanToPurchaseNewMachineries == true %}
-                        <small class="tag green-bg ng-scope">{{ 'sigtec.yes'|trans }}</small>
-                    {% else %}
-                        <small class="tag red-bg ng-scope">{{ 'sigtec.no'|trans }}</small>
-                    {% endif %}
-                </h4>
-                {% if company_report_technical.growthPotential.doYouPlanToPurchaseNewMachineries == true %}
-                    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection9_3">
-                        <tr>
-                            <th>{{ 'sigtec.table.header.quantity'|trans }}</th>
-                            <th>{{ 'sigtec.table.header.capacity'|trans }}</th>
-                            <th>{{ 'sigtec.table.header.type_process'|trans }}</th>
                             <th>{{ 'sigtec.table.header.process'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.shifts'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.hours'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.days_month'|trans|raw }}</th> 
                         </tr>
-                        {% for new_machinery in company_report_technical.growthPotential.newMachineries%}
-                            <tr data="{{ new_machinery|serialize }}">
-                                <td>{{ new_machinery.quantity }}</td>
-                                <td>{{ new_machinery.capacity }}</td>
-                                <td>{{ new_machinery.typeProcess.description }}</td>
-                                <td>{{ new_machinery.process.description }}</td>
+                        {% for production_level in company_report_technical.productionLevels %}
+                            <tr data="{{ production_level|serialize }}">
+                                <td>{{ production_level.process.description }}</td>
+                                <td>{{ production_level.shifts }}</td>
+                                <td>{{ production_level.hours }}</td>
+                                <td>{{ production_level.daysMonth}}</td>
                             </tr>
                         {% else %}
                             <tr >
                                 <td colspan="4" class="bold text-center">&nbsp;</td>
                             </tr>
-                            <tr>
-                                <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.new_machinery'|trans }}</td>
+                            <tr >
+                                <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.production_level'|trans }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="bold text-center">&nbsp;</td>
                             </tr>
                         {% endfor %}
                     </table>
-                {% endif %}
-            <br /><br />
-        </div>
-    </details>
+                </div>
+                    
+                <div id="tab-4" class="with-padding">
+                    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection4" >
+                        <tr>
+                            <th>{{ 'sigtec.table.header.process'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.resin'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.grade'|trans|raw }}</th> 
+                        </tr>
+                        {% for product_manufactured in company_report_technical.productsManufactured %}
+                            <tr data="{{ product_manufactured|serialize }}">
+                                <td>{{ product_manufactured.process.description }}</td>
+                                <td>{{ product_manufactured.product.description }}</td>
+                                <td>{{ product_manufactured.grade.resin.description }}</td>
+                                <td>{{ product_manufactured.grade.description }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.product_manufactured'|trans }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                    
+                <div id="tab-5" class="with-padding">
+                    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection5" >
+                        <tr>
+                            <th>{{ 'sigtec.table.header.additive'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.base_polymer'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.mark'|trans }}</th> 
+                        </tr>
+                        {% for additive_used in company_report_technical.additivesUsed %}
+                            <tr data="{{ additive_used|serialize }}">
+                                <td>{{ additive_used.additive.description }}</td>
+                                <td>{{ additive_used.product.description }}</td>
+                                <td>{{ additive_used.basePolymer }}</td>
+                                <td>{{ additive_used.mark }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.additive_used'|trans }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                    
+                <div id="tab-6" class="with-padding">
+                    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection6" >
+                        <tr>
+                            <th>{{ 'sigtec.table.header.process'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.resin'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.grade'|trans }}</th> 
+                        </tr>
+                        {% for other_plastic_resin in company_report_technical.otherPlasticResin.detailOthersPlasticResin %}
+                            <tr data="{{ other_plastic_resin|serialize }}">
+                                <td>{{ other_plastic_resin.process.description }}</td>
+                                <td>{{ other_plastic_resin.product.description }}</td>
+                                <td>{{ other_plastic_resin.resin.description }}</td>
+                                <td>{{ other_plastic_resin.grade }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.other_plastic_resin'|trans }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                    
+                <div id="tab-7" class="with-padding">
+                    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection7" >
+                        <tr>
+                            <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.segment'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.participation_rate'|trans }}</th> 
+                        </tr>
+                        {% for description_market in company_report_technical.descriptionMarkets %}
+                            <tr data="{{ description_market|serialize }}">
+                                <td>{{ description_market.product.description }}</td>
+                                <td>{{ description_market.segment.description }}</td>
+                                <td>{{ description_market.subSegment.description }}</td>
+                                <td>{{ description_market.participationRate }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.description_market'|trans }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                    
+                <div id="tab-8" class="with-padding">
+
+                       {{ 'sigtec.exportation_products.has_exported_products'|trans }}
+                        {% if company_report_technical.exportation.hasExportedProducts == true %}
+                            <small class="tag green-bg ng-scope">{{ 'sigtec.yes'|trans }}</small>
+                        {% else %}
+                            <small class="tag red-bg ng-scope">{{ 'sigtec.no'|trans }}</small>
+                        {% endif %}
+                        <br /><br />
+                        {{ 'sigtec.exportation_products.it_plans_to_export'|trans }}
+                        {% if company_report_technical.exportation.itPlansToExport == true %}
+                            <small class="tag green-bg ng-scope">{{ 'sigtec.yes'|trans }}</small>
+                        {% else %}
+                            <small class="tag red-bg ng-scope">{{ 'sigtec.no'|trans }}</small>
+                        {% endif %}
+                        <br /><br />
+                        <table class="simple-table table-responsive">
+                            <tr>
+                                <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                                <th>{{ 'sigtec.table.header.requirement'|trans }}</th>
+                                <th>{{ 'sigtec.table.header.destiny'|trans }}</th>
+                                <th>{{ 'sigtec.table.header.port'|trans }}</th> 
+                            </tr>
+                            {% for product_to_export in company_report_technical.exportation.productsExport %}
+                                <tr data="{{ product_to_export|serialize }}">
+                                    <td>{{ product_to_export.product.description }}</td>
+                                    <td>{{ product_to_export.requirement }}</td>
+                                    <td>{{ product_to_export.destiny }}</td>
+                                    <td>{{ product_to_export.port.description }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4" class="bold text-center">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.product_to_export'|trans }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="bold text-center">&nbsp;</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+
+                </div>
+
+                <div id="tab-9" class="with-padding">
+
+                    {{ 'sigtec.growth_potential.last_investment_machinery'|trans }}:
+                    {% if company_report_technical.growthPotential.lastInvestmentMachinery %}
+                        {{ company_report_technical.growthPotential.lastInvestmentMachinery|date('Y-m-d h:i a') }}
+                    {% else %}
+                        <small class="tag red-bg ng-scope">{{ 'sigtec.unassigned'|trans }}</small>
+                    {% endif %}
+                    <br /> <br />
+                    <h4>{{ 'sigtec.growth_potential.growth_markets'|trans }}</h4>
+                    <table class="simple-table table-responsive">
+                        <tr>
+                            <th>{{ 'sigtec.table.header.segment'|trans }}</th>
+                            <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
+                        </tr>
+                        {% for growth_market in company_report_technical.growthPotential.growthMarkets %}
+                            <tr data="{{ growth_market|serialize }}">
+                                <td>{{ growth_market.segment.description }}</td>
+                                <td>{{ growth_market.subSegment.description }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="2" class="bold text-center">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.growth_market'|trans }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="bold text-center">&nbsp;</td>
+                            </tr>
+                        {% endfor  %}
+                    </table>
+                    <br /><br />
+                        <h4>{{ 'sigtec.growth_potential.do_you_consider_entering_other_markets'|trans }}
+                            {% if company_report_technical.growthPotential.doYouConsiderEnteringOtherMarkets == true %}
+                                <small class="tag green-bg ng-scope">{{ 'sigtec.yes'|trans }}</small>
+                            {% else %}
+                                <small class="tag red-bg ng-scope">{{ 'sigtec.no'|trans }}</small>
+                            {% endif %}
+                        </h4>
+                        {% if company_report_technical.growthPotential.doYouConsiderEnteringOtherMarkets == true %}
+                            <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection9_2">
+                                    <tr>
+                                        <th>{{ 'sigtec.table.header.segment'|trans }}</th>
+                                        <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
+                                    </tr>
+                                    {% for other_market in company_report_technical.growthPotential.otherMarkets %}
+                                        <tr data="{{ other_market|serialize }}">
+                                            <td>{{ other_market.segment.description }}</td>
+                                            <td>{{ other_market.subSegment.description }}</td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="2" class="bold text-center">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.other_market'|trans }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="bold text-center">&nbsp;</td>
+                                        </tr>
+                                    {% endfor %}
+                            </table>
+                        {% endif %}
+                    <br /><br />
+                        <h4>
+                            {{ 'sigtec.growth_potential.do_you_plan_to_purchase_new_machineries'|trans }}
+                            {% if company_report_technical.growthPotential.doYouPlanToPurchaseNewMachineries == true %}
+                                <small class="tag green-bg ng-scope">{{ 'sigtec.yes'|trans }}</small>
+                            {% else %}
+                                <small class="tag red-bg ng-scope">{{ 'sigtec.no'|trans }}</small>
+                            {% endif %}
+                        </h4>
+                        {% if company_report_technical.growthPotential.doYouPlanToPurchaseNewMachineries == true %}
+                            <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection9_3">
+                                <tr>
+                                    <th>{{ 'sigtec.table.header.quantity'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.capacity'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.type_process'|trans }}</th>
+                                    <th>{{ 'sigtec.table.header.process'|trans }}</th>
+                                </tr>
+                                {% for new_machinery in company_report_technical.growthPotential.newMachineries%}
+                                    <tr data="{{ new_machinery|serialize }}">
+                                        <td>{{ new_machinery.quantity }}</td>
+                                        <td>{{ new_machinery.capacity }}</td>
+                                        <td>{{ new_machinery.typeProcess.description }}</td>
+                                        <td>{{ new_machinery.process.description }}</td>
+                                    </tr>
+                                {% else %}
+                                    <tr >
+                                        <td colspan="4" class="bold text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.new_machinery'|trans }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="bold text-center">&nbsp;</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        {% endif %}
+                </div>
+                
+                <div id="tab-10" class="with-padding">
+                    {{ 'sigtec.inventory_level.days_of_inventory_of_raw_materials'|trans }}
+                    {{ company_report_technical.inventoryLevel.daysOfInventoryOfRawMaterials }} {{ 'sigtec.days'|trans }}
+                    <br /><br />
+                    {{ 'sigtec.inventory_level.days_of_finished_product_inventory'|trans }}
+                    {{ company_report_technical.inventoryLevel.daysOfFinishedProductInventory }} {{ 'sigtec.days'|trans }}
+                </div>
+            </div>
+
+    </div>
+            
     <p class="button-height align-right">
         {% if is_granted('ROLE_REVISER') %}
             {{ buttons.generic(null,'sigtec.report_technical.approve','icon-tick',{'translation_domain':'CoramerSigtecReportTechnicalBundle'}) }}
@@ -477,8 +495,9 @@
      {% include 'CoramerSigtecWebBundle:Backend:ReportTechnical/Javascripts/_tableInfo.html.twig' %}
 {% endblock javascript %}
 
-{% block javascripts_post %}
+{% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.accordions.js') }}"></script>
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/libs/jquery.details.min.js?v=1') }}"></script>
+    <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.tabs.js') }}"></script>
 {% endblock  %}

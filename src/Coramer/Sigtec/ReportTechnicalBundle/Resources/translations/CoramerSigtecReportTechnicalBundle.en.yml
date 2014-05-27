@@ -1,4 +1,7 @@
 sigtec:
+    details_technical_report: Details of the technical report
+    days: Day(s)
+    unassigned: Unassigned
     date_of_previous_technical_report_created: Date of previous technical report created
     select: Select
     yes: Yes
@@ -218,3 +221,15 @@ sigtec:
         operating_time: Operating time (<sup>day</sup>&frasl;<sub>month</sub>)
         main_product: Main product
         plant: Location
+    tabs:
+        title:
+            professional_profile: Profile
+            description_of_the_business_areas: Areas
+            production_level: Production
+            description_of_products_manufactured: Products manufactured
+            additives_used_in_the_process: Additives
+            other_plastic_resins: Other resins
+            description_of_the_market: Markets
+            exportation_products: Export
+            growth_potential: Growth
+            inventory_level: Inventory
