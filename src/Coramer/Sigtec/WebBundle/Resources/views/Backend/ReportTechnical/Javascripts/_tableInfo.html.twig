@@ -11,6 +11,66 @@
                     '<strong>{{ 'sigtec.production_level.percentage' | trans }}:</strong> ' + data.percentage + '<br>'
                     ;
         }
+        var detailsColumns = [];
+        var maxColumn = 5;
+        function getTableExtraInfoWithMachinery(data)
+        {
+            if(data.process.model_machinery == undefined){
+                return '{{ 'sigtec.table.content.empty.production_level'|trans }}';
+            }
+            var table = '<h3 class="thin">{{ 'sigtec.feature_machinery.process'|trans({},'CoramerSigtecReportTechnicalBundle') }}: <b>' + data.process.description + '</b></h3>';
+            table += '<table class="table simple-table table-extra-info" get-table-info="getTableExtraInfoWithMachinerySub">' +
+                        '<tr>';
+                    $.each(data.process.model_machinery.features_machinery,function(index,value){
+                        if(index >= maxColumn){
+                            detailsColumns[index] = value._labels.label;
+                            return ;
+                        }
+                        table += '<th>' +
+                                    value._labels.label +
+                                '</th>';
+                    });
+                    table += '</tr>';
+                            $.each(data.machineries,function(index,machinery){
+                                table += "<tr "; 
+                                if(machinery._data.options){
+                                    table += "data='"+ JSON.stringify(machinery._data.options)+"'";
+                                }
+                                table += ">";
+                                    $.each(machinery._data.options,function(index,d){
+                                        if(index >= maxColumn){
+                                            return ;
+                                        }
+                                        table += '<td >';
+                                            table += '<span>';
+                                                table +=  d.value;
+                                            table +=  '</span>';
+                                        table += '</td>';
+                                    });
+                                table += '</tr>';
+                            });
+                    table += '</table>';
+            return  '<strong>{{ 'sigtec.table.header.capacity'|trans }}</strong><br/><br/>' +
+                    '<strong>{{ 'sigtec.table.header.theoretical'|trans }}:</strong> ' + data.theoretical + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.installed' |trans }}:</strong> ' + data.installed + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.busy' | trans }}:</strong> ' + data.busy + '<br>' +
+                    '<strong>{{ 'sigtec.table.header.idle' | trans }}:</strong> ' + data.idle + '<br>' +
+                    '<strong>{{ 'sigtec.production_level.percentage' | trans }}:</strong> ' + data.percentage + '<br>' + table
+                    ;
+        }
+        
+        function getTableExtraInfoWithMachinerySub(data){
+            var response = '';
+            $.each(data,function(index,d){
+                if(index < maxColumn){
+                    return ;
+                }
+                response += detailsColumns[index] + ': ';
+                response += d.value;
+                response += '<br/>';
+            });
+            return response;
+        }
         function getTableExtraInfoSection2(data)
         {
             return  '<strong>{{ 'sigtec.table.header.separated_resin'|trans }}:</strong> ' + data.labels.separated_resin + '<br>' +
@@ -79,7 +139,6 @@
                         rows;
                         
                 var getTableInfoFunction = tr.parent().parent().attr('get-table-info');
-                
                 // If click on a special row
                 if (tr.hasClass('row-drop'))
                 {
@@ -90,7 +149,7 @@
                 if (row.length > 0)
                 {
                     // Un-style row
-                    tr.children().removeClass('anthracite-gradient glossy color-white');
+                    tr.children().removeClass('glossy color-white');
 
                     // Remove row
                     row.remove();
@@ -103,15 +162,19 @@
                 if (rows.length > 0)
                 {
                     // Un-style previous rows
-                    rows.prev().children().removeClass('anthracite-gradient glossy color-white');
+                    rows.prev().children().removeClass('glossy color-white');
 
                     // Remove rows
                     rows.remove();
                 }
 
+                var attrData = tr.attr('data');
+                if(attrData == undefined){
+                    return ;
+                }
+                var data = $.parseJSON(attrData);
                 // Style row
-                tr.children().addClass('anthracite-gradient glossy color-white');
-                var data = $.parseJSON(tr.attr('data'));
+                tr.children().addClass('glossy color-white');
                 
                 // Add fake row
                 if(getTableInfoFunction != undefined ){
