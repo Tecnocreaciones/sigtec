@@ -12,7 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Coramer\Sigtec\ReportTechnicalBundle\Repository\ReportTechnicalRepository")
  */
-class ReportTechnical implements ReportTechnicalInterface
+class ReportTechnical extends AbstractReportTechnical
 {
     /**
      * @var integer
@@ -58,7 +58,7 @@ class ReportTechnical implements ReportTechnicalInterface
      *
      * @ORM\Column(name="status", type="integer")
      */
-    private $status = self::STATUS_IN_PROGRESS;
+    protected $status = self::STATUS_IN_PROGRESS;
 
     /**
      * @var \Coramer\Sigtec\CompanyBundle\Entity\Company

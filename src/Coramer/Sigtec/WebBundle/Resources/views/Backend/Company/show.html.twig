@@ -203,6 +203,73 @@
         </div>
     </div>
     <br />
+    <br />
+    <div class="block">
+        <div class="block-title">
+            <h3>{{ 'sigtec.reports_technical'|trans }}</h3>
+            <div class="button-group absolute-right compact">
+                <a href="{{ path('coramer_sigtec_backend_company_contact_create', { 'company_id': company.id }) }}" class="button icon-list-add">{{ 'sigtec.add'|trans }}</a>
+            </div>
+        </div>
+        <div class="with-padding">
+            <table class="simple-table responsive-table" id="table-plants">
+                <thead>
+                    <tr>
+                        <th scope="col" width="20%">{{ 'sigtec.archive'|trans }}</th>
+                        <th scope="col" width="15%" class="hide-on-mobile">{{ 'sigtec.created_at'|trans }}</th>
+                        <th scope="col" width="15%" class="hide-on-mobile">{{ 'sigtec.status'|trans }}</th>
+                        <th scope="col" width="20%" class="align-right">{{ 'sigtec.actions'|trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for reportTechnical in company.reportTechnicals %}
+                    <tr id="table-row-{{ reportTechnical.archive }}">
+                        <th scope="row">
+                            <a href="{{ path('coramer_sigtec_backend_company_report_technical_show',{id:reportTechnical.id}) }}">{{ reportTechnical.archive }}</a>
+                        </th>
+                        <td>{{ reportTechnical.createdAt|date('d-m-Y') }}</td>
+                        <td>
+                            {% if reportTechnical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_IN_PROGRESS')%}
+                                <small class="tag orange-bg">{{ 'sigtec.status.in_progress'|trans }}</small> 
+                            {% endif  %}
+                            {% if reportTechnical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_CANCELED')%}
+                                <small class="tag red-bg">{{ 'sigtec.status.canceled'|trans }}</small>
+                            {% endif  %}
+                            {% if reportTechnical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_PENDING_CORRECTION')%}
+                                <small class="tag orange-bg">{{ 'sigtec.status.pending_correction'|trans }}</small> 
+                            {% endif  %}
+                            {% if reportTechnical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_IN_REVIEW')%}
+                                <small class="tag orange-bg">{{ 'sigtec.status.in_review'|trans }}</small> 
+                            {% endif  %}
+                            {% if reportTechnical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REVISED')%}
+                                <small class="tag orange-bg">{{ 'sigtec.status.revised'|trans }}</small> 
+                            {% endif  %}
+                            {% if reportTechnical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_APPROVED')%}
+                                <small class="tag green-bg">{{ 'sigtec.status.approved'|trans }}</small>
+                            {% endif  %}
+                            {% if reportTechnical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REJECTED')%}
+                                <small class="tag red-bg">{{ 'sigtec.status.rejected'|trans }}</small>
+                            {% endif  %}
+                        </td>
+                        <td class="align-right vertical-center">
+                            <span class="button-group compact">
+                                <a href="{{ path('coramer_sigtec_backend_company_report_technical_update',{id:reportTechnical.id}) }}" class="button icon-pencil">{{ 'sigtec.edit'|trans }}</a>
+                                {{ buttons.delete_mini(path('coramer_sigtec_backend_company_report_technical_delete',{id:reportTechnical.id}),null,reportTechnical.id) }}
+                            </span>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td scope="row" colspan="5" class="align-center">
+                            {{ 'sigtec.no_report_technicals_recorded'|trans }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />
     <p class="button-height align-right">
         {{ buttons.edit(path('coramer_sigtec_backend_company_update', { 'id': company.id })) }}
         {{ buttons.delete(path('coramer_sigtec_backend_company_delete', { 'id': company.id })) }}

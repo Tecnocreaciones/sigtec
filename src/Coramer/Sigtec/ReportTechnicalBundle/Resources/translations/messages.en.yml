@@ -5,6 +5,9 @@ sigtec:
     status:
         in_progress: In progress
         canceled: Canceled
+        pending_correction: Pending correction
+        in_review: In review
+        revised: Revised
         approved: Approved
         rejected: Rejected
     the_changes_have_been_successfully_saved: The changes have been successfully saved

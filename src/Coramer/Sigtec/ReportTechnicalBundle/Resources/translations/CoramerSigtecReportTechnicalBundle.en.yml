@@ -143,7 +143,7 @@ sigtec:
     feature_machinery:
         process: Process
         label:
-            nro: Quantity
+            number: Quantity
             mark: Mark
             extrusion_type: Extrusion type
             maximum_capacity: Maximum capacity (kg/h)

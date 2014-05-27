@@ -41,17 +41,17 @@ class LoadFeatureMachineryData extends AbstractFixture implements FixtureInterfa
         $featureMachinery = new FeatureMachinery();
         $featureMachinery
                 ->setDescription('Numero de maquinarias con las mismas caracteristicas y uso')
-                ->setHelp('sigtec.help.feature_machinery.nro')
+                ->setHelp('sigtec.help.feature_machinery.number')
                 ->setName('number')
                 ->setFieldType('integer')
                 ->setParameters(array(
-                    'label' => 'sigtec.feature_machinery.label.nro',
+                    'label' => 'sigtec.feature_machinery.label.number',
                     'constraints' => array(
                        $validationNotBlank,
                        $validationNotNull,
                    ),
                    'attr' => array(
-                       'class' => 'input small-margin-right validate[required,integer]',
+                       'class' => 'input input-mini small-margin-right validate[required,integer]',
                    ),
                 ));
             $manager->persist($featureMachinery);

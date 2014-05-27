@@ -11,7 +11,7 @@ sigtec:
     form:
         errors:
             please_check_the_form_fields: Por favor verifique los campos del formulario.
-            
+    reports_technical: Reporte técnico(s)
 app:
     http:
         error:

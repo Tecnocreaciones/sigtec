@@ -39,10 +39,13 @@
                                 <a href="[[ result.company._links.self.href ]]" title="[[ result.company.name ]]" >[[result.company.rif]]</a>
                             </td>
                             <td data-title="'{{ 'sigtec.status'|trans }}'" sortable="'status'">
-                                <small ng-if="result.status == 0" class="tag orange-bg">{{ 'sigtec.status.in_progress'|trans }}</small> 
-                                <small ng-if="result.status == 1" class="tag red-bg">{{ 'sigtec.status.canceled'|trans }}</small>
-                                <small ng-if="result.status == 2" class="tag green-bg">{{ 'sigtec.status.approved'|trans }}</small>
-                                <small ng-if="result.status == 3" class="tag red-bg">{{ 'sigtec.status.rejected'|trans }}</small>
+                                <small ng-if="result.status == {{ constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_IN_PROGRESS') }}" class="tag orange-bg">{{ 'sigtec.status.in_progress'|trans }}</small> 
+                                <small ng-if="result.status == {{ constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_CANCELED') }}" class="tag red-bg">{{ 'sigtec.status.canceled'|trans }}</small>
+                                <small ng-if="result.status == {{ constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_PENDING_CORRECTION') }}" class="tag orange-bg">{{ 'sigtec.status.pending_correction'|trans }}</small> 
+                                <small ng-if="result.status == {{ constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_IN_REVIEW') }}" class="tag orange-bg">{{ 'sigtec.status.in_review'|trans }}</small> 
+                                <small ng-if="result.status == {{ constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REVISED') }}" class="tag orange-bg">{{ 'sigtec.status.revised'|trans }}</small> 
+                                <small ng-if="result.status == {{ constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_APPROVED') }}" class="tag green-bg">{{ 'sigtec.status.approved'|trans }}</small>
+                                <small ng-if="result.status == {{ constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REJECTED') }}" class="tag red-bg">{{ 'sigtec.status.rejected'|trans }}</small>
                             </td>
                             <td class="low-padding">
                                 <span class="select compact full-width" tabindex="0">

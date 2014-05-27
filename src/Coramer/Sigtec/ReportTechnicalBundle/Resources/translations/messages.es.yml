@@ -5,6 +5,9 @@ sigtec:
     status:
         in_progress: En progreso
         canceled: Anulado
+        pending_correction: En espera de correción
+        in_review: En revisión
+        revised: Revisado
         approved: Aprobado
         rejected: Rechazado
     the_changes_have_been_successfully_saved: Los cambios se han guardado con éxito
