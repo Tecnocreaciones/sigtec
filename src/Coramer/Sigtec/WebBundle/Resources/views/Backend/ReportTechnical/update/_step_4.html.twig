@@ -1,0 +1,158 @@
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+
+{# Seccion 9 #}
+<div class="field-block">
+    <h3>9) {{ 'sigtec.growth_potential.growth_potential'|trans }}</h3>
+    <p>{{ 'sigtec.help.growth_potential.growth_potential'|trans({},'help') }}</p>
+</div>
+<div class="field-block">
+    {{ form_label(form.growthPotential.lastInvestmentMachinery) }}
+    {{ form_widget(form.growthPotential.lastInvestmentMachinery) }}
+    {{ form_errors(form.growthPotential.lastInvestmentMachinery) }}
+    <br /> <br />
+    {{ 'sigtec.growth_potential.growth_markets'|trans }}
+    <br /> <br />
+        <table class="simple-table table-responsive">
+            <tr>
+                <th>{{ 'sigtec.table.header.segment'|trans }}</th>
+                <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr ng-hide="reportTechnical.growth_potential.growth_markets">
+                <td colspan="3" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-hide="reportTechnical.growth_potential.growth_markets">
+                <td colspan="3" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.growth_market'|trans }}</td>
+            </tr>
+            <tr ng-hide="reportTechnical.growth_potential.growth_markets">
+                <td colspan="3" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-repeat="growth_market in reportTechnical.growth_potential.growth_markets" data="[[ growth_market|json ]]">
+                <td><a href ng-click="growthPotential.addGrowthMarket(growth_market)" >[[ growth_market.segment.description ]]</a></td>
+                <td>[[ growth_market.sub_segment.description ]]</td>
+                <td>
+                    <span class="button-group compact">
+                        <a href ng-click="itemDelete(growth_market._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().growthMarket)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
+                    </span>
+                </td>
+            </tr>
+        </table>
+    <br/>
+    <p class="button-height align-right">
+        <a href ng-click="growthPotential.addGrowthMarket()" class="button glossy mid-margin-right">
+            <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+            {{ 'sigtec.button.add_detail'|trans }}
+        </a>
+    </p>
+    <br />
+    <br />
+    {{ 'sigtec.growth_potential.do_you_consider_entering_other_markets'|trans }}
+    {{ form_widget(form.growthPotential.doYouConsiderEnteringOtherMarkets) }}
+    {{ form_errors(form.growthPotential.doYouConsiderEnteringOtherMarkets) }}
+    <br /> <br />
+    <div ng-show="reportTechnical.growth_potential.do_you_consider_entering_other_markets">
+        <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection9_2">
+            <tr>
+                <th>{{ 'sigtec.table.header.segment'|trans }}</th>
+                <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr ng-hide="reportTechnical.growth_potential.other_markets">
+                <td colspan="3" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-hide="reportTechnical.growth_potential.other_markets">
+                <td colspan="3" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.other_market'|trans }}</td>
+            </tr>
+            <tr ng-hide="reportTechnical.growth_potential.other_markets">
+                <td colspan="3" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-repeat="other_market in reportTechnical.growth_potential.other_markets" data="[[ other_market|json ]]">
+                <td><a href ng-click="growthPotential.addOtherMarket(other_market)" >[[ other_market.segment.description ]]</a></td>
+                <td>[[ other_market.sub_segment.description ]]</td>
+                <td>
+                    <span class="button-group compact">
+                        <a href ng-click="itemDelete(other_market._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().otherMarket)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <p class="button-height align-right">
+            <a href ng-click="growthPotential.addOtherMarket()" class="button glossy mid-margin-right">
+                <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                {{ 'sigtec.button.add_detail'|trans }}
+            </a>
+        </p>
+    </div>
+    <br /><br />
+    {{ 'sigtec.growth_potential.do_you_plan_to_purchase_new_machineries'|trans }}
+    {{ form_widget(form.growthPotential.doYouPlanToPurchaseNewMachineries) }}
+    {{ form_errors(form.growthPotential.doYouPlanToPurchaseNewMachineries) }}
+    <br /><br />
+    <div ng-show="reportTechnical.growth_potential.do_you_plan_to_purchase_new_machineries">
+        <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection9_3">
+            <tr>
+                <th>{{ 'sigtec.table.header.quantity'|trans }}</th>
+                <th>{{ 'sigtec.table.header.capacity'|trans }}</th>
+                <th>{{ 'sigtec.table.header.type_process'|trans }}</th>
+                <th>{{ 'sigtec.table.header.process'|trans }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr ng-hide="reportTechnical.growth_potential.new_machineries">
+                <td colspan="5" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-hide="reportTechnical.growth_potential.new_machineries">
+                <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.growth_potential.new_machinery'|trans }}</td>
+            </tr>
+            <tr ng-hide="reportTechnical.growth_potential.new_machineries">
+                <td colspan="5" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-repeat="new_machinery in reportTechnical.growth_potential.new_machineries" data="[[ new_machinery|json ]]">
+                <td><a href ng-click="growthPotential.addNewMachinery(new_machinery)" >[[ new_machinery.quantity ]]</a></td>
+                <td>[[ new_machinery.capacity ]]</td>
+                <td>[[ new_machinery.type_process.description ]]</td>
+                <td>[[ new_machinery.process.description ]]</td>
+                <td>
+                    <span class="button-group compact">
+                        <a href ng-click="itemDelete(new_machinery._links.delete.href,reportTechnicalManager.reload().getGrowthPotential().newMachinery)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <p class="button-height align-right">
+            <a href ng-click="growthPotential.addNewMachinery()" class="button glossy mid-margin-right">
+                <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                {{ 'sigtec.button.add_detail'|trans }}
+            </a>
+        </p>
+    </div>
+
+</div>
+{# Seccion 10 #}
+<div class="field-block">
+<h3>10) {{ 'sigtec.inventory_level.inventory_level'|trans }}</h3>
+<p>{{ 'sigtec.help.inventory_level.inventory_level'|trans({},'help') }}</p>
+</div>
+<div class="field-block button-height">
+    {{ form_label(form.inventoryLevel.daysOfInventoryOfRawMaterials) }}
+    {{ form_widget(form.inventoryLevel.daysOfInventoryOfRawMaterials) }}
+    <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                    {{ 'sigtec.help.inventory_level.days_of_inventory_of_raw_materials'|trans({},'help') }}
+            </span>
+    </span>
+    {{ form_errors(form.inventoryLevel.daysOfInventoryOfRawMaterials) }}
+</div>
+<div class="field-block button-height">
+    {{ form_label(form.inventoryLevel.daysOfFinishedProductInventory) }}
+    {{ form_widget(form.inventoryLevel.daysOfFinishedProductInventory) }}
+    <span class="info-spot">
+            <span class="icon-info-round"></span>
+            <span class="info-bubble">
+                    {{ 'sigtec.help.inventory_level.days_of_finished_product_inventory'|trans({},'help') }}
+            </span>
+    </span>
+    {{ form_errors(form.inventoryLevel.daysOfFinishedProductInventory) }}
+</div>

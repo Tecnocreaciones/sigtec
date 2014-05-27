@@ -1,0 +1,224 @@
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+
+    <div class="field-block">
+            <h3>1) {{ 'sigtec.professional_profile'|trans }}</h3>
+            <p>{{ 'sigtec.help.professional_profile.professional_profile'|trans({},'help') }}</p>
+    </div>
+    <div class="field-block button-height">
+            {{ form_label(form.professionalProfile.quantityProfessionals) }}
+            {{ form_widget(form.professionalProfile.quantityProfessionals) }}
+            <span class="info-spot">
+                    <span class="icon-info-round"></span>
+                    <span class="info-bubble">
+                            {{ 'sigtec.help.professional_profile.quantity_professionals'|trans({},'help') }}
+                    </span>
+            </span>
+            {{ form_errors(form.professionalProfile.quantityProfessionals) }}
+    </div>
+    <div class="field-block button-height">
+            {{ form_label(form.professionalProfile.quantityTechnical) }}
+            {{ form_widget(form.professionalProfile.quantityTechnical) }}
+            <span class="info-spot">
+                    <span class="icon-info-round"></span>
+                    <span class="info-bubble">
+                            {{ 'sigtec.help.professional_profile.quantity_technical'|trans({},'help') }}
+                    </span>
+            </span>
+            {{ form_errors(form.professionalProfile.quantityTechnical) }}
+    </div>
+    <div class="field-block button-height">
+            {{ form_label(form.professionalProfile.quantityLaborers) }}
+            {{ form_widget(form.professionalProfile.quantityLaborers) }}
+            <span class="info-spot">
+                    <span class="icon-info-round"></span>
+                    <span class="info-bubble">
+                            {{ 'sigtec.help.professional_profile.quantity_laborers'|trans({},'help') }}
+                    </span>
+            </span>
+            {{ form_errors(form.professionalProfile.quantityLaborers) }}
+    </div>
+    <div class="field-block button-height">
+            {{ form_label(form.professionalProfile.quantityOther) }}
+            {{ form_widget(form.professionalProfile.quantityOther) }}
+            <span class="info-spot">
+                    <span class="icon-info-round"></span>
+                    <span class="info-bubble">
+                            {{ 'sigtec.help.professional_profile.quantity_other'|trans({},'help') }}
+                    </span>
+            </span>
+            {{ form_errors(form.professionalProfile.quantityOther) }}
+    </div>
+    <div class="field-drop button-height black-inputs">
+        <label class="label"><b>{{ 'sigtec.total_employees'|trans }}</b></label>
+        <label><b>[[ reportTechnical.professional_profile.total ]]</b></label>
+    </div>
+
+    {# Seccion 2 #}
+    <div class="field-block">
+        <h3>2) {{ 'sigtec.description_of_the_business_areas.description_of_the_business_areas'|trans }}</h3>
+        <p>{{ 'sigtec.help.description_of_the_business_areas.description_of_the_business_areas'|trans({},'help') }}</p>
+    </div>
+    <div class="field-block">
+        <h5>2.1) {{ 'sigtec.description_of_the_business_areas.general_production_and_storage'|trans }}</h5>
+        <p>{{ 'sigtec.help.description_of_the_business_areas.general_production_and_storage'|trans({},'help') }}</p>
+    </div>
+    <div class="field-block">
+        <table class="simple-table">
+            <tr>
+                <th></th> 
+                <th>{{ 'sigtec.table.header.total'|trans|raw }}</th> 
+                <th>{{ 'sigtec.table.header.covered'|trans|raw }}</th>
+            </tr>
+            {% for plantDescription in form.descriptionAreaCompany.plantsDescription %}
+                <tr>
+                    <td colspan="4">
+                        {{ form_widget(plantDescription.plant,{'attr':{'class': 'input-unstyled bold'} }) }}
+                    </td> 
+                </tr>
+                <tr>
+                    <td>
+                        {{ plantDescription.area.descriptionArea.description.vars['value'] }}
+                        {% set dummy = plantDescription.area.descriptionArea.description.setRendered() %}
+                    </td> 
+                    <td>
+                        {{ form_widget(plantDescription.area.totalArea) }}
+                        {{ form_errors(plantDescription.area.totalArea) }}
+                    </td>
+                    <td>
+                        {{ form_widget(plantDescription.area.coveredArea) }}
+                        {{ form_errors(plantDescription.area.coveredArea) }}
+                    </td>
+                    <td>
+                        <span class="info-spot on-left">
+                            <span class="icon-info-round"></span>
+                            <span class="info-bubble">
+                                {{ plantDescription.area.descriptionArea.help.vars['value']|trans({},'help')|raw }}
+                                {% set dummy = plantDescription.area.descriptionArea.help.setRendered() %}
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+                {% for area in plantDescription.area.areas %}
+                    <tr>
+                        <td>
+                            {{ area.descriptionArea.description.vars['value'] }}
+                            {% set dummy = area.descriptionArea.description.setRendered() %}
+                        </td> 
+                        <td>
+                            {{ form_widget(area.totalArea) }}
+                            {{ form_errors(area.totalArea) }}
+                        </td>
+                        <td>
+                            {{ form_widget(area.coveredArea) }}
+                            {{ form_errors(area.coveredArea) }}
+                        </td>
+                        <td>
+                            <span class="info-spot on-left">
+                                <span class="icon-info-round"></span>
+                                <span class="info-bubble">
+                                    {{ area.descriptionArea.help.vars['value']|trans({},'help')|raw }}
+                                    {% set dummy = area.descriptionArea.help.setRendered() %}
+                                </span>
+                            </span>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3">&nbsp;</td> 
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="field-block">
+        <h5>2.2) {{ 'sigtec.description_of_the_business_areas.storage_product_detail'|trans }}</h5>
+        <p>{{ 'sigtec.help.description_of_the_business_areas.storage_product_detail'|trans({},'help') }}</p>
+    </div>
+    <div class="field-block">
+        <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection2">
+            <tr>
+                <th>{{ 'sigtec.table.header.material'|trans }}</th>
+                <th>{{ 'sigtec.table.header.storage'|trans }}</th>
+                <th>{{ 'sigtec.table.header.plant'|trans }}</th>
+                <th>{{ 'sigtec.table.header.dedication'|trans|raw }}</th> 
+                <th>&nbsp;</th>
+            </tr>
+            <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
+                <td colspan="5" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
+                <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.storage'|trans }}</td>
+            </tr>
+            <tr ng-hide="reportTechnical.description_area_company.detail_product_storages">
+                <td colspan="5" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-repeat="detail_product_storage in reportTechnical.description_area_company.detail_product_storages" data="[[ detail_product_storage|json ]]">
+                <td><a href ng-click="addDetailsStorage(detail_product_storage)" >[[ detail_product_storage.material.description ]]</a></td>
+                <td>[[ detail_product_storage.labels.storage ]]</td>
+                <td>[[ detail_product_storage.plant.name ]]</td>
+                <td>[[ detail_product_storage.dedication.description ]]</td>
+                <td>
+                    <span class="button-group compact">
+                        <a href ng-click="itemDelete(detail_product_storage._links.delete.href,reportTechnicalManager.reload().detailProductStorage)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <br/>    
+        <p class="button-height align-right">
+            <a href ng-click="addDetailsStorage()" class="button glossy mid-margin-right">
+                <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                {{ 'sigtec.button.add_detail'|trans }}
+            </a>
+        </p>
+    </div>
+            
+            
+    {# Seccion 3 #}
+    <div class="field-block">
+        <h3>3) {{ 'sigtec.production_level.production_level'|trans }}</h3>
+        <p>{{ 'sigtec.help.production_level.production_level'|trans({},'help') }}</p>
+    </div>
+    <div class="field-block">
+        <table class="simple-table table-responsive table-extra-info">
+            <tr>
+                <td colspan="5" class="align-center"><b>{{ 'sigtec.table.header.production_capacity'|trans }}</b></td>
+            </tr>
+            <tr>
+                <th>{{ 'sigtec.table.header.process'|trans }}</th>
+                <th>{{ 'sigtec.table.header.shifts'|trans }}</th>
+                <th>{{ 'sigtec.table.header.hours'|trans }}</th>
+                <th>{{ 'sigtec.table.header.days_month'|trans|raw }}</th> 
+                <th>&nbsp;</th>
+            </tr>
+            <tr ng-hide="reportTechnical.production_levels">
+                <td colspan="5" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-hide="reportTechnical.production_levels">
+                <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.production_level'|trans }}</td>
+            </tr>
+            <tr ng-hide="reportTechnical.production_levels">
+                <td colspan="5" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-repeat="production_level in reportTechnical.production_levels" data="[[ production_level|json ]]">
+                <td><a href ng-click="addLevelProduction(production_level)" >[[ production_level.process.description ]]</a></td>
+                <td>[[ production_level.shifts ]]</td>
+                <td>[[ production_level.hours ]]</td>
+                <td>[[ production_level.days_month]]</td>
+                <td>
+                    <span class="button-group compact">
+                        <a href ng-click="listMachinery(production_level)" class="button icon-list with-tooltip" title="Lista de maquinarias"></a>
+                        <a href ng-click="addMachinery(production_level)" class="button icon-list-add with-tooltip" title="Añadir una maquinaria"></a>
+                        <a href ng-click="itemDelete(production_level._links.delete.href,reportTechnicalManager.reload().productionLevel)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <br/>    
+        <p class="button-height align-right">
+            <a href ng-click="addLevelProduction()" class="button glossy mid-margin-right">
+                <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                {{ 'sigtec.button.add_detail'|trans }}
+            </a>
+        </p>
+    </div>

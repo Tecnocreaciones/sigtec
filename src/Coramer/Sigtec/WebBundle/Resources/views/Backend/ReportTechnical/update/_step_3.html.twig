@@ -1,0 +1,101 @@
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+
+{# Seccion 7 #}
+<div class="field-block">
+    <h3>7) {{ 'sigtec.description_of_the_market.description_of_the_market'|trans }}</h3>
+    <p>{{ 'sigtec.help.description_of_the_market.description_of_the_market'|trans({},'help') }}</p>
+</div>
+<div class="field-block">
+        <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection7" >
+            <tr>
+                <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                <th>{{ 'sigtec.table.header.segment'|trans }}</th>
+                <th>{{ 'sigtec.table.header.sub_segment'|trans }}</th>
+                <th>{{ 'sigtec.table.header.participation_rate'|trans }}</th> 
+                <th>&nbsp;</th>
+            </tr>
+            <tr ng-hide="reportTechnical.description_markets">
+                <td colspan="5" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-hide="reportTechnical.description_markets">
+                <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.description_market'|trans }}</td>
+            </tr>
+            <tr ng-hide="reportTechnical.description_markets">
+                <td colspan="5" class="bold text-center">&nbsp;</td>
+            </tr>
+            <tr ng-repeat="description_market in reportTechnical.description_markets" data="[[ description_market|json ]]">
+                <td><a href ng-click="addDescriptionMarket(description_market)" >[[ description_market.product.description ]]</a></td>
+                <td>[[ description_market.segment.description ]]</td>
+                <td>[[ description_market.sub_segment.description ]]</td>
+                <td>[[ description_market.participation_rate ]]</td>
+                <td>
+                    <span class="button-group compact">
+                        <a href ng-click="itemDelete(description_market._links.delete.href,reportTechnicalManager.reload().descriptionMarket)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <br/>    
+        <p class="button-height align-right">
+            <a href ng-click="addDescriptionMarket()" class="button glossy mid-margin-right">
+                <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                {{ 'sigtec.button.add_detail'|trans }}
+            </a>
+        </p>
+</div>
+{# Seccion 8 #}
+<div class="field-block">
+    <h3>8) {{ 'sigtec.exportation_products.exportation_products'|trans }}</h3>
+    <p>{{ 'sigtec.help.exportation_products.exportation_products'|trans({},'help') }}</p>
+</div>
+<div class="field-block">
+        {{ 'sigtec.exportation_products.has_exported_products'|trans }}
+        {{ form_widget(form.exportation.hasExportedProducts) }}
+        {{ form_errors(form.exportation.hasExportedProducts) }}
+        <br />
+        <br />
+        {{ 'sigtec.exportation_products.it_plans_to_export'|trans }}
+        {{ form_widget(form.exportation.itPlansToExport) }}
+        {{ form_errors(form.exportation.itPlansToExport) }}
+        <br />
+        <br />
+
+        <div ng-show="reportTechnical.exportation.it_plans_to_export">
+            <table class="simple-table table-responsive">
+                <tr>
+                    <th>{{ 'sigtec.table.header.product'|trans }}</th>
+                    <th>{{ 'sigtec.table.header.requirement'|trans }}</th>
+                    <th>{{ 'sigtec.table.header.destiny'|trans }}</th>
+                    <th>{{ 'sigtec.table.header.port'|trans }}</th> 
+                    <th>&nbsp;</th>
+                </tr>
+                <tr ng-hide="reportTechnical.exportation.products_export">
+                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                </tr>
+                <tr ng-hide="reportTechnical.exportation.products_export">
+                    <td colspan="5" class="bold text-center">{{ 'sigtec.table.content.empty.product_to_export'|trans }}</td>
+                </tr>
+                <tr ng-hide="reportTechnical.exportation.products_export">
+                    <td colspan="5" class="bold text-center">&nbsp;</td>
+                </tr>
+                <tr ng-repeat="product_to_export in reportTechnical.exportation.products_export" data="[[ product_to_export|json ]]">
+                    <td><a href ng-click="addProductExport(product_to_export)" >[[ product_to_export.product.description ]]</a></td>
+                    <td>[[ product_to_export.requirement ]]</td>
+                    <td>[[ product_to_export.destiny ]]</td>
+                    <td>[[ product_to_export.port.description ]]</td>
+                    <td>
+                        <span class="button-group compact">
+                            <a href ng-click="itemDelete(product_to_export._links.delete.href,reportTechnicalManager.reload().exportationProduct)" class="button icon-trash with-tooltip confirm" title="{{ 'sigtec.delete'|trans }}"></a>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+        <p class="button-height align-right">
+            <a href ng-click="addProductExport()" class="button glossy mid-margin-right">
+                <span class="button-icon anthracite-gradient"><span class="icon-star"></span></span>
+                {{ 'sigtec.button.add_detail'|trans }}
+            </a>
+        </p>
+</div>
