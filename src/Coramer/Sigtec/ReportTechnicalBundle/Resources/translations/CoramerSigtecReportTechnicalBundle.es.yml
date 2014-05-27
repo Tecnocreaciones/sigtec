@@ -2,6 +2,7 @@ sigtec:
     details_technical_report: Detalles del reporte técnico
     days: Dia(s)
     unassigned: No asignado
+    send_report: Enviar reporte
     date_of_previous_technical_report_created: Fecha del último reporte técnico creado
     select: Seleccione
     yes: Si
