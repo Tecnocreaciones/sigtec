@@ -5,7 +5,7 @@ namespace Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ProfessionalProfile
+ * Perfil profesional
  *
  * @ORM\Table()
  * @ORM\Entity

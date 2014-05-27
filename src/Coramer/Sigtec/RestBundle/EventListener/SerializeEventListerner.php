@@ -342,18 +342,9 @@ class SerializeEventListerner implements EventSubscriberInterface,  \Symfony\Com
      */
     function onPostSerializeDetailProductStorage(ObjectEvent $event) {
         $object = $event->getObject();
-        $storages = array(
-            DetailProductStorage::STORAGE_OUTDOOR => $this->trans('sigtec.storage.outdoor',array(),'CoramerSigtecReportTechnicalBundle'),
-            DetailProductStorage::STORAGE_CONFINED => $this->trans('sigtec.storage.confined',array(),'CoramerSigtecReportTechnicalBundle'),
-        );
-        $separated_resins = array(
-                    DetailProductStorage::SEPARATED_RESIN_NOT_APPLY => $this->trans('N/A',array(),'CoramerSigtecReportTechnicalBundle') ,
-                    DetailProductStorage::SEPARATED_RESIN_YES => $this->trans('sigtec.yes',array(),'CoramerSigtecReportTechnicalBundle') ,
-                    DetailProductStorage::SEPARATED_RESIN_NO => $this->trans('sigtec.no',array(),'CoramerSigtecReportTechnicalBundle') ,
-                );
         $event->getVisitor()->addData('labels', array(
-            'storage' => $storages[$object->getStorage()],
-            'separated_resin' => $separated_resins[$object->getSeparatedResin()],
+            'storage' => $this->trans($object->getLabelStorage(),array(),'CoramerSigtecReportTechnicalBundle'),
+            'separated_resin' => $this->trans($object->getLabelSeparatedResin(),array(),'CoramerSigtecReportTechnicalBundle'),
         ));
         $event->getVisitor()->addData('_links', array(
             'delete' => array(

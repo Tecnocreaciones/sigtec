@@ -1,52 +1,184 @@
 {% extends 'TecnocreacionesVzlaGovernmentBundle:Template:Developer/Common/formLayoutShow.html.twig' %}
 
+{% trans_default_domain 'CoramerSigtecReportTechnicalBundle' %}
+
 {% import 'TecnocreacionesVzlaGovernmentBundle:Template:Developer/Macros/buttons.html.twig' as buttons %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/table3860.css?v=1') }}">
+{% endblock stylesheets %}
 
 {% block body -%}
     <hgroup id="main-title" class="thin breadcrumb">
         <h1>
-            <a href="{{ path('coramer_sigtec_backend_company_report_technical_client_index') }}">{{ 'sigtec.company.report_technical'|trans }}</a>
+            <a href="{{ path('coramer_sigtec_backend_company_report_technical_client_index') }}">{{ 'sigtec.company.report_technical'|trans({},'messages') }}</a>
             <span class="icon-forward"></span>
             <span class="thin"><a href="{{ path('coramer_sigtec_backend_company_show',{id:company_report_technical.company.id}) }}">{{ company_report_technical.company.rif }}</a></span>
         </h1>
     </hgroup>
     <fieldset class="fieldset">
-        <legend class="legend">{{ 'sigtec.company.report_technical'|trans }}</legend>
+        <legend class="legend">{{ 'sigtec.company.report_technical'|trans({},'messages') }}</legend>
         <p class="inline-label">
-            <label class="label">{{ 'sigtec.company'|trans }}</label>
+            <label class="label">{{ 'sigtec.company'|trans({},'messages') }}</label>
             <a href="{{ path('coramer_sigtec_backend_company_show',{id:company_report_technical.company.id}) }}">{{ company_report_technical.company.rif }}</a>
         </p>
         <p class="inline-label">
-            <label class="label">{{ 'sigtec.archive'|trans }}</label>
+            <label class="label">{{ 'sigtec.archive'|trans({},'messages') }}</label>
             {{ company_report_technical.archive }}
         </p>
         <p class="inline-label">
-            <label class="label">{{ 'sigtec.status'|trans }}</label>
+            <label class="label">{{ 'sigtec.status'|trans({},'messages') }}</label>
             {% if company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_IN_PROGRESS') %}
-                <small class="tag orange-bg">{{ 'sigtec.status.in_progress'|trans }}</small>                 
+                <small class="tag orange-bg">{{ 'sigtec.status.in_progress'|trans({},'messages') }}</small>                 
             {% elseif company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_CANCELED') %}
-                <small class="tag red-bg">{{ 'sigtec.status.canceled'|trans }}</small>
+                <small class="tag red-bg">{{ 'sigtec.status.canceled'|trans({},'messages') }}</small>
             {% elseif company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_APPROVED') %}
-                <small class="tag green-bg">{{ 'sigtec.status.approved'|trans }}</small>
+                <small class="tag green-bg">{{ 'sigtec.status.approved'|trans({},'messages') }}</small>
             {% elseif company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REJECTED') %}
-                <small class="tag red-bg">{{ 'sigtec.status.rejected'|trans }}</small>
+                <small class="tag red-bg">{{ 'sigtec.status.rejected'|trans({},'messages') }}</small>
             {% endif%}
         </p>
         <p class="inline-label">
-            <label class="label">{{ 'sigtec.created_at'|trans }}</label>
+            <label class="label">{{ 'sigtec.created_at'|trans({},'messages') }}</label>
             {{ company_report_technical.createdAt|date('Y-m-d h:i a') }}
         </p>
         <p class="inline-label">
-            <label class="label">{{ 'sigtec.updated_at'|trans }}</label>
+            <label class="label">{{ 'sigtec.updated_at'|trans({},'messages') }}</label>
             {{ company_report_technical.updatedAt|date('Y-m-d h:i a') }}
         </p>
     </fieldset>
-    <p class="button-height align-right">
-        {% if is_granted('ROLE_REVISER') %}
-            {{ buttons.generic(null,'sigtec.report_technical.approve','icon-tick',{'translation_domain':'CoramerSigtecReportTechnicalBundle'}) }}
-            {{ buttons.generic(null,'sigtec.report_technical.reject','icon-cross',{'translation_domain':'CoramerSigtecReportTechnicalBundle','gradient':'red-gradient'}) }}
-        {% endif %}
-        {{ buttons.edit(path('coramer_sigtec_backend_company_report_technical_update', { 'id': company_report_technical.id })) }}
-        {{ buttons.delete(path('coramer_sigtec_backend_company_report_technical_delete', { 'id': company_report_technical.id })) }}
-    </p>
-{% endblock %}
+    <details class="details margin-bottom" >
+        <summary>{{ 'sigtec.professional_profile'|trans }}</summary>
+        <div class="with-padding">
+            <p class="inline-label">
+                <label class="label">{{ 'sigtec.quantity_professionals'|trans }}</label>
+                {{ company_report_technical.professionalProfile.quantityProfessionals }}
+            </p>
+            <p class="inline-label">
+                <label class="label">{{ 'sigtec.quantity_technical'|trans }}</label>
+                {{ company_report_technical.professionalProfile.quantityTechnical }}
+            </p>
+            <p class="inline-label">
+                <label class="label">{{ 'sigtec.quantity_laborers'|trans }}</label>
+                {{ company_report_technical.professionalProfile.quantityLaborers }}
+            </p>
+            <p class="inline-label">
+                <label class="label">{{ 'sigtec.quantity_other'|trans }}</label>
+                {{ company_report_technical.professionalProfile.quantityOther }}
+            </p>
+            <p class="inline-label">
+                <label class="label">{{ 'sigtec.total_employees'|trans }}</label>
+                {{ company_report_technical.professionalProfile.total }}
+            </p>
+        </div>
+    </details>
+
+    <h3 class="thin">{{ 'sigtec.description_of_the_business_areas.description_of_the_business_areas'|trans }}</h3>
+    <dl class="accordion">
+        <dt>{{ 'sigtec.description_of_the_business_areas.general_production_and_storage'|trans }}</dt>
+        <dd>
+            <div class="with-padding">
+                <table class="simple-table">
+                    <tr>
+                        <th></th> 
+                        <th>{{ 'sigtec.table.header.total'|trans|raw }}</th> 
+                        <th>{{ 'sigtec.table.header.covered'|trans|raw }}</th>
+                    </tr>
+                    {% for plantDescription in company_report_technical.descriptionAreaCompany.plantsDescription %}
+                        <tr>
+                            <td colspan="3">
+                                <b>{{ plantDescription.plant.name }}</b>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                {{ plantDescription.area.descriptionArea.description }}
+                            </td> 
+                            <td>
+                                {{ plantDescription.area.totalArea }}
+                            </td>
+                            <td>
+                                {{ plantDescription.area.coveredArea }}
+                            </td>
+                        </tr>
+                        {% for area in plantDescription.area.areas %}
+                            <tr>
+                                <td>
+                                    {{ area.descriptionArea.description }}
+                                </td> 
+                                <td>
+                                    {{ area.totalArea }}
+                                </td>
+                                <td>
+                                    {{ area.coveredArea }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="3">&nbsp;</td> 
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </dd>
+
+        <dt>{{ 'sigtec.description_of_the_business_areas.storage_product_detail'|trans }}</dt>
+        <dd>
+            <div class="with-padding">
+                <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoSection2">
+                    <tr>
+                        <th>{{ 'sigtec.table.header.material'|trans }}</th>
+                        <th>{{ 'sigtec.table.header.storage'|trans }}</th>
+                        <th>{{ 'sigtec.table.header.plant'|trans }}</th>
+                        <th>{{ 'sigtec.table.header.dedication'|trans|raw }}</th> 
+                    </tr>
+                    {% for detailProductStorage in company_report_technical.descriptionAreaCompany.detailProductStorages %}
+                        <tr data="{{ detailProductStorage|serialize }}">
+                            <td>{{ detailProductStorage.material.description }}</td>
+                            <td>{{ detailProductStorage.getLabelStorage|trans }}</td>
+                            <td>{{ detailProductStorage.plant.name }}</td>
+                            <td>{{ detailProductStorage.dedication.description }}</td>
+                        </tr>
+                    {% else %}
+                            <tr>
+                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="bold text-center">{{ 'sigtec.table.content.empty.storage'|trans }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="bold text-center">&nbsp;</td>
+                            </tr>
+                    {% endfor %}
+                </table>
+                        </div>
+                    </dd>
+
+                    <dt>Third section</dt>
+                    <dd>
+                        <div class="with-padding">
+                            Third section content
+                        </div>
+                    </dd>
+
+                </dl>
+                <p class="button-height align-right">
+                    {% if is_granted('ROLE_REVISER') %}
+                        {{ buttons.generic(null,'sigtec.report_technical.approve','icon-tick',{'translation_domain':'CoramerSigtecReportTechnicalBundle'}) }}
+                        {{ buttons.generic(null,'sigtec.report_technical.reject','icon-cross',{'translation_domain':'CoramerSigtecReportTechnicalBundle','gradient':'red-gradient'}) }}
+                    {% endif %}
+                    {{ buttons.edit(path('coramer_sigtec_backend_company_report_technical_update', { 'id': company_report_technical.id })) }}
+                    {{ buttons.delete(path('coramer_sigtec_backend_company_report_technical_delete', { 'id': company_report_technical.id })) }}
+                </p>
+                {% endblock %}
+
+{% block javascript %}
+     {% include 'CoramerSigtecWebBundle:Backend:ReportTechnical/Javascripts/_tableInfo.html.twig' %}
+{% endblock javascript %}
+
+{% block javascripts_post %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.accordions.js') }}"></script>
+    <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/libs/jquery.details.min.js?v=1') }}"></script>
+{% endblock  %}

@@ -311,4 +311,27 @@ class DetailProductStorage
     {
         return $this->dedication;
     }
+    
+    function getLabelStorage()
+    {
+        $storages = array(
+            DetailProductStorage::STORAGE_OUTDOOR => 'sigtec.storage.outdoor',
+            DetailProductStorage::STORAGE_CONFINED => 'sigtec.storage.confined',
+        );
+        if(isset($storages[$this->storage])){
+            return $storages[$this->storage];
+        }
+    }
+    
+    function getLabelSeparatedResin()
+    {
+        $separated_resins = array(
+            DetailProductStorage::SEPARATED_RESIN_NOT_APPLY => 'N/A',
+            DetailProductStorage::SEPARATED_RESIN_YES => 'sigtec.yes',
+            DetailProductStorage::SEPARATED_RESIN_NO => 'sigtec.no',
+        );
+        if(isset($separated_resins[$this->separatedResin])){
+            return $separated_resins[$this->separatedResin];
+        }
+    }
 }
