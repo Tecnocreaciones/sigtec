@@ -11,6 +11,7 @@
 
 namespace Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\Exportation;
 
+use Coramer\Sigtec\ReportTechnicalBundle\Event\Events;
 use Coramer\Sigtec\ReportTechnicalBundle\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,11 +34,9 @@ class ExportationProductController extends BaseController
     
     public function createAction(Request $request) {
         $reportTechnical = $this->findReportTechnicalOr404($request);
-        //Security Check
-        $user = $this->getUser();
-        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
-            throw $this->createAccessDeniedHttpException();
-        }
+        
+        $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_PRE_CREATE, $reportTechnical);
+        
         $resource = $this->createNew();
         $exportation = $reportTechnical->getExportation();
         $resource->setExportation($exportation);
@@ -46,6 +45,7 @@ class ExportationProductController extends BaseController
         $view = $this->view();
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $resource = $this->domainManager->create($resource);
+            $exportation->addProductsExport($resource);
             
             if(!$exportation->hasExportedProducts()){
                 $exportation->setHasExportedProducts(true);
@@ -53,6 +53,8 @@ class ExportationProductController extends BaseController
                 $em->persist($exportation);
                 $em->flush();
             }
+            
+            $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_POST_CREATE, $reportTechnical);
             
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
@@ -72,11 +74,9 @@ class ExportationProductController extends BaseController
     
     public function deleteAction(Request $request) {
         $reportTechnical = $this->findReportTechnicalOr404($request);
-        //Security Check
-        $user = $this->getUser();
-        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
-            throw $this->createAccessDeniedHttpException();
-        }
+        
+        $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_PRE_DELETE, $reportTechnical);
+        
         if($request->isXmlHttpRequest()){
             $resource = $this->getRepository()->find($request->get('slug'));
             if(!$resource){
@@ -86,7 +86,6 @@ class ExportationProductController extends BaseController
             
             $this->domainManager->delete($resource);
             $exportation->removeProductsExport($resource);
-            
             
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
@@ -98,6 +97,8 @@ class ExportationProductController extends BaseController
                 $em->flush();
             }
             
+            $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_POST_DELETE, $reportTechnical);
+            
             $data = array(
                 'message' => $flashBag->get('success'),
             );
@@ -107,11 +108,9 @@ class ExportationProductController extends BaseController
     
     public function updateAction(Request $request) {
         $reportTechnical = $this->findReportTechnicalOr404($request);
-        //Security Check
-        $user = $this->getUser();
-        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
-            throw $this->createAccessDeniedHttpException();
-        }
+        
+        $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_PRE_UPDATE, $reportTechnical);
+        
         $resource = $this->getRepository()->find($request->get('slug'));
         $resource->setExportation($reportTechnical->getExportation());
         
@@ -120,6 +119,11 @@ class ExportationProductController extends BaseController
         if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
 
             $this->domainManager->update($resource);
+            
+            $reportTechnical->getExportation()->getProductsExport()->removeElement($resource);
+            
+            $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_POST_UPDATE, $reportTechnical);
+            
             if ($request->isXmlHttpRequest()) {
                 /** @var FlashBag $flashBag */
                 $flashBag = $this->get('session')->getBag('flashes');

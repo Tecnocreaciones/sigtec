@@ -11,6 +11,7 @@
 
 namespace Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\GrowthPotential;
 
+use Coramer\Sigtec\ReportTechnicalBundle\Event\Events;
 use Coramer\Sigtec\ReportTechnicalBundle\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -78,11 +79,9 @@ class NewMachineryController extends BaseController
      */
    public function createAction(Request $request) {
         $reportTechnical = $this->findReportTechnicalOr404($request);
-        //Security Check
-        $user = $this->getUser();
-        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
-            throw $this->createAccessDeniedHttpException();
-        }
+        
+        $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_NEW_MACHINERY_PRE_CREATE, $reportTechnical);
+        
         $resource = $this->createNew();
         $growthPotential = $reportTechnical->getGrowthPotential();
         
@@ -93,6 +92,9 @@ class NewMachineryController extends BaseController
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $resource->setGrowthPotential($reportTechnical->getGrowthPotential());
             $resource = $this->domainManager->create($resource);
+            $reportTechnical->getGrowthPotential()->addNewMachinery($resource);
+            
+            $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_NEW_MACHINERY_POST_CREATE, $reportTechnical);
             
             if(!$growthPotential->isDoYouPlanToPurchaseNewMachineries()){
                 $growthPotential->setDoYouPlanToPurchaseNewMachineries(true);
@@ -126,11 +128,9 @@ class NewMachineryController extends BaseController
      */
     public function updateAction(Request $request) {
         $reportTechnical = $this->findReportTechnicalOr404($request);
-        //Security Check
-        $user = $this->getUser();
-        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
-            throw $this->createAccessDeniedHttpException();
-        }
+        
+        $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_NEW_MACHINERY_PRE_UPDATE, $reportTechnical);
+        
         $resource = $this->getRepository()->find($request->get('slug'));
         $resource->setGrowthPotential($reportTechnical->getGrowthPotential());
         $form = $this->getForm($resource);
@@ -138,6 +138,9 @@ class NewMachineryController extends BaseController
         if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
 
             $this->domainManager->update($resource);
+            
+            $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_NEW_MACHINERY_POST_UPDATE, $reportTechnical);
+            
             if ($request->isXmlHttpRequest()) {
                 /** @var FlashBag $flashBag */
                 $flashBag = $this->get('session')->getBag('flashes');
@@ -174,11 +177,9 @@ class NewMachineryController extends BaseController
      */
     public function deleteAction(Request $request) {
         $reportTechnical = $this->findReportTechnicalOr404($request);
-        //Security Check
-        $user = $this->getUser();
-        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
-            throw $this->createAccessDeniedHttpException();
-        }
+        
+        $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_NEW_MACHINERY_PRE_DELETE, $reportTechnical);
+        
         if($request->isXmlHttpRequest()){
             $resource = $this->getRepository()->find($request->get('slug'));
             if(!$resource){
@@ -188,6 +189,8 @@ class NewMachineryController extends BaseController
             
             $this->domainManager->delete($resource);
             $growthPotential->removeNewMachinery($resource);
+            
+            $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_NEW_MACHINERY_POST_DELETE, $reportTechnical);
             
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');

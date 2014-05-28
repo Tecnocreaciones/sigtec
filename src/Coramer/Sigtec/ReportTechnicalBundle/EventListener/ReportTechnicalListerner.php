@@ -11,7 +11,7 @@
 
 namespace Coramer\Sigtec\ReportTechnicalBundle\EventListener;
 
-use Coramer\Sigtec\CompanyBundle\Manager\Events;
+use Coramer\Sigtec\ReportTechnicalBundle\Event\Events;
 use Coramer\Sigtec\ReportTechnicalBundle\Event\ReportTechnicalEvent;
 use Coramer\Sigtec\ReportTechnicalBundle\Manager\ReportTechnicalManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -31,7 +31,97 @@ class ReportTechnicalListerner implements EventSubscriberInterface, ContainerAwa
     public static function getSubscribedEvents() 
     {   
         return array(
-            Events::REPORT_TECHNICAL_DETAIL_PRODUCT_STORAGE_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            //Security Check
+            Events::REPORT_TECHNICAL_DETAIL_PRODUCT_STORAGE_PRE_CREATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_DETAIL_PRODUCT_STORAGE_PRE_UPDATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_DETAIL_PRODUCT_STORAGE_PRE_DELETE => array('checkSecurity',90),
+            
+            Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_PRE_CREATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_PRE_UPDATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_PRE_DELETE => array('checkSecurity',90),
+            
+            Events::REPORT_TECHNICAL_GROWING_MARKET_PRE_CREATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_GROWING_MARKET_PRE_UPDATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_GROWING_MARKET_PRE_DELETE => array('checkSecurity',90),
+            
+            Events::REPORT_TECHNICAL_NEW_MACHINERY_PRE_CREATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_NEW_MACHINERY_PRE_UPDATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_NEW_MACHINERY_PRE_DELETE => array('checkSecurity',90),
+            
+            Events::REPORT_TECHNICAL_OTHER_MARKET_PRE_CREATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_OTHER_MARKET_PRE_UPDATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_OTHER_MARKET_PRE_DELETE => array('checkSecurity',90),
+            
+            Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_PRE_CREATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_PRE_UPDATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_PRE_DELETE => array('checkSecurity',90),
+            
+            Events::REPORT_TECHNICAL_MACHINERY_PRE_CREATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_MACHINERY_PRE_UPDATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_MACHINERY_PRE_DELETE => array('checkSecurity',90),
+            
+            Events::REPORT_TECHNICAL_ADDITIVE_USED_PRE_CREATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_ADDITIVE_USED_PRE_UPDATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_ADDITIVE_USED_PRE_DELETE => array('checkSecurity',90),
+            
+            Events::REPORT_TECHNICAL_DESCRIPTION_MARKET_PRE_CREATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_DESCRIPTION_MARKET_PRE_UPDATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_DESCRIPTION_MARKET_PRE_DELETE => array('checkSecurity',90),
+            
+            Events::REPORT_TECHNICAL_PRODUCT_MANUFACTURED_PRE_CREATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_PRODUCT_MANUFACTURED_PRE_UPDATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_PRODUCT_MANUFACTURED_PRE_DELETE => array('checkSecurity',90),
+            
+            Events::REPORT_TECHNICAL_PRODUCTION_LEVEL_PRE_CREATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_PRODUCTION_LEVEL_PRE_UPDATE => array('checkSecurity',90),
+            Events::REPORT_TECHNICAL_PRODUCTION_LEVEL_PRE_DELETE => array('checkSecurity',90),
+            
+            
+            
+            //Validation report
+            Events::REPORT_TECHNICAL_DETAIL_PRODUCT_STORAGE_POST_CREATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_DETAIL_PRODUCT_STORAGE_POST_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_DETAIL_PRODUCT_STORAGE_POST_DELETE => array('checkSeonAddOrRemoveElementscurity',20),
+            
+            Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_POST_CREATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_POST_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_EXPORTATION_PRODUCT_POST_DELETE => array('checkSeonAddOrRemoveElementscurity',20),
+            
+            Events::REPORT_TECHNICAL_GROWING_MARKET_POST_CREATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_GROWING_MARKET_POST_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_GROWING_MARKET_POST_DELETE => array('checkSeonAddOrRemoveElementscurity',20),
+            
+            Events::REPORT_TECHNICAL_NEW_MACHINERY_POST_CREATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_NEW_MACHINERY_POST_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_NEW_MACHINERY_POST_DELETE => array('checkSeonAddOrRemoveElementscurity',20),
+            
+            Events::REPORT_TECHNICAL_OTHER_MARKET_POST_CREATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_OTHER_MARKET_POST_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_OTHER_MARKET_POST_DELETE => array('checkSeonAddOrRemoveElementscurity',20),
+            
+            Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_POST_CREATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_POST_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_POST_DELETE => array('checkSeonAddOrRemoveElementscurity',20),
+            
+            Events::REPORT_TECHNICAL_MACHINERY_POST_CREATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_MACHINERY_POST_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_MACHINERY_POST_DELETE => array('checkSeonAddOrRemoveElementscurity',20),
+            
+            Events::REPORT_TECHNICAL_ADDITIVE_USED_POST_CREATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_ADDITIVE_USED_POST_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_ADDITIVE_USED_POST_DELETE => array('checkSeonAddOrRemoveElementscurity',20),
+            
+            Events::REPORT_TECHNICAL_DESCRIPTION_MARKET_POST_CREATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_DESCRIPTION_MARKET_POST_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_DESCRIPTION_MARKET_POST_DELETE => array('checkSeonAddOrRemoveElementscurity',20),
+            
+            Events::REPORT_TECHNICAL_PRODUCT_MANUFACTURED_POST_CREATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_PRODUCT_MANUFACTURED_POST_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_PRODUCT_MANUFACTURED_POST_DELETE => array('checkSeonAddOrRemoveElementscurity',20),
+            
+            Events::REPORT_TECHNICAL_PRODUCTION_LEVEL_POST_CREATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_PRODUCTION_LEVEL_POST_UPDATE => array('checkSeonAddOrRemoveElementscurity',20),
+            Events::REPORT_TECHNICAL_PRODUCTION_LEVEL_POST_DELETE => array('checkSeonAddOrRemoveElementscurity',20),
         );
     }
     

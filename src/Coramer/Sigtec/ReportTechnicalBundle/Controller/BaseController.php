@@ -98,4 +98,18 @@ abstract class BaseController extends ResourceController
     {
         return $this->get('translator')->trans($id,$parameters, $domain);
     }
+    
+    /**
+     * Dispara un evento que contiene el reporte tecnico
+     * 
+     * @param type $eventName
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnical
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Event\ReportTechnicalEvent
+     */
+    function dispatchReportTechnicalEvent($eventName,ReportTechnical $reportTechnical)
+    {
+        $event = new \Coramer\Sigtec\ReportTechnicalBundle\Event\ReportTechnicalEvent($reportTechnical);
+        $this->get('event_dispatcher')->dispatch($eventName,$event);
+        return $event;
+    }
 }

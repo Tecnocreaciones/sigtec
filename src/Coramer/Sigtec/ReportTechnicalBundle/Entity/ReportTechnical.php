@@ -363,7 +363,7 @@ class ReportTechnical extends AbstractReportTechnical
      */
     public function addProductionLevel(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel $productionLevels)
     {
-        $this->productionLevels[] = $productionLevels;
+        $this->productionLevels->set($productionLevels->getId(),$productionLevels);
 
         return $this;
     }
@@ -396,7 +396,7 @@ class ReportTechnical extends AbstractReportTechnical
      */
     public function addProductsManufactured(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductManufactured $productsManufactured)
     {
-        $this->productsManufactured[] = $productsManufactured;
+        $this->productsManufactured->add($productsManufactured);
 
         return $this;
     }
@@ -429,7 +429,7 @@ class ReportTechnical extends AbstractReportTechnical
      */
     public function addAdditivesUsed(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed $additivesUsed)
     {
-        $this->additivesUsed[] = $additivesUsed;
+        $this->additivesUsed->add($additivesUsed);
 
         return $this;
     }
@@ -485,7 +485,7 @@ class ReportTechnical extends AbstractReportTechnical
      */
     public function addDescriptionMarket(\Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionMarket $descriptionMarkets)
     {
-        $this->descriptionMarkets[] = $descriptionMarkets;
+        $this->descriptionMarkets->add($descriptionMarkets);
 
         return $this;
     }

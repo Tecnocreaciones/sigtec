@@ -11,6 +11,7 @@
 
 namespace Coramer\Sigtec\ReportTechnicalBundle\Controller\Properties\OtherPlasticResin;
 
+use Coramer\Sigtec\ReportTechnicalBundle\Event\Events;
 use Coramer\Sigtec\ReportTechnicalBundle\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,11 +34,9 @@ class DetailOtherPlasticResinController extends BaseController
     
     public function createAction(Request $request) {
         $reportTechnical = $this->findReportTechnicalOr404($request);
-        //Security Check
-        $user = $this->getUser();
-        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
-            throw $this->createAccessDeniedHttpException();
-        }
+        
+        $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_PRE_CREATE, $reportTechnical);
+        
         $otherPlasticResin = $reportTechnical->getOtherPlasticResin();
         
         $resource = $this->createNew();
@@ -47,6 +46,10 @@ class DetailOtherPlasticResinController extends BaseController
         $view = $this->view();
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $resource = $this->domainManager->create($resource);
+            $otherPlasticResin->addDetailOthersPlasticResin($resource);
+            
+            $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_POST_CREATE, $reportTechnical);
+            
             if(!$otherPlasticResin->isUseOtherPlasticResins()){
                 $otherPlasticResin->setUseOtherPlasticResins(true);
                 $em = $this->getDoctrine()->getManager();
@@ -71,11 +74,9 @@ class DetailOtherPlasticResinController extends BaseController
     
     public function deleteAction(Request $request) {
         $reportTechnical = $this->findReportTechnicalOr404($request);
-        //Security Check
-        $user = $this->getUser();
-        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
-            throw $this->createAccessDeniedHttpException();
-        }
+        
+        $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_PRE_DELETE, $reportTechnical);
+        
         if($request->isXmlHttpRequest()){
             $resource = $this->getRepository()->find($request->get('slug'));
             if(!$resource){
@@ -86,6 +87,8 @@ class DetailOtherPlasticResinController extends BaseController
             $this->domainManager->delete($resource);
             
             $otherPlasticResin->removeDetailOthersPlasticResin($resource);
+            
+            $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_POST_DELETE, $reportTechnical);
             
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
@@ -106,17 +109,18 @@ class DetailOtherPlasticResinController extends BaseController
     
     public function updateAction(Request $request) {
         $reportTechnical = $this->findReportTechnicalOr404($request);
-        //Security Check
-        $user = $this->getUser();
-        if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
-            throw $this->createAccessDeniedHttpException();
-        }
+        
+        $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_PRE_UPDATE, $reportTechnical);
+        
         $resource = $this->getRepository()->find($request->get('slug'));
         $form = $this->getForm($resource);
         
         if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
 
             $this->domainManager->update($resource);
+            
+            $this->dispatchReportTechnicalEvent(Events::REPORT_TECHNICAL_DETAIL_OTHER_PLASTIC_RESIN_POST_UPDATE, $reportTechnical);
+            
             if ($request->isXmlHttpRequest()) {
                 /** @var FlashBag $flashBag */
                 $flashBag = $this->get('session')->getBag('flashes');

@@ -165,7 +165,7 @@ class ReportTechnicalController extends ResourceController
         $data = array();
         if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
             $event = new \Coramer\Sigtec\ReportTechnicalBundle\Event\ReportTechnicalEvent($resource);
-            $this->get('event_dispatcher')->dispatch(\Coramer\Sigtec\CompanyBundle\Manager\Events::REPORT_TECHNICAL_UPDATE,$event);
+            $this->get('event_dispatcher')->dispatch(\Coramer\Sigtec\ReportTechnicalBundle\Event\Events::REPORT_TECHNICAL_UPDATE,$event);
             
             if($request->isXmlHttpRequest()){
                 $em = $this->getDoctrine()->getManager();

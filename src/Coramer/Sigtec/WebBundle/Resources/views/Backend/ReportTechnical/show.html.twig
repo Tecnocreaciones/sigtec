@@ -528,13 +528,20 @@
 {% endblock %}
 
 {% block javascript %}
+    {{ parent() }}
      {% include 'CoramerSigtecWebBundle:Backend:ReportTechnical/Javascripts/_tableInfo.html.twig' %}
+     <script type="text/javascript">
+         $(document).ready(function(){
+             // Progress
+            $('.progress').progress();
+         });
+     </script>
 {% endblock javascript %}
 
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.accordions.js') }}"></script>
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/libs/jquery.details.min.js?v=1') }}"></script>
+    <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.progress-slider.js') }}"></script>
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.tabs.js') }}"></script>
-    <script src="{{  asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.progress-slider.js') }}"></script>
 {% endblock  %}
