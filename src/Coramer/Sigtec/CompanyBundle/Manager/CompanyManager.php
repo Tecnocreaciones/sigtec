@@ -49,7 +49,7 @@ class CompanyManager implements ContainerAwareInterface
                $percentage+= 50; 
             }else{
                $percentage+= 10; 
-                $errors[] = $this->trans('sigtec.help.company.at_least_one_plan_must_be_active', array('%x%' => 1), 'help');   
+                $errors[] = $this->trans('sigtec.help.company.at_least_one_plan_must_be_active', array('%x%' => 1), 'help');
             }
         }else{
             $errors[] = $this->trans('sigtec.help.company.you_must_add_at_least_x_plants', array('%x%' => 1), 'help');   

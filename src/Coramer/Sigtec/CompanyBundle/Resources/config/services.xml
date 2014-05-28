@@ -28,7 +28,6 @@
             </call>
         </service>
         <service id="coramer_sigtec_company.company_manager" class="%coramer_sigtec_company.company_manager.class%">
-            <argument>%coramer_sigtec_company.company.class%</argument>
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>

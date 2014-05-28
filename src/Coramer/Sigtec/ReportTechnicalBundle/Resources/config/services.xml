@@ -6,6 +6,7 @@
     
     <parameters>
         <parameter key="coramer_sigtec_report_technical.report_technical.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical</parameter>
+        <parameter key="coramer_sigtec_report_technical.manager.report_technical_manager.class">Coramer\Sigtec\ReportTechnicalBundle\Manager\ReportTechnicalManager</parameter>
         <parameter key="coramer_sigtec_report_technical.parameter_resolver.class">Coramer\Sigtec\ReportTechnicalBundle\Resolve\FeatureMachine\ParameterResolver</parameter>
         <parameter key="coramer_sigtec_report_technical.report_technical.properties.description_area_company.detail_product_storage.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage</parameter>
         <parameter key="coramer_sigtec_report_technical.report_technical.properties.production_level.class">Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel</parameter>
@@ -23,6 +24,7 @@
         <parameter key="coramer_sigtec_report_technical.form.type.report_technical.properties.additive_used.class">Coramer\Sigtec\ReportTechnicalBundle\Form\Properties\AdditiveUsedType</parameter>
         <parameter key="coramer_sigtec_report_technical.repository.report_technical.class">Coramer\Sigtec\ReportTechnicalBundle\Repository\ReportTechnicalRepository</parameter>
         <parameter key="coramer_sigtec_report_technical.form.type.report_technical.class">Coramer\Sigtec\ReportTechnicalBundle\Form\ReportTechnicalType</parameter>
+        <parameter key="coramer_sigtec_report_technical.event.report_technical_manager.class">Coramer\Sigtec\ReportTechnicalBundle\EventListener\ReportTechnicalListerner</parameter>
     </parameters>
 
     <services>
@@ -158,6 +160,17 @@
         </service>
         <service id="coramer_sigtec_report_technical.parameter_resolver" class="%coramer_sigtec_report_technical.parameter_resolver.class%">
             <argument type="service" id="doctrine.orm.entity_manager"  />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="coramer_sigtec_report_technical.manager.report_technical_manager" class="%coramer_sigtec_report_technical.manager.report_technical_manager.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="coramer_sigtec_report_technical.event.report_technical_manager" class="%coramer_sigtec_report_technical.event.report_technical_manager.class%">
+            <tag name="kernel.event_subscriber" />
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>

@@ -146,6 +146,14 @@ class ReportTechnical extends AbstractReportTechnical
      */
     private $inventoryLevel;
     
+    /**
+     * ¿Reporte Valida? (Datos completo)
+     * 
+     * @var boolean
+     * @ORM\Column(name="valid", type="boolean")
+     */
+    private $valid = false;
+    
     public function __construct() {
         $this->productionLevels = new \Doctrine\Common\Collections\ArrayCollection();
         $this->productsManufactured = new \Doctrine\Common\Collections\ArrayCollection();
@@ -373,7 +381,7 @@ class ReportTechnical extends AbstractReportTechnical
     /**
      * Get productionLevels
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProductionLevel
      */
     public function getProductionLevels()
     {
@@ -569,5 +577,38 @@ class ReportTechnical extends AbstractReportTechnical
     public function getInventoryLevel()
     {
         return $this->inventoryLevel;
+    }
+
+    /**
+     * Set valid
+     *
+     * @param boolean $valid
+     * @return ReportTechnical
+     */
+    public function setValid($valid)
+    {
+        $this->valid = $valid;
+
+        return $this;
+    }
+
+    /**
+     * Get valid
+     *
+     * @return boolean 
+     */
+    public function getValid()
+    {
+        return $this->valid;
+    }
+    
+    /**
+     * Is valid
+     *
+     * @return boolean 
+     */
+    public function isValid()
+    {
+        return $this->valid;
     }
 }

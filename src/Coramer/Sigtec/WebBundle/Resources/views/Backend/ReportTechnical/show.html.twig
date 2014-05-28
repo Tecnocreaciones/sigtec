@@ -8,6 +8,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/table3860.css?v=1') }}">
     <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/switches3860.css?v=1') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/css/styles/progress-slider3860.css?v=1') }}">
 {% endblock stylesheets %}
 
 {% block body -%}
@@ -27,6 +28,41 @@
         <p class="inline-label">
             <label class="label">{{ 'sigtec.archive'|trans({},'messages') }}</label>
             {{ company_report_technical.archive }}
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.company.your_business_is_at'|trans({},'CoramerSigtecCompanyBundle') }}</label>
+            {% if company_report_technical.isValid %}
+                {% set registrationPercentage = 100 %}
+            {% else %}
+                {% set registrationPercentage = report_technical_manager.getRegistrationPercentage(company_report_technical) %}
+            {% endif %}
+            <span class="progress small-margin-right" data-progress-options='{"size":130,"barClasses":["green-gradient","glossy"]}'>
+                {{ registrationPercentage }}%
+            </span>
+            {% if company_report_technical.isValid == false %}
+                <span class="info-spot">
+                    <span class="icon-info-round"></span>
+                    <span class="info-bubble">
+                        {% for key,value in report_technical_manager.errors %}
+                            {{ value }}<br />
+                        {% endfor  %}
+                    </span>
+                </span>
+            {% endif %}
+        </p>
+        <p class="inline-label">
+            <label class="label">{{ 'sigtec.company_report_technical.valid'|trans({},'CoramerSigtecReportTechnicalBundle') }}</label>
+            {% if company_report_technical.valid %}
+                <small class="tag green-bg">{{ 'sigtec.yes'|trans }}</small> 
+            {% else %}
+                <small class="tag red-bg small-margin-right">{{ 'sigtec.no'|trans }}</small>
+                <span class="info-spot">
+                    <span class="icon-info-round"></span>
+                    <span class="info-bubble">
+                        {{ 'sigtec.help.company_report_technical.not_valid'|trans({},'help') }}
+                    </span>
+                </span>
+            {% endif %}
         </p>
         <p class="inline-label">
             <label class="label">{{ 'sigtec.status'|trans({},'messages') }}</label>
@@ -500,4 +536,5 @@
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.accordions.js') }}"></script>
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/libs/jquery.details.min.js?v=1') }}"></script>
     <script src="{{ asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.tabs.js') }}"></script>
+    <script src="{{  asset('bundles/tecnocreacionesvzlagovernment/template/developer/js/developr.progress-slider.js') }}"></script>
 {% endblock  %}

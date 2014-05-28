@@ -65,3 +65,8 @@ sigtec:
             nro: Indicate the number of machines that has the same characteristics and use.
             mark: Indicate equipment brand. If unknown post script.
             type: Indicate "MC" if the computer is monolayer or "CE" if the computer is multilayered.
+        company_report_technical:
+            you_must_enter_the_professional_profile: You must enter data professional profile.
+            you_must_add_production_levels: You must add production levels.
+            you_must_add_at_least_one_level_production_machinery: You must add at least one machine to the production level of the process "%x%".
+            not_valid: The technical report must be valid in order to submit it for review. For the technical report is valid data must complete 100%.

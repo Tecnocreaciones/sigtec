@@ -234,3 +234,5 @@ sigtec:
             exportation_products: Export
             growth_potential: Growth
             inventory_level: Inventory
+    company_report_technical:
+        valid: ¿Technical report valid?

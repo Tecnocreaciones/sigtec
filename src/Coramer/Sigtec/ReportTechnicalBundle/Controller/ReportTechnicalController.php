@@ -45,8 +45,15 @@ class ReportTechnicalController extends ResourceController
             ->view()
             ->setTemplate($this->config->getTemplate('show.html'))
             ->setTemplateVar($this->config->getResourceName())
-            ->setData($resource)
         ;
+        if($request->isXmlHttpRequest() || $this->config->isApiRequest()){
+            $view->setData($resource);
+        }else{
+            $view->setData(array(
+                'company_report_technical' => $resource,
+                'report_technical_manager' => $this->get('coramer_sigtec_report_technical.manager.report_technical_manager')
+            ));
+        }
         $view->getSerializationContext()->setGroups(array('id','report_technical','process_details'));
         return $this->handleView($view);
     }
@@ -157,6 +164,9 @@ class ReportTechnicalController extends ResourceController
         $form = $this->getForm($resource);
         $data = array();
         if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
+            $event = new \Coramer\Sigtec\ReportTechnicalBundle\Event\ReportTechnicalEvent($resource);
+            $this->get('event_dispatcher')->dispatch(\Coramer\Sigtec\CompanyBundle\Manager\Events::REPORT_TECHNICAL_UPDATE,$event);
+            
             if($request->isXmlHttpRequest()){
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($resource);

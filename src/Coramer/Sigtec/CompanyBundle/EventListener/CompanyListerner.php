@@ -1,4 +1,11 @@
 <?php
+namespace Coramer\Sigtec\CompanyBundle\EventListener;
+
+use Coramer\Sigtec\CompanyBundle\Event\CompanyEvent;
+use Coramer\Sigtec\CompanyBundle\Manager\CompanyManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /*
  * This file is part of the TecnoCreaciones package.
@@ -9,14 +16,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Coramer\Sigtec\CompanyBundle\EventListener;
-
 /**
- * Description of CompanyListerner
+ * Escuchador de eventos de compañia
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
-class CompanyListerner implements \Symfony\Component\EventDispatcher\EventSubscriberInterface, \Symfony\Component\DependencyInjection\ContainerAwareInterface
+class CompanyListerner implements EventSubscriberInterface, ContainerAwareInterface
 {
     private $container;
 
@@ -33,7 +38,7 @@ class CompanyListerner implements \Symfony\Component\EventDispatcher\EventSubscr
         );
     }
     
-    function onAddOrRemoveElements(\Coramer\Sigtec\CompanyBundle\Event\CompanyEvent $event)
+    function onAddOrRemoveElements(CompanyEvent $event)
     {
         $company = $event->getCompany();
         if($this->getCompanyManager()->isValidRegistration($company)){
@@ -46,7 +51,7 @@ class CompanyListerner implements \Symfony\Component\EventDispatcher\EventSubscr
         $em->flush();
     }
 
-    public function setContainer(\Symfony\Component\DependencyInjection\ContainerInterface $container = null) {
+    public function setContainer(ContainerInterface $container = null) {
         $this->container = $container;
     }
     
@@ -56,7 +61,7 @@ class CompanyListerner implements \Symfony\Component\EventDispatcher\EventSubscr
     }
     
     /**
-     * @return \Coramer\Sigtec\CompanyBundle\Manager\CompanyManager
+     * @return CompanyManager
      */
     function getCompanyManager()
     {

@@ -14,7 +14,7 @@ namespace Coramer\Sigtec\CompanyBundle\Event;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Description of CompanyEvent
+ * Evento de compañia
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */

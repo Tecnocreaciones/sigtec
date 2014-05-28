@@ -5,7 +5,7 @@ sigtec:
             website_address: Ingrese la dirección de la página web de su sitio por ejemplo http://miempresa.com (opcional).
             you_must_add_at_least_x_plants: Debe agregar mínimo %x% planta(s).
             you_must_add_at_least_x_contacts: Debe agregar mínimo %x% contacto(s).
-            not_valid: La empresa debe ser valida para poder a crear reportes tpecnicos. Para que la empresa sea valida debe completar los datos al 100%.
+            not_valid: La empresa debe ser valida para poder a crear reportes técnicos. Para que la empresa sea valida debe completar los datos al 100%.
             at_least_one_plan_must_be_active: Por lo menos %x% planta debe estar activa.
         add_a_phone: Agrega el telefono con los siguientes formatos +58-412-555-5555, 0800-555-5555, +58-212-111-1111.
         plant:

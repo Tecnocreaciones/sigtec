@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 
 /**
- * Description of DetailProductStorageController
+ * Controlador de los detalles del almacenamiento
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */
@@ -72,12 +72,47 @@ class DetailProductStorageController extends BaseController
     {
         $resource = $this->findOr404($request);
         $reportTechnical = $resource->getDescriptionAreaCompany()->getReportTechnical();
+        
         //Security Check
         $user = $this->getUser();
         if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
             throw $this->createAccessDeniedHttpException();
         }
-        return parent::updateAction($request);
+        
+        $form = $this->getForm($resource);
+        
+        if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
+
+            $this->domainManager->update($resource);
+            
+            $event = new \Coramer\Sigtec\ReportTechnicalBundle\Event\ReportTechnicalEvent($reportTechnical);
+            $this->get('event_dispatcher')->dispatch(\Coramer\Sigtec\CompanyBundle\Manager\Events::REPORT_TECHNICAL_DETAIL_PRODUCT_STORAGE_UPDATE,$event);
+            
+            if ($request->isXmlHttpRequest()) {
+                /** @var FlashBag $flashBag */
+                $flashBag = $this->get('session')->getBag('flashes');
+                $data = array(
+                    'message' => $flashBag->get('success'),
+                );
+                return new \Symfony\Component\HttpFoundation\JsonResponse($data);
+            }
+            return $this->redirectHandler->redirectTo($resource);
+        }
+
+        if ($this->config->isApiRequest()) {
+            return $this->handleView($this->view($form));
+        }
+
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('update.html'))
+            ->setData(array(
+                $this->config->getResourceName() => $resource,
+                'form'                           => $form->createView()
+            ))
+        ;
+
+        return $this->handleView($view);
     }
     public function deleteAction(Request $request)
     {
@@ -93,6 +128,12 @@ class DetailProductStorageController extends BaseController
                 throw $this->createNotFoundException();
             }
             $this->domainManager->delete($resource);
+            
+            $reportTechnical->getDescriptionAreaCompany()->getDetailProductStorages()->removeElement($resource);
+            
+            $event = new \Coramer\Sigtec\ReportTechnicalBundle\Event\ReportTechnicalEvent($reportTechnical);
+            $this->get('event_dispatcher')->dispatch(\Coramer\Sigtec\CompanyBundle\Manager\Events::REPORT_TECHNICAL_DETAIL_PRODUCT_STORAGE_DELETE,$event);
+            
             /** @var FlashBag $flashBag */
             $flashBag = $this->get('session')->getBag('flashes');
             $data = array(

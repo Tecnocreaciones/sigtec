@@ -12,7 +12,7 @@
 namespace Coramer\Sigtec\CompanyBundle\EventListener;
 
 /**
- * Description of Events
+ * Eventos de la compañia
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  */

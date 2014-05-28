@@ -65,3 +65,8 @@ sigtec:
             nro: Indicar el número de máquinas que posee con las mismas caracteristicas y uso.
             mark: Indicar marca del equipo. Si no lo conoce colocar un guión.
             type: Indicar "MC" si el equipo es monocapa o "CE" si el equipo es multicapa.
+        company_report_technical:
+            you_must_enter_the_professional_profile: Debe ingresar los datos del perfil profesional.
+            you_must_add_production_levels: Debe agregar los niveles de producción.
+            you_must_add_at_least_one_level_production_machinery: Debe agregar por lo menos una maquinaria al nivel de producción del proceso "%x%".
+            not_valid: El reporte técnico debe ser valido para poder enviarlo a revisión. Para que el reporte técnico sea valido debe completar los datos al 100%.
