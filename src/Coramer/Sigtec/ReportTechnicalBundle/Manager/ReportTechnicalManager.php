@@ -60,6 +60,7 @@ class ReportTechnicalManager implements ContainerAwareInterface
             $percentage+= 5;
         }
         
+        //Evalua el nivel de produccion
         if(count($reportTechnical->getProductionLevels()) > 0){
             $valid = true;
             foreach ($reportTechnical->getProductionLevels() as $productionLevel) {
