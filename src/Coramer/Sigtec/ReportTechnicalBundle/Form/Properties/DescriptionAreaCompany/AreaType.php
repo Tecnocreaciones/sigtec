@@ -34,7 +34,8 @@ class AreaType extends AbstractType
                 ),
             ))
             ->add('areas','collection',array(
-                'type' => new AreaType()
+                'type' => new AreaType(),
+                'cascade_validation' => true,
             ))
         ;
     }
@@ -47,6 +48,7 @@ class AreaType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area',
             'csrf_protection' => false,
+            'cascade_validation' => true,
         ));
     }
 

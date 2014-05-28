@@ -35,6 +35,7 @@ class PlantDescriptionType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\PlantDescription',
             'csrf_protection' => false,
+            'cascade_validation' => true,
         ));
     }
 

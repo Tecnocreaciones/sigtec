@@ -1,0 +1,55 @@
+Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical:
+    properties:
+        company:
+            - NotNull: ~
+
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile:
+    properties:
+        quantityProfessionals:
+            - NotBlank: ~
+            - Type:
+                type: integer
+        quantityTechnical:
+            - NotBlank: ~
+            - Type:
+                type: integer
+        quantityLaborers:
+            - NotBlank: ~
+            - Type:
+                type: integer
+        quantityOther:
+            - NotBlank: ~
+            - Type:
+                type: integer
+        total:
+            - NotBlank: ~
+            - Type:
+                type: integer
+
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area:
+    properties:
+        totalArea:
+            - NotBlank: ~
+            - Type:
+                type: float
+        coveredArea:
+            - NotBlank: ~
+            - Type:
+                type: float
+    getters:
+        coveredAreaValid:
+            - "True": { message: "sigtec.validators.the_covered_area_must_be_less_than_or_equal_to_the_total_area" }
+        areasTotalValid:
+            - "True": { message: "sigtec.validators.total_area" }
+        areasCoveredValid:
+            - "True": { message: "sigtec.validators.covered_area" }
+    
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\DetailProductStorage:
+    getters:
+        coveredAreaValid:
+            - "True": { message: "sigtec.validators.the_covered_area_must_be_less_than_or_equal_to_the_total_area" }
+
+Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\AdditiveUsed:
+    getters:
+        validConcentration:
+            - "True": { message: "sigtec.validators.the_concentration_value_is_incorrect" }

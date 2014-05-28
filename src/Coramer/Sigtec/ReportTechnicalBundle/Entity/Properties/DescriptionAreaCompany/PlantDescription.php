@@ -14,7 +14,7 @@ namespace Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionArea
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Description of PlantDescription
+ * Descripcion de planta
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  * @ORM\Table()
@@ -46,8 +46,9 @@ class PlantDescription
     private $plant;
 
     /**
-     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area
+     * Area de la planta 
      * 
+     * @var \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area
      * @ORM\OneToOne(targetEntity="Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany\Area")
      */
     protected $area;

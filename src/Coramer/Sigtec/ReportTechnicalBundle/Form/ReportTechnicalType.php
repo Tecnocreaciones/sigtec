@@ -31,6 +31,7 @@ class ReportTechnicalType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical',
             'csrf_protection' => false,
+            'cascade_validation' => true,
         ));
     }
 

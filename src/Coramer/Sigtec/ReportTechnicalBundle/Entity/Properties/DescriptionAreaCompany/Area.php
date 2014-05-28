@@ -14,7 +14,7 @@ namespace Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionArea
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Description of Area
+ * Area de la planta
  *
  * @author Carlos Mendoza <inhack20@tecnocreaciones.com>
  * 
@@ -240,4 +240,36 @@ class Area
     {
         return $this->plantsDescription;
     }
+    
+    public function isCoveredAreaValid()
+    {
+        return ($this->coveredArea <= $this->totalArea);
+    }
+    
+    public function isAreasTotalValid()
+    {
+        if($this->getAreas()->isEmpty()){
+            return true;
+        }
+        $totalChildrenArea = 0;
+        foreach ($this->getAreas() as $area) {
+            $totalChildrenArea += $area->getTotalArea();
+        }
+        
+        return ($this->totalArea == $totalChildrenArea);
+    }
+    
+    public function isAreasCoveredValid()
+    {
+        if($this->getAreas()->isEmpty()){
+            return true;
+        }
+        $totalChildrenArea = 0;
+        foreach ($this->getAreas() as $area) {
+            $totalChildrenArea += $area->getCoveredArea();
+        }
+        
+        return ($this->coveredArea == $totalChildrenArea);
+    }
+    
 }

@@ -2,3 +2,5 @@ sigtec:
     validators:
         the_covered_area_must_be_less_than_or_equal_to_the_total_area: El areá techada debe ser menor o igual al areá total.
         the_concentration_value_is_incorrect: El valor de la concentración es incorrecto.
+        total_area: La suma las áreas totales debe ser igual al área total de la empresa.
+        covered_area: La suma las áreas techadas debe ser igual al área techada de la empresa.

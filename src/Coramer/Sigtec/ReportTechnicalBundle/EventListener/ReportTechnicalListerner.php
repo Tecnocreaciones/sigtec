@@ -138,8 +138,9 @@ class ReportTechnicalListerner implements EventSubscriberInterface, ContainerAwa
         $em->flush();
     }
     
-    function checkSecurity(ReportTechnicalEvent $reportTechnical)
+    function checkSecurity(ReportTechnicalEvent $event)
     {
+        $reportTechnical = $event->getReportTechnical();
         $user = $this->getUser();
         if(!$user->getCompanies()->contains($reportTechnical->getCompany())){
             throw new AccessDeniedHttpException('Permission Denied!');

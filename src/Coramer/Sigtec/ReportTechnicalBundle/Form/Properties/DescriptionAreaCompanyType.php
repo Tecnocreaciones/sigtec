@@ -16,7 +16,8 @@ class DescriptionAreaCompanyType extends AbstractType
     {
         $builder
             ->add('plantsDescription','collection',array(
-                'type' => new DescriptionAreaCompany\PlantDescriptionType()
+                'type' => new DescriptionAreaCompany\PlantDescriptionType(),
+                'cascade_validation' => true,
             ))
         ;
     }
@@ -29,6 +30,7 @@ class DescriptionAreaCompanyType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\DescriptionAreaCompany',
             'csrf_protection' => false,
+            'cascade_validation' => true,
         ));
     }
 
