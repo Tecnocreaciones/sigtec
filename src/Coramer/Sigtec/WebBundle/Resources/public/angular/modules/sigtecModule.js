@@ -883,7 +883,7 @@ sigtecModule.factory('reportTechnicalManager',function($http,notificationBarServ
         routes:{
             show: 'coramer_sigtec_backend_company_report_technical_show',
             update: 'coramer_sigtec_backend_company_report_technical_update',
-            delete: 'coramer_sigtec_backend_company_report_technical_delete',
+            cancel: 'coramer_sigtec_backend_company_report_technical_cancel',
             professional_profile: 'coramer_sigtec_backend_company_report_technical_professional_profile',
             description_area_company: {
                 detail_product_storage: 'coramer_sigtec_backend_company_report_technical_detail_product_storage',

@@ -9,6 +9,9 @@ sigtec:
     historical: Historical
     user: User
     event: Event
+    date: Date
+    copy: Copy
+    download: Download
     company:
         report_technical: Report technical
         inactivate: Inactivate

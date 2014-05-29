@@ -2,7 +2,6 @@ sigtec:
     details_technical_report: Detalles del reporte técnico
     days: Dia(s)
     unassigned: No asignado
-    send_report: Enviar reporte
     date_of_previous_technical_report_created: Fecha del último reporte técnico creado
     select: Seleccione
     yes: Si
@@ -240,7 +239,22 @@ sigtec:
             inventory_level: Inventario
     company_report_technical:
         valid: ¿Reporte técnico valido?
-        send_to_revision: El reporte técnico se envio a revisión.
-        invalid_report: Reporte técnico invalido.
+        status:
+            send_report: Enviar reporte
+            revised: Revisado
+            submitted_to_correction: Enviar a corrección
+            cancel: Anular
+            approve: Aprobar
+            reject: Rechazar
         historical:
             send_to_revision: El reporte técnico se envio a revisión.
+            pending_correction: El reporte técnico se envio a realizar correcciones por parte del cliente.
+            cancel: El reporte técnico fue anulado.
+            revised: El reporte técnico fue revisado por un supervisor.
+            approved: El reporte técnico fue aprobado por un gerente técnico.
+            rejected: El reporte técnico fue rechazado por un gerente técnico.
+        email:
+            change_status:
+                subject: Cambio del estatus del reporte técnico.
+                body: >
+                    Estimado cliente %customer% su reporte técnico "%reportArchive%", ha cambiado de estatus de "%status1%" a "%status2%".

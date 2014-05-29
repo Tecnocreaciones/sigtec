@@ -2,7 +2,6 @@ sigtec:
     details_technical_report: Details of the technical report
     days: Day(s)
     unassigned: Unassigned
-    send_report: Send report
     date_of_previous_technical_report_created: Date of previous technical report created
     select: Select
     yes: Yes
@@ -236,7 +235,22 @@ sigtec:
             inventory_level: Inventory
     company_report_technical:
         valid: ¿Technical report valid?
-        send_to_revision: The technical report was sent to review.
-        invalid_report: Technical Report invalid.
+        status:
+            send_report: Send report
+            revised: Revised
+            submitted_to_correction: Submitted to correction
+            cancel: Cancel
+            approve: Approve
+            reject: Reject
         historical:
             send_to_revision: The technical report was sent to review.
+            pending_correction: The technical report was sent to make corrections by the customer.
+            cancel: The technical report was annulled.
+            revised: The technical report was reviewed by a supervisor.
+            approved: The technical report was approved by a technical manager.
+            rejected: The technical report was rejected by a technical manager.
+        email:
+            change_status:
+                subject: Updating the status of the technical report.
+                body: >
+                    Dear customer %customer% technical report "%reportArchive%" status has changed from "%status1%" to "%status2%". 

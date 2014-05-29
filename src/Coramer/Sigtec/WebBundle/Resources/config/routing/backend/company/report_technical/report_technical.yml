@@ -34,19 +34,35 @@ coramer_sigtec_backend_company_report_technical_update:
     requirements:
         _method: GET|PUT
         
-coramer_sigtec_backend_company_report_technical_delete:
-    pattern:  /{id}/delete
+coramer_sigtec_backend_company_report_technical_cancel:
+    pattern:  /{id}/cancel
     defaults:
-        _controller: coramer_sigtec_backend.controller.company_report_technical:deleteAction
+        _controller: coramer_sigtec_backend.controller.company_report_technical:cancelAction
     requirements:
-        _method: POST|DELETE
+        _method: POST
         
-coramer_sigtec_backend_company_report_technical_update:
+coramer_sigtec_backend_company_report_technical_send_to_revision:
     pattern:  /{id}/send-to-revision
     defaults:
         _controller: coramer_sigtec_backend.controller.company_report_technical:sendToRevisionAction
     requirements:
         _method: POST
+        
+coramer_sigtec_backend_company_report_technical_reviewer_send_to:
+    pattern:  /{id}/{status}/reviewer-send-to
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical:reviewerSendToAction
+    requirements:
+        _method: POST
+        status: 2|4 #AbstractReportTechnical::STATUS_PENDING_CORRECTION|AbstractReportTechnical::STATUS_REVISED
+        
+coramer_sigtec_backend_company_report_technical_manager_send_to:
+    pattern:  /{id}/{status}/technical-manager-send-to
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical:technicalManagerSendToAction
+    requirements:
+        _method: POST
+        status: 5|6 #AbstractReportTechnical::STATUS_APPROVED|AbstractReportTechnical::STATUS_REJECTED
         
 coramer_sigtec_backend_company_report_technical_professional_profile:
     pattern:  /{id}/professional-profile.{_format}

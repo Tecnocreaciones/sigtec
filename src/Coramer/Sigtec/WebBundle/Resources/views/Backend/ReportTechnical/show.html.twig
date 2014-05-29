@@ -530,7 +530,7 @@
         <tr>
             <th>{{ 'sigtec.event'|trans({},'messages') }}</th>
             <th>{{ 'sigtec.user'|trans({},'messages') }}</th>
-            <th>{{ 'sigtec.created_at'|trans({},'messages') }}</th>
+            <th>{{ 'sigtec.date'|trans({},'messages') }}</th>
         </tr>
         {% for historical in company_report_technical.histories %}
             <tr data="{{ historical|serialize }}">
@@ -542,35 +542,113 @@
     </table>
     <br/><br/>
     <p class="button-height align-right">
+        {% set textarea = '<textarea name="comment" required="required" placeholder="' ~ ('sigtec.comments'|trans({},'messages')) ~ '..." class="input" rows="10" cols="60"></textarea>' %}
+            
+        {{ buttons.generic(null,'sigtec.copy','icon-tick',{'translation_domain':'messages'}) }}
+        {{ buttons.generic(null,'sigtec.download','icon-download',{'translation_domain':'messages'}) }}
+            
         {% if company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_IN_REVIEW') and 
              is_granted('ROLE_REVISER') 
         %}
-            {{ buttons.generic(null,'sigtec.report_technical.revised','icon-tick',{'translation_domain':'CoramerSigtecReportTechnicalBundle'}) }}
-            {{ buttons.generic(null,'sigtec.report_technical.submitted_to_correction','icon-cross',{'translation_domain':'CoramerSigtecReportTechnicalBundle','gradient':'red-gradient'}) }}
+            {{ buttons.generic_modal(
+                path(
+                    'coramer_sigtec_backend_company_report_technical_reviewer_send_to',
+                    {
+                        id:company_report_technical.id,
+                        status: constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REVISED')
+                    }
+                ),
+                'sigtec.company_report_technical.status.revised',
+                {
+                    'translation_domain':'CoramerSigtecReportTechnicalBundle',
+                    'icon':'icon-tick',
+                    'content': textarea
+                })
+            }}
+            {{ buttons.generic_modal(
+                path(
+                    'coramer_sigtec_backend_company_report_technical_reviewer_send_to',
+                    {
+                        id:company_report_technical.id,
+                        status: constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_PENDING_CORRECTION')
+                    }
+                ),
+                'sigtec.company_report_technical.status.submitted_to_correction',
+                {
+                    'translation_domain':'CoramerSigtecReportTechnicalBundle',
+                    'icon':'icon-cross',
+                    'content': textarea,
+                    'gradient':'red-gradient'
+                })
+            }}
         {% endif %}
             
         {% if company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REVISED') and
             is_granted('ROLE_TECHNICAL_MANAGER') 
         %}
-            {{ buttons.generic(null,'sigtec.report_technical.approve','icon-tick',{'translation_domain':'CoramerSigtecReportTechnicalBundle'}) }}
-            {{ buttons.generic(null,'sigtec.report_technical.reject','icon-cross',{'translation_domain':'CoramerSigtecReportTechnicalBundle','gradient':'red-gradient'}) }}
-        {% endif %}
-            
-        {% if company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_IN_PROGRESS') 
-            or company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_PENDING_CORRECTION')
-        %}
             {{ buttons.generic_modal(
-                path('coramer_sigtec_backend_company_report_technical_update',{id:company_report_technical.id}),
-                'sigtec.send_report',
+                path(
+                    'coramer_sigtec_backend_company_report_technical_manager_send_to',
+                    {
+                        id:company_report_technical.id,
+                        status: constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_APPROVED')
+                    }
+                ),
+                'sigtec.company_report_technical.status.approve',
                 {
                     'translation_domain':'CoramerSigtecReportTechnicalBundle',
                     'icon':'icon-tick',
-                    'content': '<textarea name="comment" placeholder="' ~ ('sigtec.comments'|trans({},'messages')) ~ '..." class="input" rows="10" cols="60"></textarea>'
+                    'content': textarea
+                })
+            }}
+            {{ buttons.generic_modal(
+                path(
+                    'coramer_sigtec_backend_company_report_technical_manager_send_to',
+                    {
+                        id:company_report_technical.id,
+                        status: constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REJECTED')
+                    }
+                ),
+                'sigtec.company_report_technical.status.reject',
+                {
+                    'translation_domain':'CoramerSigtecReportTechnicalBundle',
+                    'icon':'icon-cross',
+                    'content': textarea,
+                    'gradient':'red-gradient'
+                })
+            }}
+        {% endif %}
+            
+        {% if (company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_IN_PROGRESS') 
+            or company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_PENDING_CORRECTION'))
+            and company_report_technical.valid == true
+        %}
+            {{ buttons.generic_modal(
+                path('coramer_sigtec_backend_company_report_technical_send_to_revision',{id:company_report_technical.id}),
+                'sigtec.company_report_technical.status.send_report',
+                {
+                    'translation_domain':'CoramerSigtecReportTechnicalBundle',
+                    'icon':'icon-tick',
+                    'content': textarea
                 })
             }}
             {{ buttons.edit(path('coramer_sigtec_backend_company_report_technical_update', { 'id': company_report_technical.id })) }}
         {% endif %}
-        {{ buttons.delete(path('coramer_sigtec_backend_company_report_technical_delete', { 'id': company_report_technical.id })) }}
+        {% if company_report_technical.status != constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_APPROVED') 
+            and company_report_technical.status != constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REJECTED')
+            and company_report_technical.status != constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_CANCELED')
+        %}
+            {{ buttons.generic_modal(
+                path('coramer_sigtec_backend_company_report_technical_cancel',{id:company_report_technical.id}),
+                'sigtec.company_report_technical.status.cancel',
+                {
+                    'translation_domain':'CoramerSigtecReportTechnicalBundle',
+                    'icon':'icon-trash',
+                    'content': textarea,
+                    'gradient':'red-gradient'
+                })
+            }}
+        {% endif %}
         
     </p>
 {% endblock %}

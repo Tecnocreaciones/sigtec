@@ -123,8 +123,8 @@ class SerializeEventListerner implements EventSubscriberInterface,  \Symfony\Com
             'edit' => array(
                 'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_update',array('id' => $object->getId()))
                 ),
-            'delete' => array(
-                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_delete',array('id' => $object->getId()))
+            'cancel' => array(
+                'href' => $this->generateUrl('coramer_sigtec_backend_company_report_technical_cancel',array('id' => $object->getId()))
                 ),
         ));
     }

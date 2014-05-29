@@ -3,6 +3,19 @@ coramer_sigtec_backend:
         create: El reporte técnico se ha creado.
         update: El reporte técnico se ha actualizado.
         delete: El reporte técnico se ha eliminado.
+        send_to_revision: El reporte técnico se envio a revisión.
+        pending_correction: El reporte técnico se envio a corregir.
+        revised: El reporte técnico fue revisado correctamente.
+        cancel: El reporte técnico fue anulado correctamente.
+        approved: El reporte técnico fue aprobado correctamente.
+        rejected: El reporte técnico fue rechazado correctamente.
+        error:
+            invalid_report: Reporte técnico invalido.
+            can_not_be_sent_to_review: El reporte técnico no puede ser enviado a revisión.
+            can_not_status_review: No se puede revisar el reporte técnico hasta que su estatus se encuentre "en revisión"
+            empty_comment: Debe ingresar un comentario acerca del reporte técnico.
+            can_not_cancel_the_report: No se puede anular el reporte.
+            can_not_be_approved: El reporte técnico no puede ser aprobado con el estatus actual.
     company_report_technical_properties_detail_product_storage:
         create: Detalle de almacenaje de producto agregado.
         update: Detalle de almacenaje de producto actualizado.

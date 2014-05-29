@@ -144,4 +144,9 @@ class Person
     {
         return $this->updatedAt;
     }
+    
+    public function getFullName() 
+    {
+        return $this->firstName.' '.$this->lastName;
+    }
 }

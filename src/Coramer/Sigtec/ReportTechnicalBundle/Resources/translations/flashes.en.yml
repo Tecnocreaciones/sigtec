@@ -3,6 +3,19 @@ coramer_sigtec_backend:
         create: The technical report has been created.
         update: The technical report has been updated.
         delete: The technical report has been removed.
+        send_to_revision: The technical report was sent to review.
+        pending_correction: The technical report was sent to correct.
+        revised: The technical report was reviewed properly.
+        cancel: The technical report was canceled properly.
+        approved: The technical report was approved properly.
+        rejected: The technical report was rejected properly.
+        error:
+            invalid_report: Technical Report invalid.
+            can_not_be_sent_to_review: The technical report can not be sent for review.
+            can_not_status_review: You can not review the technical report until its status is in "review"
+            empty_comment: You must enter a comment on the technical report.
+            can_not_cancel_the_report: You can not cancel the report.
+            can_not_be_approved: The technical report can not be approved under the current status.
     company_report_technical_properties_detail_product_storage:
         create: Detail product added storage.
         update: Detail product storage updated.

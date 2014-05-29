@@ -11,9 +11,23 @@
 
 namespace Coramer\Sigtec\ReportTechnicalBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController;
+use Coramer\Sigtec\CoreBundle\Entity\Historical;
+use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation;
+use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential;
+use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\InventoryLevel;
+use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin;
+use Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile;
+use Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical;
+use Coramer\Sigtec\ReportTechnicalBundle\Event\Events;
+use Coramer\Sigtec\ReportTechnicalBundle\Event\ReportTechnicalEvent;
+use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Swift_Message;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
+use Tecnocreaciones\Bundle\ResourceBundle\Controller\ResourceController;
+use Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 /**
  * Controlador del reporte tecnico
@@ -24,7 +38,7 @@ class ReportTechnicalController extends ResourceController
 {
     /**
      * 
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Request $request
      * @return type
      * @Security("is_granted('ROLE_REVISER')")
      */
@@ -60,7 +74,7 @@ class ReportTechnicalController extends ResourceController
     
     /**
      * 
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Request $request
      * @return type
      * @Security("is_granted('ROLE_USER')")
      */
@@ -112,17 +126,17 @@ class ReportTechnicalController extends ResourceController
             $descriptionAreaCompanyManager = $this->get('coramer_sigtec_report_technical.properties.description_area_company_manager');
             $resource
                     ->setArchive($sequenceGenerator->getNextTempArchive())
-                    ->setProfessionalProfile(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\ProfessionalProfile())
-                    ->setOtherPlasticResin(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\OtherPlasticResin())
-                    ->setExportation(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\Exportation())
+                    ->setProfessionalProfile(new ProfessionalProfile())
+                    ->setOtherPlasticResin(new OtherPlasticResin())
+                    ->setExportation(new Exportation())
                     ->setDescriptionAreaCompany($descriptionAreaCompanyManager->build($company))
-                    ->setGrowthPotential(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\GrowthPotential())
-                    ->setInventoryLevel(new \Coramer\Sigtec\ReportTechnicalBundle\Entity\Properties\InventoryLevel())
+                    ->setGrowthPotential(new GrowthPotential())
+                    ->setInventoryLevel(new InventoryLevel())
                     ;
             
             $resource = $this->domainManager->create($resource);
             //Actualizar la fecha del ultimo reporte tecnico creado
-            $company->setLastTechnicalReportDateCreated(new \DateTime());
+            $company->setLastTechnicalReportDateCreated(new DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
@@ -164,8 +178,8 @@ class ReportTechnicalController extends ResourceController
         $form = $this->getForm($resource);
         $data = array();
         if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->submit($request)->isValid()) {
-            $event = new \Coramer\Sigtec\ReportTechnicalBundle\Event\ReportTechnicalEvent($resource);
-            $this->get('event_dispatcher')->dispatch(\Coramer\Sigtec\ReportTechnicalBundle\Event\Events::REPORT_TECHNICAL_UPDATE,$event);
+            $event = new ReportTechnicalEvent($resource);
+            $this->get('event_dispatcher')->dispatch(Events::REPORT_TECHNICAL_UPDATE,$event);
             
             if($request->isXmlHttpRequest()){
                 $em = $this->getDoctrine()->getManager();
@@ -220,7 +234,7 @@ class ReportTechnicalController extends ResourceController
             $data = array(
                 'message' => $flashBag->get('success'),
             );
-            return new \Symfony\Component\HttpFoundation\JsonResponse($data);
+            return new JsonResponse($data);
         }else{
             return $this->redirectHandler->redirectToRoute($this->config->getRedirectRoute('client_index'));
         }
@@ -257,7 +271,7 @@ class ReportTechnicalController extends ResourceController
                     'class' => 'select blue-gradient replacement glossy input-large',
                 ),
                 'required' => true,
-                'query_builder' => function(\Tecnocreaciones\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository $er) use ($user) {
+                'query_builder' => function(EntityRepository $er) use ($user) {
                     $qb = $er->createQueryBuilder('c');
                     $qb
                         ->select('c')
@@ -275,48 +289,197 @@ class ReportTechnicalController extends ResourceController
         return $form->getForm();
     }
     
-    function sendToRevisionAction(Request $request)
+    function cancelAction(Request $request)
     {
         $resource = $this->findOr404($request);
+        $comment = $request->get('comment');
+        if($comment == ''){
+            $this->setFlash('error', 'coramer_sigtec_backend.company_report_technical.error.empty_comment');
+            return $this->redirectHandler->redirectTo($resource);
+        }
         
-        if($this->container->get('coramer_sigtec_report_technical.manager.report_technical_manager')->isValidRegistration($resource)){
-            $historical = new \Coramer\Sigtec\CoreBundle\Entity\Historical();
-            $historical
-                    ->setUser($this->getUser())
-                    ->setComment($request->get('comment'))
-                    ->setEvent('sigtec.company_report_technical.historical.send_to_revision')
-                    ;
-            $resource->addHistory($historical);
-            $resource->setStatus(\Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical::STATUS_IN_REVIEW);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($resource);
-            $em->flush();
-            
-            foreach ($resource->getCompany()->getContacts() as $contact) {
-                 $recipient = $contact->getEmail();
-                 $message = \Swift_Message::newInstance()
-                    ->setSubject('Hello Email')
-                    ->setFrom('send@example.com')
-                    ->setTo($recipient)
-                    ->setBody(
-                        $this->renderView(
-                            'CoramerSigtecWebBundle:Backend:ReportTechnical/email/changeEstatus.txt.twig',
-                            array()
-                        )
-                    )
-                ;
-                $this->get('mailer')->send($message);
-            }
-            
-            $this->setFlash('success', 'sigtec.company_report_technical.send_to_revision');
+        if(($resource->getStatus() != ReportTechnical::STATUS_APPROVED && 
+            $resource->getStatus() != ReportTechnical::STATUS_REJECTED &&
+            $resource->getStatus() != ReportTechnical::STATUS_CANCELED
+            )){
+                $event = 'sigtec.company_report_technical.historical.cancel';
+                $status = ReportTechnical::STATUS_CANCELED;
+
+                $this->changeEstatus($resource, $comment, $event, $status);
+
+                $this->setFlash('success', 'coramer_sigtec_backend.company_report_technical.cancel');
         }else{
-            $this->setFlash('error', 'sigtec.company_report_technical.invalid_report');
+            $this->setFlash('error', 'coramer_sigtec_backend.company_report_technical.error.can_not_be_sent_to_review');
         }
         return $this->redirectHandler->redirectTo($resource);
     }
     
-    protected function setFlash($type,$message,$parameters = array(),$domain = 'CoramerSigtecReportTechnicalBundle')
+    /**
+     * Envia el reporte a revision
+     * 
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return type
+     * @throws type
+     */
+    function sendToRevisionAction(Request $request)
+    {
+        $resource = $this->findOr404($request);
+        //Security Check
+        $user = $this->getUser();
+        if(!$user->getCompanies()->contains($resource->getCompany())){
+            throw $this->createAccessDeniedHttpException();
+        }
+        
+        if(($resource->getStatus() == ReportTechnical::STATUS_IN_PROGRESS || $resource->getStatus() == ReportTechnical::STATUS_PENDING_CORRECTION)){
+            if($this->container->get('coramer_sigtec_report_technical.manager.report_technical_manager')->isValidRegistration($resource)){
+                $comment = $request->get('comment');
+                $event = 'sigtec.company_report_technical.historical.send_to_revision';
+                $status = ReportTechnical::STATUS_IN_REVIEW;
+
+                $this->changeEstatus($resource, $comment, $event, $status);
+
+                $this->setFlash('success', 'coramer_sigtec_backend.company_report_technical.send_to_revision');
+            }else{
+                $this->setFlash('error', 'coramer_sigtec_backend.company_report_technical.error.invalid_report');
+            }
+        }else{
+            $this->setFlash('error', 'coramer_sigtec_backend.company_report_technical.error.can_not_be_sent_to_review');
+        }
+        return $this->redirectHandler->redirectTo($resource);
+    }
+    
+    /**
+     * Cambia el estatus del reporte tecnico por el Revisor encargado
+     * 
+     * @Security("is_granted('ROLE_REVISER')")
+     */
+    function reviewerSendToAction(Request $request,$status)
+    {
+        $resource = $this->findOr404($request);
+        $comment = $request->get('comment');
+        if($comment == ''){
+            $this->setFlash('error', 'coramer_sigtec_backend.company_report_technical.error.empty_comment');
+            return $this->redirectHandler->redirectTo($resource);
+        }
+        if(($resource->getStatus() == ReportTechnical::STATUS_IN_REVIEW)){
+            if($this->container->get('coramer_sigtec_report_technical.manager.report_technical_manager')->isValidRegistration($resource)){
+               $flash = '';
+                if($status == ReportTechnical::STATUS_PENDING_CORRECTION){
+                    $event = 'sigtec.company_report_technical.historical.pending_correction';
+                    $flash = 'pending_correction';
+                }elseif($status == ReportTechnical::STATUS_REVISED){
+                    $event = 'sigtec.company_report_technical.historical.revised';
+                    $flash = 'revised';
+                }
+
+                $this->changeEstatus($resource, $comment, $event, $status);
+
+                $this->setFlash('success', 'coramer_sigtec_backend.company_report_technical.'.$flash);
+            }else{
+                $this->setFlash('error', 'coramer_sigtec_backend.company_report_technical.error.invalid_report');
+            }
+        }else{
+            $this->setFlash('error', 'coramer_sigtec_backend.company_report_technical.error.can_not_status_review');
+        }
+        return $this->redirectHandler->redirectTo($resource);
+    }
+    
+    /**
+     * Cambia el estatus del reporte tecnico por el Gerente tecnico
+     * 
+     * @Security("is_granted('ROLE_TECHNICAL_MANAGER')")
+     */
+    function technicalManagerSendToAction(Request $request,$status)
+    {
+        $resource = $this->findOr404($request);
+        $comment = $request->get('comment');
+        if($comment == ''){
+            $this->setFlash('error', 'coramer_sigtec_backend.company_report_technical.error.empty_comment');
+            return $this->redirectHandler->redirectTo($resource);
+        }
+        if(($resource->getStatus() == ReportTechnical::STATUS_REVISED)){
+            if($this->container->get('coramer_sigtec_report_technical.manager.report_technical_manager')->isValidRegistration($resource)){
+               $flash = '';
+                if($status == ReportTechnical::STATUS_APPROVED){
+                    $event = 'sigtec.company_report_technical.historical.approved';
+                    $flash = 'approved';
+                }elseif($status == ReportTechnical::STATUS_REJECTED){
+                    $event = 'sigtec.company_report_technical.historical.rejected';
+                    $flash = 'rejected';
+                }
+
+                $this->changeEstatus($resource, $comment, $event, $status);
+
+                $this->setFlash('success', 'coramer_sigtec_backend.company_report_technical.'.$flash);
+            }else{
+                $this->setFlash('error', 'coramer_sigtec_backend.company_report_technical.error.invalid_report');
+            }
+        }else{
+            $this->setFlash('error', 'coramer_sigtec_backend.company_report_technical.error.can_not_be_approved');
+        }
+        return $this->redirectHandler->redirectTo($resource);
+    }
+    
+    /**
+     * Envia un mensaje flash
+     * 
+     * @param type $type
+     * @param type $message
+     * @param type $parameters
+     * @param type $domain
+     * @return type
+     */
+    protected function setFlash($type,$message,$parameters = array(),$domain = 'flashes')
     {
         return $this->get('session')->getBag('flashes')->add($type,$this->trans($message, $parameters, $domain));
+    }
+    
+    /**
+     * Funcion que cambia el estatus del reporte tecnico y notifica por correo electronico a los contactos de la empresa
+     * 
+     * @param \Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical $reportTechnical
+     * @param type $comment
+     * @param type $event
+     * @param type $status
+     */
+    protected function changeEstatus(ReportTechnical $reportTechnical,$comment,$event,$status) {
+        $historical = new Historical();
+        $historical
+                ->setUser($this->getUser())
+                ->setComment($comment)
+                ->setEvent($event)
+                ;
+        $reportTechnical->addHistory($historical);
+        $status1 = $this->trans($reportTechnical->getLabelStatus());
+        $reportTechnical->setStatus($status);
+
+        $status2 = $this->trans($reportTechnical->getLabelStatus());
+        $reportArchive = $reportTechnical->getArchive();
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($reportTechnical);
+        $em->flush();
+
+        foreach ($reportTechnical->getCompany()->getContacts() as $contact) {
+             $recipient = $contact->getEmail();
+             $customer = $contact->getFullName();
+             $body = $this->trans(
+                            'sigtec.company_report_technical.email.change_status.body',
+                            array(
+                                '%customer%' => $customer,
+                                '%reportArchive%' => $reportArchive,
+                                '%status1%' => $status1,
+                                '%status2%' => $status2,
+                            ),
+                            'CoramerSigtecReportTechnicalBundle'
+                        );
+             $message = Swift_Message::newInstance()
+                ->setSubject($this->trans('sigtec.company_report_technical.email.change_status.subject',array(),'CoramerSigtecReportTechnicalBundle'))
+                ->setFrom('info@example.com')
+                ->setTo($recipient)
+                ->setBody($body)
+            ;
+            $this->get('mailer')->send($message);
+        }
     }
 }
