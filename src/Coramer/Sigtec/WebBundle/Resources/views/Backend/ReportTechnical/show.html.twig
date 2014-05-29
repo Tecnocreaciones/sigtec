@@ -72,8 +72,16 @@
                 <small class="tag red-bg">{{ 'sigtec.status.canceled'|trans({},'messages') }}</small>
             {% elseif company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_APPROVED') %}
                 <small class="tag green-bg">{{ 'sigtec.status.approved'|trans({},'messages') }}</small>
+            {% elseif company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_PENDING_CORRECTION') %}
+                <small class="tag orange-bg">{{ 'sigtec.status.pending_correction'|trans({},'messages') }}</small> 
+            {% elseif company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_IN_REVIEW') %}
+                <small class="tag orange-bg">{{ 'sigtec.status.in_review'|trans({},'messages') }}</small> 
+            {% elseif company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REVISED') %}
+                <small class="tag orange-bg">{{ 'sigtec.status.revised'|trans({},'messages') }}</small> 
+            {% elseif company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_APPROVED') %}
+                <small class="tag orange-bg">{{ 'sigtec.status.revised'|trans({},'messages') }}</small> 
             {% elseif company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REJECTED') %}
-                <small class="tag red-bg">{{ 'sigtec.status.rejected'|trans({},'messages') }}</small>
+                <small class="tag green-bg">{{ 'sigtec.status.approved'|trans({},'messages') }}</small>
             {% endif%}
         </p>
         <p class="inline-label">
@@ -516,14 +524,54 @@
             </div>
 
     </div>
-            
+                
+    <h4>{{ 'sigtec.historical'|trans({},'messages') }}</h4>
+    <table class="simple-table table-responsive table-extra-info" get-table-info="getTableExtraInfoHistorical">
+        <tr>
+            <th>{{ 'sigtec.event'|trans({},'messages') }}</th>
+            <th>{{ 'sigtec.user'|trans({},'messages') }}</th>
+            <th>{{ 'sigtec.created_at'|trans({},'messages') }}</th>
+        </tr>
+        {% for historical in company_report_technical.histories %}
+            <tr data="{{ historical|serialize }}">
+                <td>{{ historical.event|trans({},'CoramerSigtecReportTechnicalBundle') }}</td>
+                <td>{{ historical.user.username }}</td>
+                <td>{{ historical.createdAt|date('Y-m-d h:i a') }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br/><br/>
     <p class="button-height align-right">
-        {% if is_granted('ROLE_REVISER') %}
+        {% if company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_IN_REVIEW') and 
+             is_granted('ROLE_REVISER') 
+        %}
+            {{ buttons.generic(null,'sigtec.report_technical.revised','icon-tick',{'translation_domain':'CoramerSigtecReportTechnicalBundle'}) }}
+            {{ buttons.generic(null,'sigtec.report_technical.submitted_to_correction','icon-cross',{'translation_domain':'CoramerSigtecReportTechnicalBundle','gradient':'red-gradient'}) }}
+        {% endif %}
+            
+        {% if company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_REVISED') and
+            is_granted('ROLE_TECHNICAL_MANAGER') 
+        %}
             {{ buttons.generic(null,'sigtec.report_technical.approve','icon-tick',{'translation_domain':'CoramerSigtecReportTechnicalBundle'}) }}
             {{ buttons.generic(null,'sigtec.report_technical.reject','icon-cross',{'translation_domain':'CoramerSigtecReportTechnicalBundle','gradient':'red-gradient'}) }}
         {% endif %}
-        {{ buttons.edit(path('coramer_sigtec_backend_company_report_technical_update', { 'id': company_report_technical.id })) }}
+            
+        {% if company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_IN_PROGRESS') 
+            or company_report_technical.status == constant('Coramer\\Sigtec\\ReportTechnicalBundle\\Entity\\ReportTechnical::STATUS_PENDING_CORRECTION')
+        %}
+            {{ buttons.generic_modal(
+                path('coramer_sigtec_backend_company_report_technical_update',{id:company_report_technical.id}),
+                'sigtec.send_report',
+                {
+                    'translation_domain':'CoramerSigtecReportTechnicalBundle',
+                    'icon':'icon-tick',
+                    'content': '<textarea name="comment" placeholder="' ~ ('sigtec.comments'|trans({},'messages')) ~ '..." class="input" rows="10" cols="60"></textarea>'
+                })
+            }}
+            {{ buttons.edit(path('coramer_sigtec_backend_company_report_technical_update', { 'id': company_report_technical.id })) }}
+        {% endif %}
         {{ buttons.delete(path('coramer_sigtec_backend_company_report_technical_delete', { 'id': company_report_technical.id })) }}
+        
     </p>
 {% endblock %}
 
@@ -531,7 +579,14 @@
     {{ parent() }}
      {% include 'CoramerSigtecWebBundle:Backend:ReportTechnical/Javascripts/_tableInfo.html.twig' %}
      <script type="text/javascript">
+        function getTableExtraInfoHistorical(data){
+            return '{{ 'sigtec.comments'|trans({},'messages') }}: '+data.comment;
+        }
          $(document).ready(function(){
+            
+            $.modal.defaults.showFormOptions.textCancel = '{{ 'sigtec.cancel'|trans({},'messages') }}';
+            $.modal.defaults.showFormOptions.textSubmit = '{{ 'sigtec.send'|trans({},'messages') }}';
+            
              // Progress
             $('.progress').progress();
          });

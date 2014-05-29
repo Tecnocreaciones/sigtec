@@ -29,6 +29,8 @@ class ReportTechnicalManager implements ContainerAwareInterface
     
     private $errors;
     
+    private $percentage;
+    
     public function __construct() {
         $this->errors = array();
     }
@@ -51,13 +53,13 @@ class ReportTechnicalManager implements ContainerAwareInterface
      */
     function getRegistrationPercentage(ReportTechnical $reportTechnical)
     {
-        $percentage = 0 ;
+        $this->percentage = 0;
         
         //Evalue el perfil profesional
         if($reportTechnical->getProfessionalProfile()->getTotal() == 0){
             $this->addError('sigtec.help.company_report_technical.you_must_enter_the_professional_profile');
         }else{
-            $percentage+= 5;
+            $this->percentage+= 50;
         }
         
         //Evalua el nivel de produccion
@@ -73,12 +75,34 @@ class ReportTechnicalManager implements ContainerAwareInterface
                 }
             }
             if($valid){
-                $percentage += 50;
+                $this->percentage += 50;
             }
         }else{
             $this->addError('sigtec.help.company_report_technical.you_must_add_production_levels');
         }
-        return $percentage;
+        
+        $update = false;
+        if($this->percentage == 100 && !$reportTechnical->isValid()){
+            $reportTechnical->setValid(true);
+            $update = true;
+        }elseif($this->percentage < 100 && $reportTechnical->isValid()){
+            $update = true;
+            $reportTechnical->setValid(false);
+        }
+        if($update){
+            $em = $this->getEntityManager();
+            $em->persist($reportTechnical);
+            $em->flush();
+        }
+        return $this->percentage;
+    }
+    
+    function isValidRegistration(ReportTechnical $reportTechnical)
+    {
+        if($this->getRegistrationPercentage($reportTechnical) == 100){
+            return true;
+        }
+        return false;
     }
     
     public function setContainer(ContainerInterface $container = null)
@@ -89,5 +113,10 @@ class ReportTechnicalManager implements ContainerAwareInterface
     protected function trans($id, array $parameters = array(), $domain = null)
     {
         return $this->container->get('translator')->trans($id,$parameters,$domain);
+    }
+    
+    public function getEntityManager()
+    {
+        return $this->container->get('doctrine')->getManager();
     }
 }

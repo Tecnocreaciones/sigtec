@@ -4,6 +4,11 @@ sigtec:
     register: Registrar
     total: Total
     none: Ninguno
+    comments: Observaciones
+    send: Enviar
+    historical: Historial
+    user: Usuario
+    event: Evento
     company:
         report_technical: Reporte técnico
         inactivate: Inactivar

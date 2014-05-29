@@ -240,3 +240,7 @@ sigtec:
             inventory_level: Inventario
     company_report_technical:
         valid: ¿Reporte técnico valido?
+        send_to_revision: El reporte técnico se envio a revisión.
+        invalid_report: Reporte técnico invalido.
+        historical:
+            send_to_revision: El reporte técnico se envio a revisión.

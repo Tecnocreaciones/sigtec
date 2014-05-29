@@ -274,4 +274,49 @@ class ReportTechnicalController extends ResourceController
             ));
         return $form->getForm();
     }
+    
+    function sendToRevisionAction(Request $request)
+    {
+        $resource = $this->findOr404($request);
+        
+        if($this->container->get('coramer_sigtec_report_technical.manager.report_technical_manager')->isValidRegistration($resource)){
+            $historical = new \Coramer\Sigtec\CoreBundle\Entity\Historical();
+            $historical
+                    ->setUser($this->getUser())
+                    ->setComment($request->get('comment'))
+                    ->setEvent('sigtec.company_report_technical.historical.send_to_revision')
+                    ;
+            $resource->addHistory($historical);
+            $resource->setStatus(\Coramer\Sigtec\ReportTechnicalBundle\Entity\ReportTechnical::STATUS_IN_REVIEW);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($resource);
+            $em->flush();
+            
+            foreach ($resource->getCompany()->getContacts() as $contact) {
+                 $recipient = $contact->getEmail();
+                 $message = \Swift_Message::newInstance()
+                    ->setSubject('Hello Email')
+                    ->setFrom('send@example.com')
+                    ->setTo($recipient)
+                    ->setBody(
+                        $this->renderView(
+                            'CoramerSigtecWebBundle:Backend:ReportTechnical/email/changeEstatus.txt.twig',
+                            array()
+                        )
+                    )
+                ;
+                $this->get('mailer')->send($message);
+            }
+            
+            $this->setFlash('success', 'sigtec.company_report_technical.send_to_revision');
+        }else{
+            $this->setFlash('error', 'sigtec.company_report_technical.invalid_report');
+        }
+        return $this->redirectHandler->redirectTo($resource);
+    }
+    
+    protected function setFlash($type,$message,$parameters = array(),$domain = 'CoramerSigtecReportTechnicalBundle')
+    {
+        return $this->get('session')->getBag('flashes')->add($type,$this->trans($message, $parameters, $domain));
+    }
 }

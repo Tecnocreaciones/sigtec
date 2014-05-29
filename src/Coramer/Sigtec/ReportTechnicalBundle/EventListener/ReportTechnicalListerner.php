@@ -128,7 +128,7 @@ class ReportTechnicalListerner implements EventSubscriberInterface, ContainerAwa
     function onAddOrRemoveElements(ReportTechnicalEvent $event)
     {
         $reportTechnical = $event->getReportTechnical();
-        if($this->getCompanyManager()->isValidRegistration($reportTechnical)){
+        if($this->getReportTechnicalManager()->isValidRegistration($reportTechnical)){
             $reportTechnical->setValid(true);
         }else{
             $reportTechnical->setValid(false);
@@ -161,7 +161,7 @@ class ReportTechnicalListerner implements EventSubscriberInterface, ContainerAwa
      */
     function getReportTechnicalManager()
     {
-        return $this->container->get('coramer_sigtec_company.company_manager');
+        return $this->container->get('coramer_sigtec_report_technical.manager.report_technical_manager');
     }
     
     /**

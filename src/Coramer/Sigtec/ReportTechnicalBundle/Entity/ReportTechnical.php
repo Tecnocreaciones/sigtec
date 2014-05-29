@@ -154,6 +154,14 @@ class ReportTechnical extends AbstractReportTechnical
      */
     private $valid = false;
     
+    /**
+     * Historiales
+     * 
+     * @var \Coramer\Sigtec\CoreBundle\Entity\Historical
+     * @ORM\ManyToMany(targetEntity="Coramer\Sigtec\CoreBundle\Entity\Historical",inversedBy="reportsTechnicals",cascade={"persist"})
+     */
+    private $histories;
+    
     public function __construct() {
         $this->productionLevels = new \Doctrine\Common\Collections\ArrayCollection();
         $this->productsManufactured = new \Doctrine\Common\Collections\ArrayCollection();
@@ -610,5 +618,38 @@ class ReportTechnical extends AbstractReportTechnical
     public function isValid()
     {
         return $this->valid;
+    }
+
+    /**
+     * Add histories
+     *
+     * @param \Coramer\Sigtec\CoreBundle\Entity\Historical $histories
+     * @return ReportTechnical
+     */
+    public function addHistory(\Coramer\Sigtec\CoreBundle\Entity\Historical $histories)
+    {
+        $this->histories->add($histories);
+
+        return $this;
+    }
+
+    /**
+     * Remove histories
+     *
+     * @param \Coramer\Sigtec\CoreBundle\Entity\Historical $histories
+     */
+    public function removeHistory(\Coramer\Sigtec\CoreBundle\Entity\Historical $histories)
+    {
+        $this->histories->removeElement($histories);
+    }
+
+    /**
+     * Get histories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getHistories()
+    {
+        return $this->histories;
     }
 }

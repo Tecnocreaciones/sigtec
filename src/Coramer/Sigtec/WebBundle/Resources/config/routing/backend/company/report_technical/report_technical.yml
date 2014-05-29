@@ -41,6 +41,13 @@ coramer_sigtec_backend_company_report_technical_delete:
     requirements:
         _method: POST|DELETE
         
+coramer_sigtec_backend_company_report_technical_update:
+    pattern:  /{id}/send-to-revision
+    defaults:
+        _controller: coramer_sigtec_backend.controller.company_report_technical:sendToRevisionAction
+    requirements:
+        _method: POST
+        
 coramer_sigtec_backend_company_report_technical_professional_profile:
     pattern:  /{id}/professional-profile.{_format}
     defaults:

@@ -1,0 +1,13 @@
+Coramer\Sigtec\CoreBundle\Entity\Historical:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        event:
+            expose: true
+        comment:
+            expose: true
+        user:
+            expose: true
+        createdAt:
+            expose: true

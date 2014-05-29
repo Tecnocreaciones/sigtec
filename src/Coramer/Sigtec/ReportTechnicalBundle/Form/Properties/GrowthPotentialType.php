@@ -20,7 +20,7 @@ class GrowthPotentialType extends AbstractType
                 'attr' => array(
 //                    'ng-model' => 'reportTechnical.growth_potential.last_investment_machinery',
                 ),
-                'widget' => 'single_text'
+                //'widget' => 'single_text'
             ))
             ->add('doYouConsiderEnteringOtherMarkets',null,array(
                 'label' => 'sigtec.growth_potential.do_you_consider_entering_other_markets',
